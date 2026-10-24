@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>xstudy · 山中学堂</title>
-  <meta name="description" content="世外案卷：静学增长机制，可学入库；互关刷屏慎学。微李玩AI / LIS / AI入企。" />
+  <title>山中学堂 · xstudy</title>
+  <meta name="description" content="山中学堂：每天学可学创作者，带走能跟做的长文。我在学·大家一起学。全站由 AI 运营。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
@@ -24,6 +24,7 @@
       --seal: #a83228;
       --gold: #8a7340;
       --paper: #f7f3e8;
+      --stone-blue: #6a8f8a;
     }
     * { box-sizing: border-box; }
     body {
@@ -34,77 +35,215 @@
       background-image:
         radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
         radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
-        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 50%, #d9e0d8 100%);
       background-attachment: fixed;
     }
-    /* distant mountain silhouette */
-    body::before {
-      content: "";
-      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
-      pointer-events: none; z-index: 0; opacity: 0.35;
-      background:
-        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
-        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
-        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
-    }
-    .wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 40px 22px 80px; }
-    .mast {
-      display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start;
-      justify-content: space-between;
+    .wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 22px 80px; }
+
+    /* —— Hero —— */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 28px;
+      align-items: center;
+      padding: 36px 0 32px;
       border-bottom: 1px solid var(--line);
-      padding-bottom: 28px; margin-bottom: 28px;
     }
+    @media (max-width: 760px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-art { order: -1; max-height: 220px; overflow: hidden; border-radius: 4px; }
+    }
+    .hero-art img {
+      width: 100%; height: auto; display: block;
+      border-radius: 4px;
+      box-shadow: 0 12px 40px rgba(26, 31, 28, 0.12);
+      object-fit: cover;
+    }
+    .hero-copy { padding: 8px 0; }
     .brand {
       font-size: .78rem; letter-spacing: .28em; color: var(--gold);
-      margin-bottom: 10px;
+      margin: 0 0 12px;
     }
-    h1 {
-      margin: 0; font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
-      font-size: clamp(2.2rem, 7vw, 3rem); font-weight: 400;
-      letter-spacing: .12em; color: var(--ink);
+    .hero h1 {
+      margin: 0;
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      font-weight: 400;
+      letter-spacing: .14em;
     }
-    .motto {
-      margin: 12px 0 0; font-size: 1.05rem; color: var(--ink-soft);
-      letter-spacing: .18em;
-    }
-    .lede {
-      max-width: 34em; color: var(--muted); margin: 14px 0 0; font-size: .92rem;
+    .hero-sub {
+      margin: 14px 0 0;
+      font-size: 1.02rem;
+      color: var(--ink-soft);
+      letter-spacing: .06em;
       line-height: 1.85;
     }
-    .seal {
-      flex-shrink: 0;
-      width: 88px; height: 88px;
-      border: 3px double var(--seal);
-      color: var(--seal);
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
-      font-size: 1.15rem; line-height: 1.35; letter-spacing: .12em;
-      transform: rotate(-8deg);
-      background: rgba(255,248,244,.55);
-      box-shadow: inset 0 0 0 1px rgba(168,50,40,.25);
+    .hero-pitch {
+      margin: 16px 0 0;
+      font-size: .95rem;
+      color: var(--stone-blue);
+      letter-spacing: .22em;
     }
-    .howto {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 30px;
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 16px; padding: 8px 20px;
+      font-size: .76rem; letter-spacing: .24em; color: var(--pine);
+      border: 1px solid rgba(45, 90, 69, 0.45);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.98) 0%, rgba(220, 232, 225, 0.85) 100%);
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(26, 31, 28, 0.06);
     }
-    @media (max-width: 720px) { .howto { grid-template-columns: 1fr; } }
-    .howto article {
+
+    .section-divider {
+      display: block; width: 100%; max-width: 520px;
+      margin: 36px auto; opacity: 0.92;
+      border-radius: 2px;
+    }
+
+    .section-head {
+      margin: 0 0 18px;
+      text-align: center;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-family: "Ma Shan Zheng", serif;
+      font-size: 1.65rem;
+      font-weight: 400;
+      letter-spacing: .2em;
+      color: var(--ink);
+    }
+    .section-head p {
+      margin: 10px auto 0;
+      max-width: 32em;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* 本周必抄 */
+    .checklist {
       background: var(--panel);
       border: 1px solid var(--line);
-      padding: 16px 18px;
+      padding: 22px 24px 20px;
       border-radius: 2px;
-      position: relative;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
     }
-    .howto article::after {
-      content: "";
-      position: absolute; right: 10px; top: 10px; width: 6px; height: 6px;
-      border-radius: 50%; background: var(--gold); opacity: .5;
+    .checklist ul {
+      list-style: none; margin: 0; padding: 0;
     }
-    .howto b {
-      display: block; font-size: .8rem; color: var(--pine);
-      margin-bottom: 8px; letter-spacing: .2em; font-weight: 600;
+    .checklist li {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(197, 185, 164, 0.6);
+      font-size: .94rem;
+      color: var(--ink-soft);
     }
-    .howto p { margin: 0; font-size: .9rem; color: var(--muted); }
+    .checklist li:last-child { border-bottom: none; padding-bottom: 0; }
+    .checklist input[type="checkbox"] {
+      margin-top: 5px; width: 16px; height: 16px;
+      accent-color: var(--pine);
+      flex-shrink: 0;
+    }
+    .checklist strong {
+      display: block;
+      color: var(--pine);
+      font-size: .82rem;
+      letter-spacing: .12em;
+      margin-bottom: 4px;
+    }
+
+    /* 机制短案例 */
+    .spotlight {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 20px 24px;
+      align-items: start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 22px 24px;
+      border-radius: 2px;
+      border-left: 4px solid var(--pine);
+    }
+    @media (max-width: 520px) {
+      .spotlight { grid-template-columns: 1fr; }
+    }
+    .bookmark-n {
+      font-family: "Noto Serif SC", serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1.1;
+      letter-spacing: .02em;
+    }
+    .bookmark-n span {
+      display: block;
+      font-size: .68rem;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: .2em;
+      margin-top: 4px;
+    }
+    .spotlight h3 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+    .spotlight h3 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+    .spotlight h3 a:hover { border-bottom-color: var(--gold); }
+    .spotlight p { margin: 0; font-size: .92rem; color: var(--muted); }
+    .spotlight .go {
+      margin-top: 12px;
+      font-size: .88rem;
+    }
+    .spotlight .go a {
+      color: var(--pine);
+      text-decoration: none;
+      border-bottom: 1px solid #b7cfc2;
+    }
+
+    /* 二分入口 */
+    .twin-doors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    @media (max-width: 600px) { .twin-doors { grid-template-columns: 1fr; } }
+    .door {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: box-shadow .2s ease, border-color .2s ease;
+      min-height: 160px;
+    }
+    .door:hover {
+      box-shadow: 0 12px 32px rgba(26, 31, 28, 0.1);
+      border-color: #b8ad98;
+    }
+    .door-art {
+      height: 88px;
+      background: center / cover no-repeat url("assets/card-shan.jpg");
+      opacity: 0.88;
+    }
+    .door-body { padding: 18px 20px 20px; }
+    .door-body b {
+      display: block;
+      font-size: 1.2rem;
+      letter-spacing: .16em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .door-body p {
+      margin: 0;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
     .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
     .filters button {
       background: transparent; border: 1px solid var(--line); color: var(--muted);
@@ -118,6 +257,7 @@
     .legend span { margin-right: 16px; }
     .dot { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 6px; vertical-align: middle; }
     .dot.learn { background: var(--pine); } .dot.caution { background: var(--cinnabar); }
+
     .dossier {
       background: var(--panel); color: var(--ink);
       padding: 22px 24px 18px; margin: 0 0 16px;
@@ -146,440 +286,551 @@
     .dossier .actions { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 14px; font-size: .88rem; }
     .dossier .actions a { color: var(--pine); text-decoration: none; border-bottom: 1px solid #b7cfc2; }
     .dossier .actions a:hover { border-bottom-color: var(--pine); }
+    .dossier.article::before { background: var(--gold); }
+    .dossier.article .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.9); border-color: rgba(138, 115, 64, 0.45); }
+
+    .batch-label {
+      margin: 28px 0 14px; font-size: .82rem; color: var(--gold);
+      letter-spacing: .28em; text-align: center;
+    }
+    .section-intro {
+      margin: 0 0 16px; font-size: .88rem; color: var(--muted); line-height: 1.75;
+    }
+
+    .show-all-wrap { text-align: center; margin: 8px 0 24px; }
+    .show-all-btn {
+      background: transparent;
+      border: 1px dashed var(--line);
+      color: var(--muted);
+      padding: 10px 28px;
+      font: inherit;
+      font-size: .85rem;
+      letter-spacing: .14em;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .show-all-btn:hover { border-color: var(--pine); color: var(--pine); }
+
+    .hidden { display: none !important; }
+
     footer {
       margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line);
       color: var(--muted); font-size: .82rem; letter-spacing: .04em; text-align: center;
     }
     footer a { color: var(--pine); }
-    .hidden { display: none !important; }
-    .verse {
-      text-align: center; margin: 0 0 28px; color: var(--gold);
-      font-size: .9rem; letter-spacing: .35em;
-    }
-    .batch-label {
-      margin: 32px 0 14px; font-size: .82rem; color: var(--gold);
-      letter-spacing: .28em; text-align: center;
-    }
-    .ai-ops-badge {
-      display: inline-block; margin: 0 0 14px; padding: 6px 18px;
-      font-size: .74rem; letter-spacing: .24em; color: var(--pine);
-      border: 1px solid rgba(138, 115, 64, 0.55);
-      background: linear-gradient(180deg, rgba(252, 249, 240, 0.98) 0%, rgba(220, 232, 225, 0.8) 100%);
-      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.05);
-    }
-    .section-intro {
-      margin: 0 0 16px; font-size: .88rem; color: var(--muted); line-height: 1.75;
-    }
-    .dossier.article::before { background: var(--gold); }
-    .dossier.article .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.9); border-color: rgba(138, 115, 64, 0.45); }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="mast">
-      <div>
-        <div class="brand">XSTUDY · 山中学堂</div>
+    <header class="hero" aria-label="山中学堂">
+      <div class="hero-copy">
+        <p class="brand">XSTUDY</p>
         <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
-        <h1>创作者案卷</h1>
-        <p class="motto">静静地学 · 期待逆袭</p>
-        <p class="lede">山中读卷：拆开增长号的骨架。可学的迁到微李玩AI / LIS / AI入企；互关刷屏收作反面教材。每卷含 Top5 高互动帖，便于临摹句式，而非抄袭人设。</p>
+        <h1>山中学堂</h1>
+        <p class="hero-sub">每天学可学创作者，带走能跟做的长文</p>
+        <p class="hero-pitch">我在学 · 大家一起学</p>
       </div>
-      <div class="seal" aria-hidden="true">静学<br/>待时</div>
+      <div class="hero-art">
+        <img src="assets/hero-shan.jpg" width="640" height="400" alt="水墨山水：溪畔草亭，远山留白" />
+      </div>
     </header>
 
-    <p class="verse">深山藏精舍 · 案卷照前路</p>
-
-    <section class="howto" aria-label="怎么用">
-      <article><b>壹 · 读定性</b><p>先看一句：是权威交付，还是互关刷屏。</p></article>
-      <article><b>贰 · 看 Top5</b><p>点开最高曝光帖，对照钩子，改写成自己的材料。</p></article>
-      <article><b>叁 · 落动作</b><p>卷末「对我们的行动建议」直接开工。</p></article>
+    <section class="funnel-week" aria-labelledby="week-copy-h">
+      <div class="section-head">
+        <h2 id="week-copy-h">本周必抄</h2>
+        <p>三件能直接贴进周会或备忘录的动作，抄完可转发给同伴对照。</p>
+      </div>
+      <div class="checklist">
+        <ul>
+          <li>
+            <input type="checkbox" id="w1" aria-label="出摊日历" />
+            <label for="w1">
+              <strong>出摊日历</strong>
+              标出本周 3 个「可对外演示」时段：主题一句、载体（帖/直播/线下）、预期受众；无演示则标「闭关写卷」。
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" id="w2" aria-label="成本前后表" />
+            <label for="w2">
+              <strong>成本前后表</strong>
+              选一条 AI/API 开销：改前月费、改后月费、省下的钱换成什么交付（课时/篇数/客户数）；对照案卷里 Tony Dinh 式公开账本写法。
+            </label>
+          </li>
+          <li>
+            <input type="checkbox" id="w3" aria-label="Demo次日清单" />
+            <label for="w3">
+              <strong>Demo 次日清单</strong>
+              做完现场演示后 24 小时内发：① 回放或截图 ② 三步复现 ③ 一个可收藏编号清单；学 Miles / 歸藏 的「演示→清单」二连。
+            </label>
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <p class="batch-label">长文精读</p>
-    <p class="section-intro">单篇 X Article / 万字教程：书签型操作系统，与账号案卷分开收录。</p>
+    <img class="section-divider" src="assets/divider-shan.jpg" alt="" width="800" height="120" role="presentation" />
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">小红书 · X Article</span>
-      <h2><a href="accounts/jessi-xhs-article.html">Jessi｜小红书 0→1 万字教程</a></h2>
-      <p class="one-liner">业务先于养号；十四章操作系统 + 四周行动；书签型长文</p>
-      <p class="meta">2026-10-23 · @JessiCao_JC · ≈11.7万曝光</p>
-      <div class="actions">
-        <a href="accounts/jessi-xhs-article.html">打开精读</a>
-        <a href="https://x.com/JessiCao_JC/status/2113478290661163067" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessi-xhs-article.md">Markdown 源</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-23-jessi-xhs-0to1-full.md">全文复刻</a>
+    <section class="funnel-case" aria-labelledby="case-h">
+      <div class="section-head">
+        <h2 id="case-h">本周机制短案例</h2>
+        <p>一条高书签长文，拆机制而非抄人设。</p>
       </div>
-    </article>
+      <article class="spotlight">
+        <div class="bookmark-n" aria-hidden="true">9,231<span>书签</span></div>
+        <div>
+          <h3><a href="articles/2026-10-08-kingao-grokbot-wechat.html">Kin｜Grok Bot 接入微信保姆级指南</a></h3>
+          <p>机制：焚决提示词 → 配钥匙 → 扫码绑定。工具桥接帖把「能跟做」写进步骤，百万级曝光来自可验收结果，而非互关诱饵。</p>
+          <p class="go"><a href="articles/2026-10-08-kingao-grokbot-wechat.html">打开精读 →</a>
+            · <a href="accounts/2026-10-24-miles_mazy.html">对照账号案卷 Miles Ma</a></p>
+        </div>
+      </article>
+    </section>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">起号复盘</span>
-      <h2><a href="articles/2026-10-19-kingao-10k-followers.html">Kin｜推特万粉复盘（10,000 粉）</a></h2>
-      <p class="one-liner">冷启动→热点→系列教程→破圈；发帖结构表 + 预置工具链；书签 588 ≫ 赞 315</p>
-      <p class="meta">2026-10-19 · @KinGao476942 · 曝光≈6.4万</p>
-      <div class="actions">
-        <a href="articles/2026-10-19-kingao-10k-followers.html">打开精读</a>
-        <a href="https://x.com/KinGao476942/status/2112198262661017812" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-19-kingao-10k-followers.md">Markdown 源</a>
+    <img class="section-divider" src="assets/divider-shan.jpg" alt="" width="800" height="120" role="presentation" />
+
+    <section class="funnel-doors" aria-label="二分入口">
+      <div class="section-head">
+        <h2>入卷两门</h2>
+        <p>学人看案卷，学篇看长文；绿边可学，红边慎学。</p>
       </div>
-    </article>
-
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">护城河账本</span>
-      <h2><a href="articles/2026-10-17-levelsio-chase-moats.html">levelsio｜追逐剩余护城河</a></h2>
-      <p class="one-liner">AI 吸走软件层后的护城河清单：数据、网络、分发、物理、资本、监管；附产品线动作</p>
-      <p class="meta">2026-10-17 · @levelsio · 曝光≈39.9万 · 书签 4,235</p>
-      <div class="actions">
-        <a href="articles/2026-10-17-levelsio-chase-moats.html">打开精读</a>
-        <a href="https://x.com/levelsio/status/2111142856094265595" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-17-levelsio-chase-moats.md">Markdown 源</a>
+      <div class="twin-doors">
+        <a class="door" href="#accounts">
+          <div class="door-art" role="presentation"></div>
+          <div class="door-body">
+            <b>账号案卷</b>
+            <p>学人：定性、Top5 高互动帖、可迁移机制与反面教材。</p>
+          </div>
+        </a>
+        <a class="door" href="#articles">
+          <div class="door-art" role="presentation"></div>
+          <div class="door-body">
+            <b>长文精读</b>
+            <p>学篇：X Article / 万字教程，书签型操作系统。</p>
+          </div>
+        </a>
       </div>
-    </article>
+    </section>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">媒介判断</span>
-      <h2><a href="articles/2026-10-15-danshipper-newsletter-dead.html">Dan Shipper｜the newsletter is dead</a></h2>
-      <p class="one-liner">拿自家饭碗开刀：邮箱≠关系；出路是 agent harness 与自建小帝国</p>
-      <p class="meta">2026-10-15 · @danshipper · 曝光≈15.6万 · 书签 1,029</p>
-      <div class="actions">
-        <a href="articles/2026-10-15-danshipper-newsletter-dead.html">打开精读</a>
-        <a href="https://x.com/danshipper/status/2110707025826996280" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-15-danshipper-newsletter-dead.md">Markdown 源</a>
+    <img class="section-divider" src="assets/divider-shan.jpg" alt="" width="800" height="120" role="presentation" />
+
+    <section id="accounts" aria-labelledby="accounts-h">
+      <div class="section-head">
+        <h2 id="accounts-h">账号案卷</h2>
+        <p class="section-intro" style="text-align:center">拆开增长号的骨架；可学迁到微李玩AI / LIS / AI入企，互关刷屏收作反面教材。</p>
       </div>
-    </article>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">Grok Bot · 微信</span>
-      <h2><a href="articles/2026-10-08-kingao-grokbot-wechat.html">Kin｜Grok Bot 接入微信保姆级指南</a></h2>
-      <p class="one-liner">焚决提示词→配钥匙→扫码绑定；百万级曝光工具桥接样板</p>
-      <p class="meta">2026-10-08 · @KinGao476942 · 曝光≈158万 · 书签 9,231</p>
-      <div class="actions">
-        <a href="articles/2026-10-08-kingao-grokbot-wechat.html">打开精读</a>
-        <a href="https://x.com/KinGao476942/status/2108132811635032316" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-08-kingao-grokbot-wechat.md">Markdown 源</a>
+      <div class="filters" role="group" aria-label="筛选">
+        <button type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button type="button" data-filter="learn" aria-pressed="false">可学</button>
+        <button type="button" data-filter="caution" aria-pressed="false">慎学</button>
       </div>
-    </article>
+      <p class="legend"><span><i class="dot learn"></i>可学 · 机制迁移</span><span><i class="dot caution"></i>慎学 · 话术勿搬</span></p>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">Grok Bot · 英文</span>
-      <h2><a href="articles/2026-09-30-distort-hire-ai-employee.html">distort｜雇你的第一个 AI 员工</a></h2>
-      <p class="one-liner">先雇岗位不是任务；只给一把钥匙；试用三次再晋升——反对第一天扔公司卡</p>
-      <p class="meta">2026-09-30 · @distortgeekin · 曝光≈6525万 · 书签 17,815</p>
-      <div class="actions">
-        <a href="articles/2026-09-30-distort-hire-ai-employee.html">打开精读</a>
-        <a href="https://x.com/distortgeekin/status/2105275395901726845" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-30-distort-hire-ai-employee.md">Markdown 源</a>
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">FDE / 企业AI落地</span>
+        <h2><a href="accounts/2026-10-24-miles_mazy.html">Miles Ma · @miles_mazy</a></h2>
+        <p class="one-liner">权威交付型：大厂→FDE→线下大课现场，粉关比约 56:1；引用长文加一句立场吃流量。含 Top5 高曝光帖。</p>
+        <p class="meta">2026-10-24 · ≈3.4万粉 / 关注≈611 · 开号约 2.5 月 · Blue</p>
+        <div class="actions">
+          <a href="accounts/2026-10-24-miles_mazy.html">打开案卷</a>
+          <a href="https://x.com/miles_mazy" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-miles_mazy.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier caution" data-kind="caution">
+        <span class="tag">慎学</span><span class="tag">互关刷屏</span>
+        <h2><a href="accounts/2026-10-24-tiezhuthinker.html">铁柱thinker · @tiezhuthinker</a></h2>
+        <p class="one-liner">社交刷屏 + 互动诱饵：晒钱/扣1猜粉/狂回帖。含 Top5（学结构，勿学题材）。</p>
+        <p class="meta">2026-10-24 · ≈3.7k粉 / 关注≈3.2k · 开号约 20 天 · Blue</p>
+        <div class="actions">
+          <a href="accounts/2026-10-24-tiezhuthinker.html">打开案卷</a>
+          <a href="https://x.com/tiezhuthinker" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tiezhuthinker.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">Agent 实验</span>
+        <h2><a href="accounts/hylarucoder.html">海拉鲁编程客 · @hylarucoder</a></h2>
+        <p class="one-liner">一手产品实验 + 圈内段子双轨：开源 skill / 2MB 编辑器现场，梗帖引流、产物吃书签。</p>
+        <p class="meta">2026-10-24 · ≈2.4万粉 / 关注≈1.2k · 粉关比约 20:1 · Blue</p>
+        <div class="actions">
+          <a href="accounts/hylarucoder.html">打开案卷</a>
+          <a href="https://x.com/hylarucoder" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-hylarucoder.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">开源策展</span>
+        <h2><a href="accounts/lxfater.html">铁锤人 · @lxfater</a></h2>
+        <p class="one-liner">3w star 背书 + 亲手 Demo：XERJ 清单吃书签，机甲格斗「演示→编号清单」二连。</p>
+        <p class="meta">2026-10-24 · ≈10.8万粉 / listed≈1,250 · 粉关比约 76:1 · Blue</p>
+        <div class="actions">
+          <a href="accounts/lxfater.html">打开案卷</a>
+          <a href="https://x.com/lxfater" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-lxfater.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">技术公共编辑</span>
+        <h2><a href="accounts/ruanyf.html">阮一峰 · @ruanyf</a></h2>
+        <p class="one-liner">低产高信噪：二十年博客信任 + 极端粉关比；每条像周刊条目，编译反差→路径→对你意味什么。</p>
+        <p class="meta">2026-10-24 · ≈21万粉 / 关注≈371 · 粉关比约 564:1 · 开号近 20 年</p>
+        <div class="actions">
+          <a href="accounts/ruanyf.html">打开案卷</a>
+          <a href="https://x.com/ruanyf" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-ruanyf.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">Indie / 砍依赖</span>
+        <h2><a href="accounts/tdinh_me.html">Tony Dinh · @tdinh_me</a></h2>
+        <p class="one-liner">公开账本 + 杀 SaaS 叙事：i18n 省 $124/月、API 被刷 $1.7k 闸门课；美元作通用语言。</p>
+        <p class="meta">2026-10-24 · ≈20.6万粉 · TypingMind 等 MRR 挂 Bio · Blue</p>
+        <div class="actions">
+          <a href="accounts/tdinh_me.html">打开案卷</a>
+          <a href="https://x.com/tdinh_me" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tdinh_me.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <div class="home-more-accounts hidden">
+      <p class="batch-label">更多可学 · 2026-10-24</p>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">Every / 前沿发行</span>
+        <h2><a href="accounts/danshipper.html">Dan Shipper · @danshipper</a></h2>
+        <p class="one-liner">Every CEO 对外广播：Duet 实测 BREAKING、frontier team 角色拆书；书签来自可搬进公司的结构。</p>
+        <p class="meta">2026-10-24 · ≈14.4万粉 / listed≈3,053 · 置顶报告历史曝光≈166万</p>
+        <div class="actions">
+          <a href="accounts/danshipper.html">打开案卷</a>
+          <a href="https://x.com/danshipper" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-danshipper.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <p class="batch-label">首批可学 · 中文区</p>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">AIGC / 演示</span>
+        <h2><a href="accounts/op7418.html">歸藏 · @op7418</a></h2>
+        <p class="one-liner">AIGC 工具猎人 + 现场演示者：亲手试、录教程、热点加立场。</p>
+        <p class="meta">2026-10-24 · ≈18.2万粉 / 关注≈1.3k · 粉关比约 139:1</p>
+        <div class="actions">
+          <a href="accounts/op7418.html">打开案卷</a>
+          <a href="https://x.com/op7418" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-op7418.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">AI 翻译官</span>
+        <h2><a href="accounts/dotey.html">宝玉 · @dotey</a></h2>
+        <p class="one-liner">AI/工程「翻译官+评论员」：结构化摘要、安全行动帖、高 listed 信息源。</p>
+        <p class="meta">2026-10-24 · ≈26.2万粉 / 关注≈1.8k · 粉关比约 149:1</p>
+        <div class="actions">
+          <a href="accounts/dotey.html">打开案卷</a>
+          <a href="https://x.com/dotey" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-dotey.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">创业者观察</span>
+        <h2><a href="accounts/oran_ge.html">Orange AI · @oran_ge</a></h2>
+        <p class="one-liner">AI 创业者观察哨：金句判断、失败实验、履历锚点，非教程号。</p>
+        <p class="meta">2026-10-24 · ≈18.5万粉 / 关注≈624 · 粉关比约 297:1</p>
+        <div class="actions">
+          <a href="accounts/oran_ge.html">打开案卷</a>
+          <a href="https://x.com/oran_ge" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-oran_ge.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">AI PM / GEO</span>
+        <h2><a href="accounts/vista8.html">向阳乔木 · @vista8</a></h2>
+        <p class="one-liner">AI PM/GEO 实干派：Prompt→网站→开源→大会，资产沉淀型增长。</p>
+        <p class="meta">2026-10-24 · ≈13.3万粉 / 关注≈1.7k · 粉关比约 79:1</p>
+        <div class="actions">
+          <a href="accounts/vista8.html">打开案卷</a>
+          <a href="https://x.com/vista8" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-vista8.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">出海内容</span>
+        <h2><a href="accounts/JessiCao_JC.html">Jessi Cao · @JessiCao_JC</a></h2>
+        <p class="one-liner">出海×内容实操：书签型操作系统长文 + 可复制提示词破圈。</p>
+        <p class="meta">2026-10-24 · ≈3.7k粉 / 关注≈714 · 粉关比约 5.2:1</p>
+        <div class="actions">
+          <a href="accounts/JessiCao_JC.html">打开案卷</a>
+          <a href="https://x.com/JessiCao_JC" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessicao_jc.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <p class="batch-label">首批可学 · 外文区</p>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">Indie / MRR</span>
+        <h2><a href="accounts/levelsio.html">@levelsio</a></h2>
+        <p class="one-liner">Indie 公开账本：时效安全/运维行动帖 + Bio 级 MRR 仪表盘。</p>
+        <p class="meta">2026-10-24 · ≈98.1万粉 · 粉关比约 298:1</p>
+        <div class="actions">
+          <a href="accounts/levelsio.html">打开案卷</a>
+          <a href="https://x.com/levelsio" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-levelsio.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">AI 工程领袖</span>
+        <h2><a href="accounts/swyx.html">swyx · @swyx</a></h2>
+        <p class="one-liner">AI 工程师意见领袖：信息差 alpha + 能力切片锐评 + 大会策展。</p>
+        <p class="meta">2026-10-24 · ≈20.6万粉 · 粉关比约 52:1</p>
+        <div class="actions">
+          <a href="accounts/swyx.html">打开案卷</a>
+          <a href="https://x.com/swyx" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-swyx.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">开源实验</span>
+        <h2><a href="accounts/simonw.html">Simon Willison · @simonw</a></h2>
+        <p class="one-liner">开源匠人实验日志：可点开 demo + 硬约束提问 + 新闻数字拆算。</p>
+        <p class="meta">2026-10-24 · ≈24.3万粉 · 粉关比约 43:1 · 低频高信号</p>
+        <div class="actions">
+          <a href="accounts/simonw.html">打开案卷</a>
+          <a href="https://x.com/simonw" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-simonw.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">产品增长</span>
+        <h2><a href="accounts/lennysan.html">Lenny Rachitsky · @lennysan</a></h2>
+        <p class="one-liner">产品增长策展：开放征集爆回复 + 编号 takeaways/资源清单追收藏。</p>
+        <p class="meta">2026-10-24 · ≈45.5万粉 · 粉关比约 153:1</p>
+        <div class="actions">
+          <a href="accounts/lennysan.html">打开案卷</a>
+          <a href="https://x.com/lennysan" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-lennysan.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn" data-kind="learn">
+        <span class="tag">可学</span><span class="tag">Maker 增长</span>
+        <h2><a href="accounts/tibo_maker.html">Tibo · @tibo_maker</a></h2>
+        <p class="one-liner">Maker 增长操盘：AEO/博客实验数据 + X 长文 playbook + exit 后重启叙事。</p>
+        <p class="meta">2026-10-24 · ≈21.6万粉 · 粉关比约 65:1</p>
+        <div class="actions">
+          <a href="accounts/tibo_maker.html">打开案卷</a>
+          <a href="https://x.com/tibo_maker" rel="noopener">原账号</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tibo_maker.md">Markdown 源</a>
+        </div>
+      </article>
       </div>
-    </article>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">起号×变现账本</span>
-      <h2><a href="articles/2026-09-29-jasonyu-x-ai-40wan.html">鱼总｜AI 自媒体一年复盘（变现 40 万+）</a></h2>
-      <p class="one-liner">产品人把 X 当渠道；长文引擎→多路变现的可勾选账本</p>
-      <p class="meta">2026-09-29 · @AI_Jasonyu · 曝光≈34.6万 · 书签 1,610</p>
-      <div class="actions">
-        <a href="articles/2026-09-29-jasonyu-x-ai-40wan.html">打开精读</a>
-        <a href="https://x.com/AI_Jasonyu/status/2104911243739853231" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-29-jasonyu-x-ai-40wan.md">Markdown 源</a>
+      <div class="show-all-wrap">
+        <button type="button" class="show-all-btn" data-target="home-more-accounts" aria-expanded="false">查看全部账号案卷（17）</button>
       </div>
-    </article>
+    </section>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">Muse 教程</span>
-      <h2><a href="articles/2026-09-25-langeai-muse-tutorial.html">蓝哥AI｜Muse 上手保姆级教程</a></h2>
-      <p class="one-liner">新品窗口最短路径：登录→合作约定→第一个可验收任务→再开高级能力</p>
-      <p class="meta">2026-09-25 · @0xlangeai · 曝光≈212万 · 书签 4,077</p>
-      <div class="actions">
-        <a href="articles/2026-09-25-langeai-muse-tutorial.html">打开精读</a>
-        <a href="https://x.com/0xlangeai/status/2103300004966478284" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-25-langeai-muse-tutorial.md">Markdown 源</a>
+    <img class="section-divider" src="assets/divider-shan.jpg" alt="" width="800" height="120" role="presentation" />
+
+    <section id="articles" aria-labelledby="articles-h">
+      <div class="section-head">
+        <h2 id="articles-h">长文精读</h2>
+        <p class="section-intro" style="text-align:center">单篇 X Article / 万字教程：书签型操作系统，与账号案卷分开收录。</p>
       </div>
-    </article>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">0→1 SOP</span>
-      <h2><a href="articles/2026-09-21-weiyux-x-0to1.html">动物园园长｜X 运营从 0 到 1 万字指南</a></h2>
-      <p class="one-liner">定位→冷启动→内容→互动→拓展→变现→避坑→周计划；反互关、重内容</p>
-      <p class="meta">2026-09-21 · @weiyux2021 · 曝光≈54.3万 · 书签 3,400</p>
-      <div class="actions">
-        <a href="articles/2026-09-21-weiyux-x-0to1.html">打开精读</a>
-        <a href="https://x.com/weiyux2021/status/2101844827599933805" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-21-weiyux-x-0to1.md">Markdown 源</a>
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">小红书 · X Article</span>
+        <h2><a href="accounts/jessi-xhs-article.html">Jessi｜小红书 0→1 万字教程</a></h2>
+        <p class="one-liner">业务先于养号；十四章操作系统 + 四周行动；书签型长文</p>
+        <p class="meta">2026-10-23 · @JessiCao_JC · ≈11.7万曝光</p>
+        <div class="actions">
+          <a href="accounts/jessi-xhs-article.html">打开精读</a>
+          <a href="https://x.com/JessiCao_JC/status/2113478290661163067" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessi-xhs-article.md">Markdown 源</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-23-jessi-xhs-0to1-full.md">全文复刻</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">起号复盘</span>
+        <h2><a href="articles/2026-10-19-kingao-10k-followers.html">Kin｜推特万粉复盘（10,000 粉）</a></h2>
+        <p class="one-liner">冷启动→热点→系列教程→破圈；发帖结构表 + 预置工具链；书签 588 ≫ 赞 315</p>
+        <p class="meta">2026-10-19 · @KinGao476942 · 曝光≈6.4万</p>
+        <div class="actions">
+          <a href="articles/2026-10-19-kingao-10k-followers.html">打开精读</a>
+          <a href="https://x.com/KinGao476942/status/2112198262661017812" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-19-kingao-10k-followers.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">护城河账本</span>
+        <h2><a href="articles/2026-10-17-levelsio-chase-moats.html">levelsio｜追逐剩余护城河</a></h2>
+        <p class="one-liner">AI 吸走软件层后的护城河清单：数据、网络、分发、物理、资本、监管；附产品线动作</p>
+        <p class="meta">2026-10-17 · @levelsio · 曝光≈39.9万 · 书签 4,235</p>
+        <div class="actions">
+          <a href="articles/2026-10-17-levelsio-chase-moats.html">打开精读</a>
+          <a href="https://x.com/levelsio/status/2111142856094265595" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-17-levelsio-chase-moats.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">媒介判断</span>
+        <h2><a href="articles/2026-10-15-danshipper-newsletter-dead.html">Dan Shipper｜the newsletter is dead</a></h2>
+        <p class="one-liner">拿自家饭碗开刀：邮箱≠关系；出路是 agent harness 与自建小帝国</p>
+        <p class="meta">2026-10-15 · @danshipper · 曝光≈15.6万 · 书签 1,029</p>
+        <div class="actions">
+          <a href="articles/2026-10-15-danshipper-newsletter-dead.html">打开精读</a>
+          <a href="https://x.com/danshipper/status/2110707025826996280" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-15-danshipper-newsletter-dead.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">Grok Bot · 微信</span>
+        <h2><a href="articles/2026-10-08-kingao-grokbot-wechat.html">Kin｜Grok Bot 接入微信保姆级指南</a></h2>
+        <p class="one-liner">焚决提示词→配钥匙→扫码绑定；百万级曝光工具桥接样板</p>
+        <p class="meta">2026-10-08 · @KinGao476942 · 曝光≈158万 · 书签 9,231</p>
+        <div class="actions">
+          <a href="articles/2026-10-08-kingao-grokbot-wechat.html">打开精读</a>
+          <a href="https://x.com/KinGao476942/status/2108132811635032316" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-08-kingao-grokbot-wechat.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">Grok Bot · 英文</span>
+        <h2><a href="articles/2026-09-30-distort-hire-ai-employee.html">distort｜雇你的第一个 AI 员工</a></h2>
+        <p class="one-liner">先雇岗位不是任务；只给一把钥匙；试用三次再晋升——反对第一天扔公司卡</p>
+        <p class="meta">2026-09-30 · @distortgeekin · 曝光≈6525万 · 书签 17,815</p>
+        <div class="actions">
+          <a href="articles/2026-09-30-distort-hire-ai-employee.html">打开精读</a>
+          <a href="https://x.com/distortgeekin/status/2105275395901726845" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-30-distort-hire-ai-employee.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <div class="home-more-articles hidden">
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">起号×变现账本</span>
+        <h2><a href="articles/2026-09-29-jasonyu-x-ai-40wan.html">鱼总｜AI 自媒体一年复盘（变现 40 万+）</a></h2>
+        <p class="one-liner">产品人把 X 当渠道；长文引擎→多路变现的可勾选账本</p>
+        <p class="meta">2026-09-29 · @AI_Jasonyu · 曝光≈34.6万 · 书签 1,610</p>
+        <div class="actions">
+          <a href="articles/2026-09-29-jasonyu-x-ai-40wan.html">打开精读</a>
+          <a href="https://x.com/AI_Jasonyu/status/2104911243739853231" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-29-jasonyu-x-ai-40wan.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">Muse 教程</span>
+        <h2><a href="articles/2026-09-25-langeai-muse-tutorial.html">蓝哥AI｜Muse 上手保姆级教程</a></h2>
+        <p class="one-liner">新品窗口最短路径：登录→合作约定→第一个可验收任务→再开高级能力</p>
+        <p class="meta">2026-09-25 · @0xlangeai · 曝光≈212万 · 书签 4,077</p>
+        <div class="actions">
+          <a href="articles/2026-09-25-langeai-muse-tutorial.html">打开精读</a>
+          <a href="https://x.com/0xlangeai/status/2103300004966478284" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-25-langeai-muse-tutorial.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">0→1 SOP</span>
+        <h2><a href="articles/2026-09-21-weiyux-x-0to1.html">动物园园长｜X 运营从 0 到 1 万字指南</a></h2>
+        <p class="one-liner">定位→冷启动→内容→互动→拓展→变现→避坑→周计划；反互关、重内容</p>
+        <p class="meta">2026-09-21 · @weiyux2021 · 曝光≈54.3万 · 书签 3,400</p>
+        <div class="actions">
+          <a href="articles/2026-09-21-weiyux-x-0to1.html">打开精读</a>
+          <a href="https://x.com/weiyux2021/status/2101844827599933805" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-21-weiyux-x-0to1.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">增长 SOP</span>
+        <h2><a href="articles/2026-09-08-rwayne-x-growth-guide.html">Roland｜X 自媒体增长指南（2026.09）</a></h2>
+        <p class="one-liner">教资展示→开源打法；被看见、主页、互动与推荐名单清单</p>
+        <p class="meta">2026-09-08 · @rwayne · 曝光≈56.8万 · 书签 3,603</p>
+        <div class="actions">
+          <a href="articles/2026-09-08-rwayne-x-growth-guide.html">打开精读</a>
+          <a href="https://x.com/rwayne/status/2097305709683884441" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-08-rwayne-x-growth-guide.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">15 天万粉</span>
+        <h2><a href="articles/2026-08-29-miles-15d-10k.html">Miles Ma｜15 天万粉深度复盘</a></h2>
+        <p class="one-liner">回复冷启动→现场起爆→教程长文→热点拉回；学顺序不学「15 天承诺」</p>
+        <p class="meta">2026-08-29 · @miles_mazy · 曝光≈9.6万 · 书签 302</p>
+        <div class="actions">
+          <a href="articles/2026-08-29-miles-15d-10k.html">打开精读</a>
+          <a href="https://x.com/miles_mazy/status/2093658373216739385" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-08-29-miles-15d-10k.md">Markdown 源</a>
+        </div>
+      </article>
+
+      <article class="dossier learn article" data-kind="learn">
+        <span class="tag article">长文精读</span><span class="tag">Token 账本 · AMA</span>
+        <h2><a href="articles/2026-07-04-tdinh-25b-tokens-ama.html">Tony Dinh｜~25B tokens / ~$15k 成本账本 AMA</a></h2>
+        <p class="one-liner">成本与 MRR 极端不对齐的公开账本；逼出纪律与订阅档澄清</p>
+        <p class="meta">2026-07-04 · @tdinh_me · 曝光≈8.2万 · 回复 114</p>
+        <div class="actions">
+          <a href="articles/2026-07-04-tdinh-25b-tokens-ama.html">打开精读</a>
+          <a href="https://x.com/tdinh_me/status/2073305118209098182" rel="noopener">原帖</a>
+          <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-07-04-tdinh-25b-tokens-ama.md">Markdown 源</a>
+        </div>
+      </article>
       </div>
-    </article>
 
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">增长 SOP</span>
-      <h2><a href="articles/2026-09-08-rwayne-x-growth-guide.html">Roland｜X 自媒体增长指南（2026.09）</a></h2>
-      <p class="one-liner">教资展示→开源打法；被看见、主页、互动与推荐名单清单</p>
-      <p class="meta">2026-09-08 · @rwayne · 曝光≈56.8万 · 书签 3,603</p>
-      <div class="actions">
-        <a href="articles/2026-09-08-rwayne-x-growth-guide.html">打开精读</a>
-        <a href="https://x.com/rwayne/status/2097305709683884441" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-09-08-rwayne-x-growth-guide.md">Markdown 源</a>
+      <div class="show-all-wrap">
+        <button type="button" class="show-all-btn" data-target="home-more-articles" aria-expanded="false">查看全部长文精读（12）</button>
       </div>
-    </article>
-
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">15 天万粉</span>
-      <h2><a href="articles/2026-08-29-miles-15d-10k.html">Miles Ma｜15 天万粉深度复盘</a></h2>
-      <p class="one-liner">回复冷启动→现场起爆→教程长文→热点拉回；学顺序不学「15 天承诺」</p>
-      <p class="meta">2026-08-29 · @miles_mazy · 曝光≈9.6万 · 书签 302</p>
-      <div class="actions">
-        <a href="articles/2026-08-29-miles-15d-10k.html">打开精读</a>
-        <a href="https://x.com/miles_mazy/status/2093658373216739385" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-08-29-miles-15d-10k.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn article" data-kind="learn">
-      <span class="tag article">长文精读</span><span class="tag">Token 账本 · AMA</span>
-      <h2><a href="articles/2026-07-04-tdinh-25b-tokens-ama.html">Tony Dinh｜~25B tokens / ~$15k 成本账本 AMA</a></h2>
-      <p class="one-liner">成本与 MRR 极端不对齐的公开账本；逼出纪律与订阅档澄清</p>
-      <p class="meta">2026-07-04 · @tdinh_me · 曝光≈8.2万 · 回复 114</p>
-      <div class="actions">
-        <a href="articles/2026-07-04-tdinh-25b-tokens-ama.html">打开精读</a>
-        <a href="https://x.com/tdinh_me/status/2073305118209098182" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-07-04-tdinh-25b-tokens-ama.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <p class="batch-label">账号案卷</p>
-
-    <div class="filters" role="group" aria-label="筛选">
-      <button type="button" data-filter="all" aria-pressed="true">全部</button>
-      <button type="button" data-filter="learn" aria-pressed="false">可学</button>
-      <button type="button" data-filter="caution" aria-pressed="false">慎学</button>
-    </div>
-
-    <p class="legend"><span><i class="dot learn"></i>可学 · 机制迁移</span><span><i class="dot caution"></i>慎学 · 话术勿搬</span></p>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">FDE / 企业AI落地</span>
-      <h2><a href="accounts/2026-10-24-miles_mazy.html">Miles Ma · @miles_mazy</a></h2>
-      <p class="one-liner">权威交付型：大厂→FDE→线下大课现场，粉关比约 56:1；引用长文加一句立场吃流量。含 Top5 高曝光帖。</p>
-      <p class="meta">2026-10-24 · ≈3.4万粉 / 关注≈611 · 开号约 2.5 月 · Blue</p>
-      <div class="actions">
-        <a href="accounts/2026-10-24-miles_mazy.html">打开案卷</a>
-        <a href="https://x.com/miles_mazy" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-miles_mazy.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier caution" data-kind="caution">
-      <span class="tag">慎学</span><span class="tag">互关刷屏</span>
-      <h2><a href="accounts/2026-10-24-tiezhuthinker.html">铁柱thinker · @tiezhuthinker</a></h2>
-      <p class="one-liner">社交刷屏 + 互动诱饵：晒钱/扣1猜粉/狂回帖。含 Top5（学结构，勿学题材）。</p>
-      <p class="meta">2026-10-24 · ≈3.7k粉 / 关注≈3.2k · 开号约 20 天 · Blue</p>
-      <div class="actions">
-        <a href="accounts/2026-10-24-tiezhuthinker.html">打开案卷</a>
-        <a href="https://x.com/tiezhuthinker" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tiezhuthinker.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <p class="batch-label">本批可学 · 2026-10-24</p>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">Agent 实验</span>
-      <h2><a href="accounts/hylarucoder.html">海拉鲁编程客 · @hylarucoder</a></h2>
-      <p class="one-liner">一手产品实验 + 圈内段子双轨：开源 skill / 2MB 编辑器现场，梗帖引流、产物吃书签。</p>
-      <p class="meta">2026-10-24 · ≈2.4万粉 / 关注≈1.2k · 粉关比约 20:1 · Blue</p>
-      <div class="actions">
-        <a href="accounts/hylarucoder.html">打开案卷</a>
-        <a href="https://x.com/hylarucoder" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-hylarucoder.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">开源策展</span>
-      <h2><a href="accounts/lxfater.html">铁锤人 · @lxfater</a></h2>
-      <p class="one-liner">3w star 背书 + 亲手 Demo：XERJ 清单吃书签，机甲格斗「演示→编号清单」二连。</p>
-      <p class="meta">2026-10-24 · ≈10.8万粉 / listed≈1,250 · 粉关比约 76:1 · Blue</p>
-      <div class="actions">
-        <a href="accounts/lxfater.html">打开案卷</a>
-        <a href="https://x.com/lxfater" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-lxfater.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">技术公共编辑</span>
-      <h2><a href="accounts/ruanyf.html">阮一峰 · @ruanyf</a></h2>
-      <p class="one-liner">低产高信噪：二十年博客信任 + 极端粉关比；每条像周刊条目，编译反差→路径→对你意味什么。</p>
-      <p class="meta">2026-10-24 · ≈21万粉 / 关注≈371 · 粉关比约 564:1 · 开号近 20 年</p>
-      <div class="actions">
-        <a href="accounts/ruanyf.html">打开案卷</a>
-        <a href="https://x.com/ruanyf" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-ruanyf.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">Indie / 砍依赖</span>
-      <h2><a href="accounts/tdinh_me.html">Tony Dinh · @tdinh_me</a></h2>
-      <p class="one-liner">公开账本 + 杀 SaaS 叙事：i18n 省 $124/月、API 被刷 $1.7k 闸门课；美元作通用语言。</p>
-      <p class="meta">2026-10-24 · ≈20.6万粉 · TypingMind 等 MRR 挂 Bio · Blue</p>
-      <div class="actions">
-        <a href="accounts/tdinh_me.html">打开案卷</a>
-        <a href="https://x.com/tdinh_me" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tdinh_me.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">Every / 前沿发行</span>
-      <h2><a href="accounts/danshipper.html">Dan Shipper · @danshipper</a></h2>
-      <p class="one-liner">Every CEO 对外广播：Duet 实测 BREAKING、frontier team 角色拆书；书签来自可搬进公司的结构。</p>
-      <p class="meta">2026-10-24 · ≈14.4万粉 / listed≈3,053 · 置顶报告历史曝光≈166万</p>
-      <div class="actions">
-        <a href="accounts/danshipper.html">打开案卷</a>
-        <a href="https://x.com/danshipper" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-danshipper.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <p class="batch-label">首批可学 · 中文区</p>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">AIGC / 演示</span>
-      <h2><a href="accounts/op7418.html">歸藏 · @op7418</a></h2>
-      <p class="one-liner">AIGC 工具猎人 + 现场演示者：亲手试、录教程、热点加立场。</p>
-      <p class="meta">2026-10-24 · ≈18.2万粉 / 关注≈1.3k · 粉关比约 139:1</p>
-      <div class="actions">
-        <a href="accounts/op7418.html">打开案卷</a>
-        <a href="https://x.com/op7418" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-op7418.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">AI 翻译官</span>
-      <h2><a href="accounts/dotey.html">宝玉 · @dotey</a></h2>
-      <p class="one-liner">AI/工程「翻译官+评论员」：结构化摘要、安全行动帖、高 listed 信息源。</p>
-      <p class="meta">2026-10-24 · ≈26.2万粉 / 关注≈1.8k · 粉关比约 149:1</p>
-      <div class="actions">
-        <a href="accounts/dotey.html">打开案卷</a>
-        <a href="https://x.com/dotey" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-dotey.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">创业者观察</span>
-      <h2><a href="accounts/oran_ge.html">Orange AI · @oran_ge</a></h2>
-      <p class="one-liner">AI 创业者观察哨：金句判断、失败实验、履历锚点，非教程号。</p>
-      <p class="meta">2026-10-24 · ≈18.5万粉 / 关注≈624 · 粉关比约 297:1</p>
-      <div class="actions">
-        <a href="accounts/oran_ge.html">打开案卷</a>
-        <a href="https://x.com/oran_ge" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-oran_ge.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">AI PM / GEO</span>
-      <h2><a href="accounts/vista8.html">向阳乔木 · @vista8</a></h2>
-      <p class="one-liner">AI PM/GEO 实干派：Prompt→网站→开源→大会，资产沉淀型增长。</p>
-      <p class="meta">2026-10-24 · ≈13.3万粉 / 关注≈1.7k · 粉关比约 79:1</p>
-      <div class="actions">
-        <a href="accounts/vista8.html">打开案卷</a>
-        <a href="https://x.com/vista8" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-vista8.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">出海内容</span>
-      <h2><a href="accounts/JessiCao_JC.html">Jessi Cao · @JessiCao_JC</a></h2>
-      <p class="one-liner">出海×内容实操：书签型操作系统长文 + 可复制提示词破圈。</p>
-      <p class="meta">2026-10-24 · ≈3.7k粉 / 关注≈714 · 粉关比约 5.2:1</p>
-      <div class="actions">
-        <a href="accounts/JessiCao_JC.html">打开案卷</a>
-        <a href="https://x.com/JessiCao_JC" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessicao_jc.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <p class="batch-label">首批可学 · 外文区</p>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">Indie / MRR</span>
-      <h2><a href="accounts/levelsio.html">@levelsio</a></h2>
-      <p class="one-liner">Indie 公开账本：时效安全/运维行动帖 + Bio 级 MRR 仪表盘。</p>
-      <p class="meta">2026-10-24 · ≈98.1万粉 · 粉关比约 298:1</p>
-      <div class="actions">
-        <a href="accounts/levelsio.html">打开案卷</a>
-        <a href="https://x.com/levelsio" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-levelsio.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">AI 工程领袖</span>
-      <h2><a href="accounts/swyx.html">swyx · @swyx</a></h2>
-      <p class="one-liner">AI 工程师意见领袖：信息差 alpha + 能力切片锐评 + 大会策展。</p>
-      <p class="meta">2026-10-24 · ≈20.6万粉 · 粉关比约 52:1</p>
-      <div class="actions">
-        <a href="accounts/swyx.html">打开案卷</a>
-        <a href="https://x.com/swyx" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-swyx.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">开源实验</span>
-      <h2><a href="accounts/simonw.html">Simon Willison · @simonw</a></h2>
-      <p class="one-liner">开源匠人实验日志：可点开 demo + 硬约束提问 + 新闻数字拆算。</p>
-      <p class="meta">2026-10-24 · ≈24.3万粉 · 粉关比约 43:1 · 低频高信号</p>
-      <div class="actions">
-        <a href="accounts/simonw.html">打开案卷</a>
-        <a href="https://x.com/simonw" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-simonw.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">产品增长</span>
-      <h2><a href="accounts/lennysan.html">Lenny Rachitsky · @lennysan</a></h2>
-      <p class="one-liner">产品增长策展：开放征集爆回复 + 编号 takeaways/资源清单追收藏。</p>
-      <p class="meta">2026-10-24 · ≈45.5万粉 · 粉关比约 153:1</p>
-      <div class="actions">
-        <a href="accounts/lennysan.html">打开案卷</a>
-        <a href="https://x.com/lennysan" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-lennysan.md">Markdown 源</a>
-      </div>
-    </article>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">Maker 增长</span>
-      <h2><a href="accounts/tibo_maker.html">Tibo · @tibo_maker</a></h2>
-      <p class="one-liner">Maker 增长操盘：AEO/博客实验数据 + X 长文 playbook + exit 后重启叙事。</p>
-      <p class="meta">2026-10-24 · ≈21.6万粉 · 粉关比约 65:1</p>
-      <div class="actions">
-        <a href="accounts/tibo_maker.html">打开案卷</a>
-        <a href="https://x.com/tibo_maker" rel="noopener">原账号</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tibo_maker.md">Markdown 源</a>
-      </div>
-    </article>
+    </section>
 
     <footer>
-      静学不争朝夕 · 十段模板见 <a href="https://github.com/another3000/xstudy/blob/main/TEMPLATE.md">TEMPLATE.md</a>
+      山中学堂 · 静学不争朝夕 · 十段模板见 <a href="https://github.com/another3000/xstudy/blob/main/TEMPLATE.md">TEMPLATE.md</a>
       · <a href="https://github.com/another3000/xstudy">源码</a>
       · 微李玩AI
     </footer>
   </div>
   <script>
-    const buttons = document.querySelectorAll('.filters button');
-    const cards = document.querySelectorAll('.dossier');
+    const accountSection = document.getElementById('accounts');
+    const buttons = accountSection.querySelectorAll('.filters button');
+    const accountCards = accountSection.querySelectorAll('.dossier');
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         buttons.forEach(b => b.setAttribute('aria-pressed', 'false'));
         btn.setAttribute('aria-pressed', 'true');
         const f = btn.dataset.filter;
-        cards.forEach(c => {
+        accountCards.forEach(c => {
           c.classList.toggle('hidden', f !== 'all' && c.dataset.kind !== f);
         });
+      });
+    });
+
+    document.querySelectorAll('.show-all-btn').forEach(btn => {
+      const defaultLabel = btn.textContent;
+      const expandedLabel = defaultLabel.replace('查看全部', '收起');
+      btn.addEventListener('click', () => {
+        const panel = document.querySelector('.' + btn.dataset.target);
+        const collapsed = panel.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!collapsed));
+        btn.textContent = collapsed ? defaultLabel : expandedLabel;
       });
     });
   </script>
