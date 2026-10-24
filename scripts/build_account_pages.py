@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import re
 from pathlib import Path
 
@@ -33,6 +34,22 @@ ACCOUNTS = [
 ]
 
 ARTICLE_TAG = "长文精读"
+
+# 详情页头图池：按 slug 稳定哈希轮换，相邻页尽量不同
+DETAIL_BANNERS = (
+    "detail-a.jpg",
+    "detail-b.jpg",
+    "detail-c.jpg",
+    "detail-d.jpg",
+    "detail-e.jpg",
+)
+
+
+def detail_banner_asset(slug: str) -> str:
+    """根据文件名/slug 从五张山水图中稳定选取一张。"""
+    digest = hashlib.md5(slug.encode("utf-8")).hexdigest()
+    index = int(digest, 16) % len(DETAIL_BANNERS)
+    return DETAIL_BANNERS[index]
 
 
 def discover_articles() -> list[tuple[str, str, str]]:
@@ -140,6 +157,17 @@ SHELL_CSS = """
     }
     .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
     .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
 """
 
 
@@ -183,10 +211,16 @@ def build_page(
     body_html: str,
     tag_label: str,
     back_href: str,
+    page_slug: str,
 ) -> str:
     page_title = f"{title_text} · 山中学堂"
     pclass = paper_class(tag_label)
     tclass = tag_class(tag_label)
+    banner_file = detail_banner_asset(page_slug)
+    banner_html = (
+        f'<img class="detail-banner" src="../assets/{banner_file}" '
+        f'alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />'
+    )
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -208,6 +242,7 @@ def build_page(
     <span class="site-brand">山中学堂</span>
   </header>
   {AI_BADGE_HTML}
+  {banner_html}
   <div class="{pclass}">
     <span class="{tclass}">{tag_label}</span>
     {body_html}
@@ -228,6 +263,7 @@ def build_account_page(handle: str, md_name: str, tag_label: str) -> str:
         body_html=body_html,
         tag_label=tag_label,
         back_href="../index.html",
+        page_slug=handle,
     )
 
 
@@ -241,6 +277,7 @@ def build_article_page(slug: str, md_name: str, tag_label: str) -> str:
         body_html=body_html,
         tag_label=tag_label,
         back_href="../index.html",
+        page_slug=slug,
     )
 
 

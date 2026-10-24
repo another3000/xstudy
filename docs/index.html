@@ -53,8 +53,12 @@
       .hero { grid-template-columns: 1fr; }
       .hero-art { order: -1; max-height: 220px; overflow: hidden; border-radius: 4px; }
     }
+    .hero-art {
+      overflow: hidden;
+      border-radius: 4px;
+    }
     .hero-art img {
-      width: 100%; height: auto; display: block;
+      width: 100%; height: auto; max-height: 280px; display: block;
       border-radius: 4px;
       box-shadow: 0 12px 40px rgba(26, 31, 28, 0.12);
       object-fit: cover;
@@ -94,11 +98,12 @@
     }
 
     .section-divider {
-      display: block; width: 100%; max-width: 520px;
-      margin: 36px auto; opacity: 0.92;
-      border-radius: 2px;
+      display: block; width: 100%;
+      margin: 36px 0; opacity: 0.92;
+      border-radius: 4px;
+      object-fit: cover;
+      max-height: 120px;
     }
-
     .section-head {
       margin: 0 0 18px;
       text-align: center;

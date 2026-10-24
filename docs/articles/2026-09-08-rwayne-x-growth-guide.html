@@ -101,6 +101,17 @@
     }
     .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
     .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
 
   </style>
 </head>
@@ -111,6 +122,7 @@
     <span class="site-brand">山中学堂</span>
   </header>
   <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
   <div class="paper article">
     <span class="tag article">长文精读</span>
     <h1>长文精读｜Roland《万字长文开源X自媒体增长指南（2026.09版）》</h1>
