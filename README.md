@@ -13,6 +13,7 @@
 - `TEMPLATE.md` — 固定十段结构
 - `accounts/` — 按日一篇拆解
 - 样板：[`accounts/2026-10-24-tiezhuthinker.md`](./accounts/2026-10-24-tiezhuthinker.md)
+- 单篇长文：[`accounts/2026-10-24-jessi-xhs-article.md`](./accounts/2026-10-24-jessi-xhs-article.md)（全文 [`accounts/articles/2026-10-23-jessi-xhs-0to1-full.md`](./accounts/articles/2026-10-23-jessi-xhs-0to1-full.md)）
 
 ## 每日例行
 
