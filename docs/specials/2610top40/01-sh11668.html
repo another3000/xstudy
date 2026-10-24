@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>#01 梭哈哥（@sh11668）｜2610top40 · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="./index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 2610top40</span>
+    <h1>#01 梭哈哥（@sh11668）｜2610top40</h1>
+<blockquote>
+<p>专题：2610top40（来源 <a href="https://x.com/jiao_newlife/status/2113932266267398206">骄骄晒单帖</a>）｜采集：2026-10-24 19:56 Asia/Shanghai<br>
+分析镜头：<strong>商学院 × 实战派</strong></p>
+</blockquote>
+<h2>1. 榜单位次与晒单金额</h2>
+<table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名次</td>
+<td><strong>第 1 名</strong></td>
+</tr>
+<tr>
+<td>晒单金额（原文）</td>
+<td><strong>$10,116.70</strong></td>
+</tr>
+<tr>
+<td>主页</td>
+<td>https://x.com/sh11668</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>重点</strong>：破千 8 位里的头名，金额约为第 2 名约 2.4 倍——创作者收益漏斗的极端样本。</p>
+</blockquote>
+<h2>2. 账号画像（live）</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>显示名 / handle</td>
+<td>梭哈哥 / @sh11668</td>
+</tr>
+<tr>
+<td>用户 id</td>
+<td><code>2007704695486435328</code></td>
+</tr>
+<tr>
+<td>开号</td>
+<td>2026-01-04</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td><strong>19,635 / 4,471 / 60,647</strong></td>
+</tr>
+<tr>
+<td>粉关比</td>
+<td>约 <strong>4.4:1</strong></td>
+</tr>
+<tr>
+<td>listed / media</td>
+<td>57 / 135</td>
+</tr>
+<tr>
+<td>认证</td>
+<td>蓝标（blue）</td>
+</tr>
+<tr>
+<td>Bio</td>
+<td>白天修 bug、晚上记代码…</td>
+</tr>
+</tbody>
+</table>
+<p><strong>一句话定性</strong>：极高频「情绪钩子 + 回复工时」号：擦边/焦虑句拉回复，海量串门抬曝光，把 <strong>X 创作者分成</strong> 吃到极致。</p>
+<h2>3. 商学院视角</h2>
+<h3>3.1 定位与差异化</h3>
+<ul>
+<li><strong>定位</strong>：中文圈「创作者收益」顶流样本，而非专业垂直 KOL。</li>
+<li><strong>差异化</strong>：开号约 9 个月即冲到两周万刀级；人设「倒霉程序员」降低防御、抬评论欲。</li>
+</ul>
+<h3>3.2 价值主张与漏斗</h3>
+<ol>
+<li><strong>内容</strong>：短句震惊/擦边/焦虑模板，日更极高。  </li>
+<li><strong>关注</strong>：粉关比仅 4.4:1，偏互关扩粉。  </li>
+<li><strong>信任</strong>：弱——靠同温层吐槽。  </li>
+<li><strong>变现</strong>：主路径 <strong>X 创作者收益</strong>。</li>
+</ol>
+<h3>3.3 护城河与风险</h3>
+<ul>
+<li>护城河：产能 + 分成算法熟悉度（自述无效流量膨胀后改社区路线）。  </li>
+<li>风险：擦边限流/冻结；粉关比差；品牌不可迁 B 端。</li>
+</ul>
+<h2>4. 实战派视角</h2>
+<h3>4.1 代表帖</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>链接</th>
+<th>互动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>置顶清单</td>
+<td><a href="https://x.com/sh11668/status/2112084322043957544">年轻人活下去五件事</a></td>
+<td><strong>136,363</strong> 曝光 / 839 赞 / 101 回复 / <strong>书签 432</strong></td>
+</tr>
+<tr>
+<td>打法复盘</td>
+<td><a href="https://x.com/sh11668/status/2113955621271966027">流量膨胀改社区路线</a></td>
+<td>555 / 9 / 15</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>重点</strong>：置顶清单书签/赞≈0.5，明显高于擦边帖——账号内部也有「书签型 vs 回复型」双轨。</p>
+</blockquote>
+<h3>4.2 钩子与可复用动作</h3>
+<ul>
+<li>钩子：「我TM刚刚才知道」「卧槽」+ 夸张数字 + 高频 @grok。<br>
+1. <strong>双轨发帖</strong>：1 条可收藏清单 + N 条高回复钩子。<br>
+2. <strong>公开调打法</strong>用流量数字建经营人设。<br>
+3. <strong>慎学</strong>擦边震惊当主业。</li>
+</ul>
+<h2>5. 可学 / 慎学</h2>
+<table>
+<thead>
+<tr>
+<th>可学</th>
+<th>慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高频回复工时、分成意识、清单书签结构</td>
+<td>擦边、互关刷粉、政治谣言当流量药</td>
+</tr>
+</tbody>
+</table>
+<h2>6. 迁到用户业务（LIS / 输血 / AI入企 / 小程序）</h2>
+<p>把「五件事」清单改成 <strong>检验科 AI 试点 30 天五步</strong>（只读核对→危急值→接口→小程序报单→周复盘）；<strong>不迁</strong>擦边钩子。</p>
+<h2>7. 附录</h2>
+<ul>
+<li>主页：https://x.com/sh11668</li>
+<li>置顶：https://x.com/sh11668/status/2112084322043957544</li>
+<li>数字来源：榜单原文 + X API <code>get_users_by_usernames</code> / <code>get_users_posts</code> / <code>get_posts_by_ids</code>，2026-10-24 19:56 Asia/Shanghai</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

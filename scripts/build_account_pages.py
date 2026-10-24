@@ -160,6 +160,7 @@ SHELL_CSS = """
       border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
       background: rgba(247, 243, 232, 0.5);
     }
+    .paper blockquote strong { color: var(--pine); }
     .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
     .paper em { color: var(--muted); }
     .detail-banner {
@@ -217,13 +218,14 @@ def build_page(
     tag_label: str,
     back_href: str,
     page_slug: str,
+    assets_prefix: str = "../assets/",
 ) -> str:
     page_title = f"{title_text} · 山中学堂"
     pclass = paper_class(tag_label)
     tclass = tag_class(tag_label)
     banner_file = detail_banner_asset(page_slug)
     banner_html = (
-        f'<img class="detail-banner" src="../assets/{banner_file}" '
+        f'<img class="detail-banner" src="{assets_prefix}{banner_file}" '
         f'alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />'
     )
 
