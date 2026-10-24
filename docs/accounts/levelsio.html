@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@levelsio（@levelsio） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>@levelsio（@levelsio）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/levelsio</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>@levelsio / @levelsio</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2013-07-08（约 13 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>981256 / 3286 / 181935</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>未标 verified=true（接口字段 false）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈19882 / listed≈10366</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio 直接列多产品月收入（Photo AI $86K/m、Games $44K/m 等）。粉关比约 <strong>298:1</strong>。近 7 日 <code>from:levelsio</code> 合计约 <strong>277</strong> 条（含回复）。用户 id：<code>1577241403</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>Indie hacker 公开账本 + 实时运维号：用「正在赚钱的产品数字」立人设，用安全事故/工具实操帖吃大曝光，把流量导回自家 SaaS。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 多产品矩阵 + 逐条 MRR；旅行/远程/造产品生活方式。</li>
+<li><strong>时间线实际：</strong> 高度一致——VPS/安全、产品上线与故障、引用热点、偶尔地缘观点、Prompt/小游戏分享。</li>
+<li><strong>目标受众：</strong> Solo founder、想做独立 SaaS 的开发者、远程工作人群。</li>
+<li><strong>差异点：</strong> Bio 即收入仪表盘；发帖像「公开办公室」而非教程博主。</li>
+<li><strong>与 Bio 的错位：</strong> 偶发政治/移民话题会离开产品主轴（曝光高但品牌风险大）。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全 / 运维实操（VPS、Tunnel）</td>
+<td>高（当周）</td>
+<td><a href="https://x.com/levelsio/status/2113587042185576853">VPS 下公网+Tailscale</a></td>
+<td>≈56.6万曝光 / 5302赞 / 8434收藏</td>
+</tr>
+<tr>
+<td>故障与修复播报</td>
+<td>中</td>
+<td><a href="https://x.com/levelsio/status/2112943822481318122">PHP 修复一切恢复</a></td>
+<td>≈11.6万曝光 / 1321赞</td>
+</tr>
+<tr>
+<td>产品/社交证明</td>
+<td>中</td>
+<td><a href="https://x.com/levelsio/status/2113390205264609482">SpaceX AI 落地页露出</a></td>
+<td>≈9.5万曝光 / 1160赞</td>
+</tr>
+<tr>
+<td>趣味 Prompt / 小制作</td>
+<td>中</td>
+<td><a href="https://x.com/levelsio/status/2112944980842946816">GTA SA 任务 prompt</a></td>
+<td>≈7.9万曝光 / 823赞 / 978收藏</td>
+</tr>
+<tr>
+<td>热点引用 / 观点</td>
+<td>中–高</td>
+<td><a href="https://x.com/levelsio/status/2113216338957148494">中东朋友评欧洲视频</a></td>
+<td>≈38万曝光（话题敏感）</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采窗口主帖，按<strong>曝光</strong>排序（exclude replies/retweets 后仍含部分自线程续帖）。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>转发</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/levelsio/status/2113587042185576853">VPS 尽快进 Tailscale + Cloudflare Tunnel</a></td>
+<td>≈566248</td>
+<td>5302</td>
+<td>144</td>
+<td>319</td>
+<td>时事挂钩（全网被黑）+ 可立刻执行的免费方案</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/levelsio/status/2113216338957148494">中东朋友评欧洲领导层视频</a></td>
+<td>≈380073</td>
+<td>3808</td>
+<td>176</td>
+<td>194</td>
+<td><strong>慎学</strong>：争议话题拉曝光，B 端品牌慎跟</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/levelsio/status/2113597275519803830">Tunnel/Tailscale 都免费无借口</a></td>
+<td>≈155938</td>
+<td>1988</td>
+<td>34</td>
+<td>60</td>
+<td>爆款线程续帖：补「零成本」消除行动摩擦</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/levelsio/status/2113289090531770470">I have to do this 😍</a></td>
+<td>≈145626</td>
+<td>1223</td>
+<td>19</td>
+<td>30</td>
+<td>短情绪 + 强视觉/链接，靠人设兑现</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/levelsio/status/2113281190442487873">Wake up babe, 新 anabology</a></td>
+<td>≈135228</td>
+<td>1026</td>
+<td>21</td>
+<td>31</td>
+<td>模因句式 + 推荐他人内容</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>277</strong> 条（含回复）；日峰值约 66（10/20），低谷约 19（10/19）。</li>
+<li>主帖偏「碎片实时」：故障、安全、引用；回复工时也高。</li>
+<li>粉关比约 298:1 —— <strong>产品权威 + 公开收入</strong>拉粉，非互关盘。</li>
+<li>产能来源：真实在运产品的日常，而非专门「内容生产日」。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关：</strong> 极弱（关注仅 3.2k / 粉 98万）。</li>
+<li><strong>回复工时：</strong> 强；线程自回复延续话题（如免费 Tunnel 续帖）。</li>
+<li><strong>钩子话术：</strong> 具体工具名、免费、ASAP、「everyone is getting hacked」时效恐惧。</li>
+<li><strong>平台激励：</strong> 高收藏帖常伴随极高 bookmark（安全帖 8k+ 收藏）。</li>
+<li><strong>擦边/猎奇：</strong> 政治向内容有，但对我们是风险项。</li>
+<li><strong>跨平台导流：</strong> Bio 多链接产品站；公开 MRR 本身是漏斗。</li>
+<li><strong>公开账本：</strong> 持续晒收入与产品矩阵 = 信任与 aspirational 双重吸引。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/levelsio/status/2113587042185576853">VPS 安全行动帖</a></td>
+<td><a href="https://x.com/levelsio/status/2113390231894544640">via tip 短谢</a>（≈1.2万曝光）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>危机语境 + 两步动作 + 图/证据</td>
+<td>无信息增量的致谢/附言</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>恐惧时效 + 免费工具名</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可执行安全动作</strong> 远强于社交礼貌帖；争议帖曝光高但不可迁移到 LIS</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS科普 / AI入企）</h2>
+<ol>
+<li><strong>公开「正在跑的系统」数字</strong> → AI入企：试点科室周报「报告量/周转时间/差错拦截」替代虚空愿景。</li>
+<li><strong>事故即内容</strong> → LIS：仪器/LIS 宕机复盘「根因→临时措施→永久措施」三帖线程。</li>
+<li><strong>续帖消摩擦</strong> → 主帖给方案后，立刻补「免费/开源/本院可落地」消除借口。</li>
+<li><strong>Bookmark 导向干货</strong> → 安全/检查清单类帖天然高收藏；做「上线前 10 项检查」清单帖。</li>
+<li><strong>Bio 仪表盘</strong> → 微李玩AI：置顶写清「做什么/证据/入口」，别只写口号。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>地缘政治/移民争议帖：曝光蜜糖、专业号砒霜。</li>
+<li>过度晒收入易变成「炫富号」，医疗/政企客户会反感。</li>
+<li>高频故障播报若无建设性，会像抱怨而非权威。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条：<strong>「检验信息系统暴露面检查」清单</strong>（类比 VPS 下公网），给 3 条立刻可做项。</li>
+<li>产品/试点有小故障时，用「根因+修复+感谢」线程公开，而非只发成功案例。</li>
+<li>Bio/置顶试加「在跑项目一条数字」，不加政治评论。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近 7 日 counts 合计 ≈277；主帖采样窗口约 2026-10-21 → 10-24。</li>
+<li>用户 id：<code>1577241403</code>。</li>
+<li>对照：比 Miles 更「产品公开账本」，比铁柱更「权威资产」——可学机制是透明交付与时效行动帖。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simon Willison（@simonw） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>Simon Willison（@simonw）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/simonw</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Simon Willison / @simonw</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2006-11-15（约 20 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>243418 / 5674 / 61609</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈4037 / listed≈6962</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Datasette 作者、Django 共同作者、PSF board。粉关比约 <strong>43:1</strong>。近 7 日约 <strong>43</strong> 条（偏低频高质量）。用户 id：<code>12497</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>开源匠人 + AI 实验日志号：靠「我刚用 Claude 做出可点开的东西」与尖锐公共议题问题，把工程可信度变成持续关注。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Datasette / Django / 开源与社区身份。</li>
+<li><strong>时间线实际：</strong> 自建小游戏/博客功能（AI 辅助）、开放权重模型提问、加密货币/超级智能用语吐槽、行业数字拆解、引用有趣技术演示。</li>
+<li><strong>目标受众：</strong> Python/开源开发者、AI 应用工程师、记者与政策关心者。</li>
+<li><strong>差异点：</strong> 几乎每条「我做了 X」都带可访问链接；提问帖真诚求答案而非钓鱼。</li>
+<li><strong>与 Bio 的错位：</strong> 少；近期游戏项目占比升高，但仍服务「AI 能做什么」叙事。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>尖锐公共问题 / 吐槽</td>
+<td>高曝光</td>
+<td><a href="https://x.com/simonw/status/2112541511032426857">回复机器人 prompt？</a>、<a href="https://x.com/simonw/status/2108346075874734127">Super Intelligence 蠢</a></td>
+<td>14.8万 / 11.5万曝光级</td>
+</tr>
+<tr>
+<td>行业数字拆解</td>
+<td>中</td>
+<td><a href="https://x.com/simonw/status/2110721515130089787">Anthropic 蒸馏收入 5–7%</a></td>
+<td>≈11.9万曝光 / 814赞</td>
+</tr>
+<tr>
+<td>「我做了」可玩 demo</td>
+<td>高权重</td>
+<td><a href="https://x.com/simonw/status/2112630778068881543">Battle Drones RTS</a>、<a href="https://x.com/simonw/status/2108547065634844839">语音做博客功能</a></td>
+<td>5.2万 / 5.9万曝光，高回复</td>
+</tr>
+<tr>
+<td>真诚技术提问</td>
+<td>中</td>
+<td><a href="https://x.com/simonw/status/2108608482442449261">60GB 内最佳 MoE 编码模型？</a></td>
+<td>≈7.0万曝光 / 168回复</td>
+</tr>
+<tr>
+<td>引用炫技演示</td>
+<td>中</td>
+<td><a href="https://x.com/simonw/status/2110151384289223103">Fourier epicycles 鹈鹕</a></td>
+<td>≈7.8万曝光 / 1263赞</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>转发</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/simonw/status/2112541511032426857">谁见过垃圾回复机器人的 prompt？</a></td>
+<td>≈147874</td>
+<td>1024</td>
+<td>136</td>
+<td>17</td>
+<td>挑衅式提问 + 给机器人「一次免封机会」→ 回复燃料</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/simonw/status/2110721515130089787">蒸馏占 Anthropic 收入 5–7% 拆算</a></td>
+<td>≈118892</td>
+<td>814</td>
+<td>218</td>
+<td>61</td>
+<td>引用新闻数字 → 自己做数量级推算</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/simonw/status/2108346075874734127">Super Intelligence 用语太蠢</a></td>
+<td>≈115283</td>
+<td>1852</td>
+<td>151</td>
+<td>80</td>
+<td>短句情绪立场，圈层共鸣（可学克制版）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/simonw/status/2110151384289223103">OK, using Fourier epicycles…</a></td>
+<td>≈78017</td>
+<td>1263</td>
+<td>107</td>
+<td>47</td>
+<td>一句技术品味点评吃引用流量</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/simonw/status/2108608482442449261">60GB 内最佳 MoE coding？</a></td>
+<td>≈70185</td>
+<td>353</td>
+<td>168</td>
+<td>10</td>
+<td><strong>约束清晰的求助帖</strong> → 社区替你产内容</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>43</strong> 条；有项目日（Battle Drones）会拉高到 10+，平日可接近 0。</li>
+<li><strong>低频高信号</strong>：单帖平均质量远高于刷屏号。</li>
+<li>粉关比约 43:1，靠长期开源信誉，不靠互关。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关：</strong> 弱。</li>
+<li><strong>回复工时：</strong> 项目线程内自回复讲细节；对外更多是被问。</li>
+<li><strong>钩子：</strong> 可点击 demo、硬约束提问、新闻数字心算、短毒舌。</li>
+<li><strong>平台激励：</strong> 收藏集中在可复现实验与资源帖。</li>
+<li><strong>开放权重/开源飞轮：</strong> 作品被 fork（法文版 Battle Drones）再引用回来二次传播。</li>
+<li><strong>博客外链：</strong> 重要结论常落到自己 blog，X 是分发层。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/simonw/status/2110721515130089787">蒸馏收入拆算</a></td>
+<td>线程内技术附言（数千曝光级）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>新闻事实 + 自己的算术结论</td>
+<td>仅补充细节无新主张</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>独立推算/独立作品</strong> 胜过附属回复；提问帖用硬约束换高质量答案</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS科普 / AI入企）</h2>
+<ol>
+<li><strong>可点开的证据</strong> → 每次「AI 做了什么」附截图/演示链接/前后对比，忌空口强。</li>
+<li><strong>硬约束提问</strong> → 「本院只有内网 + 单机 16GB，哪个本地模型能跑报告质控？」让粉丝/同行共创答案。</li>
+<li><strong>新闻数字拆算</strong> → 把行业报告里的 % 换成「对检验科意味着几份报告/几天」。</li>
+<li><strong>开源/可复现飞轮</strong> → LIS 科普脚本、检查清单公开许可，鼓励改版再回流。</li>
+<li><strong>博客沉淀 + X 分发</strong> → 长方法放案卷/博客，X 只留钩子与结论。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>加密货币立场帖、强烈用语：可看不可盲跟（监管/品牌）。</li>
+<li>纯自娱游戏项目占比过高会偏离 B 端叙事——我们应把 demo 绑在业务场景。</li>
+<li>不要为了「毒舌」牺牲专业温度。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周做一个 <strong>可演示的小工具/流程</strong>（哪怕一页检查表网页）并发「我用 AI 做了 X」帖。</li>
+<li>发 1 条带硬约束的求助/共创帖，收集科室真实限制。</li>
+<li>选一条行业新闻，做「三行数量级换算」线程。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近 7 日 counts ≈43；主帖采样约 2026-10-08 → 10-23（含较早高曝光）。</li>
+<li>用户 id：<code>12497</code>。</li>
+<li>样板价值：英文区「匠人可信度」天花板之一，对 LIS 科学传播极可迁移。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
