@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""从 accounts/*.md 生成 docs/accounts/{handle}.html（山中学堂主题）。"""
+"""从 accounts/*.md 与 accounts/articles/*.md 生成 docs 下 HTML（山中学堂主题）。"""
 
 from __future__ import annotations
 
@@ -17,12 +17,33 @@ ACCOUNTS = [
     ("oran_ge", "2026-10-24-oran_ge.md", "可学 · 中文区"),
     ("vista8", "2026-10-24-vista8.md", "可学 · 中文区"),
     ("JessiCao_JC", "2026-10-24-jessicao_jc.md", "可学 · 中文区"),
+    ("hylarucoder", "2026-10-24-hylarucoder.md", "可学 · 中文区"),
+    ("lxfater", "2026-10-24-lxfater.md", "可学 · 中文区"),
+    ("ruanyf", "2026-10-24-ruanyf.md", "可学 · 中文区"),
     ("levelsio", "2026-10-24-levelsio.md", "可学 · 外文区"),
     ("swyx", "2026-10-24-swyx.md", "可学 · 外文区"),
     ("simonw", "2026-10-24-simonw.md", "可学 · 外文区"),
     ("lennysan", "2026-10-24-lennysan.md", "可学 · 外文区"),
     ("tibo_maker", "2026-10-24-tibo_maker.md", "可学 · 外文区"),
+    ("tdinh_me", "2026-10-24-tdinh_me.md", "可学 · 外文区"),
+    ("danshipper", "2026-10-24-danshipper.md", "可学 · 外文区"),
+    ("2026-10-24-miles_mazy", "2026-10-24-miles_mazy.md", "可学 · 中文区"),
+    ("2026-10-24-tiezhuthinker", "2026-10-24-tiezhuthinker.md", "慎学 · 互关刷屏"),
+    ("jessi-xhs-article", "2026-10-24-jessi-xhs-article.md", "长文精读"),
 ]
+
+# slug -> (articles 子目录内文件名, tag)
+ARTICLES = [
+    (
+        "2026-10-19-kingao-10k-followers",
+        "2026-10-19-kingao-10k-followers.md",
+        "长文精读",
+    ),
+]
+
+AI_BADGE_HTML = (
+    '<p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>'
+)
 
 SHELL_CSS = """
     :root {
@@ -71,6 +92,13 @@ SHELL_CSS = """
       font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
       color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
     }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
     .paper {
       background: var(--paper); color: var(--ink);
       padding: 28px 26px; margin-top: 10px;
@@ -78,6 +106,8 @@ SHELL_CSS = """
       box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
       border-left: 4px solid var(--pine);
     }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
     .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
     .paper h2 {
       margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
@@ -90,6 +120,8 @@ SHELL_CSS = """
       padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
       color: var(--pine); background: var(--pine-pale);
     }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
     .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
     .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
     .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
@@ -126,13 +158,33 @@ def first_h1_plain(md: str) -> str:
     return "案卷"
 
 
-def build_page(handle: str, md_name: str, tag_label: str) -> str:
-    md_path = ROOT / "accounts" / md_name
-    md_text = md_path.read_text(encoding="utf-8")
-    title_text = first_h1_plain(md_text)
-    body_html = md_to_html_body(md_text)
+def paper_class(tag_label: str) -> str:
+    """根据标签决定纸面左边条样式。"""
+    if tag_label.startswith("慎学"):
+        return "paper caution"
+    if tag_label.startswith("长文"):
+        return "paper article"
+    return "paper learn"
+
+
+def tag_class(tag_label: str) -> str:
+    if tag_label.startswith("慎学"):
+        return "tag caution"
+    if tag_label.startswith("长文"):
+        return "tag article"
+    return "tag learn"
+
+
+def build_page(
+    *,
+    title_text: str,
+    body_html: str,
+    tag_label: str,
+    back_href: str,
+) -> str:
     page_title = f"{title_text} · 山中学堂"
-    md_github = f"https://github.com/another3000/xstudy/blob/main/accounts/{md_name}"
+    pclass = paper_class(tag_label)
+    tclass = tag_class(tag_label)
 
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
@@ -150,11 +202,12 @@ def build_page(handle: str, md_name: str, tag_label: str) -> str:
 <body>
 <div class="wrap">
   <header class="site-hd">
-    <a class="back" href="../index.html">返回学堂</a>
+    <a class="back" href="{back_href}">返回学堂</a>
     <span class="site-brand">山中学堂</span>
   </header>
-  <div class="paper learn">
-    <span class="tag learn">{tag_label}</span>
+  {AI_BADGE_HTML}
+  <div class="{pclass}">
+    <span class="{tclass}">{tag_label}</span>
     {body_html}
   </div>
 </div>
@@ -163,13 +216,46 @@ def build_page(handle: str, md_name: str, tag_label: str) -> str:
 """
 
 
+def build_account_page(handle: str, md_name: str, tag_label: str) -> str:
+    md_path = ROOT / "accounts" / md_name
+    md_text = md_path.read_text(encoding="utf-8")
+    title_text = first_h1_plain(md_text)
+    body_html = md_to_html_body(md_text)
+    return build_page(
+        title_text=title_text,
+        body_html=body_html,
+        tag_label=tag_label,
+        back_href="../index.html",
+    )
+
+
+def build_article_page(slug: str, md_name: str, tag_label: str) -> str:
+    md_path = ROOT / "accounts" / "articles" / md_name
+    md_text = md_path.read_text(encoding="utf-8")
+    title_text = first_h1_plain(md_text)
+    body_html = md_to_html_body(md_text)
+    return build_page(
+        title_text=title_text,
+        body_html=body_html,
+        tag_label=tag_label,
+        back_href="../index.html",
+    )
+
+
 def main() -> None:
-    out_dir = ROOT / "docs" / "accounts"
-    out_dir.mkdir(parents=True, exist_ok=True)
+    out_accounts = ROOT / "docs" / "accounts"
+    out_accounts.mkdir(parents=True, exist_ok=True)
     for handle, md_name, tag_label in ACCOUNTS:
-        html = build_page(handle, md_name, tag_label)
-        (out_dir / f"{handle}.html").write_text(html, encoding="utf-8")
-        print(f"wrote {handle}.html")
+        html = build_account_page(handle, md_name, tag_label)
+        (out_accounts / f"{handle}.html").write_text(html, encoding="utf-8")
+        print(f"wrote accounts/{handle}.html")
+
+    out_articles = ROOT / "docs" / "articles"
+    out_articles.mkdir(parents=True, exist_ok=True)
+    for slug, md_name, tag_label in ARTICLES:
+        html = build_article_page(slug, md_name, tag_label)
+        (out_articles / f"{slug}.html").write_text(html, encoding="utf-8")
+        print(f"wrote articles/{slug}.html")
 
 
 if __name__ == "__main__":

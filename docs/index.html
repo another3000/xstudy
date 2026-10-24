@@ -160,6 +160,18 @@
       margin: 32px 0 14px; font-size: .82rem; color: var(--gold);
       letter-spacing: .28em; text-align: center;
     }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 14px; padding: 6px 18px;
+      font-size: .74rem; letter-spacing: .24em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.98) 0%, rgba(220, 232, 225, 0.8) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.05);
+    }
+    .section-intro {
+      margin: 0 0 16px; font-size: .88rem; color: var(--muted); line-height: 1.75;
+    }
+    .dossier.article::before { background: var(--gold); }
+    .dossier.article .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.9); border-color: rgba(138, 115, 64, 0.45); }
   </style>
 </head>
 <body>
@@ -167,6 +179,7 @@
     <header class="mast">
       <div>
         <div class="brand">XSTUDY · 山中学堂</div>
+        <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
         <h1>创作者案卷</h1>
         <p class="motto">静静地学 · 期待逆袭</p>
         <p class="lede">山中读卷：拆开增长号的骨架。可学的迁到微李玩AI / LIS / AI入企；互关刷屏收作反面教材。每卷含 Top5 高互动帖，便于临摹句式，而非抄袭人设。</p>
@@ -182,6 +195,36 @@
       <article><b>叁 · 落动作</b><p>卷末「对我们的行动建议」直接开工。</p></article>
     </section>
 
+    <p class="batch-label">长文精读</p>
+    <p class="section-intro">单篇 X Article / 万字教程：书签型操作系统，与账号案卷分开收录。</p>
+
+    <article class="dossier learn article" data-kind="learn">
+      <span class="tag article">长文精读</span><span class="tag">起号复盘</span>
+      <h2><a href="articles/2026-10-19-kingao-10k-followers.html">Kin｜推特万粉复盘（10,000 粉）</a></h2>
+      <p class="one-liner">冷启动→热点→系列教程→破圈；发帖结构表 + 预置工具链；书签 588 ≫ 赞 315</p>
+      <p class="meta">2026-10-19 · @KinGao476942 · 曝光≈6.4万</p>
+      <div class="actions">
+        <a href="articles/2026-10-19-kingao-10k-followers.html">打开精读</a>
+        <a href="https://x.com/KinGao476942/status/2112198262661017812" rel="noopener">原帖</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-19-kingao-10k-followers.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <article class="dossier learn article" data-kind="learn">
+      <span class="tag article">长文精读</span><span class="tag">小红书 · X Article</span>
+      <h2><a href="accounts/jessi-xhs-article.html">Jessi｜小红书 0→1 万字教程</a></h2>
+      <p class="one-liner">业务先于养号；十四章操作系统 + 四周行动；书签型长文</p>
+      <p class="meta">2026-10-23 · @JessiCao_JC · ≈11.7万曝光</p>
+      <div class="actions">
+        <a href="accounts/jessi-xhs-article.html">打开精读</a>
+        <a href="https://x.com/JessiCao_JC/status/2113478290661163067" rel="noopener">原帖</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessi-xhs-article.md">Markdown 源</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-23-jessi-xhs-0to1-full.md">全文复刻</a>
+      </div>
+    </article>
+
+    <p class="batch-label">账号案卷</p>
+
     <div class="filters" role="group" aria-label="筛选">
       <button type="button" data-filter="all" aria-pressed="true">全部</button>
       <button type="button" data-filter="learn" aria-pressed="false">可学</button>
@@ -189,19 +232,6 @@
     </div>
 
     <p class="legend"><span><i class="dot learn"></i>可学 · 机制迁移</span><span><i class="dot caution"></i>慎学 · 话术勿搬</span></p>
-
-    <article class="dossier learn" data-kind="learn">
-      <span class="tag">可学</span><span class="tag">小红书 · X Article</span>
-      <h2><a href="accounts/jessi-xhs-article.html">Jessi｜小红书 0→1 万字教程</a></h2>
-      <p class="one-liner">业务先于养号；十四章操作系统 + 四周行动；书签型长文</p>
-      <p class="meta">2026-10-23 · @JessiCao_JC · ≈11.7万曝光</p>
-      <div class="actions">
-        <a href="accounts/jessi-xhs-article.html">打开案卷</a>
-        <a href="https://x.com/JessiCao_JC/status/2113478290661163067" rel="noopener">原帖</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-jessi-xhs-article.md">Markdown 源</a>
-        <a href="https://github.com/another3000/xstudy/blob/main/accounts/articles/2026-10-23-jessi-xhs-0to1-full.md">全文复刻</a>
-      </div>
-    </article>
 
     <article class="dossier learn" data-kind="learn">
       <span class="tag">可学</span><span class="tag">FDE / 企业AI落地</span>
@@ -224,6 +254,68 @@
         <a href="accounts/2026-10-24-tiezhuthinker.html">打开案卷</a>
         <a href="https://x.com/tiezhuthinker" rel="noopener">原账号</a>
         <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tiezhuthinker.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <p class="batch-label">本批可学 · 2026-10-24</p>
+
+    <article class="dossier learn" data-kind="learn">
+      <span class="tag">可学</span><span class="tag">Agent 实验</span>
+      <h2><a href="accounts/hylarucoder.html">海拉鲁编程客 · @hylarucoder</a></h2>
+      <p class="one-liner">一手产品实验 + 圈内段子双轨：开源 skill / 2MB 编辑器现场，梗帖引流、产物吃书签。</p>
+      <p class="meta">2026-10-24 · ≈2.4万粉 / 关注≈1.2k · 粉关比约 20:1 · Blue</p>
+      <div class="actions">
+        <a href="accounts/hylarucoder.html">打开案卷</a>
+        <a href="https://x.com/hylarucoder" rel="noopener">原账号</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-hylarucoder.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <article class="dossier learn" data-kind="learn">
+      <span class="tag">可学</span><span class="tag">开源策展</span>
+      <h2><a href="accounts/lxfater.html">铁锤人 · @lxfater</a></h2>
+      <p class="one-liner">3w star 背书 + 亲手 Demo：XERJ 清单吃书签，机甲格斗「演示→编号清单」二连。</p>
+      <p class="meta">2026-10-24 · ≈10.8万粉 / listed≈1,250 · 粉关比约 76:1 · Blue</p>
+      <div class="actions">
+        <a href="accounts/lxfater.html">打开案卷</a>
+        <a href="https://x.com/lxfater" rel="noopener">原账号</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-lxfater.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <article class="dossier learn" data-kind="learn">
+      <span class="tag">可学</span><span class="tag">技术公共编辑</span>
+      <h2><a href="accounts/ruanyf.html">阮一峰 · @ruanyf</a></h2>
+      <p class="one-liner">低产高信噪：二十年博客信任 + 极端粉关比；每条像周刊条目，编译反差→路径→对你意味什么。</p>
+      <p class="meta">2026-10-24 · ≈21万粉 / 关注≈371 · 粉关比约 564:1 · 开号近 20 年</p>
+      <div class="actions">
+        <a href="accounts/ruanyf.html">打开案卷</a>
+        <a href="https://x.com/ruanyf" rel="noopener">原账号</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-ruanyf.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <article class="dossier learn" data-kind="learn">
+      <span class="tag">可学</span><span class="tag">Indie / 砍依赖</span>
+      <h2><a href="accounts/tdinh_me.html">Tony Dinh · @tdinh_me</a></h2>
+      <p class="one-liner">公开账本 + 杀 SaaS 叙事：i18n 省 $124/月、API 被刷 $1.7k 闸门课；美元作通用语言。</p>
+      <p class="meta">2026-10-24 · ≈20.6万粉 · TypingMind 等 MRR 挂 Bio · Blue</p>
+      <div class="actions">
+        <a href="accounts/tdinh_me.html">打开案卷</a>
+        <a href="https://x.com/tdinh_me" rel="noopener">原账号</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-tdinh_me.md">Markdown 源</a>
+      </div>
+    </article>
+
+    <article class="dossier learn" data-kind="learn">
+      <span class="tag">可学</span><span class="tag">Every / 前沿发行</span>
+      <h2><a href="accounts/danshipper.html">Dan Shipper · @danshipper</a></h2>
+      <p class="one-liner">Every CEO 对外广播：Duet 实测 BREAKING、frontier team 角色拆书；书签来自可搬进公司的结构。</p>
+      <p class="meta">2026-10-24 · ≈14.4万粉 / listed≈3,053 · 置顶报告历史曝光≈166万</p>
+      <div class="actions">
+        <a href="accounts/danshipper.html">打开案卷</a>
+        <a href="https://x.com/danshipper" rel="noopener">原账号</a>
+        <a href="https://github.com/another3000/xstudy/blob/main/accounts/2026-10-24-danshipper.md">Markdown 源</a>
       </div>
     </article>
 

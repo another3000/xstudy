@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
   <style>
+
     :root {
       --bg: #e8e2d4;
       --paper: rgba(252, 249, 240, 0.94);
@@ -54,36 +55,53 @@
       font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
       color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
     }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
     .paper {
       background: var(--paper); color: var(--ink);
       padding: 28px 26px; margin-top: 10px;
       border: 1px solid var(--line); border-radius: 2px;
       box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
     }
-    .paper.learn { border-left: 4px solid var(--pine); }
-    .paper.caution { border-left: 4px solid var(--cinnabar); }
-    h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
-    h2 {
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
       margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
       color: var(--ink-soft); border-bottom: 1px solid var(--line);
       padding-bottom: 0.35em; letter-spacing: 0.06em;
     }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
     .tag {
       display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
-      padding: 2px 8px; margin: 0 6px 0 0; border: 1px solid currentColor;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
     }
-    .tag.learn { color: var(--pine); background: var(--pine-pale); }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
     .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
-    table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
-    th, td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
-    th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
-    a { color: var(--pine); }
-    a:hover { color: #234a38; }
-    ul { padding-left: 1.15em; }
-    li { margin: 0.35em 0; }
-    p { margin: 0.55em 0; }
-    strong { font-weight: 650; }
-    code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
   </style>
 </head>
 <body>
@@ -92,21 +110,57 @@
     <a class="back" href="../index.html">返回学堂</a>
     <span class="site-brand">山中学堂</span>
   </header>
-<div class="paper learn">
-<span class="tag learn">可学 · FDE</span>
-<h1>Miles Ma（@miles_mazy）</h1>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 中文区</span>
+    <h1>Miles Ma（@miles_mazy）</h1>
 <h2>0. 元信息</h2>
-<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
-<tr><td>平台</td><td>X</td></tr>
-<tr><td>链接</td><td>https://x.com/miles_mazy</td></tr>
-<tr><td>采集时间</td><td>2026-10-24 Asia/Shanghai</td></tr>
-<tr><td>显示名 / handle</td><td>Miles Ma / @miles_mazy</td></tr>
-<tr><td>开号时间 / 账号年龄</td><td>约 2026-08-05 开号（约 2.5 个月）</td></tr>
-<tr><td>粉丝 / 关注 / 帖量</td><td>≈34091 / ≈611 / ≈5009</td></tr>
-<tr><td>蓝标 / 认证类型</td><td>Blue</td></tr>
-<tr><td>媒体数 / listed</td><td>media≈460 / listed≈150</td></tr>
-<tr><td>备注</td><td>Bio：大厂 AI 算法→26年6月裸辞转 FDE；自称 2 个月 3 万粉；企培/落地/交付；社群 199 元微信引流。近 7 日发帖约 460（含回复）。粉关比约 <strong>56:1</strong>（非互关盘）。</td></tr>
-</tbody></table>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/miles_mazy</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Miles Ma / @miles_mazy</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>约 2026-08-05 开号（约 2.5 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>≈34091 / ≈611 / ≈5009</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈460 / listed≈150</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：大厂 AI 算法→26年6月裸辞转 FDE；自称 2 个月 3 万粉；企培/落地/交付；社群 199 元微信引流。近 7 日发帖约 460（含回复）。粉关比约 <strong>56:1</strong>（非互关盘）。</td>
+</tr>
+</tbody>
+</table>
 <h2>1. 一句话定性</h2>
 <p>华语 <strong>FDE / 企业 AI 落地</strong> 人设增长号：用「大厂离职→真实交付案例→线下大课」建立权威，再用短句疑问与引用扩散拉互动，并把流量导向付费社群。</p>
 <h2>2. 人设与定位</h2>
@@ -118,24 +172,119 @@
 <li><strong>与 Bio 的错位：</strong> 较少；偶尔擦边/猎奇引用会冲淡专业感，但主轴仍是 FDE。</li>
 </ul>
 <h2>3. 内容母题地图</h2>
-<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
-<tr><td>线下交付 / 大客户培训现场</td><td>高权重</td><td><a href="https://x.com/miles_mazy/status/2113624481759429118" rel="noopener">吉利近500人讲 FDE 案例</a>、<a href="https://x.com/miles_mazy/status/2113538162358395171" rel="noopener">整个大活·吉利培训</a></td><td>约 6.7k 曝光/80赞；约 18k 曝光/147赞/77回复</td></tr>
-<tr><td>引用扩散（教程/赚钱机会）</td><td>高</td><td><a href="https://x.com/miles_mazy/status/2113645117202723315" rel="noopener">姐删了吧卖399</a>、<a href="https://x.com/miles_mazy/status/2113603341976846644" rel="noopener">multi-agent 必学</a></td><td>约 9.6万曝光/762赞/139转发；约 2.3万曝光/321赞</td></tr>
-<tr><td>涨粉 / 创作者收益复盘</td><td>中</td><td><a href="https://x.com/miles_mazy/status/2113856761853800745" rel="noopener">长文+真人出镜涨粉</a>、<a href="https://x.com/miles_mazy/status/2113832350807449776" rel="noopener">收益四位数复盘</a></td><td>数百–千级曝光，强互动话术</td></tr>
-<tr><td>疑问钩子（拉回复）</td><td>中</td><td><a href="https://x.com/miles_mazy/status/2113527089659846921" rel="noopener">简历怎么写 gap</a>、<a href="https://x.com/miles_mazy/status/2113478519238115492" rel="noopener">Grok Bot vs Claude</a></td><td>数千–3万曝光，回复密集</td></tr>
-<tr><td>行业洞察短论</td><td>中</td><td><a href="https://x.com/miles_mazy/status/2113788059082977644" rel="noopener">运维人的天下</a></td><td>约 4k 曝光</td></tr>
-<tr><td>生活吐槽 / 热点跟帖</td><td>低–中</td><td>杭州网约车、peach 等</td><td>拉活人感</td></tr>
-</tbody></table>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线下交付 / 大客户培训现场</td>
+<td>高权重</td>
+<td><a href="https://x.com/miles_mazy/status/2113624481759429118">吉利近500人讲 FDE 案例</a>、<a href="https://x.com/miles_mazy/status/2113538162358395171">整个大活·吉利培训</a></td>
+<td>约 6.7k 曝光/80赞；约 18k 曝光/147赞/77回复</td>
+</tr>
+<tr>
+<td>引用扩散（教程/赚钱机会）</td>
+<td>高</td>
+<td><a href="https://x.com/miles_mazy/status/2113645117202723315">姐删了吧卖399</a>、<a href="https://x.com/miles_mazy/status/2113603341976846644">multi-agent 必学</a></td>
+<td>约 9.6万曝光/762赞/139转发；约 2.3万曝光/321赞</td>
+</tr>
+<tr>
+<td>涨粉 / 创作者收益复盘</td>
+<td>中</td>
+<td><a href="https://x.com/miles_mazy/status/2113856761853800745">长文+真人出镜涨粉</a>、<a href="https://x.com/miles_mazy/status/2113832350807449776">收益四位数复盘</a></td>
+<td>数百–千级曝光，强互动话术</td>
+</tr>
+<tr>
+<td>疑问钩子（拉回复）</td>
+<td>中</td>
+<td><a href="https://x.com/miles_mazy/status/2113527089659846921">简历怎么写 gap</a>、<a href="https://x.com/miles_mazy/status/2113478519238115492">Grok Bot vs Claude</a></td>
+<td>数千–3万曝光，回复密集</td>
+</tr>
+<tr>
+<td>行业洞察短论</td>
+<td>中</td>
+<td><a href="https://x.com/miles_mazy/status/2113788059082977644">运维人的天下</a></td>
+<td>约 4k 曝光</td>
+</tr>
+<tr>
+<td>生活吐槽 / 热点跟帖</td>
+<td>低–中</td>
+<td>杭州网约车、peach 等</td>
+<td>拉活人感</td>
+</tr>
+</tbody>
+</table>
 <h2>3.5 Top5 高互动帖（便于临摹）</h2>
 <p>按<strong>阅读量（曝光）</strong>排序，近采窗口主帖；附赞/回复便于对照「读」与「聊」。</p>
-<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>转发</th><th>可学钩子</th></tr></thead><tbody>
-<tr><td>1</td><td><a href="https://x.com/miles_mazy/status/2113645117202723315" rel="noopener">姐，删了吧，这个教程真的可以卖399一份</a></td><td>≈9.9万</td><td>783</td><td>16</td><td>139</td><td>引用强干货 + 一句夸张估价</td></tr>
-<tr><td>2</td><td><a href="https://x.com/miles_mazy/status/2112694100935823802" rel="noopener">codex 最傻逼的功能就是这个推荐…</a></td><td>≈6.1万</td><td>97</td><td>70</td><td>0</td><td>吐槽工具痛点，拉共鸣回复</td></tr>
-<tr><td>3</td><td><a href="https://x.com/miles_mazy/status/2112728577771024514" rel="noopener">现在知道为啥 FDE 工资这么高了吧</a></td><td>≈5.2万</td><td>235</td><td>20</td><td>40</td><td>引用自家长文 + 一句结论</td></tr>
-<tr><td>4</td><td><a href="https://x.com/miles_mazy/status/2112572550140100766" rel="noopener">直接在 grokbot 创建两个 bot…月赚万把块</a></td><td>≈4.6万</td><td>415</td><td>34</td><td>67</td><td>变现路径具体化 + 引用教程</td></tr>
-<tr><td>5</td><td><a href="https://x.com/miles_mazy/status/2113515009674539328" rel="noopener">美区 / 中国区 Apple ID 哪些 APP…</a></td><td>≈4.2万</td><td>13</td><td>59</td><td>1</td><td>开放疑问帖，靠回复堆热度</td></tr>
-</tbody></table>
-<p><em>另：吉利现场帖曝光约 0.7万–1.8万，赞/回复质量高，适合学「权威现场」而非纯曝光。</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>转发</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/miles_mazy/status/2113645117202723315">姐，删了吧，这个教程真的可以卖399一份</a></td>
+<td>≈9.9万</td>
+<td>783</td>
+<td>16</td>
+<td>139</td>
+<td>引用强干货 + 一句夸张估价</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/miles_mazy/status/2112694100935823802">codex 最傻逼的功能就是这个推荐…</a></td>
+<td>≈6.1万</td>
+<td>97</td>
+<td>70</td>
+<td>0</td>
+<td>吐槽工具痛点，拉共鸣回复</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/miles_mazy/status/2112728577771024514">现在知道为啥 FDE 工资这么高了吧</a></td>
+<td>≈5.2万</td>
+<td>235</td>
+<td>20</td>
+<td>40</td>
+<td>引用自家长文 + 一句结论</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/miles_mazy/status/2112572550140100766">直接在 grokbot 创建两个 bot…月赚万把块</a></td>
+<td>≈4.6万</td>
+<td>415</td>
+<td>34</td>
+<td>67</td>
+<td>变现路径具体化 + 引用教程</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/miles_mazy/status/2113515009674539328">美区 / 中国区 Apple ID 哪些 APP…</a></td>
+<td>≈4.2万</td>
+<td>13</td>
+<td>59</td>
+<td>1</td>
+<td>开放疑问帖，靠回复堆热度</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>另：吉利现场帖曝光约 0.7万–1.8万，赞/回复质量高，适合学「权威现场」而非纯曝光。</p>
+</blockquote>
 <h2>4. 发帖节奏与产能</h2>
 <ul>
 <li>近 7 天约 <strong>460</strong> 条（含回复）；日均约 60–80，峰值约 84（10/23）。</li>
@@ -144,7 +293,7 @@
 <li>自述瓶颈：线下活动多 → 创作时间被挤占（公开讨论解法）。</li>
 </ul>
 <h2>5. 增长机制拆解</h2>
-<ul>
+<ol>
 <li><strong>互关：</strong> 弱。关注仅约 611，粉丝 3.4 万。</li>
 <li><strong>回复工时：</strong> 有，但主线不是「全天串门」；提问帖自带回复燃料。</li>
 <li><strong>钩子话术：</strong> 「卧槽」「整个大活」；重复句强调（爆款长文权重）；数字（500人、四位数收益、20个案例）。</li>
@@ -152,22 +301,47 @@
 <li><strong>权威资产：</strong> 大厂背景 + 吉利等真实交付场景照片 —— 核心护城河。</li>
 <li><strong>引用套利：</strong> 引用高价值长文/教程并加一句评价，借势曝光（小红书教程引用近 10 万曝光）。</li>
 <li><strong>变现漏斗：</strong> Bio 社群 199 + 线下闭门会/培训。</li>
-</ul>
+</ol>
 <h2>6. 爆款与平帖对比</h2>
-<table><thead><tr><th></th><th>爆款</th><th>平帖</th></tr></thead><tbody>
-<tr><td>链接</td><td><a href="https://x.com/miles_mazy/status/2113645117202723315" rel="noopener">引用小红书教程+「能卖399」</a></td><td><a href="https://x.com/miles_mazy/status/2113866324694933914" rel="noopener">今日变现红包</a></td></tr>
-<tr><td>结构特征</td><td>引用强内容 + 一句情绪价值判断</td><td>短播报、无新信息</td></tr>
-<tr><td>情绪 / 数字 / 图</td><td>夸张估价 + 原帖干货</td><td>弱数字</td></tr>
-<tr><td>差异结论</td><td><strong>借力引用 + 一句立场</strong> 远强于独自短播报；现场图帖次之</td></tr>
-</tbody></table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/miles_mazy/status/2113645117202723315">引用小红书教程+「能卖399」</a></td>
+<td><a href="https://x.com/miles_mazy/status/2113866324694933914">今日变现红包</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>引用强内容 + 一句情绪价值判断</td>
+<td>短播报、无新信息</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>夸张估价 + 原帖干货</td>
+<td>弱数字</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>借力引用 + 一句立场</strong> 远强于独自短播报；现场图帖次之</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2>7. 可学习清单（3–5）</h2>
-<ul>
+<ol>
 <li><strong>交付现场即内容</strong> → LIS/AI入企：客户培训、科室试点、上线前后对比照片，比纯观点帖更可信。</li>
 <li><strong>一句立场吃引用流量</strong> → 看到优质 AI/检验干货长文，引用并写清「为什么对我们客户有用」，不抄全文。</li>
 <li><strong>方法论短复盘</strong> → 「长文+真人出镜+活人感」式三条结论帖，可改成「科普片涨粉靠：钩子数字 / 出镜讲解 / 评论必回」。</li>
 <li><strong>粉关比健康</strong> → 学他少互关、多权威资产；别学铁柱刷关。</li>
 <li><strong>漏斗写进 Bio</strong> → 轻量产品入口（课/群/咨询）与内容人设一致。</li>
-</ul>
+</ol>
 <h2>8. 风险与不该学</h2>
 <ul>
 <li>部分引用/猎奇跟帖可能稀释专业人设。</li>
@@ -175,15 +349,18 @@
 <li>高频提问帖有灌水感，专业号可降频。</li>
 </ul>
 <h2>9. 对我们的行动建议</h2>
-<ul>
+<ol>
 <li>本周发 1 条：<strong>真实交付/培训现场</strong>（检验科试点或 AI 入企workshop）+ 三条认知结论。</li>
 <li>每周 2–3 条：<strong>引用优质技术长文 + 一句 LIS/入企迁移</strong>。</li>
 <li>Bio/置顶试加轻量入口（咨询或资料），但主帖少硬广。</li>
-</ul>
+</ol>
 <h2>10. 附录</h2>
 <ul>
 <li>近 7 日 <code>from:miles_mazy</code> counts 合计约 460。</li>
 <li>用户 id：<code>2085020135602208769</code>。</li>
 <li>对照样板：铁柱为互关刷屏型；Miles 为权威交付型——对我们更可迁移。</li>
 </ul>
-</div></div></body></html>
+  </div>
+</div>
+</body>
+</html>

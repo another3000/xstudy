@@ -55,6 +55,13 @@
       font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
       color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
     }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
     .paper {
       background: var(--paper); color: var(--ink);
       padding: 28px 26px; margin-top: 10px;
@@ -62,6 +69,8 @@
       box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
       border-left: 4px solid var(--pine);
     }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
     .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
     .paper h2 {
       margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
@@ -74,6 +83,8 @@
       padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
       color: var(--pine); background: var(--pine-pale);
     }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
     .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
     .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
     .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
@@ -99,6 +110,7 @@
     <a class="back" href="../index.html">返回学堂</a>
     <span class="site-brand">山中学堂</span>
   </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
   <div class="paper learn">
     <span class="tag learn">可学 · 中文区</span>
     <h1>向阳乔木（@vista8）</h1>

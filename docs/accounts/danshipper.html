@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dan Shipper（@danshipper） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>Dan Shipper（@danshipper）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/danshipper</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 14:42 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Dan Shipper / @danshipper</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-01-31（约 17.7 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>144,336 / 2,159 / 27,799</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=2,847 / listed=<strong>3,053</strong></td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：ceo @every；「the only subscription you need to stay at the edge of AI」。粉关比约 <strong>66.9:1</strong>。置顶长文报告 <em>After Automation</em>（历史曝光 <strong>1,660,745</strong> / 书签 4,969）。近采原创主帖约 15 条（窗口偏「长文/视频少而精」）。用户 id：<code>19829693</code>。判定：<strong>可学</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p><strong>Every 的「前沿实验室对外广播」</strong>：用产品 vibe check、团队方法论长视频、结构化长文，把「跟上 AI」产品化成订阅——人是媒体 CEO，帖是发行渠道。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Every CEO；帮你停在 AI 前沿的那一个订阅。</li>
+<li><strong>时间线实际：</strong> 对齐——Anthropic Duet BREAKING 实测、frontier team 40 分钟视频拆角色、书评长帖、安全策略吐槽、投资组合祝贺。生活碎帖（意面）故意穿插增活人感。</li>
+<li><strong>目标受众：</strong> 英语世界知识工作者、AI 工具重度用户、想建内部「前沿小组」的公司人。</li>
+<li><strong>差异点：</strong> 不只评模型，还 <strong>输出组织设计</strong>（pirates &amp; architects、wrangler、evals）。</li>
+<li><strong>与 Bio 的错位：</strong> 书评/哲学向内容看似离开 AI，实则强化「深度思考品牌」，与 Every 调性一致；真正的错位风险是过长视频完播——靠章节时间戳补救。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>产品 BREAKING 实测</td>
+<td>高</td>
+<td><a href="https://x.com/danshipper/status/2112997559463506059">Duet vibe check</a></td>
+<td>80,279 曝光 / 771 赞 / <strong>569 书签</strong></td>
+</tr>
+<tr>
+<td>组织/方法论长视频</td>
+<td>中高</td>
+<td><a href="https://x.com/danshipper/status/2113010761786175970">frontier team</a></td>
+<td>30,872 曝光 / 249 赞 / 351 书签</td>
+</tr>
+<tr>
+<td>短判断句</td>
+<td>中</td>
+<td><a href="https://x.com/danshipper/status/2111174407637139668">generation cheap → need editing</a></td>
+<td>12,563 曝光 / 125 赞</td>
+</tr>
+<tr>
+<td>吐槽体感</td>
+<td>中</td>
+<td><a href="https://x.com/danshipper/status/2112549948789010628">nanny state security policies</a></td>
+<td>18,674 曝光 / 261 赞 / 79 回复</td>
+</tr>
+<tr>
+<td>书评/深度阅读</td>
+<td>中</td>
+<td><a href="https://x.com/danshipper/status/2112561443249786901">Will and Attention</a></td>
+<td>6,060 曝光 / 46 赞 / 41 书签</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（近采主帖按曝光）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/danshipper/status/2112997559463506059">BREAKING: Anthropic Duet 实测</a></td>
+<td>80,279</td>
+<td>771</td>
+<td>101</td>
+<td><strong>569</strong></td>
+<td>BREAKING + 两周实测 + 利弊清单 + 对比页链接</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/danshipper/status/2113269180279751078">we are living in unprecedented times</a></td>
+<td>40,400</td>
+<td>238</td>
+<td>23</td>
+<td>59</td>
+<td>短句 + 引用强内容；借力扩散</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/danshipper/status/2112272224782856514">a story in 3 parts（三联图）</a></td>
+<td>31,861</td>
+<td>92</td>
+<td>12</td>
+<td>12</td>
+<td>视觉叙事模板；低文案高图</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/danshipper/status/2113010761786175970">every company needs a frontier team（长视频）</a></td>
+<td>30,872</td>
+<td>249</td>
+<td>39</td>
+<td><strong>351</strong></td>
+<td>时间戳目录 + 角色分工；书签型方法论</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/danshipper/status/2112549948789010628">nanny state era for AI</a></td>
+<td>18,674</td>
+<td>261</td>
+<td>79</td>
+<td>14</td>
+<td>共同挫败感；回复燃料</td>
+</tr>
+</tbody>
+</table>
+<p>（置顶 <em>After Automation</em>：166 万曝光 / 4,969 书签——「自动化后人类工作更多」反直觉报告，长期漏斗。）</p>
+<h2>为什么有效（机制因果）</h2>
+<ol>
+<li><strong>媒体公司打法：</strong> 帖不是个人碎碎念，是 Every 的发行。BREAKING 帖末导向 vibe check / 对比页 / 订阅——内容即获客。</li>
+<li><strong>书签来自「可搬进公司的结构」：</strong> frontier team 视频书签 351，因为给出 pirates/architects/wrangler/evals 等可复制角色，不是「我觉得 Duet 不错」。</li>
+<li><strong>先测两周再发：</strong> Duet 帖强调 two weeks testing、使用比例从 ChatGPT 主用变为 50/50——时间投入本身是信任信号。</li>
+<li><strong>反直觉长文压舱：</strong> After Automation「自动化后雇人更多」挑战流行叙事，适合被引用、进 listed。</li>
+<li><strong>listed 3,053 极高：</strong> 被当作行业媒体源关注；短生活帖只是调味，不改变信息源定位。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/danshipper/status/2112997559463506059">Duet BREAKING</a></td>
+<td><a href="https://x.com/danshipper/status/2112627161492312302">pasta at lunch</a>（9,437 曝光）</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>新闻钩 + 实测清单 + 产品入口</td>
+<td>无信息生活句</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可决策信息</strong>（要不要试、好在哪、还缺什么）驱动书签；意面帖维持人味但不增长权威</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单 → 微李玩AI / LIS / AI入企</h2>
+<ol>
+<li><strong>Frontier team 编制</strong> → AI入企：明确 1 名「海盗」（乱试新模型）+ 1 名「架构」（固化进流程）+ 评价集负责人。</li>
+<li><strong>BREAKING 实测模板</strong> → 新产品：两周日记 → 利弊 5 条 → 对比表链接。</li>
+<li><strong>时间戳长视频</strong> → 微李玩AI：培训录像按章节切，推文贴目录。</li>
+<li><strong>反直觉报告</strong> → LIS：「上了 AI 之后人工审核为什么更多」写成一页纸。</li>
+<li><strong>订阅式定位句</strong> → Bio/简介学他的「the only subscription…」清晰交易语言（改成你的服务边界）。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>英文媒体资源与团队规模不可直接复制；学结构，勿假装每周出 40 分钟制作。</li>
+<li>过度 BREAKING 会免疫；无实测的「重大」是狼来了。</li>
+<li>哲学书评对检验科受众过重——可缩成 3 条启示，勿原文搬运。</li>
+</ul>
+<h2>9. 本周行动建议</h2>
+<ol>
+<li>指定你们的 <strong>海盗/架构</strong> 两人，发一条「我们本周各负责什么」。</li>
+<li>对一个新工具写 <strong>半页 vibe check</strong>（用了几天、留/弃、原因）。</li>
+<li>把一次内部演示录成带 <strong>时间戳目录</strong> 的短视频帖。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近采约 15 条主帖；置顶历史帖单独记。</li>
+<li>用户 id：<code>19829693</code>；对照 swyx：更媒体化、更组织方法论。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
