@@ -7,112 +7,97 @@
   <meta name="description" content="拆开增长号看骨架：可学机制入库，互关话术标红。服务微李玩AI / LIS / AI入企。" />
   <style>
     :root {
-      --bg: #14110e;
-      --panel: #1c1814;
-      --paper: #efe6d6;
-      --ink: #1a1410;
-      --muted: #8a7a68;
-      --line: #3a322a;
-      --learn: #2f6b4f;
-      --caution: #9b2e2e;
-      --stamp: #c43c2c;
-      --amber: #d4a15a;
+      --bg: #f4efe6;
+      --panel: #fffdf8;
+      --ink: #1c1612;
+      --muted: #6a5d50;
+      --line: #e0d4c4;
+      --learn: #1f6b4a;
+      --caution: #a33a32;
+      --stamp: #b5472a;
+      --accent: #8b3a28;
     }
     * { box-sizing: border-box; }
-    html, body { margin: 0; min-height: 100%; }
     body {
-      font-family: "IBM Plex Sans", "PingFang SC", "Noto Sans SC", system-ui, sans-serif;
+      margin: 0; min-height: 100%;
+      font-family: "PingFang SC", "Noto Sans SC", "IBM Plex Sans", system-ui, sans-serif;
       background:
-        radial-gradient(ellipse 80% 50% at 10% -10%, #2a2218 0%, transparent 55%),
-        radial-gradient(ellipse 60% 40% at 100% 0%, #1a2420 0%, transparent 50%),
+        radial-gradient(ellipse 70% 40% at 0% 0%, #efe2cf 0%, transparent 55%),
+        radial-gradient(ellipse 50% 35% at 100% 10%, #e8efe8 0%, transparent 50%),
         var(--bg);
-      color: var(--paper);
-      line-height: 1.55;
+      color: var(--ink); line-height: 1.6;
     }
-    .noise {
-      pointer-events: none; position: fixed; inset: 0; opacity: .04; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    .wrap { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 40px 20px 72px; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 36px 20px 72px; }
     .mast {
       display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: flex-end;
-      justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 28px;
+      justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 26px;
     }
-    .brand { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; font-size: .75rem; color: var(--amber); }
-    h1 { margin: 6px 0 0; font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 650; letter-spacing: .04em; }
-    .lede { max-width: 34em; color: var(--muted); margin: 0; font-size: .95rem; }
+    .brand { font-family: ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; color: var(--stamp); }
+    h1 { margin: 6px 0 0; font-size: clamp(1.55rem, 4vw, 2rem); font-weight: 700; letter-spacing: .02em; }
+    .lede { max-width: 36em; color: var(--muted); margin: 8px 0 0; font-size: .95rem; }
     .stamp {
-      border: 2px solid var(--stamp); color: var(--stamp); padding: 8px 12px; transform: rotate(-6deg);
-      font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: .72rem; letter-spacing: .08em;
-      opacity: .85; align-self: center;
+      border: 2px solid var(--stamp); color: var(--stamp); padding: 8px 12px; transform: rotate(-5deg);
+      font-family: ui-monospace, Menlo, monospace; font-size: .72rem; letter-spacing: .08em; background: #fff8f4;
     }
-    .howto {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 32px;
-    }
+    .howto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 28px; }
     @media (max-width: 720px) { .howto { grid-template-columns: 1fr; } }
     .howto article {
-      background: var(--panel); border: 1px dashed var(--line); padding: 14px 16px; border-radius: 2px;
+      background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px;
     }
-    .howto b { display: block; font-size: .8rem; color: var(--amber); margin-bottom: 6px; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; }
-    .howto p { margin: 0; font-size: .88rem; color: #cbbba6; }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+    .howto b { display: block; font-size: .78rem; color: var(--stamp); margin-bottom: 6px; font-family: ui-monospace, Menlo, monospace; }
+    .howto p { margin: 0; font-size: .9rem; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
     .filters button {
-      background: transparent; border: 1px solid var(--line); color: var(--muted); padding: 6px 12px;
-      font: inherit; font-size: .8rem; cursor: pointer; border-radius: 999px;
+      background: var(--panel); border: 1px solid var(--line); color: var(--muted); padding: 7px 14px;
+      font: inherit; font-size: .82rem; cursor: pointer; border-radius: 999px;
     }
-    .filters button[aria-pressed="true"] { border-color: var(--amber); color: var(--paper); background: #2a231a; }
+    .filters button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); background: #fff; font-weight: 600; }
+    .legend { margin: 0 0 14px; font-size: .82rem; color: var(--muted); }
+    .legend span { margin-right: 14px; }
+    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+    .dot.learn { background: var(--learn); } .dot.caution { background: var(--caution); }
     .dossier {
-      background: linear-gradient(180deg, #f4ebda 0%, var(--paper) 100%);
-      color: var(--ink); border-radius: 3px; padding: 22px 22px 18px; margin: 0 0 16px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.06);
-      position: relative; overflow: hidden;
-      transition: transform .15s ease, box-shadow .15s ease;
+      background: var(--panel); color: var(--ink); border-radius: 4px; padding: 20px 22px 16px; margin: 0 0 14px;
+      border: 1px solid var(--line); box-shadow: 0 2px 0 rgba(28,22,18,.04);
+      position: relative; overflow: hidden; transition: box-shadow .15s ease, transform .15s ease;
     }
-    .dossier:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(0,0,0,.42); }
-    .dossier::before {
-      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
-    }
+    .dossier:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(28,22,18,.08); }
+    .dossier::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
     .dossier.learn::before { background: var(--learn); }
     .dossier.caution::before { background: var(--caution); }
     .dossier .tag {
-      display: inline-block; font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+      display: inline-block; font-family: ui-monospace, Menlo, monospace;
       font-size: .68rem; letter-spacing: .06em; padding: 3px 8px; border-radius: 2px; margin-right: 6px;
     }
-    .dossier.learn .tag { background: #d7ebe0; color: var(--learn); }
-    .dossier.caution .tag { background: #f0d6d4; color: var(--caution); }
-    .dossier .meta { font-family: "IBM Plex Mono", ui-monospace, Menlo, monospace; font-size: .72rem; color: #6b5e52; margin: 10px 0 0; }
+    .dossier.learn .tag { background: #e4f3eb; color: var(--learn); }
+    .dossier.caution .tag { background: #f8e6e4; color: var(--caution); }
+    .dossier .meta { font-family: ui-monospace, Menlo, monospace; font-size: .72rem; color: var(--muted); margin: 10px 0 0; }
     .dossier h2 { margin: 10px 0 6px; font-size: 1.2rem; }
     .dossier h2 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
     .dossier h2 a:hover { border-bottom-color: var(--ink); }
     .dossier .one-liner { margin: 0; font-size: .95rem; }
-    .dossier .actions { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 14px; font-size: .85rem; }
-    .dossier .actions a { color: #8b3a28; text-decoration: none; border-bottom: 1px solid #d4b5a8; }
-    .dossier .actions a:hover { border-bottom-color: #8b3a28; }
-    .legend { margin: 28px 0 12px; font-size: .8rem; color: var(--muted); }
-    .legend span { margin-right: 14px; }
-    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 6px; vertical-align: middle; }
-    .dot.learn { background: var(--learn); }
-    .dot.caution { background: var(--caution); }
-    footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
-    footer a { color: var(--amber); }
+    .dossier .actions { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 14px; font-size: .88rem; }
+    .dossier .actions a { color: var(--accent); text-decoration: none; border-bottom: 1px solid #e2c4b8; }
+    .dossier .actions a:hover { border-bottom-color: var(--accent); }
+    footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
+    footer a { color: var(--accent); }
     .hidden { display: none !important; }
   </style>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
   <div class="wrap">
     <header class="mast">
       <div>
         <div class="brand">xstudy · case room</div>
         <h1>创作者案卷室</h1>
-        <p class="lede">每天拆一位增长号：看清粉关比、钩子与漏斗。可学的迁到微李玩AI / LIS / AI入企；互关刷屏标成反面教材。</p>
+        <p class="lede">每天拆一位增长号：看清粉关比、钩子与漏斗。可学的迁到微李玩AI / LIS / AI入企；互关刷屏标成反面教材。每份案卷含 <strong>Top5 高互动帖</strong> 方便临摹。</p>
       </div>
       <div class="stamp">学习用 · 非抄袭</div>
     </header>
 
     <section class="howto" aria-label="怎么用">
       <article><b>01 读定性</b><p>先看一句话：权威交付还是互关刷屏。</p></article>
-      <article><b>02 对机制</b><p>只抄可复用的结构：现场图、引用一句立场、健康粉关比。</p></article>
+      <article><b>02 看 Top5</b><p>点开最高曝光帖，对照钩子句式再改写成自己的。</p></article>
       <article><b>03 落动作</b><p>每篇末尾「对我们的行动建议」直接开工。</p></article>
     </section>
 
@@ -127,7 +112,7 @@
     <article class="dossier learn" data-kind="learn">
       <span class="tag">可学</span><span class="tag">FDE / 企业AI落地</span>
       <h2><a href="accounts/2026-10-24-miles_mazy.html">Miles Ma · @miles_mazy</a></h2>
-      <p class="one-liner">权威交付型：大厂→FDE→线下大课现场，粉关比约 56:1；引用长文加一句立场吃流量。</p>
+      <p class="one-liner">权威交付型：大厂→FDE→线下大课现场，粉关比约 56:1；引用长文加一句立场吃流量。含 Top5 高曝光帖。</p>
       <p class="meta">2026-10-24 · ≈3.4万粉 / 关注≈611 · 开号约 2.5 月 · Blue</p>
       <div class="actions">
         <a href="accounts/2026-10-24-miles_mazy.html">打开案卷</a>
@@ -139,7 +124,7 @@
     <article class="dossier caution" data-kind="caution">
       <span class="tag">慎学</span><span class="tag">互关刷屏</span>
       <h2><a href="accounts/2026-10-24-tiezhuthinker.html">铁柱thinker · @tiezhuthinker</a></h2>
-      <p class="one-liner">社交刷屏 + 互动诱饵：晒钱/扣1猜粉/狂回帖；Bio 卖 AI，时间线卖流量游戏。</p>
+      <p class="one-liner">社交刷屏 + 互动诱饵：晒钱/扣1猜粉/狂回帖。含 Top5（学结构，勿学题材）。</p>
       <p class="meta">2026-10-24 · ≈3.7k粉 / 关注≈3.2k · 开号约 20 天 · Blue</p>
       <div class="actions">
         <a href="accounts/2026-10-24-tiezhuthinker.html">打开案卷</a>
@@ -152,8 +137,7 @@
       十段模板 <a href="https://github.com/another3000/xstudy/blob/main/TEMPLATE.md">TEMPLATE.md</a>
       · 源码 <a href="https://github.com/another3000/xstudy">another3000/xstudy</a>
       · 品牌语境：微李玩AI
-      <br />启用 GitHub Pages（Settings → Pages → Deploy from branch → <code>main</code> / <code>/docs</code>）后访问
-      <code>https://another3000.github.io/xstudy/</code>
+      <br />站点：<a href="https://another3000.github.io/xstudy/">another3000.github.io/xstudy</a>
     </footer>
   </div>
   <script>
