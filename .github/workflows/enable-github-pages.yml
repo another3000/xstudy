@@ -7,9 +7,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
-  administration: write
 
 jobs:
   configure:
@@ -47,9 +46,15 @@ jobs:
               }
             }
 
-            await github.rest.repos.update({
-              owner,
-              repo,
-              homepage,
-            });
-            core.info(`Set repository homepage to ${homepage}`);
+            try {
+              await github.rest.repos.update({
+                owner,
+                repo,
+                homepage,
+              });
+              core.info(`Set repository homepage to ${homepage}`);
+            } catch (homepageError) {
+              core.warning(
+                `Could not set homepage (may need repo admin): ${homepageError.message}`,
+              );
+            }
