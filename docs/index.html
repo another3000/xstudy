@@ -3,108 +3,185 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>xstudy · 创作者案卷室</title>
-  <meta name="description" content="拆开增长号看骨架：可学机制入库，互关话术标红。服务微李玩AI / LIS / AI入企。" />
+  <title>xstudy · 山中学堂</title>
+  <meta name="description" content="世外案卷：静学增长机制，可学入库；互关刷屏慎学。微李玩AI / LIS / AI入企。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f4efe6;
-      --panel: #fffdf8;
-      --ink: #1c1612;
-      --muted: #6a5d50;
-      --line: #e0d4c4;
-      --learn: #1f6b4a;
-      --caution: #a33a32;
-      --stamp: #b5472a;
-      --accent: #8b3a28;
+      --bg: #e8e2d4;
+      --mist: #dfe8e2;
+      --panel: rgba(252, 249, 240, 0.92);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --seal: #a83228;
+      --gold: #8a7340;
+      --paper: #f7f3e8;
     }
     * { box-sizing: border-box; }
     body {
-      margin: 0; min-height: 100%;
-      font-family: "PingFang SC", "Noto Sans SC", "IBM Plex Sans", system-ui, sans-serif;
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    /* distant mountain silhouette */
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
       background:
-        radial-gradient(ellipse 70% 40% at 0% 0%, #efe2cf 0%, transparent 55%),
-        radial-gradient(ellipse 50% 35% at 100% 10%, #e8efe8 0%, transparent 50%),
-        var(--bg);
-      color: var(--ink); line-height: 1.6;
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
     }
-    .wrap { max-width: 920px; margin: 0 auto; padding: 36px 20px 72px; }
+    .wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 40px 22px 80px; }
     .mast {
-      display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: flex-end;
-      justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 26px;
+      display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 28px; margin-bottom: 28px;
     }
-    .brand { font-family: ui-monospace, Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; color: var(--stamp); }
-    h1 { margin: 6px 0 0; font-size: clamp(1.55rem, 4vw, 2rem); font-weight: 700; letter-spacing: .02em; }
-    .lede { max-width: 36em; color: var(--muted); margin: 8px 0 0; font-size: .95rem; }
-    .stamp {
-      border: 2px solid var(--stamp); color: var(--stamp); padding: 8px 12px; transform: rotate(-5deg);
-      font-family: ui-monospace, Menlo, monospace; font-size: .72rem; letter-spacing: .08em; background: #fff8f4;
+    .brand {
+      font-size: .78rem; letter-spacing: .28em; color: var(--gold);
+      margin-bottom: 10px;
     }
-    .howto { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 28px; }
+    h1 {
+      margin: 0; font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      font-size: clamp(2.2rem, 7vw, 3rem); font-weight: 400;
+      letter-spacing: .12em; color: var(--ink);
+    }
+    .motto {
+      margin: 12px 0 0; font-size: 1.05rem; color: var(--ink-soft);
+      letter-spacing: .18em;
+    }
+    .lede {
+      max-width: 34em; color: var(--muted); margin: 14px 0 0; font-size: .92rem;
+      line-height: 1.85;
+    }
+    .seal {
+      flex-shrink: 0;
+      width: 88px; height: 88px;
+      border: 3px double var(--seal);
+      color: var(--seal);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      font-size: 1.15rem; line-height: 1.35; letter-spacing: .12em;
+      transform: rotate(-8deg);
+      background: rgba(255,248,244,.55);
+      box-shadow: inset 0 0 0 1px rgba(168,50,40,.25);
+    }
+    .howto {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 0 0 30px;
+    }
     @media (max-width: 720px) { .howto { grid-template-columns: 1fr; } }
     .howto article {
-      background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; border-radius: 4px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px 18px;
+      border-radius: 2px;
+      position: relative;
     }
-    .howto b { display: block; font-size: .78rem; color: var(--stamp); margin-bottom: 6px; font-family: ui-monospace, Menlo, monospace; }
+    .howto article::after {
+      content: "";
+      position: absolute; right: 10px; top: 10px; width: 6px; height: 6px;
+      border-radius: 50%; background: var(--gold); opacity: .5;
+    }
+    .howto b {
+      display: block; font-size: .8rem; color: var(--pine);
+      margin-bottom: 8px; letter-spacing: .2em; font-weight: 600;
+    }
     .howto p { margin: 0; font-size: .9rem; color: var(--muted); }
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
     .filters button {
-      background: var(--panel); border: 1px solid var(--line); color: var(--muted); padding: 7px 14px;
-      font: inherit; font-size: .82rem; cursor: pointer; border-radius: 999px;
+      background: transparent; border: 1px solid var(--line); color: var(--muted);
+      padding: 6px 16px; font: inherit; font-size: .82rem; cursor: pointer;
+      border-radius: 2px; letter-spacing: .08em;
     }
-    .filters button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); background: #fff; font-weight: 600; }
-    .legend { margin: 0 0 14px; font-size: .82rem; color: var(--muted); }
-    .legend span { margin-right: 14px; }
-    .dot { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
-    .dot.learn { background: var(--learn); } .dot.caution { background: var(--caution); }
+    .filters button[aria-pressed="true"] {
+      border-color: var(--ink); color: var(--ink); background: var(--paper); font-weight: 600;
+    }
+    .legend { margin: 0 0 16px; font-size: .82rem; color: var(--muted); letter-spacing: .06em; }
+    .legend span { margin-right: 16px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 1px; margin-right: 6px; vertical-align: middle; }
+    .dot.learn { background: var(--pine); } .dot.caution { background: var(--cinnabar); }
     .dossier {
-      background: var(--panel); color: var(--ink); border-radius: 4px; padding: 20px 22px 16px; margin: 0 0 14px;
-      border: 1px solid var(--line); box-shadow: 0 2px 0 rgba(28,22,18,.04);
-      position: relative; overflow: hidden; transition: box-shadow .15s ease, transform .15s ease;
+      background: var(--panel); color: var(--ink);
+      padding: 22px 24px 18px; margin: 0 0 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 1px 0 rgba(26,31,28,.04);
+      position: relative; overflow: hidden;
+      transition: box-shadow .2s ease, border-color .2s ease;
     }
-    .dossier:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(28,22,18,.08); }
-    .dossier::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
-    .dossier.learn::before { background: var(--learn); }
-    .dossier.caution::before { background: var(--caution); }
+    .dossier:hover { box-shadow: 0 10px 28px rgba(26,31,28,.08); border-color: #b8ad98; }
+    .dossier::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    }
+    .dossier.learn::before { background: var(--pine); }
+    .dossier.caution::before { background: var(--cinnabar); }
     .dossier .tag {
-      display: inline-block; font-family: ui-monospace, Menlo, monospace;
-      font-size: .68rem; letter-spacing: .06em; padding: 3px 8px; border-radius: 2px; margin-right: 6px;
+      display: inline-block; font-size: .7rem; letter-spacing: .14em;
+      padding: 2px 8px; margin-right: 6px; border: 1px solid currentColor;
     }
-    .dossier.learn .tag { background: #e4f3eb; color: var(--learn); }
-    .dossier.caution .tag { background: #f8e6e4; color: var(--caution); }
-    .dossier .meta { font-family: ui-monospace, Menlo, monospace; font-size: .72rem; color: var(--muted); margin: 10px 0 0; }
-    .dossier h2 { margin: 10px 0 6px; font-size: 1.2rem; }
+    .dossier.learn .tag { color: var(--pine); background: var(--pine-pale); }
+    .dossier.caution .tag { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .dossier .meta { font-size: .75rem; color: var(--muted); margin: 10px 0 0; letter-spacing: .04em; }
+    .dossier h2 { margin: 12px 0 8px; font-size: 1.25rem; font-weight: 600; letter-spacing: .06em; }
     .dossier h2 a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
-    .dossier h2 a:hover { border-bottom-color: var(--ink); }
-    .dossier .one-liner { margin: 0; font-size: .95rem; }
-    .dossier .actions { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 14px; font-size: .88rem; }
-    .dossier .actions a { color: var(--accent); text-decoration: none; border-bottom: 1px solid #e2c4b8; }
-    .dossier .actions a:hover { border-bottom-color: var(--accent); }
-    footer { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
-    footer a { color: var(--accent); }
+    .dossier h2 a:hover { border-bottom-color: var(--gold); }
+    .dossier .one-liner { margin: 0; font-size: .95rem; color: var(--ink-soft); }
+    .dossier .actions { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 14px; font-size: .88rem; }
+    .dossier .actions a { color: var(--pine); text-decoration: none; border-bottom: 1px solid #b7cfc2; }
+    .dossier .actions a:hover { border-bottom-color: var(--pine); }
+    footer {
+      margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: .82rem; letter-spacing: .04em; text-align: center;
+    }
+    footer a { color: var(--pine); }
     .hidden { display: none !important; }
+    .verse {
+      text-align: center; margin: 0 0 28px; color: var(--gold);
+      font-size: .9rem; letter-spacing: .35em;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="mast">
       <div>
-        <div class="brand">xstudy · case room</div>
-        <h1>创作者案卷室</h1>
-        <p class="lede">每天拆一位增长号：看清粉关比、钩子与漏斗。可学的迁到微李玩AI / LIS / AI入企；互关刷屏标成反面教材。每份案卷含 <strong>Top5 高互动帖</strong> 方便临摹。</p>
+        <div class="brand">XSTUDY · 山中学堂</div>
+        <h1>创作者案卷</h1>
+        <p class="motto">静静地学 · 期待逆袭</p>
+        <p class="lede">山中读卷：拆开增长号的骨架。可学的迁到微李玩AI / LIS / AI入企；互关刷屏收作反面教材。每卷含 Top5 高互动帖，便于临摹句式，而非抄袭人设。</p>
       </div>
-      <div class="stamp">学习用 · 非抄袭</div>
+      <div class="seal" aria-hidden="true">静学<br/>待时</div>
     </header>
 
+    <p class="verse">深山藏精舍 · 案卷照前路</p>
+
     <section class="howto" aria-label="怎么用">
-      <article><b>01 读定性</b><p>先看一句话：权威交付还是互关刷屏。</p></article>
-      <article><b>02 看 Top5</b><p>点开最高曝光帖，对照钩子句式再改写成自己的。</p></article>
-      <article><b>03 落动作</b><p>每篇末尾「对我们的行动建议」直接开工。</p></article>
+      <article><b>壹 · 读定性</b><p>先看一句：是权威交付，还是互关刷屏。</p></article>
+      <article><b>贰 · 看 Top5</b><p>点开最高曝光帖，对照钩子，改写成自己的材料。</p></article>
+      <article><b>叁 · 落动作</b><p>卷末「对我们的行动建议」直接开工。</p></article>
     </section>
 
     <div class="filters" role="group" aria-label="筛选">
       <button type="button" data-filter="all" aria-pressed="true">全部</button>
       <button type="button" data-filter="learn" aria-pressed="false">可学</button>
-      <button type="button" data-filter="caution" aria-pressed="false">慎学 / 反面</button>
+      <button type="button" data-filter="caution" aria-pressed="false">慎学</button>
     </div>
 
     <p class="legend"><span><i class="dot learn"></i>可学 · 机制迁移</span><span><i class="dot caution"></i>慎学 · 话术勿搬</span></p>
@@ -147,10 +224,9 @@
     </article>
 
     <footer>
-      十段模板 <a href="https://github.com/another3000/xstudy/blob/main/TEMPLATE.md">TEMPLATE.md</a>
-      · 源码 <a href="https://github.com/another3000/xstudy">another3000/xstudy</a>
-      · 品牌语境：微李玩AI
-      <br />站点：<a href="https://another3000.github.io/xstudy/">another3000.github.io/xstudy</a>
+      静学不争朝夕 · 十段模板见 <a href="https://github.com/another3000/xstudy/blob/main/TEMPLATE.md">TEMPLATE.md</a>
+      · <a href="https://github.com/another3000/xstudy">源码</a>
+      · 微李玩AI
     </footer>
   </div>
   <script>
