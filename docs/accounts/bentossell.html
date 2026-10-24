@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ben Tossell（@bentossell） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>Ben Tossell（@bentossell）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/bentossell</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 15:28 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Ben Tossell / @bentossell</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-07-02（约 <strong>17.3 年</strong>）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>202,222 / 592 / 31,808</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>无（verified=false）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=2,573 / listed=4,015</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：can't code, won't code. builder, investor… 粉关比约 <strong>341:1</strong>。Ben's Bites 发行人；公开「非技术却交付」人设。用户 id：<code>53175441</code>。判定：<strong>可学（非技术 Builder 演示 + Session 文档化）</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p><strong>「自认不会写代码的 AI 操盘手」</strong>：把个人 Agent 工作台、newsletter 流水线、todo board 拍成视频 + 写出 copy/paste Session，证明非工程师也能管 Bot 军团。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 不写代码的 builder / 投资人。</li>
+<li><strong>时间线实际：</strong> 晒 Agent 搭积木（Grok Bot、邮件、任务板）、Stanford 演讲、犀利短句；视频+文档双件套。</li>
+<li><strong>受众：</strong> 非技术创始人、运营、想「雇 AI」的个体。</li>
+<li><strong>差异点：</strong> <strong>弱点当卖点</strong>（can't code）；Sessions 站点沉淀可复制步骤。</li>
+<li><strong>错位：</strong> 投资人身份 vs 日常像 indie maker——增强可信「我也在用」。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent 工作台演示</td>
+<td>高</td>
+<td><a href="https://x.com/bentossell/status/2111443109175308616">vibe-slopped superhuman+todos</a></td>
+<td>24,093 曝光 / 126 赞 / <strong>164 书签</strong></td>
+</tr>
+<tr>
+<td>Session 文档化</td>
+<td>高</td>
+<td><a href="https://x.com/bentossell/status/2112532165485564064">todo board how-to</a></td>
+<td>9,230 曝光 / 39 赞 / 61 书签</td>
+</tr>
+<tr>
+<td>Newsletter 流水线</td>
+<td>中</td>
+<td><a href="https://x.com/bentossell/status/2113345026528846248">bookmarks→newsletter</a></td>
+<td>6,874 曝光 / 51 赞 / 91 书签</td>
+</tr>
+<tr>
+<td>短判断句</td>
+<td>中</td>
+<td><a href="https://x.com/bentossell/status/2112615085021483131">custom zoho</a></td>
+<td>7,667 曝光 / 70 赞 / 9 书签</td>
+</tr>
+<tr>
+<td>行业金句</td>
+<td>中</td>
+<td><a href="https://x.com/bentossell/status/2110444889087557762">designers were the safe ones</a></td>
+<td>14,103 曝光 / 117 赞 / 8 书签</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5（近采按曝光）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/bentossell/status/2111443109175308616">vibe 工作台：邮件+todos+Bot</a></td>
+<td>24,093</td>
+<td>126</td>
+<td>42</td>
+<td><strong>164</strong></td>
+<td>视频 demo + 多工具拼装</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/bentossell/status/2113609156565385672">Arc→Dia 征询</a></td>
+<td>16,672</td>
+<td>67</td>
+<td>45</td>
+<td>13</td>
+<td>提问征集社群</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/bentossell/status/2110444889087557762">designers 才是安全的</a></td>
+<td>14,103</td>
+<td>117</td>
+<td>55</td>
+<td>8</td>
+<td>金句；回复型</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/bentossell/status/2110669271860953348">Stanford 演讲上线</a></td>
+<td>9,916</td>
+<td>57</td>
+<td>14</td>
+<td>49</td>
+<td>外部权威资产回灌</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/bentossell/status/2112532165485564064">todo board 视频+文档</a></td>
+<td>9,230</td>
+<td>39</td>
+<td>21</td>
+<td>61</td>
+<td><strong>Session = 可复制说明书</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>为什么有效</h2>
+<ol>
+<li><strong>非技术人设降门槛：</strong> 医院行政/科室主任同构共鸣。</li>
+<li><strong>视频 + Session 双件套：</strong> 看完还能 copy/paste。</li>
+<li><strong>Build in public 真实狼狈：</strong> Bot 不查邮件、拼写错误——增强可信。</li>
+<li><strong>书签来自系统图：</strong> 工作台截图比金句更值得藏。</li>
+<li><strong>newsletter 商业闭环：</strong> X 是研发日志，邮件是产品。</li>
+</ol>
+<h2>6. 爆款 vs 平帖</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>可运行工作流视频/文档</td>
+<td>单句吐槽无附件</td>
+</tr>
+<tr>
+<td>结论</td>
+<td><strong>可跟做</strong> &gt; 可同意</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 迁到 LIS / 输血 / AI入企 / 小程序</h2>
+<ol>
+<li><strong>Session 文档</strong> → 每个入企 Bot 一页「复制即用」操作卡（对标 todo-board）。</li>
+<li><strong>非技术演示</strong> → 给主任演示「不会代码也能批报告草稿」——人设对齐。</li>
+<li><strong>bookmarks→周报</strong> → 用收藏的竞品/政策帖自动起草微李周报。</li>
+<li><strong>custom zoho」金句</strong> → 告诉客户：AI 入企常变成「自建轻量业务系统」，预算要含集成。</li>
+<li><strong>狼狈公开</strong> → 试点周报写失败次数，反而促续约。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>医疗不能「vibe」碰生产数据；演示用脱敏。</li>
+<li>投资/赞助关系需披露。</li>
+<li>勿用「取代工程师」话术刺激院内 IT。</li>
+</ul>
+<h2>9. 本周动作</h2>
+<ol>
+<li>为 1 个 Bot 写 <strong>Session 页</strong>（截图+复制指令）。</li>
+<li>拍 60 秒 <strong>非技术操作</strong> 演示给销售用。</li>
+<li>试做「X 书签→本周 LIS 资讯」半自动草稿。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近采主帖；2026-10-24 15:28 Asia/Shanghai。</li>
+<li>粉关比 ≈341:1。可学核：<strong>非技术 Builder + Session 化</strong>。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

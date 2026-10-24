@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mckay Wrigley（@mckaywrigley） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>Mckay Wrigley（@mckaywrigley）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/mckaywrigley</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 15:28 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Mckay Wrigley / @mckaywrigley</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2014-09-26（约 <strong>12.1 年</strong>）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>228,926 / 397 / 20,010</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>无（verified=false）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=986 / listed=4,977</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：I build &amp; teach AI stuff。粉关比约 <strong>577:1</strong>。listed 近 5k 级权威。用户 id：<code>2786431437</code>。判定：<strong>可学（品味判断 + 一句可粘贴技巧）</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>英文圈 <strong>「AI 品味评论员 + 教师」</strong>：模型发布时给 S 级判决，日常丢「可粘贴 system tip」，用高 listed 与强情绪判断带飞书签。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 构建并教授 AI。</li>
+<li><strong>时间线实际：</strong> 模型/产品锐评（Opus、Claude Design、Astra）、安全 todo 扩散、AGI 叙事；少硬广。</li>
+<li><strong>受众：</strong> 英文 builders、indie、想跟上模型节奏的知识工作者。</li>
+<li><strong>差异点：</strong> <strong>判决句极短极狠</strong> + 偶发可复制 tip（书签爆）。</li>
+<li><strong>错位：</strong> 少；偶发末世/生存语气属情绪增强。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全/责任扩散</td>
+<td>高（窗口内）</td>
+<td><a href="https://x.com/mckaywrigley/status/2113037629000446011">educate family cyber</a></td>
+<td>515,648 曝光 / 2,906 赞 / <strong>2,596 书签</strong></td>
+</tr>
+<tr>
+<td>模型判决</td>
+<td>高</td>
+<td><a href="https://x.com/mckaywrigley/status/2102447442147086563">opus 5.5 S-tier</a></td>
+<td>202,198 曝光 / <strong>5,720 赞</strong> / 388 书签</td>
+</tr>
+<tr>
+<td>可粘贴 tip</td>
+<td>中</td>
+<td><a href="https://x.com/mckaywrigley/status/2085078744486789248">You are AGI-pilled</a></td>
+<td>137,564 曝光 / 1,095 赞 / <strong>1,207 书签</strong></td>
+</tr>
+<tr>
+<td>产品安利</td>
+<td>中</td>
+<td><a href="https://x.com/mckaywrigley/status/2081759923139178810">claude design underrated</a></td>
+<td>148,513 曝光 / 1,328 赞 / 801 书签</td>
+</tr>
+<tr>
+<td>价值观反击</td>
+<td>中</td>
+<td><a href="https://x.com/mckaywrigley/status/2098498691200164210">AI curing cancer</a></td>
+<td>59,191 曝光 / 1,375 赞 / 128 书签</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5（近采按曝光）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/mckaywrigley/status/2113037629000446011">道德责任：教家人网络安全 + todo</a></td>
+<td>515,648</td>
+<td>2,906</td>
+<td>76</td>
+<td><strong>2,596</strong></td>
+<td>责任句 + 可执行清单链接</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/mckaywrigley/status/2102447442147086563">opus 5.5 = S-tier</a></td>
+<td>202,198</td>
+<td>5,720</td>
+<td>146</td>
+<td>388</td>
+<td>短判决句；赞爆书签中等</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/mckaywrigley/status/2081759923139178810">claude design 最被低估</a></td>
+<td>148,513</td>
+<td>1,328</td>
+<td>159</td>
+<td>801</td>
+<td>「underrated」品类安利</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/mckaywrigley/status/2085078744486789248">system tip: AGI-pilled</a></td>
+<td>137,564</td>
+<td>1,095</td>
+<td>74</td>
+<td><strong>1,207</strong></td>
+<td><strong>一句可粘贴 → 书签&gt;赞</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/mckaywrigley/status/2098498691200164210">AI 治癌价值观反击</a></td>
+<td>59,191</td>
+<td>1,375</td>
+<td>109</td>
+<td>128</td>
+<td>引用大战，回复型</td>
+</tr>
+</tbody>
+</table>
+<h2>为什么有效</h2>
+<ol>
+<li><strong>判决权：</strong> 粉丝信任他的「S-tier / underrated」标签。</li>
+<li><strong>书签技巧帖：</strong> 一句 system prompt 比长教程更易传播。</li>
+<li><strong>责任叙事放大引用：</strong> 把别人的 PSA 加上「道德责任」钩子。</li>
+<li><strong>listed 4977：</strong> 进入大量列表 = 稳定分发。</li>
+<li><strong>情绪清晰：</strong> 爱憎分明，利于转发阵营。</li>
+</ol>
+<h2>6. 爆款 vs 平帖</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>可复制 tip / 责任清单 / 强判决</td>
+<td>短跟帖感叹</td>
+</tr>
+<tr>
+<td>结论</td>
+<td><strong>能拿走的字符串</strong> 决定书签</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 迁到 LIS / 输血 / AI入企 / 小程序</h2>
+<ol>
+<li><strong>一句 system tip</strong> → 检验报告解读 Bot 的「禁止编造数值」粘贴规则公开。</li>
+<li><strong>underrated 安利</strong> → 「被低估的院内工具」系列（合规前提下）。</li>
+<li><strong>安全 todo</strong> → 给医院客户一页「账号/双因素/端口」检查表。</li>
+<li><strong>短判决</strong> → 周更「本周唯一值得上的模型/工具」——宁少勿水。</li>
+<li><strong>teach</strong> → 把微李课程收成「可粘贴提示词墙」。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>末世/极端语气勿迁医疗沟通。</li>
+<li>模型判决有时效，需标注测试日期。</li>
+<li>不要假装有同等 listed 权威却只发空判决。</li>
+</ul>
+<h2>9. 本周动作</h2>
+<ol>
+<li>发布 1 条 <strong>可粘贴安全/合规 tip</strong>（书签向）。</li>
+<li>写 1 条「本院场景下被低估的功能」短判决 + 30 秒证据。</li>
+<li>整理客户版 <strong>网络安全 6 条 todo</strong>。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近采主帖；2026-10-24 15:28 Asia/Shanghai。</li>
+<li>粉关比 ≈577:1。可学核：<strong>品味判决 + 可粘贴技巧</strong>。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

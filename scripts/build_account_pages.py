@@ -31,6 +31,11 @@ ACCOUNTS = [
     ("2026-10-24-miles_mazy", "2026-10-24-miles_mazy.md", "可学 · 中文区"),
     ("2026-10-24-tiezhuthinker", "2026-10-24-tiezhuthinker.md", "慎学 · 互关刷屏"),
     ("jessi-xhs-article", "2026-10-24-jessi-xhs-article.md", "长文精读"),
+    ("Barret_China", "2026-10-24-Barret_China.md", "可学 · 中文区"),
+    ("ai_xiaomu", "ai_xiaomu.md", "可学 · 中文区"),
+    ("nuannuan_share", "nuannuan_share.md", "可学 · 中文区"),
+    ("mckaywrigley", "mckaywrigley.md", "可学 · 外文区"),
+    ("bentossell", "bentossell.md", "可学 · 外文区"),
 ]
 
 ARTICLE_TAG = "长文精读"
