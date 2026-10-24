@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>长文精读｜蓝哥AI《Muse 上手保姆级教程：从登录到完成第一个任务》 · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <div class="paper article">
+    <span class="tag article">长文精读</span>
+    <h1>长文精读｜蓝哥AI《Muse 上手保姆级教程：从登录到完成第一个任务》</h1>
+<blockquote>
+<p>归属站点栏目：<strong>长文精读</strong>（非账号案卷）。原文为 X Article。</p>
+</blockquote>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>X Article 精读</td>
+</tr>
+<tr>
+<td>原文</td>
+<td>https://x.com/0xlangeai/status/2103300004966478284</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>Muse 上手保姆级教程：从登录到完成第一个任务</td>
+</tr>
+<tr>
+<td>作者</td>
+<td>蓝哥AI（@0xlangeai）</td>
+</tr>
+<tr>
+<td>发布时间</td>
+<td>2026-09-25 09:46 Asia/Shanghai（原文 UTC 01:46）</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 14:51 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>当次互动</td>
+<td>曝光 <strong>2,122,449</strong> / 赞 2,034 / 回复 <strong>1,066</strong> / 转发 423 / <strong>书签 4,077</strong> / 引用 240</td>
+</tr>
+<tr>
+<td>作者侧写（非案卷）</td>
+<td>粉 10,526 / 关 711（≈14.8:1）；Grok Bot / Muse / Hermes 重度用户；Bio 挂 Template Hub 与 199 答疑群。</td>
+</tr>
+<tr>
+<td>判定</td>
+<td><strong>可学（热点工具最短路径教程）</strong>——曝光破 200 万；回复 1066 显示跟练/提问密度；书签 4077</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>这是一篇 <strong>新品首发窗口的「登录 → 合作约定 → 第一个可验收任务 → 抽查修改 → 再开高级能力」最短路径教程</strong>；明确声明「这不是功能清单」，逼读者跟练出一份资料表。</p>
+<h2>2. 原文结构复盘</h2>
+<table>
+<thead>
+<tr>
+<th>步</th>
+<th>内容</th>
+<th>可学点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位段</td>
+<td>Muse=可浏览/生成文件/可后台继续</td>
+<td>一句话产品定义</td>
+</tr>
+<tr>
+<td>1 登录与可用范围</td>
+<td>地区/免费付费/进不去怎么查</td>
+<td>预期管理</td>
+</tr>
+<tr>
+<td>2 合作约定+Settings</td>
+<td>时区习惯；权限与审批</td>
+<td><strong>先谈合作再干活</strong></td>
+</tr>
+<tr>
+<td>3 跟练任务</td>
+<td>链接→资料表；任务+范围+标准+交付物</td>
+<td>提示词骨架</td>
+</tr>
+<tr>
+<td>4 打开抽查</td>
+<td>来源核对</td>
+<td>反幻觉操作</td>
+</tr>
+<tr>
+<td>5 原对话修改</td>
+<td>迭代优于新开线程</td>
+<td>工作流习惯</td>
+</tr>
+<tr>
+<td>6–7 再开 Memory/连接器</td>
+<td>用到再加</td>
+<td>防功能过载</td>
+</tr>
+<tr>
+<td>8 排障</td>
+<td>对照官方文档清单</td>
+<td>可信度</td>
+</tr>
+<tr>
+<td>检查清单</td>
+<td>四个勾选项</td>
+<td>书签出口</td>
+</tr>
+</tbody>
+</table>
+<h2>3. 为什么有效</h2>
+<ol>
+<li><strong>抢时效。</strong> Muse 热度窗口内，「第一个任务」比深度评测更被需要。</li>
+<li><strong>反功能清单。</strong> 读者收藏的是路径，不是名词解释。</li>
+<li><strong>跟练材料用官方文档。</strong> 降低「教错了」风险，也方便读者自查。</li>
+<li><strong>回复量极高（1066）。</strong> 教程类天然引发「我卡在第几步」——算法吃对话。</li>
+<li><strong>书签 4077 / 赞 2034 ≈ 2.0。</strong> 典型工具书比值。</li>
+</ol>
+<h2>4. 爆款 vs 慎学</h2>
+<table>
+<thead>
+<tr>
+<th>可学</th>
+<th>慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「10 分钟跑通」结构</td>
+<td>地区/订阅政策会变——定期重核官方</td>
+</tr>
+<tr>
+<td>先权限后连接器</td>
+<td>勿在客户环境默认打开写权限</td>
+</tr>
+<tr>
+<td>文末检查清单</td>
+<td>199 群导流——教程可拆，硬广可删</td>
+</tr>
+<tr>
+<td>高回复运营</td>
+<td>要设答疑边界，避免免费陪跑拖垮</td>
+</tr>
+</tbody>
+</table>
+<h2>5. 迁到微李 / LIS / AI入企</h2>
+<ol>
+<li><strong>新品上线日同构：</strong> 任何新模型/新 Agent，24h 内出「登录到第一个任务」文，结构照抄 8 步。</li>
+<li><strong>入企验收：</strong> 把「资料表跟练」换成「把 3 份 SOP 链整理成检查表」。</li>
+<li><strong>培训：</strong> 检查清单直接变学员作业纸。</li>
+<li><strong>与 Kin 微信篇组合：</strong> Muse/Grok 接企微 = 最短路径 + IM 入口。</li>
+</ol>
+<h2>6. 本周动作</h2>
+<ol>
+<li>选本周一个新能力（或旧工具新功能），按 8 步写「第一个任务」大纲。</li>
+<li>准备官方文档链接表（至少 4 条），写进附录。</li>
+<li>设计一页四格检查清单，发帖时作图。</li>
+</ol>
+<h2>7. 附录</h2>
+<ul>
+<li>https://x.com/0xlangeai/status/2103300004966478284</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

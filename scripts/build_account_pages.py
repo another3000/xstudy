@@ -32,14 +32,16 @@ ACCOUNTS = [
     ("jessi-xhs-article", "2026-10-24-jessi-xhs-article.md", "长文精读"),
 ]
 
-# slug -> (articles 子目录内文件名, tag)
-ARTICLES = [
-    (
-        "2026-10-19-kingao-10k-followers",
-        "2026-10-19-kingao-10k-followers.md",
-        "长文精读",
-    ),
-]
+ARTICLE_TAG = "长文精读"
+
+
+def discover_articles() -> list[tuple[str, str, str]]:
+    """扫描 accounts/articles/*.md，按文件名排序生成 (slug, md_name, tag)。"""
+    articles_dir = ROOT / "accounts" / "articles"
+    entries: list[tuple[str, str, str]] = []
+    for md_path in sorted(articles_dir.glob("*.md")):
+        entries.append((md_path.stem, md_path.name, ARTICLE_TAG))
+    return entries
 
 AI_BADGE_HTML = (
     '<p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>'
@@ -252,7 +254,7 @@ def main() -> None:
 
     out_articles = ROOT / "docs" / "articles"
     out_articles.mkdir(parents=True, exist_ok=True)
-    for slug, md_name, tag_label in ARTICLES:
+    for slug, md_name, tag_label in discover_articles():
         html = build_article_page(slug, md_name, tag_label)
         (out_articles / f"{slug}.html").write_text(html, encoding="utf-8")
         print(f"wrote articles/{slug}.html")

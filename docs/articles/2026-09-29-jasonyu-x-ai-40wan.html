@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>长文精读｜鱼总《一年涨粉6.3万，我在推特上做AI自媒体从起号到变现40万+的复盘》 · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <div class="paper article">
+    <span class="tag article">长文精读</span>
+    <h1>长文精读｜鱼总《一年涨粉6.3万，我在推特上做AI自媒体从起号到变现40万+的复盘》</h1>
+<blockquote>
+<p>归属站点栏目：<strong>长文精读</strong>（非账号案卷）。原文为 X Article。</p>
+</blockquote>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>类型</td>
+<td>X Article 精读</td>
+</tr>
+<tr>
+<td>原文</td>
+<td>https://x.com/AI_Jasonyu/status/2104911243739853231</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>一年涨粉6.3万，我在推特上做AI自媒体从起号到变现40万+的复盘</td>
+</tr>
+<tr>
+<td>作者</td>
+<td>鱼总聊AI（@AI_Jasonyu）</td>
+</tr>
+<tr>
+<td>发布时间</td>
+<td>2026-09-29 20:28 Asia/Shanghai（原文 UTC 12:28）</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 14:51 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>当次互动</td>
+<td>曝光 <strong>346,418</strong> / 赞 879 / 回复 125 / 转发 113 / <strong>书签 1,610</strong> / 引用 101</td>
+</tr>
+<tr>
+<td>作者侧写（非案卷）</td>
+<td>粉 71,479 / 关 1,680（粉关比≈42.5:1）；蓝标；Bio 挂出海/SaaS/eSIM 与 PaywallPro；自称 8 年产品、单款营收 $200k+。</td>
+</tr>
+<tr>
+<td>判定</td>
+<td><strong>可学（起号×账本长文）</strong>——书签 1610 ≫ 赞 879（约 1.83×），典型「收藏回去照着跑变现路径」资产</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>这是一篇 <strong>「产品人把 X 当渠道」的一年成绩单复盘</strong>：公开粉量、百万长推数量与变现 40 万+ 的路径比例逻辑，价值在「长文引擎 → 多路变现」的可勾选账本，不在口号式励志。</p>
+<h2>2. 原文结构复盘</h2>
+<table>
+<thead>
+<tr>
+<th>块</th>
+<th>作用</th>
+<th>可学点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开场成绩单</td>
+<td>6.3 万粉 / 6 篇百万 / 40 万+</td>
+<td>三数字并列，降低「你是谁」成本</td>
+</tr>
+<tr>
+<td>Part1 为什么做 X</td>
+<td>产品失败史→绑定真实业务</td>
+<td>反「为流量做流量」</td>
+</tr>
+<tr>
+<td>Part2 曝光×转化</td>
+<td>涨粉公式拆开</td>
+<td>可算、可复盘</td>
+</tr>
+<tr>
+<td>Part3 算法重视对话</td>
+<td>认真回复 &gt; 虚荣赞</td>
+<td>与中推「回复工时」同构</td>
+</tr>
+<tr>
+<td>Part4 定位三问</td>
+<td>你是谁/给谁看/凭啥关注</td>
+<td>Bio 与选题对齐</td>
+</tr>
+<tr>
+<td>Part5 冷启动</td>
+<td>第一条磨 4.5 小时；生财航海</td>
+<td>首帖当成战役</td>
+</tr>
+<tr>
+<td>Part6 刚需选题</td>
+<td>6 篇百万选题列表</td>
+<td>工具实测/出海基建/省钱/独立开发</td>
+</tr>
+<tr>
+<td>Part7–8 变现五路</td>
+<td>产品推广、商单、联盟、原创分成、社群课程</td>
+<td><strong>比例讲逻辑、金额保密</strong>——仍可读</td>
+</tr>
+<tr>
+<td>Part9 渠道观</td>
+<td>X 是放大器，产品是根本</td>
+<td>防空中楼阁</td>
+</tr>
+<tr>
+<td>致谢+生财卡</td>
+<td>教练名单 + CTA</td>
+<td>圈层信任 + 导流</td>
+</tr>
+</tbody>
+</table>
+<p>书签/赞 ≈ <strong>1.83</strong>：读者在收藏「怎么变现的路径图」，不是点个赞走人。</p>
+<h2>3. 为什么这篇有效（机制因果）</h2>
+<ol>
+<li><strong>成绩单文体匹配「我能不能靠 X 赚钱」焦虑。</strong> 目标读者在犹豫要不要出海做号；公开路径比鸡汤有用。</li>
+<li><strong>原则都挂在产品经历上。</strong> 「真诚利他、主动出击」不是空口号，后面有冷启动首帖、百万选题清单、变现渠道拆解。</li>
+<li><strong>变现写「比例与逻辑」而非假明细。</strong> 既满足窥探欲，又留合规边界——可信度反而更高。</li>
+<li><strong>长文本身就是漏斗资产。</strong> 6 篇百万是证据；这篇复盘又成为第 N+1 个收藏入口。</li>
+<li><strong>圈层背书。</strong> 生财航海、教练名单、对标账号列表——降低「这人是不是骗子」的防御。</li>
+</ol>
+<h2>4. 爆款机制 vs 需警惕处</h2>
+<table>
+<thead>
+<tr>
+<th>可学</th>
+<th>慎学 / 限定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公开粉量+百万篇数+变现量级</td>
+<td>40 万构成未逐项披露——学结构勿编造自家数字</td>
+</tr>
+<tr>
+<td>首帖当作战役打磨</td>
+<td>4.5 小时是作者条件；微李可改成「首帖评审清单」而非死磕时长</td>
+</tr>
+<tr>
+<td>刚需选题池（工具/基建/省钱）</td>
+<td>检验科普选题池不同，勿照搬「机票酒店」赛道</td>
+</tr>
+<tr>
+<td>产品绑定内容</td>
+<td>Bio/文末硬广密度高——学绑定，控硬广频次</td>
+</tr>
+<tr>
+<td>对话权重观点</td>
+<td>勿把「多回」理解成互关刷屏</td>
+</tr>
+</tbody>
+</table>
+<h2>5. 迁到微李玩AI / LIS / AI入企</h2>
+<ol>
+<li><strong>交付案例复盘模板：</strong> 「客户痛点 → 现场/Demo → 前后数字 → 可跟做步骤」写成一篇可收藏长文，对标他的百万选题逻辑。</li>
+<li><strong>变现五路改写成入企三路：</strong> 培训课、陪跑交付、工具/模板订阅——先写比例逻辑，再谈报价。</li>
+<li><strong>冷启动首帖：</strong> 用一次真实沙龙/装机现场当「深圳 FDE 同构」的活人证据（可与 Miles 篇对照）。</li>
+<li><strong>反空中楼阁：</strong> 每条增长内容必须挂一个可演示的 LIS/检验工作流产物。</li>
+</ol>
+<h2>6. 本周可做的 1–3 个动作</h2>
+<ol>
+<li>列一张「我们已有的交付数字」表（省时、差错率、响应分钟），缺什么就补测一次，再开写。</li>
+<li>选定 1 个刚需选题（例：检验报告进飞书提醒），按 Part6 结构写大纲：问题→步骤→坑→验收。</li>
+<li>把变现话术改成「路径比例」一页纸，禁止空喊「AI 赋能」。</li>
+</ol>
+<h2>7. 附录</h2>
+<ul>
+<li>原文 X Article plain_text 当次读取；互动来自 <code>public_metrics</code> / fxtwitter 交叉核对。</li>
+<li>作者主页：https://x.com/AI_Jasonyu</li>
+<li>未入库账号案卷——本文件仅服务「长文精读」。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
