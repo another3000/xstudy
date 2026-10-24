@@ -83,6 +83,14 @@ def load_roster() -> list[dict[str, str]]:
     return rows
 
 
+def parse_verdict_from_profile(md_text: str) -> str:
+    """从案卷首段「判定：」或 INDEX takeaway 的 🔴 推断绿/红边。"""
+    for line in md_text.splitlines()[:8]:
+        if "判定：" in line:
+            return line.split("判定：", 1)[1].strip()
+    return ""
+
+
 def verdict_is_caution(verdict: str) -> bool:
     """红边慎学：判定里以慎学为主或半慎学。"""
     if not verdict:
@@ -130,7 +138,7 @@ def build_detail_pages(index_meta: dict[int, dict[str, str]]) -> list[dict]:
         title_text = first_h1_plain(md_text)
         body_html = md_to_html_body(md_text)
         meta = index_meta.get(rank, {})
-        verdict = meta.get("verdict", "")
+        verdict = meta.get("verdict", "") or parse_verdict_from_profile(md_text)
         tag_label, kind = tag_label_for(rank, verdict)
 
         html = build_page(

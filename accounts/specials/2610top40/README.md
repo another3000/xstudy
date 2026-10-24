@@ -16,7 +16,7 @@
 ## 文件结构
 
 - `ROSTER.md` — 榜单 40 人名次与晒单金额
-- `profiles/NN-handle.md` — 单人案卷（商学院 × 实战派）
+- `profiles/NN-handle.md` — 单人案卷（商学院 × 实战派；**已补** §3.5 Top5、综合分析/增长机制、爆款 vs 平帖、**LIS / 输血 / AI入企 / 小程序** 可学清单与本周实验）
 - `profiles/INDEX.md` — 索引与机制地图（Part1 + Part2）
 
 详见 `profiles/00-OVERVIEW.md` 与 `OVERVIEW.md`（专题总览原文）。
