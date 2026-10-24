@@ -16,6 +16,8 @@
 ## 文件结构
 
 - `ROSTER.md` — 榜单 40 人名次与晒单金额
+- `MECHANISMS.md` — **学习层机制卡**（8–12 张，可学/慎学；由 build 脚本渲染到 hub 顶部）
+- `WEEKLY.md` — **本周必抄机制 + 本周实验 + 优先精读 8 人**
 - `profiles/NN-handle.md` — 单人案卷（商学院 × 实战派；**已补** §3.5 Top5、综合分析/增长机制、爆款 vs 平帖、**LIS / 输血 / AI入企 / 小程序** 可学清单与本周实验）
 - `profiles/INDEX.md` — 索引与机制地图（Part1 + Part2）
 

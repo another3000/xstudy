@@ -142,6 +142,48 @@
       letter-spacing: .14em;
     }
     .paper blockquote strong { color: var(--pine); }
+    .learning-panel { margin: 8px 0 28px; }
+    .weekly-hero { padding: 20px 22px; margin-bottom: 16px; }
+    .weekly-hero.learn { border-left: 4px solid var(--pine); }
+    .weekly-hero.caution { border-left: 4px solid var(--cinnabar); }
+    .weekly-label {
+      font-size: .72rem; letter-spacing: .18em; color: var(--gold); margin: 0 0 6px;
+    }
+    .weekly-title { margin: 0 0 8px; font-size: 1.12rem; }
+    .weekly-hook { font-size: .92rem; color: var(--ink-soft); }
+    .weekly-exp { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: .9rem; }
+    .priority-eight {
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 14px 18px; margin-bottom: 18px;
+    }
+    .priority-list { list-style: none; padding: 0; margin: 8px 0 0; display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px 16px; font-size: .88rem; }
+    .priority-list .pr-rank { color: var(--gold); font-weight: 700; margin-right: 6px; }
+    .mech-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
+    }
+    .mech-card {
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 14px 16px; font-size: .86rem; border-radius: 2px;
+    }
+    .mech-card.learn { border-left: 3px solid var(--pine); }
+    .mech-card.caution {
+      border-left: 3px solid var(--cinnabar); opacity: .92;
+      background: rgba(252, 249, 240, 0.85);
+    }
+    .mech-card header { margin-bottom: 8px; }
+    .mech-card .card-title { display: inline; font-size: .98rem; margin: 0; font-weight: 600; }
+    .mech-card details summary {
+      cursor: pointer; list-style: none; font-weight: 600;
+    }
+    .mech-card details summary::-webkit-details-marker { display: none; }
+    .mech-card .card-inner { margin-top: 10px; }
+    .mech-card .card-hook, .mech-card .card-body, .mech-card .card-migrate, .mech-card .card-exp {
+      margin: 0.45em 0; color: var(--ink-soft);
+    }
+    .mech-card .card-migrate { font-size: .82rem; line-height: 1.55; }
+    .mech-card .card-src { margin: 8px 0 0; font-size: .82rem; }
+    .card-id { font-size: .75rem; }
 
     .muted { color: var(--muted); font-size: .82rem; }
   </style>
@@ -162,6 +204,161 @@
   <div class="intro">
     <strong>怎么读：</strong>绿边可学机制迁移；红边慎学互关、喊单、擦边话术。金额均为对方自报晒单，非审计财报。
   </div>
+
+  <section class="learning-panel" aria-labelledby="learning-h">
+    <h2 id="learning-h" style="margin:24px 0 12px; font-size:1.15rem; letter-spacing:.12em; color:var(--ink-soft);">学习层 · 机制卡</h2>
+    <div class="weekly-hero paper learn">
+      <p class="weekly-label">本周必抄机制</p>
+      <h3 class="weekly-title">教程→企业培训漏斗</h3>
+      <p class="muted card-id">id: <code>kin-tutorial-funnel</code></p>
+      <p>书签级教程置顶 + 公开报价锚点，把 X 分成当副产物，主漏斗对准 AI 入企与培训交付。</p>
+      <p class="weekly-hook"><strong>钩子公式：</strong>「书签级教程标题 + 置顶进群/报价页」——先给可验收步骤，再给私域入口。</p>
+      <div class="weekly-exp">
+        <p class="weekly-label">本周实验</p>
+        发 1 条 Thread（或 Article 预告）标题示例：<strong>「检验科只读 Agent：从 Grok 教程到院内三步配置」</strong><br>
+结构：① 科室痛点一句 ② 三步截图（脱敏） ③ 文末「表单/私信领 SOP」④ 注明不含互关、不含荐币。<br>
+对照案卷 <a href="07-KinGao476942.html">#7 Kin @KinGao476942</a>，同步在小程序挂「跟做验收清单」占位页（若尚无则链学堂 hub）。
+      </div>
+    </div>
+    <div class="priority-eight">
+      <p class="weekly-label">优先精读 8 人</p>
+      <ul class="priority-list">
+<li><span class="pr-rank">#7</span> <a href="07-KinGao476942.html">Kin @KinGao476942</a> <span class="muted">· 教程→培训</span></li>
+<li><span class="pr-rank">#9</span> <a href="09-qihang_zeng6688.html">启航 @qihang_zeng6688</a> <span class="muted">· 万字 SOP</span></li>
+<li><span class="pr-rank">#15</span> <a href="15-niaoshu.html">鸟叔 @niaoshu</a> <span class="muted">· 基建盘点</span></li>
+<li><span class="pr-rank">#23</span> <a href="23-jiao_newlife.html">骄骄 @jiao_newlife</a> <span class="muted">· 榜策展</span></li>
+<li><span class="pr-rank">#33</span> <a href="33-Yonkxx.html">Anis @Yonkxx</a> <span class="muted">· 数字证据</span></li>
+<li><span class="pr-rank">#36</span> <a href="36-Russell3402.html">Russell @Russell3402</a> <span class="muted">· 长文尾流</span></li>
+<li><span class="pr-rank">#37</span> <a href="37-corndogjpn2.html">goDavi @corndogjpn2</a> <span class="muted">· 产品追问</span></li>
+<li><span class="pr-rank">#38</span> <a href="38-michelle_z21331.html">Michelle @michelle_z21331</a> <span class="muted">· 收益账本</span></li>
+      </ul>
+    </div>
+    <div class="mech-grid" role="list">
+<article class="mech-card learn" id="kin-tutorial-funnel">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">教程→企业培训漏斗</h3>
+    <span class="card-id muted">kin-tutorial-funnel</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「书签级教程标题 + 置顶进群/报价页」——先给可验收步骤，再给私域入口。</p>
+      <p class="card-body">深度教程拉高书签与信任，Bio 公开时薪锚点把「关注」转成咨询/培训询价；平台分成是副产物，主漏斗是知识付费与入企交付。</p>
+      <p class="card-migrate"><strong>LIS</strong> 发「检验科只读 Agent 配置三步」书签帖，文末挂试点预约表单。 · <strong>输血</strong> 双人复核 Bot 配置教程系列化，置顶「院内答疑小群」规则。 · <strong>AI入企</strong> 对标 Kin：教程资产 → 企业培训报价 → 驻场 PoC（本专题最贴此栏）。 · <strong>小程序</strong> 教程末步链到「跟做验收清单」小程序页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>写 1 条 Thread：现象（科室痛点）→ 3 步配置截图 →「私信/表单领 SOP 全文」。</p>
+      <p class="card-src"><a href="07-KinGao476942.html">#7 @KinGao476942 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="qihang-sop-article">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">万字 SOP 书签资产</h3>
+    <span class="card-id muted">qihang-sop-article</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「阶段论标题（红利→收紧→精细化）+ 可复制数字（8 家店 / 月入区间）」。</p>
+      <p class="card-body">一篇 X Article 承载完整 SOP，书签/赞比极高，短帖持续回链长文喂流量；粉关比健康说明靠资产而非互关。</p>
+      <p class="card-migrate"><strong>LIS</strong> 万字文写「复制 8 家医院 LIS 试点」：选科室=选品，案例帖=笔记，实施伙伴=外包客服。 · <strong>输血</strong> SOP 拆「最小闭环 / 数量抵消随机 / 杠杆」三段，附 SLA 表。 · <strong>AI入企</strong> 五阶段叙事映射 PoC→试点→科室推广→全院→运维精细化。 · <strong>小程序</strong> 长文末尾链「试点检查表」一键收藏。</p>
+      <p class="card-exp"><strong>本周实验：</strong>起草 1 篇 Article 大纲（≥3 小节），先发预告帖带「书签提醒」。</p>
+      <p class="card-src"><a href="09-qihang_zeng6688.html">#9 @qihang_zeng6688 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="niaoshu-infra-map">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">基建盘点清单</h3>
+    <span class="card-id muted">niaoshu-infra-map</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「盘点我的 XX 基建（年份版）」+ 分类表格 + 更新钩子（门槛升高/政策变）。</p>
+      <p class="card-body">清单型长帖成为可反复打开的导航资产；明确「分成有上限→要做全球影响力/产品化」的经营判断，粉丝价值优先于虚荣流量。</p>
+      <p class="card-migrate"><strong>LIS</strong> 发「医院信息化交付基建盘点」：接口、测试库、账号、发布通道。 · <strong>输血</strong> 双人复核账户、冷链设备接口、应急输血流程 IT 触点一览。 · <strong>AI入企</strong> 模型/API/合规审查工具链盘点（含踩坑备注）。 · <strong>小程序</strong> 清单每项链到小程序对应功能说明页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>发 1 条「2026 版院内 AI/LIS 工具栈」9 宫格分类帖（无返佣链接）。</p>
+      <p class="card-src"><a href="15-niaoshu.html">#15 @niaoshu 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="jiao-curation-board">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">晒单榜策展媒介</h3>
+    <span class="card-id muted">jiao-curation-board</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「公开样本榜 + 合计数字 + 下期预告日期」——把他人收益变成自己的注意力资产。</p>
+      <p class="card-body">周期化 TOP 榜既是内容又是社群仪式；长文「3 期待 + 3 建议」建立判断者人设，会员编号化信任；剥掉币圈叙事后，本质是 B2B 案例周榜。</p>
+      <p class="card-migrate"><strong>LIS</strong> 「本周交付复盘榜」：缺陷关闭数、出报告时长（脱敏）。 · <strong>输血</strong> 科室输血 IT 亮点周榜（案例征集）。 · <strong>AI入企</strong> PoC 验收信模板化征集，下期发布时间固定。 · <strong>小程序</strong> 榜单位链用户成功案例编号页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>在 hub 外再发 1 条「微李玩 AI 本周 3 个可学机制」微榜（链回专题 hub）。</p>
+      <p class="card-src"><a href="23-jiao_newlife.html">#23 @jiao_newlife 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="yonkxx-hands-on-digits">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">垂直折腾 + 数字证据</h3>
+    <span class="card-id muted">yonkxx-hands-on-digits</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「具体费率/利率数字 + 失败截图（拒签/翻车）+ 可跟做脚本名」。</p>
+      <p class="card-body">一手踩坑记录比空泛教程更可信；情绪词落在产品功能上，垂直品类（卡/VPS/脚本）换书签与 TG 深聊。</p>
+      <p class="card-migrate"><strong>LIS</strong> 接口计费/云成本对照表帖，附一次失败联调日志。 · <strong>输血</strong> 「一键巡检脚本」开源片段 + 运行结果截图。 · <strong>AI入企</strong> PoC「两次驳回」诚实日志，现象→命令→结果。 · <strong>小程序</strong> 脚本说明链到小程序「运维工具」页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>1 条帖：院内网络/接口踩坑，含 2 个可验证数字 + 1 张失败截图。</p>
+      <p class="card-src"><a href="33-Yonkxx.html">#33 @Yonkxx 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="russell-longform-tail">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">长文尾流 + 健康粉关比</h3>
+    <span class="card-id muted">russell-longform-tail</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「Harness 式名词解释长文」+ 日常短帖共鸣；控制 following 保粉关比。</p>
+      <p class="card-body">万字解释文做权威资产，好内容有搜索/书签尾流；工作室定位清晰，分成是意外之喜而非目标。</p>
+      <p class="card-migrate"><strong>LIS</strong> 一文讲清「检验科 Agent 工作流」对标技术 Harness 文。 · <strong>输血</strong> 长文写「从手工登记到系统闭环」四段故事。 · <strong>AI入企</strong> 第一桶金式「不要脸推销」改成合规拜访话术案例。 · <strong>小程序</strong> Studio 叙事改成「帮产品完成市场表达」服务页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>产出 1 篇 ≥1500 字名词解释草稿，先发目录帖征集书签。</p>
+      <p class="card-src"><a href="36-Russell3402.html">#36 @Russell3402 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="godavi-product-why">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">产品溢价灵魂拷问</h3>
+    <span class="card-id muted">godavi-product-why</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「为什么这产品能溢价？」+ 具名软件/硬件 + Agent 替代重复点击实录。</p>
+      <p class="card-body">极客追问训练读者判断力；低 following、高粉关比证明不靠互关；开源/工具帖带星标与侧流量。</p>
+      <p class="card-migrate"><strong>LIS</strong> 研讨会帖：「为什么医院还买封闭质控盒？」价值主张拆解。 · <strong>输血</strong> 重复后台操作交给 Agent 的内部试点记录。 · <strong>AI入企</strong> CLI/Skill 建议帖：哪些院内后台值得自动化。 · <strong>小程序</strong> 开源模块获客，主站留商业交付入口。</p>
+      <p class="card-exp"><strong>本周实验：</strong>发 1 条「院内某系统为何需要 Skill」提问帖，列 3 条可验证痛点。</p>
+      <p class="card-src"><a href="37-corndogjpn2.html">#37 @corndogjpn2 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="michelle-revenue-ledger">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">收益账本透明</h3>
+    <span class="card-id muted">michelle-revenue-ledger</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「晒薪截图 + Verified 流量 + CPM 区间估算」——用账本质疑平台暗箱。</p>
+      <p class="card-body">故事帖量化细节（工资/小时/路径）；工程师+长期主义背书；分成非主目标时反而赢得信任。</p>
+      <p class="card-migrate"><strong>LIS</strong> 市场部评估「哪类科普帖值得投流」用流量拆账表。 · <strong>输血</strong> 客户成功故事必须含 3 个可验证数字（时长/差错/满意度）。 · <strong>AI入企</strong> 案例四段式：角色、失败、转折、结果（勿照搬海外薪资数字）。 · <strong>小程序</strong> 案例页展示「可验证指标」字段模板。</p>
+      <p class="card-exp"><strong>本周实验：</strong>发 1 篇「微李玩 AI 首笔分成」附流量字段说明（学结构，数字用自有真实值）。</p>
+      <p class="card-src"><a href="38-michelle_z21331.html">#38 @michelle_z21331 案卷</a></p>
+</div>
+</article>
+<article class="mech-card learn" id="xingyu-honest-receipt">
+  <header><span class="pill learn">可学</span> <h3 class="card-title">录屏晒单 + 诚实披露</h3>
+    <span class="card-id muted">xingyu-honest-receipt</span></header>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「置顶录屏收益 + 注明是否含冲门槛曝光 + 反搬运倡议」。</p>
+      <p class="card-body">社交证明用可复核录屏；双面评论（骂归骂、性能归性能）抬专业感；粉关比一般，慎学互关堆粉。</p>
+      <p class="card-migrate"><strong>LIS</strong> 交付里程碑录屏（脱敏）+ 披露统计口径。 · <strong>输血</strong> 上线首周系统数据纪要，注明样本量限制。 · <strong>AI入企</strong> 模型测评帖用「能力/合规」双栏评分表。 · <strong>小程序</strong> 置顶链到「我们如何统计成效」说明页。</p>
+      <p class="card-exp"><strong>本周实验：</strong>1 条帖附 15 秒录屏或分步截图，文末写清统计口径一句。</p>
+      <p class="card-src"><a href="05-YxzRainy.html">#5 @YxzRainy 案卷</a></p>
+</div>
+</article>
+<details class="mech-card caution" id="xiaoyao-mutual-grind">
+  <summary><span class="pill caution">慎学</span> <span class="card-title">肝贴互关冲分成</span>
+    <span class="card-id muted">xiaoyao-mutual-grind</span></summary>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「兄弟们 / 别再关注我了 / 有效曝光算法截图 + 互关号召」。</p>
+      <p class="card-body">把平台规则口诀化、用产能换互动与分成；粉关比接近 1:1，护城河薄，算法一变即断粮。仅可剥「规则翻译+截图证据」结构，**禁止**互关与水帖频率。</p>
+      <p class="card-migrate"><strong>LIS</strong> （反面）勿用互关换科室关系；改用案例书签与院长背书。 · <strong>输血</strong> 勿灌水帖；用真实质控事件复盘单条深帖。 · <strong>AI入企</strong> 勿_fake 紧迫感；用验收节点日历代替「今天必须肝」。 · <strong>小程序</strong> 不用关注换功能；用试用结果换留存。</p>
+      <p class="card-exp"><strong>本周实验：</strong>**不做**互关实验。改为写 1 条「有效互动 vs 互关」对照说明给团队（内部）。</p>
+      <p class="card-src"><a href="21-Xiaoyzi_Web3.html">#21 @Xiaoyzi_Web3 案卷</a></p>
+</div>
+</details>
+<details class="mech-card caution" id="ppp-meme-call">
+  <summary><span class="pill caution">慎学</span> <span class="card-title">MEME 喊单 + 情绪社群</span>
+    <span class="card-id muted">ppp-meme-call</span></summary>
+  <div class="card-inner">
+      <p class="card-hook"><strong>钩子：</strong>「炸裂了晒工资 + 代币/MEME 口号 + 粗口社群身份标签」。</p>
+      <p class="card-body">情绪认同与喊单驱动，粉关比差、行情依赖极强；社群身份（志愿者/受害者叙事）可观察，**喊单与人身攻击不可迁**。</p>
+      <p class="card-migrate"><strong>LIS</strong> 仅作反面：勿用代币叙事包装严肃医疗 IT。 · <strong>输血</strong> 勿用「梭哈」话术推系统上线。 · <strong>AI入企</strong> 勿承诺「上车」式收益；用 PoC 验收替代。 · <strong>小程序</strong> 勿用 MEME 诱导下载；用合规说明与权限提示。</p>
+      <p class="card-exp"><strong>本周实验：</strong>**不做**喊单帖。团队共读 1 份案卷标红段，列 3 条「我们绝不用的句式」。</p>
+      <p class="card-src"><a href="31-Web3454354.html">#31 @Web3454354 案卷</a></p>
+</div>
+</details>
+    </div>
+    <p class="muted" style="font-size:.82rem; margin-top:12px;">机制卡源文件：<code>accounts/specials/2610top40/MECHANISMS.md</code> · 本周：<code>WEEKLY.md</code></p>
+  </section>
+
   <div class="paper learn">
     <h1>2610top40｜中文圈创作者晒单 TOP40 专题</h1>
 <blockquote>
