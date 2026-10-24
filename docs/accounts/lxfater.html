@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>铁锤人（@lxfater） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 中文区</span>
+    <h1>铁锤人（@lxfater）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/lxfater</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 14:42 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>铁锤人 / @lxfater</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2012-01-01（约 14.8 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>108,301 / 1,428 / 14,519</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>Blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=1,559 / listed=1,250</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：AI 协助创业；维护 3w star 项目；写过 1200w 浏览文章；商务微信/邮件。粉关比约 <strong>75.8:1</strong>。置顶为 Clawdbot 保姆级部署教程（历史曝光 <strong>12,130,208</strong>，书签 17,694——书签型神帖）。近采主帖约两页。用户 id：<code>452072245</code>。判定：<strong>可学</strong>（注意情绪向人生帖与教程帖分流）。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>华语圈 <strong>「开源工具策展 + 亲手实操 + 偶尔人生暴论」复合号</strong>：用可点的 GitHub/教程吃书签，用机甲梗/人生短句吃扩散，Bio 里的 star 与阅读量是信任背书。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> AI 创业实践者；大型开源维护者；高阅读作者；可商务对接。</li>
+<li><strong>时间线实际：</strong> 基本兑现——Codex 游戏 Skill 清单、Personal Agent 接微信/飞书、开源工具安利（XERJ/VoiceStudio）、DeepSeek 成本解释、机甲格斗 Demo 视频、以及「缺乏自信…」类人生帖。</li>
+<li><strong>目标受众：</strong> 想用 AI 做事的华语开发者/独立开发者；对「能立刻装上的工具」敏感。</li>
+<li><strong>差异点：</strong> 不是纯资讯号——<strong>自己先做成游戏/接入，再发帖</strong>；清单帖带编号与用途一句话，降低行动摩擦。</li>
+<li><strong>与 Bio 的错位：</strong> 人生情绪帖（如自信/独来独往）曝光可碾压工具帖，但与「3w star 维护者」人设弱相关。可学的是工具侧；人生帖当流量副产品，勿当内容主轴去抄情绪。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开源工具策展（带数字证据）</td>
+<td>高</td>
+<td><a href="https://x.com/lxfater/status/2111810791661781365">XERJ：先查成熟仓库再写</a></td>
+<td>66,160 曝光 / 722 赞 / <strong>1,175 书签</strong></td>
+</tr>
+<tr>
+<td>亲手 Demo / 游戏化</td>
+<td>中高</td>
+<td><a href="https://x.com/lxfater/status/2113516222944104525">AI 梗机甲格斗</a></td>
+<td>45,429 曝光 / 50 赞 / 47 回复 / 13 引用</td>
+</tr>
+<tr>
+<td>Personal Agent / 工作流</td>
+<td>中</td>
+<td><a href="https://x.com/lxfater/status/2112507719986880682">业务数据接入 Codex</a></td>
+<td>30,280 曝光 / 45 赞 / 41 书签</td>
+</tr>
+<tr>
+<td>行业观察短论</td>
+<td>中</td>
+<td><a href="https://x.com/lxfater/status/2112000879314326001">假期 Agent 半夜编程</a></td>
+<td>64,622 曝光 / 51 赞</td>
+</tr>
+<tr>
+<td>人生/情绪短句</td>
+<td>偶发高爆</td>
+<td><a href="https://x.com/lxfater/status/2112900878156112217">缺乏自信与独来独往</a></td>
+<td><strong>245,800</strong> 曝光 / 1,756 赞 / 424 回复</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（近采主帖按曝光）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/lxfater/status/2112900878156112217">缺乏自信和独来独往的人往往过得很差</a></td>
+<td>245,800</td>
+<td>1,756</td>
+<td>424</td>
+<td>350</td>
+<td><strong>慎学主业</strong>：共鸣暴论拉粉；B 端可偶发，勿周更</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/lxfater/status/2111810791661781365">XERJ：成熟仓库 &gt; 裸问 AI</a></td>
+<td>66,160</td>
+<td>722</td>
+<td>38</td>
+<td><strong>1,175</strong></td>
+<td>旧经验 + 新工具 + <strong>对照测试数字（token -62%）</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/lxfater/status/2112000879314326001">编程将像开车一样普及（LobsterAI 报告）</a></td>
+<td>64,622</td>
+<td>51</td>
+<td>47</td>
+<td>18</td>
+<td>第三方报告锚点 + 反直觉时间点（夜里 10 点）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/lxfater/status/2113516222944104525">AI 梗机甲格斗游戏 Demo</a></td>
+<td>45,429</td>
+<td>50</td>
+<td>47</td>
+<td>28</td>
+<td>猜谜钩子 + 视频；后续 Skill 清单帖吃书签</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/lxfater/status/2112453842369642844">删光 Claude 相关信息 / Pro 解瘾</a></td>
+<td>37,454</td>
+<td>36</td>
+<td>30</td>
+<td>0</td>
+<td>情绪宣泄型；曝光高、资产低——<strong>慎学</strong></td>
+</tr>
+</tbody>
+</table>
+<p>（置顶历史帖 Clawdbot 教程：曝光 1,213 万 / 书签 17,694——说明其真正核武器是<strong>保姆级可跟做长文</strong>，不在近窗短帖里。）</p>
+<h2>为什么有效（机制因果）</h2>
+<ol>
+<li><strong>书签峰值解释一切：</strong> XERJ 帖赞 722、书签 1,175——读者在收藏「以后写代码时要回来用的方法」。人生帖赞高、书签相对工具帖并不夸张。账号长期资产 = 可复用方法，不是情绪共鸣。</li>
+<li><strong>「我以前就这么干 → 现在有人做成工具 → 还有对照实验」</strong> 三段式：个人权威 + 外部项目 + 可证伪数字。比「安利一个 GitHub」多两层信任。</li>
+<li><strong>Demo 先于清单：</strong> 机甲游戏视频先制造好奇（猜是哪家 AI），再发「8 个游戏开发 Agent Skill」清单——同一主题二次收割，第二次书签更高（334）。</li>
+<li><strong>粉关比 ≈76:1、listed 1,250：</strong> 行业列表常客；Bio 商务入口清晰，内容即获客漏斗。</li>
+<li><strong>置顶是 12M 曝光教程：</strong> 证明他懂「一次写透、长期导流」。日常短帖是渔网，置顶长文是鱼塘。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学）</th>
+<th>平帖 / 虚荣爆款</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/lxfater/status/2111810791661781365">XERJ</a></td>
+<td><a href="https://x.com/lxfater/status/2113178668831055969">推荐垃圾佬软路由型号</a>（1.5万曝光但弱资产） / 人生暴论</td>
+</tr>
+<tr>
+<td>结构</td>
+<td>经验断言 → 工具名 → 测试数字 → 链接</td>
+<td>纯提问征集或情绪一句</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可执行 + 可证伪</strong> 产生书签；提问帖有回复无沉淀；人生帖有粉无方法</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单 → 微李玩AI / LIS / AI入企</h2>
+<ol>
+<li><strong>对照实验数字</strong> → AI入企：试点「有清单 vs 无清单」差错率/周转时间，发帖必须带一组数。</li>
+<li><strong>Demo → 清单二连</strong> → 微李玩AI：先发 15 秒检验场景 Demo，次日发「8 个可复用 Skill/提示词」。</li>
+<li><strong>保姆级置顶</strong> → 学 Clawdbot 置顶逻辑：一条「从 0 接到微信/飞书提醒」长文常驻。</li>
+<li><strong>业务数据接入叙事</strong> → LIS：别空谈 Agent，列「先接哪 4 个数据源」（对标微信/飞书/X/Gmail）。</li>
+<li><strong>开源策展带「我以前的做法」</strong> → 安利工具时先交代自己的旧路径，降低广告感。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>人生鸡汤/抱怨厂商封号：流量蜜、专业形象砒霜（检验/政企尤甚）。</li>
+<li>「微信数据库解密」等灰区操作：演示可以，对客户勿鼓励违规取数。</li>
+<li>高频贩卖焦虑（提前学了白学）：可用一次，周更会像贩卖恐惧。</li>
+</ul>
+<h2>9. 本周行动建议</h2>
+<ol>
+<li>选一个你已用过的方法，写成 <strong>「旧做法 → 工具化 → 一组对比数」</strong> 帖（对标 XERJ）。</li>
+<li>发一条 <strong>15–30 秒 Demo</strong>，评论区置顶「明天发清单」。</li>
+<li>起草置顶长文大纲：<strong>检验科 Personal Agent 最小四接法</strong>（不写解密教战，写合规数据源）。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近采两页主帖；Top5 按曝光；置顶历史帖单独标注。</li>
+<li>用户 id：<code>452072245</code>；粉关比约 75.8:1。</li>
+<li>对照：比海拉鲁更「清单+书签」，比 Jessi 更「工程师开源」——可学核是 <strong>证据型安利</strong>。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
