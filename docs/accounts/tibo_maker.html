@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tibo（@tibo_maker） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>Tibo（@tibo_maker）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/tibo_maker</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Tibo / @tibo_maker</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2012-01-21（约 14 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>215721 / 3303 / 49464</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈4058 / listed≈3004</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：卖出 Tweet Hunter / Taplio（$10m）、PH Maker of Year；多产品链接 + growth tips。粉关比约 <strong>65:1</strong>。近 7 日约 <strong>92</strong> 条。用户 id：<code>470129898</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>Maker 增长操盘手：用「退出/MRR 故事 + AEO/SEO 实验数据 + 产品发布」证明会增长，再用免费 Newsletter 与产品（Outrank、Squad 等）收割。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 多产品、已 exit、教增长、无广告 Newsletter。</li>
+<li><strong>时间线实际：</strong> ChatGPT 流量/博客仍重要、AEO 实验（引用源 DR）、个人 exit 后继续赚钱故事、生活大额支出挖机会、AI UGC 长文、产品功能安利。</li>
+<li><strong>目标受众：</strong> Indie hacker、SaaS founder、做内容获客的人。</li>
+<li><strong>差异点：</strong> 把自己当「实验对象」：花 $100k 装窗、跑 1329 个引用源 DR——故事即方法。</li>
+<li><strong>与 Bio 的错位：</strong> 定期硬广 Newsletter 模板回复，略模板化但诚实。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AEO / ChatGPT 流量实验</td>
+<td>高</td>
+<td><a href="https://x.com/tibo_maker/status/2112481939563438091">博客占 AI 引用 73%</a>、<a href="https://x.com/tibo_maker/status/2112838900725010478">引用源中位 DR=86</a></td>
+<td>5.7万曝光/863收藏；1.6万曝光/249收藏</td>
+</tr>
+<tr>
+<td>长文/操作系统</td>
+<td>高收藏资产</td>
+<td><a href="https://x.com/tibo_maker/status/2113633105776890343">how to build army of AI UGC</a></td>
+<td>≈4.6万曝光 / 421赞 / <strong>1124收藏</strong></td>
+</tr>
+<tr>
+<td>个人里程碑故事</td>
+<td>中</td>
+<td><a href="https://x.com/tibo_maker/status/2112873286694478161">2024 重启后收入超 2022 exit</a></td>
+<td>≈1.9万曝光 / 304赞 / 116回复</td>
+</tr>
+<tr>
+<td>生活开支→商机</td>
+<td>中</td>
+<td><a href="https://x.com/tibo_maker/status/2113232400268284022">$100k 买窗</a></td>
+<td>≈2.6万曝光 / 218赞 / 113回复</td>
+</tr>
+<tr>
+<td>产品发布 / 免费化</td>
+<td>中</td>
+<td><a href="https://x.com/tibo_maker/status/2112129138035138658">Outrank 免费托管博客</a></td>
+<td>≈2.2万曝光 / 119赞</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>转发</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/tibo_maker/status/2112481939563438091">ChatGPT 流量暴涨 + 博客未死</a></td>
+<td>≈57366</td>
+<td>504</td>
+<td>103</td>
+<td>24</td>
+<td>引用框架 + 自有数据点（73%）加持</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/tibo_maker/status/2113633105776890343">AI UGC 军队长文</a></td>
+<td>≈46142</td>
+<td>421</td>
+<td>50</td>
+<td>26</td>
+<td><strong>X Article/长文</strong> 追收藏（1124）而非短帖刷赞</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/tibo_maker/status/2113232400268284022">$100k windows 挖 SaaS 机会</a></td>
+<td>≈25572</td>
+<td>218</td>
+<td>113</td>
+<td>3</td>
+<td>生活痛点数字化 → 创业机会叙事</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/tibo_maker/status/2112129138035138658">Outrank 免费托管博客</a></td>
+<td>≈21509</td>
+<td>119</td>
+<td>72</td>
+<td>8</td>
+<td>产品免费化公告 + 理由故事</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/tibo_maker/status/2112873286694478161">exit 后重启收入反超</a></td>
+<td>≈18883</td>
+<td>304</td>
+<td>116</td>
+<td>4</td>
+<td>时间线对比（2022/2024/today）情绪高潮</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>92</strong> 条；日均约 12–17，较稳定。</li>
+<li>常见结构：主帖干货 → 线程补链接 → 固定 Newsletter CTA 回复。</li>
+<li>粉关比约 65:1，增长靠方法内容与产品证明。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关：</strong> 弱。</li>
+<li><strong>回复工时：</strong> 中；CTA 模板化。</li>
+<li><strong>钩子：</strong> 自有实验数字（DR 86、73%、$100k、$10m exit）、长文收藏、生活→商机。</li>
+<li><strong>AEO 叙事：</strong> 把「被 ChatGPT 推荐」变成内容战略，自用证明。</li>
+<li><strong>产品矩阵：</strong> Outrank / Squad / 历史 Taplio 故事互相导流。</li>
+<li><strong>免费 Newsletter：</strong> 75k+ founders 作为信任资产反复露出。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/tibo_maker/status/2112481939563438091">博客/ChatGPT 框架引用</a></td>
+<td>固定 Newsletter CTA 回复（≈1k–2k 曝光）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>他人框架 + 自己数据验证</td>
+<td>纯导流模板</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>实验数据帖/长文</strong> 才是资产；模板 CTA 仅收割，不宜当主内容</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS科普 / AI入企）</h2>
+<ol>
+<li><strong>自有小实验</strong> → 跑「AI 是否引用我们科普文」小测试，公开方法与数字。</li>
+<li><strong>长文操作系统</strong> → 学 Jessi/Tibo：可照做的 playbook 放 X Article / 案卷，追收藏。</li>
+<li><strong>生活/交付痛点→产品机会</strong> → 科室「窗口式」低效流程写成机会帖（勿夸大）。</li>
+<li><strong>时间线对比故事</strong> → 「试点前/后」三时间点叙事，服务 AI入企案例。</li>
+<li><strong>免费钩子收邮件/社群</strong> → 有真 playbook 再 CTA，避免空模板。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>AI UGC「军队」话术偏灰产感，医疗品牌慎碰批量虚假人设。</li>
+<li>过度 exit/MRR 炫耀对政企客户可能负面。</li>
+<li>每日相同 Newsletter 回复易被判spam感。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>设计一个 <strong>AEO/引用小实验</strong>：同一问题问多家 AI，看是否出现检验/LIS 可靠源，公开表格。</li>
+<li>把已有 Jessi 式操作系统继续写成可收藏长文，不追短帖互关。</li>
+<li>发 1 条「痛点开支/工时 → 流程机会」故事（用真实交付，不编造）。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近 7 日 counts ≈92；采样约 2026-10-17 → 10-23。</li>
+<li>用户 id：<code>470129898</code>。</li>
+<li>与 levelsio 同属 maker 公开经营；Tibo 更偏增长实验与内容获客方法论。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

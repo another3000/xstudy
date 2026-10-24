@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>swyx（@swyx） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>swyx（@swyx）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/swyx</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-24 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>swyx / @swyx</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-04-20（约 17 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>206292 / 3969 / 78638</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈9290 / listed≈5163</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：ambition + intentionality；affiliations @smol_ai @cognition @temporalio @aidotengineer @latentspacepod。粉关比约 <strong>52:1</strong>。近 7 日约 <strong>124</strong> 条。用户 id：<code>33521530</code>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>AI 工程师意见领袖 + 会议策展人：靠「一手模型/基础设施 alpha + 锐评态度」建立信息差，再用活动与播客把注意力产品化。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 有意识地追求野心；多机构 affiliation 背书。</li>
+<li><strong>时间线实际：</strong> DeepSeek/模型一手解读、GPU/估值锐评、引用他人正确态度、AIE 会议 breakout talk 安利、邮件/产品体验吐槽。</li>
+<li><strong>目标受众：</strong> AI 工程师、创始人、投资者、大会听众。</li>
+<li><strong>差异点：</strong> 「只看 Twitter 是老外过滤版」类信息差钩子；会议策展身份让推荐带权重。</li>
+<li><strong>与 Bio 的错位：</strong> 较少；偶有 meme/量化梗图冲高曝光。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>视觉/梗图强传播</td>
+<td>偶发爆款</td>
+<td><a href="https://x.com/swyx/status/2113098033705664650">this is my quant</a></td>
+<td>≈263万曝光 / 4078赞</td>
+</tr>
+<tr>
+<td>一手模型 alpha（跨站）</td>
+<td>高</td>
+<td><a href="https://x.com/swyx/status/2112587397380943953">DeepSeek 知乎比 Twitter 更多</a></td>
+<td>≈13.8万曝光 / 2290赞 / 898收藏</td>
+</tr>
+<tr>
+<td>产业估值锐评</td>
+<td>中</td>
+<td><a href="https://x.com/swyx/status/2112804427962970271">GPU 终身价值涨 30%</a></td>
+<td>≈5.8万曝光 / 432赞</td>
+</tr>
+<tr>
+<td>态度引用（正确工程观）</td>
+<td>中</td>
+<td><a href="https://x.com/swyx/status/2113359027682050352">别怪 AI 找 bug，清掉它们</a></td>
+<td>≈3.8万曝光 / 335赞</td>
+</tr>
+<tr>
+<td>模型能力点评 + 会议</td>
+<td>中</td>
+<td><a href="https://x.com/swyx/status/2113283272130412684">Opus 5.5 最佳估时</a>、<a href="https://x.com/swyx/status/2112849969640259611">AIE talk 10万播放</a></td>
+<td>回复密集 / 圈层扩散</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>转发</th>
+<th>可学钩子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/swyx/status/2113098033705664650">this is my quant</a></td>
+<td>≈2631948</td>
+<td>4078</td>
+<td>99</td>
+<td>190</td>
+<td>极简文案 + 强图/视频；人设梗图可破圈（难稳定复刻）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/swyx/status/2112587397380943953">DeepSeek 知乎有更多 alpha</a></td>
+<td>≈138025</td>
+<td>2290</td>
+<td>105</td>
+<td>141</td>
+<td><strong>信息差定位</strong>：指出主流信息源盲区 + 贴原文截图</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/swyx/status/2112804427962970271">股市还没定价 GPU 终身价值</a></td>
+<td>≈58083</td>
+<td>432</td>
+<td>83</td>
+<td>17</td>
+<td>敢下数字结论的锐评（需真实信息优势）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/swyx/status/2113359027682050352">别怪 AI 找 bug，赶紧修</a></td>
+<td>≈38029</td>
+<td>335</td>
+<td>74</td>
+<td>21</td>
+<td>引用正确态度 + 一句立场加持</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/swyx/status/2113283272130412684">Opus 5.5 是最佳工作量估计模型</a></td>
+<td>≈31043</td>
+<td>327</td>
+<td>209</td>
+<td>10</td>
+<td>具体能力维度点评 → 高回复讨论</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>124</strong> 条；日均约 15–25，峰值约 26（10/21）。</li>
+<li>主帖密度中等，穿插引用与会议运营；粉关比健康。</li>
+<li>产能=持续跟踪模型发布 + 社区/大会策展，不是纯回复刷屏。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关：</strong> 弱（约 52:1）。</li>
+<li><strong>回复工时：</strong> 中；高回复帖多为观点讨论型。</li>
+<li><strong>钩子：</strong> 信息差（知乎 vs Twitter）、脏话强调（lock in）、具体模型名+能力切片。</li>
+<li><strong>平台激励：</strong> 爆款梗图与高收藏 alpha 帖并存。</li>
+<li><strong>擦边：</strong> 基本无；靠专业锐度。</li>
+<li><strong>跨平台：</strong> Latent Space / AI Engineer 大会生态。</li>
+<li><strong>圈层策展：</strong> 点名 breakout talk、设 keynote 压力，带动社区互推。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/swyx/status/2112587397380943953">DeepSeek 知乎 alpha</a></td>
+<td><a href="https://x.com/swyx/status/2112588793010421837">短链附言</a>（≈2500 曝光）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>明确信息差主张 + 截图证据</td>
+<td>无解释的链接</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>「你在主流源错过了什么」</strong> 结构可复用；纯梗图难学且不稳定</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS科普 / AI入企）</h2>
+<ol>
+<li><strong>信息差帖</strong> → LIS：把「检验指南/行业公众号/院内制度」里被忽视的要点翻成 X 帖，声明「只看厂商通稿会漏掉」。</li>
+<li><strong>能力切片点评</strong> → 微李玩AI：别说「模型很强」，说「在写 SOP / 估工时 / 查危急值话术上谁更好」。</li>
+<li><strong>引用正确工程态度</strong> → AI入企：引用客户或同事「先清 bug 再谈炫技」并加一句迁移。</li>
+<li><strong>会议/讲座策展</strong> → 自己办的小分享，公开点名「本场 breakout」，抬参与者同时抬自己。</li>
+<li><strong>高收藏 alpha</strong> → 原文截图+框架图，服务「收藏以后用」而非只求赞。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>股价/单一标的喊单口吻：我们不做投资建议。</li>
+<li>脏话锐评适合工程师圈，不适合医院客户对外账号。</li>
+<li>梗图爆款不可当作内容战略。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>发 1 条：<strong>「主流渠道 vs 一手渠道」</strong> 对照帖（如厂商通稿 vs 实际上线清单）。</li>
+<li>选一个模型能力维度做固定栏目（如「写危急值通知」对比），形成系列。</li>
+<li>引用优质工程帖时固定句式：「这对科室落地意味着——」。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>近 7 日 counts ≈124；采样约 2026-10-20 → 10-24。</li>
+<li>用户 id：<code>33521530</code>。</li>
+<li>对我们：学「信息差+切片能力」，不学投资口吻与纯 meme。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
