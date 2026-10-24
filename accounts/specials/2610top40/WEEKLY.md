@@ -1,7 +1,8 @@
 # 2610top40｜本周学习（山中学堂）
 
 > 每周更新一行「必抄机制 + 实验」；机制全文见 [MECHANISMS.md](MECHANISMS.md)。  
-> 生成站点：`docs/specials/2610top40/index.html` 顶部学习面板读本文件。
+> 生成站点：`docs/specials/2610top40/index.html` 顶部学习面板读本文件。  
+> 并列专题：[Grok Bot 学习地图](../grokbot-map/README.md)（高书签教程导航 · 目录驱动本周实验）。
 
 ## 本周必抄机制
 

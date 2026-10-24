@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Grok Bot 学习地图 · 山中学堂</title>
+  <meta name="description" content="X 高书签 Grok Bot 教程导航：绿可学 / 红慎学。系统课、Skill→Routine、飞书微信、Pages、常开算力。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px;
+    }
+    .sub-tag {
+      display: inline-block; margin-left: 0; font-size: .72rem; color: var(--gold);
+      letter-spacing: .14em;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag, .pill {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution, .pill.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .intro {
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 20px 22px; margin: 12px 0 20px; border-left: 4px solid var(--gold);
+      font-size: .92rem; color: var(--ink-soft);
+    }
+    .intro a { color: var(--pine); }
+    .hub-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: 10px 0 6px; }
+    .hub-table th, .hub-table td {
+      border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left;
+    }
+    .hub-table th { background: #ebe4d6; color: var(--ink-soft); letter-spacing: .04em; }
+    .hub-table .bm { font-weight: 700; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .hub-table a { color: var(--pine); }
+    .cluster-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 12px 0 20px;
+    }
+    .cluster-card {
+      background: var(--paper); border: 1px solid var(--line); padding: 14px 16px;
+      font-size: .86rem; border-left: 3px solid var(--pine); border-radius: 2px;
+    }
+    .cluster-card.caution { border-left-color: var(--cinnabar); }
+    .cluster-card strong { display: block; margin-bottom: 6px; letter-spacing: .06em; }
+    .weekly-hero { padding: 20px 22px; margin: 16px 0; border-left: 4px solid var(--pine); }
+    .weekly-label {
+      font-size: .72rem; letter-spacing: .18em; color: var(--gold); margin: 0 0 6px;
+    }
+    .weekly-title { margin: 0 0 8px; font-size: 1.12rem; }
+    .muted { color: var(--muted); font-size: .82rem; }
+    .paper ul { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper a { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    @media (max-width: 640px) {
+      .hub-table { font-size: .76rem; }
+      .hub-table .hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <p class="sub-tag">Grok Bot · 高收藏可学</p>
+
+  <div class="paper learn">
+    <span class="tag">可学增长库</span>
+    <h1>Grok Bot 学习地图</h1>
+    <p>从 X 高书签帖拆机制：<strong>绿可学</strong>系统课、Routine、飞书/微信、Pages；<strong>红慎学</strong>模板刷屏与 Token 邪修。</p>
+    <p class="muted">采集：2026-10-24 Asia/Shanghai · 书签/赞/转/曝光均来自 X <code>public_metrics</code> · 源文件 <code>accounts/specials/grokbot-map/README.md</code></p>
+  </div>
+
+  <div class="intro">
+    <strong>怎么读：</strong>先开目录帖（Sawyer 20 课、蓝哥 9×24、Kin 目录），再落到 Skill→Routine 与业务四栏（LIS / 输血 / AI入企 / 微李玩AI）。对照晒单专题 <a href="../2610top40/07-KinGao476942.html">2610top40 #7 Kin</a>。
+  </div>
+
+  <section aria-labelledby="vol-h">
+    <h2 id="vol-h" style="margin:20px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">近 7 日声量（参考）</h2>
+    <table class="hub-table">
+      <thead><tr><th>查询</th><th>total_tweet_count</th></tr></thead>
+      <tbody>
+        <tr><td><code>("Grok Bot" OR GrokBot…) -is:retweet</code></td><td class="bm">120,136</td></tr>
+        <tr><td>含 教程/tip/skill/routine/workflow</td><td class="bm">3,272</td></tr>
+        <tr><td>含 tutorial/tip/skill/教程/技巧</td><td class="bm">2,597</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">带方法教程帖约是泛提及的 2–3%。</p>
+  </section>
+
+  <section aria-labelledby="cluster-h">
+    <h2 id="cluster-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">主题聚类</h2>
+    <div class="cluster-grid">
+      <div class="cluster-card"><strong>系统课导航</strong>在产品里练课：Sawyer、蓝哥、Kin 目录</div>
+      <div class="cluster-card"><strong>Skill → Routine</strong>手动跑顺 → 定时晨报/巡检/发帖</div>
+      <div class="cluster-card"><strong>中文接入</strong>飞书 / 微信桥，同事能对话</div>
+      <div class="cluster-card"><strong>Pages / 多 Bot</strong>成果页可续改；专员分工</div>
+      <div class="cluster-card"><strong>常开算力</strong>Mac Mini、Cloud Agent 对照</div>
+      <div class="cluster-card caution"><strong>慎学</strong>模板刷屏、Comment 领课、野模型</div>
+    </div>
+  </section>
+
+  <section class="paper" aria-labelledby="weekly-h" id="weekly-h">
+    <p class="weekly-label">本周实验</p>
+    <h2 class="weekly-title" style="border:none; margin-top:0;">目录驱动 · 每周 1 篇 → 1 机制卡 → 1 实验帖</h2>
+    <p>从 <a href="https://x.com/KinGao476942/status/2110689770892648953">Kin 目录（673 书签）</a> 或 <a href="https://x.com/0xlangeai/status/2111396742264742034">蓝哥 9×24（1366 书签）</a> 抽 <strong>1 篇</strong>；Skill <code>xstudy-grokbot-learn</code> 写任务 → 机制卡四栏迁移 → 实验帖<strong>人审后发</strong>（propose don’t send）。</p>
+    <table class="hub-table" style="margin-top:14px;">
+      <thead><tr><th>步骤</th><th>动作</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>只读一篇目录条目，不新开 40 案卷</td></tr>
+        <tr><td>2</td><td>机制卡：钩子 + LIS / 输血 / AI入企 / 微李玩AI 各 1 句</td></tr>
+        <tr><td>3</td><td>实验帖：现象 → 3 步可验收 → 人审后 Routine 或手动发</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-labelledby="must-h">
+    <h2 id="must-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">A. 必学导航</h2>
+    <table class="hub-table">
+      <thead>
+        <tr><th>#</th><th>书签</th><th>作者</th><th>一句话</th><th class="hide-sm">迁微李</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="bm">7746</td><td><a href="https://x.com/SawyerMerritt/status/2103664821459685708">@SawyerMerritt</a></td><td>20 课动手教程模板（Bot 内打开）</td><td class="hide-sm">1 周跑通 1 Skill + 1 Routine</td></tr>
+        <tr><td>2</td><td class="bm">2530</td><td><a href="https://x.com/SawyerMerritt/status/2106481373997596984">@SawyerMerritt</a></td><td>教程改进版再推</td><td class="hide-sm">学堂本周必抄可固定链一课</td></tr>
+        <tr><td>3</td><td class="bm">1366</td><td><a href="https://x.com/0xlangeai/status/2111396742264742034">@0xlangeai</a></td><td>9 分类 × 24 篇中文合集</td><td class="hide-sm">本地图外链母目录</td></tr>
+        <tr><td>4</td><td class="bm">673</td><td><a href="https://x.com/KinGao476942/status/2110689770892648953">@KinGao476942</a></td><td>一个月系列目录</td><td class="hide-sm">非工程师+自媒体+飞书微信</td></tr>
+        <tr><td>5</td><td class="bm">369</td><td><a href="https://x.com/0xlangeai/status/2113561892505763850">@0xlangeai</a></td><td>Pages 保姆教程</td><td class="hide-sm">LIS/输血周报用 Pages 交稿</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">赞/转/曝光见源 README 完整表。</p>
+  </section>
+
+  <section aria-labelledby="mech-h">
+    <h2 id="mech-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">B. 机制与实战</h2>
+    <table class="hub-table">
+      <thead>
+        <tr><th>#</th><th>书签</th><th>作者</th><th>一句话</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>6</td><td class="bm">560</td><td><a href="https://x.com/wquguru/status/2107868479873511504">@wquguru</a></td><td>邪修 10 条（筛选后抄 Routine/多 Bot）</td></tr>
+        <tr><td>7</td><td class="bm">456</td><td><a href="https://x.com/Av1dlive/status/2111500687410700353">@Av1dlive</a></td><td>Efficiency 部门 Bot</td></tr>
+        <tr><td>8</td><td class="bm">291</td><td><a href="https://x.com/mikepat711/status/2104378687588024377">@mikepat711</a></td><td>Mac Mini 常开模板</td></tr>
+        <tr><td>9</td><td class="bm">204</td><td><a href="https://x.com/NFT_Chen/status/2108414543978533341">@NFT_Chen</a></td><td>OpenRouter + Pi Agent（个人实验）</td></tr>
+        <tr><td>10</td><td class="bm">189</td><td><a href="https://x.com/oriorapp/status/2113407354595156362">@oriorapp</a></td><td>Daily routines</td></tr>
+        <tr><td>11</td><td class="bm">123</td><td><a href="https://x.com/KinGao476942/status/2110198006683516939">@KinGao476942</a></td><td>起号方法论 + Bot 模板</td></tr>
+        <tr><td>12</td><td class="bm">85</td><td><a href="https://x.com/KinGao476942/status/2113201279346561212">@KinGao476942</a></td><td>飞书桥给同事用</td></tr>
+        <tr><td>13</td><td class="bm">77</td><td><a href="https://x.com/MinLiBuilds/status/2110306298994839649">@MinLiBuilds</a></td><td>Token Maxxing 一键复制 Bot</td></tr>
+        <tr><td>14</td><td class="bm">75</td><td><a href="https://x.com/thegreatest_sv/status/2106808569748242811">@thegreatest_sv</a></td><td>社区 CLI/CDP；propose don’t send</td></tr>
+        <tr><td>15</td><td class="bm">67</td><td><a href="https://x.com/bradsmith/status/2111137338164232683">@bradsmith</a></td><td>GHL 早晚报 Routine</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-labelledby="zh-h">
+    <h2 id="zh-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">C. 中文生态补充</h2>
+    <table class="hub-table">
+      <thead><tr><th>书签</th><th>链接</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td class="bm">59</td><td><a href="https://x.com/MaiYangAI/status/2112308502773518667">@MaiYangAI</a></td><td>iPhone 侧键 Voice Chat</td></tr>
+        <tr><td class="bm">22</td><td><a href="https://x.com/isnail/status/2109947250864763187">@isnail</a></td><td>铁柱哥系列入口</td></tr>
+        <tr><td class="bm">37+</td><td><a href="https://x.com/MaiYangAI/status/2109062454596804777">MaiYang 日报示例</a></td><td>可抄「Grok 高质量帖」频道形态</td></tr>
+        <tr><td class="bm">3</td><td><a href="https://x.com/lanvjian/status/2109560084418490771">@lanvjian</a></td><td>教程三步走筛选法</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="paper caution" aria-labelledby="down-h">
+    <span class="pill caution">慎学</span>
+    <h2 id="down-h" style="margin-top:8px;">D. 超高收藏但降权</h2>
+    <table class="hub-table">
+      <thead><tr><th>书签</th><th>作者</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td class="bm">4086</td><td><a href="https://x.com/Greshamtrade/status/2113769453007827036">@Greshamtrade</a></td><td>146 templates 同构刷屏</td></tr>
+        <tr><td class="bm">972…</td><td>多账号</td><td>20 repos 同文案；仅当索引</td></tr>
+        <tr><td class="bm">811</td><td><a href="https://x.com/maestrooth/status/2107149121605767558">@maestrooth</a></td><td>第三方路由；先评估安全</td></tr>
+        <tr><td class="bm">179</td><td><a href="https://x.com/investor_sr33/status/2109688290207252836">@investor_sr33</a></td><td>Comment 领课漏斗</td></tr>
+      </tbody>
+    </table>
+    <h3>慎学清单</h3>
+    <ul>
+      <li>代充/成品号、Comment/DM 领教程、模板 $XXk 话术</li>
+      <li>Cookie/野中转/客户数据进免费模型</li>
+      <li>无 Skill 名、无 Routine 触发、无失败分支的炫图帖</li>
+      <li>互关喊单（与 LIS/输血信任售卖相反）</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="follow-h">
+    <h2 id="follow-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">建议关注（学习源）</h2>
+    <p class="muted" style="font-size:.9rem; line-height:1.8;">
+      @SawyerMerritt · @0xlangeai · @KinGao476942 · @MaiYangAI · @wquguru · @MinLiBuilds · @BotDirectoryAI · 铁柱系列（经 @isnail）
+    </p>
+  </section>
+
+  <p class="muted" style="margin-top:32px; text-align:center;">
+    <a href="../2610top40/index.html">← 2610top40 晒单专题</a>
+    · <a href="../../articles/2026-10-08-kingao-grokbot-wechat.html">Kin 微信接入精读</a>
+  </p>
+</div>
+</body>
+</html>
