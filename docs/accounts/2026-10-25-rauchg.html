@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@rauchg（Guillermo Rauch） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 外文区</span>
+    <h1>@rauchg（Guillermo Rauch）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/rauchg</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-10-25 09:12 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Guillermo Rauch / @rauchg</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2008-07-22（约 18.3 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>915527 / 665 / 53581</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈4955 / listed≈4969</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>Bio：<code>@vercel CEO</code>。粉关比约 <strong>1377:1</strong>。用户 id：<code>15540222</code>。地点 San Francisco。近 7 日合计约 <strong>81</strong> 条。置顶为 Vercel Agentic Infrastructure 落地页（曝光约 260万级，历史置顶）。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>产品出海 CEO 号：用「公司级一手动作」（安全补丁、开源、可玩 demo）当内容原料，个人时间线即 Vercel 的产品叙事与开发者信任引擎。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 极简——Vercel CEO。</li>
+<li><strong>时间线实际：</strong> 产品发布/安全响应、开源仓库、教育向 AI demo、行业观点；CEO 本人下场演示。</li>
+<li><strong>目标受众：</strong> 全球前端/全栈、创业团队、AI 应用构建者。</li>
+<li><strong>差异点：</strong> 不是教程博主，是「能立刻部署的基础设施 + 可点击 demo」。</li>
+<li><strong>与 Bio 的错位：</strong> 几乎无错位；偶发教育愿景帖拉长人设到「学习基础设施」。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全/平台响应</td>
+<td>高（当周）</td>
+<td><a href="https://x.com/rauchg/status/2113050053724221732">Node RCE Firewall</a></td>
+<td>≈253127 曝光 / 2567赞</td>
+</tr>
+<tr>
+<td>AI 教育/可玩 explainer</td>
+<td>高</td>
+<td><a href="https://x.com/rauchg/status/2112954875835527392">AI create explainers</a></td>
+<td>≈255375 曝光 / <strong>5022书签</strong></td>
+</tr>
+<tr>
+<td>开源/基础设施</td>
+<td>中–高</td>
+<td><a href="https://x.com/rauchg/status/2112247046082363821">fast HTML artifact builder OSS</a></td>
+<td>≈156640 曝光 / <strong>2728书签</strong></td>
+</tr>
+<tr>
+<td>现场 demo / 仿真</td>
+<td>中</td>
+<td><a href="https://x.com/rauchg/status/2111313462987231519">Roadster playable sim</a></td>
+<td>≈157781 曝光</td>
+</tr>
+<tr>
+<td>产品能力清单 + 提问</td>
+<td>中</td>
+<td><a href="https://x.com/rauchg/status/2113251591822471644">at-scale backends 清单</a></td>
+<td>≈106604 曝光 / 384回复</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采窗口主帖按<strong>曝光</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/rauchg/status/2112954875835527392">AI 做最酷 explainer → 部署分享</a></td>
+<td>255375</td>
+<td>4969</td>
+<td>169</td>
+<td><strong>5022</strong></td>
+<td>「受众点名 + 三步动作 + 可演示」；书签/千曝≈19.7</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/rauchg/status/2113050053724221732">Node.js RCE：Firewall 已主动防护</a></td>
+<td>253127</td>
+<td>2567</td>
+<td>109</td>
+<td>436</td>
+<td>事故日<strong>抢先响应</strong>=权威；对标客户安全信任</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/rauchg/status/2111313462987231519">Roadster 可玩高精度仿真</a></td>
+<td>157781</td>
+<td>2409</td>
+<td>242</td>
+<td>520</td>
+<td>热点工程 → 可点开 demo（一手资产）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/rauchg/status/2112247046082363821">开源 really fast HTML artifact builder</a></td>
+<td>156640</td>
+<td>2561</td>
+<td>216</td>
+<td><strong>2728</strong></td>
+<td>痛点叙事（崩溃/限额）→ OSS 释放；高书签</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/rauchg/status/2112987208743592081">We got the coolest domain name</a></td>
+<td>155959</td>
+<td>1100</td>
+<td>217</td>
+<td>53</td>
+<td>短悬念钩；靠人设与品牌兑现（难直接迁移）</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>81</strong> 条（含回复）；日峰约 16，谷约 6–8。</li>
+<li>主帖密度高且常带链接/图；回复型提问帖（「Any guesses what comes next?」）抬回复。</li>
+<li>粉关比极健康——增长靠产品权威，非互关。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关：</strong> 极弱（关注仅 665 / 粉 91.5万）。</li>
+<li><strong>回复工时：</strong> 中；更多是主帖自带 CTA 与线程。</li>
+<li><strong>钩子话术：</strong> 受众点名、清单、悬念提问、开源/免费、安全时效。</li>
+<li><strong>平台激励：</strong> 教育 explainer 与 OSS 帖书签极高。</li>
+<li><strong>擦边/猎奇：</strong> 基本无。</li>
+<li><strong>跨平台导流：</strong> vercel.com、OSS repo、可部署 demo。</li>
+<li><strong>CEO 本人演示：</strong> 把公司发布变成个人信任背书。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/rauchg/status/2112954875835527392">AI explainers</a></td>
+<td>短互动/内部感帖（同窗部分 &lt;2万曝）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>可执行三步 + 受众 + 可点开产物</td>
+<td>无产物</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>酷/免费/开源 + demo</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可演示资产</strong> &gt;&gt; 纯态度；安全响应帖建立 B 端信任</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>事故日抢先通报</strong> → LIS/输血：接口异常当日发「影响范围→临时措施→永久修复」三句，而不是沉默。</li>
+<li><strong>受众点名 + 三步动作</strong> → 微李玩AI：「信息科/检验科同事，用 AI 做一张标本流转 explainer」结构临摹。</li>
+<li><strong>痛点→开源/可复用产物</strong> → 小程序：把内部组件抽成可演示页面，发「我们踩过的坑现成可用」。</li>
+<li><strong>能力清单 + 半开放提问</strong> → AI入企：列本院已具备模块，问「下一步最该打哪一块」。</li>
+<li><strong>CEO/老板本人下场</strong> → 微李：关键发布由老板号发，销售号转发，而不是只丢官方号。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>炫酷域名/悬念帖依赖既有品牌，小号难复制。</li>
+<li>过度「愿景散文」若无可点开 demo，对政企客户空。</li>
+<li>安全响应若只口号无时间线，会反噬信任。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周做 1 个<strong>可点开的 LIS/输血流程小 demo</strong>（哪怕静态页），用「受众点名 + 三步」发帖。</li>
+<li>下次线上故障用 rauchg 式「已缓解→监控中→升级中」句式公开。</li>
+<li>发 1 条「我们已具备的模块清单 + 下一刀问大家」抬回复。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>查询：<code>from:rauchg -is:reply -is:retweet</code> relevancy；counts ≈81/7日。</li>
+<li>用户 id：<code>15540222</code>。置顶 <code>2089179650891432270</code>（Agentic Infrastructure）。</li>
+<li>数字均 2026-10-25 当次抓取。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
