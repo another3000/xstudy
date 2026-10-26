@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@marclou（Marc Lou） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 海外 Indie</span>
+    <h1>@marclou（Marc Lou）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/marclou</td></tr>
+<tr><td>采集时间</td><td>2026-10-26 09:10 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>Marc Lou / @marclou</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2014-01-29（约 12.7 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>417335 / 1266 / 38635</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>verified=false（接口）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈6151 / listed≈3363</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>330:1</strong>。Bio 直接挂多产品公开 MRR（例：$53K/m、$31K/m…）。用户 id：<code>2311987360</code>。近 7 日合计约 <strong>213</strong> 条；仅主帖约 <strong>30</strong>。判定：<strong>可学</strong>（学公开收入与发版叙事；慎学过度生活/健身流量）。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>海外 indie 公开 MRR 教科书号：用「发版清单 + 收入里程碑 + 反质疑叙事」日更造船，权威资产是可点击的产品和 TrustMRR 式数字，而非空谈愿景。</p>
+<h2>2. 人设与定位</h2>
+<ul><li><strong>Bio 承诺：</strong> 多产品、逐条 MRR、43 startups 叙事。</li><li><strong>时间线实际：</strong> MailCheap/DataFast 发版、MRR 截图、Meetup、生日故事、反「你不能 vibe code」打脸帖。</li><li><strong>目标受众：</strong> indie hacker、想靠信息产品/SaaS 变现的建造者。</li><li><strong>差异点 / 人设钩子：</strong> Bio 即价目表；「10 天到四位数 MRR」速度叙事；社区 Meetup 线下闭环。</li><li><strong>与 Bio 的错位：</strong> 无；数字人设与发帖一致。</li></ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>产品发布 / 价格锚</td><td>高</td><td><a href="https://x.com/marclou/status/2110743912885489960">vibe-coded beehiiv 便宜 83%</a></td><td>≈<strong>136.4万</strong> 曝光 / <strong>3114书签</strong></td></tr>
+<tr><td>MRR 里程碑截图</td><td>高</td><td><a href="https://x.com/marclou/status/2114292638325379507">四位数 MRR club · 10 天</a></td><td>≈44621 曝光 / 653赞</td></tr>
+<tr><td>发版功能清单</td><td>高</td><td><a href="https://x.com/marclou/status/2112133420835082388">Help center/主题/编辑器…</a></td><td>≈83342 曝光 / 214书签</td></tr>
+<tr><td>反质疑 / 打脸叙事</td><td>中–高</td><td><a href="https://x.com/marclou/status/2113219570110759140">You can’t vibe code…</a></td><td>≈83222 曝光 / 201回复</td></tr>
+<tr><td>个人故事 / Meetup</td><td>中</td><td><a href="https://x.com/marclou/status/2111843238961119534">33 岁最好一年</a></td><td>≈17.8万 曝光 / 539回复</td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>主帖按<strong>曝光</strong>（含窗口内 relevancy 结果 + 明确引用的发布帖 <code>get_posts_by_id</code> 复核）：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/marclou/status/2110743912885489960">I vibe-coded beehiiv, 83% cheaper · Introducing MailCheap</a></td><td>1363651</td><td>3727</td><td>529</td><td><strong>3114</strong></td><td><strong>品类锚+折扣%+功能清单</strong>：对标竞品一句说清；书签王</td></tr>
+<tr><td>2</td><td><a href="https://x.com/marclou/status/2113588729675694385">iPhone Duo 现场：网站破了，立刻 Cursor 修</a></td><td>281036</td><td>2038</td><td>243</td><td>295</td><td>热点设备 + 第一人称修站；建造者身份兑现</td></tr>
+<tr><td>3</td><td><a href="https://x.com/marclou/status/2112174151398289650">TrustMRR 本周最快：0→$3835 MRR</a></td><td>207536</td><td>1465</td><td>111</td><td><strong>1116</strong></td><td>为他人庆功=平台感；数字具体可临摹</td></tr>
+<tr><td>4</td><td><a href="https://x.com/marclou/status/2111843238961119534">I turned 33… best year</a></td><td>177581</td><td>3372</td><td><strong>539</strong></td><td>349</td><td><strong>回复型</strong>人生故事；B 端可学情绪结构，慎学过度私域</td></tr>
+<tr><td>5</td><td><a href="https://x.com/marclou/status/2113943840432550055">might leave the basement… MRR 图</a></td><td>165004</td><td>1443</td><td>192</td><td>289</td><td>自嘲+收入曲线截图；公开账本信任</td></tr>
+</tbody></table>
+<h2>4. 发帖节奏与产能</h2>
+<ul><li>近 7 天合计约 <strong>213</strong> 条；仅主帖约 <strong>30</strong> → 主帖:回复大致 <strong>1:6</strong>。</li><li>日峰合计约 51（10/20），主帖日约 3–6。</li><li>产能来源：真实多产品发版 + 高频回复；内容与造船同步。</li></ul>
+<h2>5. 增长机制拆解</h2>
+<ol><li><strong>互关 / 粉关比：</strong> 330:1，极健康。</li><li><strong>回复工时：</strong> 强（213 vs 30）。</li><li><strong>钩子话术：</strong> 折扣百分比、MRR 天数、功能 bullet、反引号质疑。</li><li><strong>平台激励：</strong> 发布帖书签/千曝光 ≈2.3；庆功帖更高。</li><li><strong>擦边/猎奇：</strong> 健身身材帖有流量，B 端慎学。</li><li><strong>跨平台导流：</strong> 产品链、affiliate、Meetup RSVP。</li><li><strong>其他：</strong> Bio 公开 MRR = 持续信任装置。</li></ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/marclou/status/2110743912885489960">MailCheap 发布</a></td><td><a href="https://x.com/marclou/status/2113605610994626929">Am I weird for yearly reminder…</a></td></tr>
+<tr><td>结构特征</td><td>竞品锚 + % + 功能列表 + 链接</td><td>轻提问无资产</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>83% cheaper、清单 emoji</td><td>弱数字</td></tr>
+<tr><td>差异结论</td><td><strong>可点击产品+硬数字</strong>碾压轻闲聊</td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol><li><strong>竞品锚+差异%</strong> → 微李玩AI：「比通用课便宜/更快落地的检查清单」一句说清差异（勿虚假对比）。</li><li><strong>发版 bullet 清单</strong> → 小程序：每周「本周上线 5 项」固定模板。</li><li><strong>公开里程碑数字</strong> → AI入企：脱敏「从试点到 N 科室」进度条，建立信任。</li><li><strong>反质疑打脸结构</strong> → LIS：引用「LIS 不需要 AI」类质疑，再给案例数据。</li><li><strong>为他人庆功</strong> → 输血信息化社群：表扬伙伴医院公开小胜，做平台感。</li></ol>
+<h2>8. 风险与不该学</h2>
+<ul><li>夸大 MRR/速度：医疗合规场景必须可审计。</li><li>健身/身材流量与政企品牌冲突。</li><li>高频回复工时：团队小则不可照搬 200+/周。</li></ul>
+<h2>9. 对我们的行动建议</h2>
+<ol><li>本周 1 条：<strong>「对标竞品一句 + 3 条可交付差异」</strong>发布结构（对标 83% 帖，数字须真实）。</li><li>固定「本周发版清单」模板 1 次。</li><li>Bio/置顶试加<strong>可核验的一项成果数字</strong>（客户数/科室数/星标），人审后发。</li></ol>
+<h2>10. 附录</h2>
+<ul><li>查询：<code>from:marclou -is:reply -is:retweet</code> relevancy；发布帖另 <code>get_posts_by_id</code> 复核；counts ≈213 / 主帖 ≈30。</li><li>用户 id：<code>2311987360</code>。</li><li>数字均来自 2026-10-26 当次抓取，禁止外推编造。</li></ul>
+  </div>
+</div>
+</body>
+</html>
