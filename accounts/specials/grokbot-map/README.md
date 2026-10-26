@@ -105,15 +105,22 @@
 
 > **节奏：** 每周只抽 **1 篇目录文** → 产出 **1 张机制卡** → **1 条实验帖**（人审后发）。不新开 40 篇案卷。
 
-**本周抽读建议：** Kin 系列目录（673 书签）或蓝哥 9 类合集（1366 书签）中 **1 篇**。
+**本周已抽读：** Kin [一个月系列目录](https://x.com/KinGao476942/status/2110689770892648953) 第 **2** 篇 — [《非工程师怎么用好 Grok Bot？》](https://x.com/KinGao476942/status/2097915898971742325)（约 406 书签 / 69550 曝光）。
+
+| 产出 | 内容 |
+| --- | --- |
+| 机制 id | `kin-human-gate`（人审闸门 · Propose don't send） |
+| 机制全文 | [2610top40 MECHANISMS.md](../2610top40/MECHANISMS.md#kin-human-gate｜人审闸门propose-dont-send) |
+| 本周学习面板 | [2610top40 WEEKLY.md](../2610top40/WEEKLY.md) |
+| 实验帖 | 标题意向「官方教招聘 Bot 最狠的一句：不要直接联系任何人」——**人审后发**（propose don't send） |
 
 | 步骤 | 动作 |
 | --- | --- |
-| 1 | 建 Skill `xstudy-grokbot-learn`：把抽中的目录条目写成「本周只读一篇」任务 |
-| 2 | 机制卡：钩子公式 + 可迁移动作 + LIS/输血/AI入企/微李玩AI 四栏各 1 句 |
-| 3 | 实验帖草稿：现象 → 3 步可验收 → 注明 **propose don’t send**；人审后由 Routine 或手动发 |
+| 1 | 精读目录第 2 篇：Talent Scout / 市场预算 / 采购 Haggle 三案例末句闸门 |
+| 2 | 机制卡已入库：`kin-human-gate`（勿重复 `kin-tutorial-funnel`） |
+| 3 | 实验帖草稿：① 抄指令末句 ② 对照三案例 ③ 院内三步 SOP → **人审后** Routine 或手动发 |
 
-**对照专题：** [2610top40 #7 Kin](https://another3000.github.io/xstudy/specials/2610top40/07-KinGao476942.html)（教程→培训漏斗）。
+**对照专题：** [2610top40 本周必抄](https://another3000.github.io/xstudy/specials/2610top40/index.html#learning-h) · [#7 Kin 案卷](https://another3000.github.io/xstudy/specials/2610top40/07-KinGao476942.html)。
 
 **扩展实验（可选，见源简报 §5）：**
 
