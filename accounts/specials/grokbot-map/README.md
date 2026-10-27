@@ -3,7 +3,8 @@
 > **定位：** 可学增长库风格——**绿可学 / 红慎学**。  
 > 对象：桌面/Agent 产品 **Grok Bot**（非仅 X App 内 Grok 聊天）。  
 > 数据：2026-10-24（Asia/Shanghai）· X 公共读 `bookmark_count` 等 `public_metrics`（见文末检索备注）。  
-> 站点入口：[Grok Bot 学习地图](https://another3000.github.io/xstudy/specials/grokbot-map/)
+> 站点入口：[Grok Bot 学习地图](https://another3000.github.io/xstudy/specials/grokbot-map/)  
+> 姊妹专题（个人 Agent）：[Muse.AI 学习地图](../muse-ai/README.md)（Meta Muse · 生活管家向）
 
 ---
 

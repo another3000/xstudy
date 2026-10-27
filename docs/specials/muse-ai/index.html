@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muse.AI 学习地图 · 山中学堂</title>
+  <meta name="description" content="X 高书签 Meta Muse 教程导航：绿可学只读闸门/Goals/目录帖；红慎学养号、节点、邀请码互刷。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px;
+    }
+    .sub-tag {
+      display: inline-block; margin-left: 0; font-size: .72rem; color: var(--gold);
+      letter-spacing: .14em;
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag, .pill {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution, .pill.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .pill.learn { color: var(--pine); background: var(--pine-pale); }
+    .intro {
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 20px 22px; margin: 12px 0 20px; border-left: 4px solid var(--gold);
+      font-size: .92rem; color: var(--ink-soft);
+    }
+    .intro a { color: var(--pine); }
+    .hub-table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: 10px 0 6px; }
+    .hub-table th, .hub-table td {
+      border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left;
+    }
+    .hub-table th { background: #ebe4d6; color: var(--ink-soft); letter-spacing: .04em; }
+    .hub-table .bm { font-weight: 700; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .hub-table a { color: var(--pine); }
+    .cluster-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 12px 0 20px;
+    }
+    .cluster-card {
+      background: var(--paper); border: 1px solid var(--line); padding: 14px 16px;
+      font-size: .86rem; border-left: 3px solid var(--pine); border-radius: 2px;
+    }
+    .cluster-card.caution { border-left-color: var(--cinnabar); }
+    .cluster-card strong { display: block; margin-bottom: 6px; letter-spacing: .06em; }
+    .learning-panel { margin: 8px 0 28px; }
+    .weekly-hero { padding: 20px 22px; margin: 16px 0; border-left: 4px solid var(--pine); }
+    .weekly-label {
+      font-size: .72rem; letter-spacing: .18em; color: var(--gold); margin: 0 0 6px;
+    }
+    .weekly-title { margin: 0 0 8px; font-size: 1.12rem; }
+    .weekly-exp { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); font-size: .9rem; }
+    .mech-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
+    }
+    .mech-card {
+      background: var(--paper); border: 1px solid var(--line);
+      padding: 14px 16px; font-size: .86rem; border-radius: 2px;
+    }
+    .mech-card.learn { border-left: 3px solid var(--pine); }
+    .mech-card.caution {
+      border-left: 3px solid var(--cinnabar); opacity: .92;
+      background: rgba(252, 249, 240, 0.85);
+    }
+    .mech-card header { margin-bottom: 8px; }
+    .mech-card .card-title { display: inline; font-size: .98rem; margin: 0; font-weight: 600; }
+    .mech-card details summary {
+      cursor: pointer; list-style: none; font-weight: 600;
+    }
+    .mech-card details summary::-webkit-details-marker { display: none; }
+    .mech-card .card-inner { margin-top: 10px; }
+    .mech-card p { margin: 0.45em 0; color: var(--ink-soft); font-size: .86rem; }
+    .card-id { font-size: .75rem; }
+    .muted { color: var(--muted); font-size: .82rem; }
+    .paper ul { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper a { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .src-links { font-size: .88rem; margin: 8px 0 16px; }
+    .src-links a { color: var(--pine); margin-right: 12px; }
+    @media (max-width: 640px) {
+      .hub-table { font-size: .76rem; }
+      .hub-table .hide-sm { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <p class="sub-tag">Muse.AI · Meta 个人 Agent</p>
+
+  <div class="paper learn">
+    <span class="tag">可学增长库</span>
+    <h1>Muse.AI 学习地图</h1>
+    <p>从 X 高书签帖拆 <strong>Meta Muse（muse.ai）</strong> 机制：<strong>绿可学</strong>入门、只读闸门、Goals、目录帖；<strong>红慎学</strong>邀请码互刷、养号、节点白嫖。</p>
+    <p class="muted">采集：2026-10-27 Asia/Shanghai · 书签/赞/曝光来自 X <code>public_metrics</code> · 源 <code>accounts/specials/muse-ai/README.md</code></p>
+  </div>
+
+  <div class="intro">
+    <strong>产品对齐：</strong>Muse = Meta 个人 AI Agent（Secure VM + 浏览器）。对标：<strong>Grok Bot 偏工作多 Bot；Muse 偏生活管家</strong>（蓝哥公开对比）。<br>
+    <strong>怎么读：</strong>① 蓝哥保姆级 Article ② 机制卡（优先 <code>muse-read-only-first</code> / <code>muse-human-gate</code>）③ <a href="#weekly-h">本周实验</a>（草稿、人审后发）。<br>
+    对照：<a href="../grokbot-map/index.html">Grok Bot 学习地图</a> · <a href="../2610top40/index.html#kin-human-gate">2610top40 kin-human-gate</a>
+  </div>
+
+  <p class="src-links muted">
+    源 Markdown：<a href="README.md">README.md</a> · <a href="MECHANISMS.md">MECHANISMS.md</a> · <a href="WEEKLY.md">WEEKLY.md</a>
+  </p>
+
+  <section aria-labelledby="vol-h">
+    <h2 id="vol-h" style="margin:20px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">近 7 日声量（参考）</h2>
+    <table class="hub-table">
+      <thead><tr><th>查询</th><th>total_tweet_count</th></tr></thead>
+      <tbody>
+        <tr><td><code>("Muse AI" OR Muse.AI OR muse.ai OR "Meta Muse" OR (Muse Agent)) -is:retweet</code></td><td class="bm">48,918</td></tr>
+        <tr><td>含 教程/注册/prompt/workflow/Tailscale/OpenRouter 等</td><td class="bm">5,126</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">方法向帖约占泛提及 ~10%。</p>
+  </section>
+
+  <section aria-labelledby="cluster-h">
+    <h2 id="cluster-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">主题聚类</h2>
+    <div class="cluster-grid">
+      <div class="cluster-card"><strong>入门导航</strong>蓝哥 Article + 目录帖：登录→跟练→Goals</div>
+      <div class="cluster-card"><strong>提示词/工作流</strong>任务+范围+标准+交付；只读边界写死</div>
+      <div class="cluster-card"><strong>组网/进阶</strong>Tailscale / 本地模型——学边界，不学「无限」话术</div>
+      <div class="cluster-card"><strong>官方/安全</strong>Secure VM · Sentinel · @Muse 更新</div>
+      <div class="cluster-card caution"><strong>慎学</strong>邀请码互刷 · 养号撸号 · 白嫖节点 · 成品号</div>
+    </div>
+  </section>
+
+  <section class="paper" aria-labelledby="weekly-h" id="weekly-h">
+    <p class="weekly-label">本周学习面板</p>
+    <h2 class="weekly-title" style="border:none; margin-top:0;">精读 → 机制卡 → 实验帖草稿</h2>
+    <table class="hub-table" style="margin-top:14px;">
+      <thead><tr><th>项</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>精读</td><td>蓝哥AI <a href="https://x.com/0xlangeai/status/2103300004966478284">《Muse 上手保姆级教程》</a></td></tr>
+        <tr><td>实读指标</td><td>书签 <strong>4102</strong> · 赞 2054 · 曝光 2,135,021 · 回复 1070（2026-10-27）</td></tr>
+        <tr><td>机制 id</td><td><code>muse-read-only-first</code>（兼写 <code>muse-human-gate</code> 末句）</td></tr>
+        <tr><td>对照</td><td>Grok 地图 <code>kin-human-gate</code>；勿重复发明第二套闸门话术</td></tr>
+      </tbody>
+    </table>
+    <div class="weekly-exp">
+      <p class="weekly-label">实验帖标题意向（人审后再发，未推 X）</p>
+      <p><strong>「Muse 官方最狠的不是『会干活』，是默认让你先只读。」</strong></p>
+      <p>骨架：蓝哥邮箱提示词末句 → 可逆全自动/不可逆人审 → 院内三步（只读巡检→草稿→人点确认）→ propose don't send · 无互关无荐币。</p>
+      <p class="muted">完整面板见 <a href="WEEKLY.md">WEEKLY.md</a></p>
+    </div>
+  </section>
+
+  <section class="learning-panel" aria-labelledby="mech-layer-h">
+    <h2 id="mech-layer-h" style="margin:24px 0 12px; font-size:1.15rem; letter-spacing:.12em; color:var(--ink-soft);">学习层 · 机制卡</h2>
+    <div class="mech-grid" role="list">
+      <article class="mech-card learn" id="muse-read-only-first">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">只读四件套</h3>
+          <span class="card-id muted">muse-read-only-first</span></header>
+        <div class="card-inner">
+          <p><strong>钩子：</strong>任务 + 资料范围 + 完成标准 + 交付；末句写死只整理、不发送、不付费、不联系他人。</p>
+          <p><strong>为何有效：</strong>蓝哥 Article 书签 4102 / 曝光 2.13M；邮件提示词禁止发送与改标签。</p>
+          <p><strong>本周实验：</strong>用公开网页让 Muse 出「附来源资料表」，核对 3 条链接。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-human-gate">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">发信/花钱人审闸门</h3>
+          <span class="card-id muted">muse-human-gate</span></header>
+        <div class="card-inner">
+          <p><strong>钩子：</strong>Secure VM 可代劳，发送邮件/下单/改权限停在授权卡片。</p>
+          <p>与 <a href="../2610top40/index.html#kin-human-gate">kin-human-gate</a> 同构：可逆链路大胆跑，不可逆人手。</p>
+          <p><strong>本周实验：</strong>指令末句：「任何对外发送与支付必须等人回复确认。」</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-secure-vm-mindset">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">Secure VM 心智</h3>
+          <span class="card-id muted">muse-secure-vm-mindset</span></header>
+        <div class="card-inner">
+          <p>「不是豆包，是隔离 Linux + 浏览器」——锚到硬件福利而非空谈 Agent 革命。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-goals-loop">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">Goals 里程碑</h3>
+          <span class="card-id muted">muse-goals-loop</span></header>
+        <div class="card-inner">
+          <p>多日事建 Goal：交付物 + 缺什么 + 下一步；避免「AI 保证按时完成」幻觉。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-directory-curation">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">目录帖导航</h3>
+          <span class="card-id muted">muse-directory-curation</span></header>
+        <div class="card-inner">
+          <p>「看这一帖就够了」分路径：注册 / 安全 / 场景 / 官方——目录比散帖更易收藏。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-cover-match-ip">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">封面贴合官方 IP</h3>
+          <span class="card-id muted">muse-cover-match-ip</span></header>
+        <div class="card-inner">
+          <p>软萌小熊与官方形象一体，降低认知成本、借官方资产。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-vs-work-agent">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">生活管家 vs 工作 Bot</h3>
+          <span class="card-id muted">muse-vs-work-agent</span></header>
+        <div class="card-inner">
+          <p>一句品类词降焦虑：办公多 Bot；日程/家属通知类个人 Agent + 闸门。</p>
+        </div>
+      </article>
+      <article class="mech-card learn" id="muse-tailscale-boundary">
+        <header><span class="pill learn">可学</span> <h3 class="card-title">组网边界先写清</h3>
+          <span class="card-id muted">muse-tailscale-boundary</span></header>
+        <div class="card-inner">
+          <p>Tailscale 同网可学；「无限 token」勿作主标题承诺。生产库不对公网 Agent 暴露。</p>
+        </div>
+      </article>
+      <article class="mech-card caution" id="muse-invite-farm">
+        <details>
+          <summary><span class="pill caution">慎学</span> muse-invite-farm · 邀请码互刷</summary>
+          <div class="card-inner">
+            <p>长文评论区互兑 Token：高回复低信任，与 LIS/输血信任售卖相反。不进必抄，不转发互兑。</p>
+          </div>
+        </details>
+      </article>
+      <article class="mech-card caution" id="muse-gray-automation">
+        <details>
+          <summary><span class="pill caution">慎学</span> muse-gray-automation · 灰产自动化</summary>
+          <div class="card-inner">
+            <p>全自动撸号 / 白嫖家宽 / 动态白嫖额度——可拆「为何爆书签」，禁止跟做；与客户数据零关联。</p>
+          </div>
+        </details>
+      </article>
+    </div>
+    <p class="muted" style="margin-top:10px;">机制全文：<a href="MECHANISMS.md">MECHANISMS.md</a>（8+2 卡）</p>
+  </section>
+
+  <section aria-labelledby="must-h">
+    <h2 id="must-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">A. 必学导航</h2>
+    <table class="hub-table">
+      <thead>
+        <tr><th>#</th><th>书签</th><th>作者</th><th>一句话</th><th class="hide-sm">迁微李</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td class="bm">4102</td><td><a href="https://x.com/0xlangeai/status/2103300004966478284">@0xlangeai</a></td><td>保姆级 Article：跟练 + 只读提示词</td><td class="hide-sm">本周必抄母帖</td></tr>
+        <tr><td>2</td><td class="bm">318</td><td><a href="https://x.com/Lonely__MH/status/2104360690202927382">@Lonely__MH</a></td><td>假期汇总：注册 / Tailscale / 目录</td><td class="hide-sm">学「一帖导航」结构</td></tr>
+        <tr><td>3</td><td class="bm">153</td><td><a href="https://x.com/ChaoSpacecallum/status/2105548110931931646">@ChaoSpacecallum</a></td><td>「看这一帖够了」路径索引</td><td class="hide-sm">目录形态</td></tr>
+        <tr><td>4</td><td class="bm">104</td><td><a href="https://x.com/7998l201/status/2111758144812765426">@7998l201</a></td><td>中文热门 Muse 帖推荐</td><td class="hide-sm">外链母目录</td></tr>
+        <tr><td>5</td><td class="bm">142</td><td><a href="https://x.com/btcmileo/status/2108780862615777499">@btcmileo</a></td><td>Article「7 种注册法」</td><td class="hide-sm">仅入门索引；绕锁降权</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section aria-labelledby="mech-h">
+    <h2 id="mech-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">B. 机制与实战</h2>
+    <table class="hub-table">
+      <thead><tr><th>#</th><th>书签</th><th>作者</th><th>一句话</th></tr></thead>
+      <tbody>
+        <tr><td>6</td><td class="bm">577</td><td><a href="https://x.com/Lonely__MH/status/2104172674847330796">@Lonely__MH</a></td><td>原生 Tailscale：Hermes / Grok / Muse 同网</td></tr>
+        <tr><td>7</td><td class="bm">1264</td><td><a href="https://x.com/MinLiBuilds/status/2108936000508661827">@MinLiBuilds</a></td><td>本地 Qwen ↔ Muse（组网可学，无限 token 慎学）</td></tr>
+        <tr><td>8</td><td class="bm">507</td><td><a href="https://x.com/noahduck283/status/2108529022174998814">@noahduck283</a></td><td>封面流派：蓝哥贴合官方小熊 IP</td></tr>
+        <tr><td>9</td><td class="bm">20</td><td><a href="https://x.com/SUOHA_AI/status/2104418505697226768">@SUOHA_AI</a></td><td>「白送 Secure VM 云电脑」心智锚</td></tr>
+        <tr><td>10</td><td class="bm">18</td><td><a href="https://x.com/lindavivah/status/2108937209642422452">@lindavivah</a></td><td>英文拆 Secure VM + Sentinel</td></tr>
+        <tr><td>11</td><td class="bm">13</td><td><a href="https://x.com/0xlangeai/status/2111642176807731369">@0xlangeai</a></td><td>Muse 8.0 升级观察</td></tr>
+        <tr><td>12</td><td class="bm">494</td><td><a href="https://x.com/Muse/status/2113404740931670283">@Muse</a></td><td>官方日本上线</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="paper caution" aria-labelledby="down-h">
+    <span class="pill caution">慎学</span>
+    <h2 id="down-h" style="margin-top:8px;">C. 超高收藏但降权</h2>
+    <table class="hub-table">
+      <thead><tr><th>书签</th><th>作者</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td class="bm">3183</td><td>@Lonely__MH</td><td>「全自动撸 Claude 账号」——灰产养号，勿跟做</td></tr>
+        <tr><td class="bm">2248</td><td>@hodu382759</td><td>Muse+InstaBox 白嫖家宽——合规/安全风险</td></tr>
+        <tr><td class="bm">2058 / 258</td><td>@Lonely__MH 等</td><td>Token 永动机 / 动态白嫖 OpenRouter</td></tr>
+        <tr><td class="bm">83</td><td>@Lonely__MH</td><td>邀请码互助（回复两千+）——互刷</td></tr>
+      </tbody>
+    </table>
+    <h3>慎学清单</h3>
+    <ul>
+      <li>成品号、代充、Comment/DM「领注册教程」</li>
+      <li>区锁/Waitlist 绕过教程当主业</li>
+      <li>Cookie / 野中转 / 客户数据进免费模型</li>
+      <li>无任务边界、无失败分支的炫图「一键 XX」</li>
+      <li>互关喊「互兑邀请码」——与 LIS/输血信任售卖相反</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="follow-h">
+    <h2 id="follow-h" style="margin:28px 0 10px; font-size:1.1rem; letter-spacing:.1em; color:var(--ink-soft);">建议关注（学习源）</h2>
+    <p class="muted" style="font-size:.9rem; line-height:1.8;">
+      <a href="https://x.com/Muse">@Muse</a> · <a href="https://x.com/0xlangeai">@0xlangeai</a> · <a href="https://x.com/Lonely__MH">@Lonely__MH</a> · <a href="https://x.com/MinLiBuilds">@MinLiBuilds</a> · <a href="https://x.com/KinGao476942">@KinGao476942</a>（对照 Grok 闸门）
+    </p>
+  </section>
+
+  <p class="muted" style="margin-top:32px; text-align:center;">
+    <a href="../../index.html">← 案卷室首页</a>
+    · <a href="../2610top40/index.html">2610top40 晒单专题</a>
+    · <a href="../grokbot-map/index.html">Grok Bot 学习地图</a>
+  </p>
+</div>
+</body>
+</html>
