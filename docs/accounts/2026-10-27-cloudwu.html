@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@cloudwu（云风） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语开源权威</span>
+    <h1>@cloudwu（云风）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/cloudwu</td></tr>
+<tr><td>采集时间</td><td>2026-10-27 09:10 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>云风 / @cloudwu</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2009-02-19（约 17.7 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>53342 / 70 / 11268</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>verified=false（接口）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈861 / listed≈560</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>762:1</strong>（极健康）。Bio：Coder/Freelancer/Blogger/Gamer/Father/Rock climber；开源 skynet、ltask、sproto、luaecs 等。用户 id：<code>21308096</code>。近 7 日合计约 <strong>9</strong> 条；仅主帖约 <strong>4</strong>。判定：<strong>可学</strong>（学人设与叙事密度；近窗技术帖偏少）。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>华语开源权威生活号：用「开源履历压舱 + 父亲/玩家/攀岩日常长叙事」养信任；近窗爆款是家庭史与育儿观察，而非发版公告——权威在 Bio 与历史资产。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 开源作者名单（skynet 等）+ 多重生活身份。</li>
+<li><strong>时间线实际：</strong> 近窗以生活长叙事、游戏、育儿、动手修理为主；技术深度多在更早帖与开源史。</li>
+<li><strong>目标受众：</strong> 华语程序员、游戏开发者、认同「工程师也是生活者」的人。</li>
+<li><strong>差异点 / 人设钩子：</strong> 极低关注（70）+ 故事密度；电报大楼口述史一类帖单条近 10 万曝光。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 偏开源硬核，近窗偏生活——错位可接受，因历史资产已够；若只学近窗会误判为「生活号」。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>家庭口述史/长叙事</td><td>中（爆款）</td><td><a href="https://x.com/cloudwu/status/2112451724426555632">电报大楼万万岁</a></td><td>≈9.4万 / 354赞 / <strong>67书签</strong></td></tr>
+<tr><td>育儿/教育观察</td><td>中</td><td><a href="https://x.com/cloudwu/status/2102023354559676850">三角形内角和</a></td><td>≈1.0万 / 39赞 / <strong>23回复</strong></td></tr>
+<tr><td>游戏评测/Roguelike</td><td>高</td><td><a href="https://x.com/cloudwu/status/2099787270895395278">Caves of Qud 手柄</a></td><td>≈1.5万 / 11赞 / 14书签</td></tr>
+<tr><td>动手修理日记</td><td>中</td><td><a href="https://x.com/cloudwu/status/2112916120374296834">精英2 换壳</a></td><td>≈3608 / 2赞</td></tr>
+<tr><td>Indie 评选劳动</td><td>低–中</td><td><a href="https://x.com/cloudwu/status/2095032023111123215">indieplay 一周 200 款</a></td><td>≈1.1万 / 18赞 / <strong>30回复</strong></td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗主帖偏少，结合 <code>get_users_posts</code> 近帖按<strong>曝光</strong>排序：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/cloudwu/status/2112451724426555632">今天和我爸聊电报的历史…</a></td><td>93657</td><td>354</td><td>35</td><td><strong>67</strong></td><td><strong>口述史长叙事</strong>：细节密度抬曝光与书签</td></tr>
+<tr><td>2</td><td><a href="https://x.com/cloudwu/status/2102252300928712826">班上只有她看芙利莲…借漫画</a></td><td>20110</td><td>69</td><td>6</td><td>15</td><td>育儿轻松故事；亲近感</td></tr>
+<tr><td>3</td><td><a href="https://x.com/cloudwu/status/2099787270895395278">Caves of Qud 手柄交互…</a></td><td>14612</td><td>11</td><td>1</td><td>14</td><td>专业品味短评；圈内可存</td></tr>
+<tr><td>4</td><td><a href="https://x.com/cloudwu/status/2095346751171662185">1password 中文输入…</a></td><td>11511</td><td>29</td><td><strong>35</strong></td><td>2</td><td><strong>工程吐槽提问</strong>：IME 痛点抬回复</td></tr>
+<tr><td>5</td><td><a href="https://x.com/cloudwu/status/2095032023111123215">indieplay…一周计划玩 200 款</a></td><td>10831</td><td>18</td><td><strong>30</strong></td><td>2</td><td>数字目标+劳动叙事；行业身份</td></tr>
+</tbody></table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天合计约 <strong>9</strong> 条；仅主帖约 <strong>4</strong> → 极克制。</li>
+<li>产能来源：生活观察与兴趣；开源权威靠历史作品背书，不靠日更。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 762:1，关注仅 70——几乎零互关。</li>
+<li><strong>回复工时：</strong> 低。</li>
+<li><strong>钩子话术：</strong> 长叙事细节、第一人称家庭、工程微痛点、数字劳动目标。</li>
+<li><strong>平台激励：</strong> 电报史帖书签/千曝光 ≈0.7（叙事型，非工具型）；价值在信任与人设。</li>
+<li><strong>擦边/猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> 博客/开源项目（Bio 点名）。</li>
+<li><strong>其他：</strong> 「世外高人」感——少关注、故事密、履历硬。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/cloudwu/status/2112451724426555632">电报大楼口述</a></td><td><a href="https://x.com/cloudwu/status/2109515271857996121">怀集新岩场</a></td></tr>
+<tr><td>结构特征</td><td>多句细节、可转述名场面</td><td>单句打卡</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>历史感、集体记忆</td><td>弱信息增量</td></tr>
+<tr><td>差异结论</td><td><strong>可转述的故事密度</strong>抬曝光；纯打卡常 <3千</td><td></td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>口述史/客户现场故事</strong> → LIS：发「早年检验科纸质交接」对比今天系统，细节要密。</li>
+<li><strong>履历压舱、日常做人</strong> → 微李玩AI：Bio 点名产品/开源，时间线可轻松，但别空洞。</li>
+<li><strong>工程微痛点抬回复</strong> → 小程序：「输入框不禁用 IME 害我输错密码三次」类。</li>
+<li><strong>数字劳动目标</strong> → AI入企：「本周评 20 个医院流程痛点」透明劳动。</li>
+<li><strong>极低关注保养粉关比</strong> → 不互关刷；权威靠作品。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>近窗技术输出少——若账号尚无开源履历，只学生活叙事会空。</li>
+<li>过度私人日常对 B 端转化有限，需夹业务故事。</li>
+<li>不学：互关；不学「只发生活从不交付」。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条<strong>高细节客户/行业口述</strong>（对标电报大楼密度），落一句 LIS/输血启示。</li>
+<li>Bio 明确开源/产品名单，对标 cloudwu 的项目罗列。</li>
+<li>保持低关注保养粉关比；增长靠故事与作品，不靠互关。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>查询：<code>from:cloudwu -is:reply -is:retweet</code> + <code>get_users_posts</code>；counts ≈9 / 主帖 ≈4。</li>
+<li>用户 id：<code>21308096</code>。</li>
+<li>近窗主帖少，Top5 含稍早帖；数字均来自 2026-10-27 当次抓取。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
