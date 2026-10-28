@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@GitHub_Daily（GitHubDaily） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-a.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语开源策展</span>
+    <h1>@GitHub_Daily（GitHubDaily）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/GitHub_Daily</td></tr>
+<tr><td>采集时间</td><td>2026-10-28 09:11 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>GitHubDaily / @GitHub_Daily</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2023-05-22（约 3.4 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>90351 / 208 / 3192</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>verified=false（接口）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈3135 / listed≈951</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>434:1</strong>（健康）。Bio：挖掘开源价值；分享高质量教程/AI 工具；公众号 GitHubDaily。用户 id：<code>1660598418409127937</code>。近 7 日合计约 <strong>49</strong> 条；仅主帖约 <strong>49</strong>（几乎全是主帖策展）。判定：<strong>可学</strong>。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>华语开源/AI 工具策展号：用「痛点场景开头 + 项目一句话能力 + GitHub 链」把书签率打到顶尖段，资产是选品品味与公众号漏斗，不是互关。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 挖开源价值、分享优质教程与 AI 工具；公众号同名。</li>
+<li><strong>时间线实际：</strong> 高度一致——日更多条开源安利；结构几乎模板化但场景切入极准。</li>
+<li><strong>目标受众：</strong> 华语开发者、AI 工具党、学生党、效率工具用户。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>书签机器</strong>——Top 帖书签/千曝光普遍 <strong>19–23%</strong>（中位约 0.193% 的百倍级）；四行以上痛点叙事。</li>
+<li><strong>与 Bio 的错位：</strong> 无；X 是公众号选品橱窗。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>AI 创作/短剧 Skill 清单</td><td>中</td><td><a href="https://x.com/GitHub_Daily/status/2113842948945412240">Awesome Short Drama Skills</a></td><td>≈3.5万 / <strong>664书签</strong></td></tr>
+<tr><td>本地/隐私效率工具</td><td>高</td><td><a href="https://x.com/GitHub_Daily/status/2113601349330055221">AudioScript 声稿</a></td><td>≈2.3万 / <strong>489书签</strong></td></tr>
+<tr><td>阅读/知识折叠</td><td>中</td><td><a href="https://x.com/GitHub_Daily/status/2113993969269190674">TextFold</a></td><td>≈1.9万 / <strong>444书签</strong></td></tr>
+<tr><td>教育知识图谱</td><td>中</td><td><a href="https://x.com/GitHub_Daily/status/2114205386605826522">数学知识点图谱</a></td><td>≈1.9万 / 355书签</td></tr>
+<tr><td>Agent 工程课/框架</td><td>中</td><td><a href="https://x.com/GitHub_Daily/status/2113571157094154522">密歇根应用 Agent SE</a></td><td>≈1.4万 / 282书签</td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采窗口主帖（<code>from:GitHub_Daily -is:reply -is:retweet</code>，relevancy），按<strong>曝光</strong>排序：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/GitHub_Daily/status/2113842948945412240">Awesome Short Drama Skills 83+16</a></td><td>34776</td><td>513</td><td>29</td><td><strong>664</strong></td><td><strong>清单策展</strong>：书签/千曝光≈19.1；人工核对背书</td></tr>
+<tr><td>2</td><td><a href="https://x.com/GitHub_Daily/status/2113601349330055221">AudioScript 本机双语字幕</a></td><td>22741</td><td>285</td><td>11</td><td><strong>489</strong></td><td>痛点开头+隐私卖点；≈21.5 书签/千曝</td></tr>
+<tr><td>3</td><td><a href="https://x.com/GitHub_Daily/status/2113993969269190674">TextFold 5 档折叠阅读</a></td><td>18912</td><td>358</td><td>20</td><td><strong>444</strong></td><td>「怕 AI 省略推导」痛点；≈23.5 书签/千曝</td></tr>
+<tr><td>4</td><td><a href="https://x.com/GitHub_Daily/status/2114205386605826522">小学到高中数学知识图谱</a></td><td>18520</td><td>301</td><td>7</td><td>355</td><td>家长场景叙事；≈19.2</td></tr>
+<tr><td>5</td><td><a href="https://x.com/GitHub_Daily/status/2113571157094154522">UMich 应用 Agent 软件工程课开源</a></td><td>13536</td><td>188</td><td>15</td><td>282</td><td>权威机构+课件全开源；≈20.8</td></tr>
+</tbody></table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天合计约 <strong>49</strong> 条；仅主帖约 <strong>49</strong> → 几乎不靠回复串门。</li>
+<li>日更约 6–10 条，排班感强（0/4/7/10/12/14 点档可见）。</li>
+<li>产能来源：选品编辑部 + 公众号同步；模板稳定。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 434:1，健康；关注仅 208。</li>
+<li><strong>回复工时：</strong> 极低；增长不靠串门。</li>
+<li><strong>钩子话术：</strong> 场景痛点 2–4 句 → 项目能力 → 关键细节/Star → 链接。</li>
+<li><strong>平台激励：</strong> 书签率顶尖；证明「四行以上有用文」公式。</li>
+<li><strong>擦边/猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> 公众号 GitHubDaily 明确写在 Bio。</li>
+<li><strong>其他：</strong> 「人工核对」清单背书降低策展信任成本。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/GitHub_Daily/status/2113993969269190674">TextFold</a></td><td><a href="https://x.com/GitHub_Daily/status/2114258176648626317">Auto-Editor 静音裁切</a></td></tr>
+<tr><td>结构特征</td><td>强痛点+分层能力描述</td><td>痛点弱/受众窄</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>「怕省掉推导」共鸣</td><td>曝光仅≈3k / 书签21</td></tr>
+<tr><td>差异结论</td><td><strong>痛点越具体书签越高</strong>；工具本身酷不够，要说清「谁的什么痛」</td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>痛点→能力→链接模板</strong> → 微李玩AI：每条工具安利先写「检验科谁、卡在哪一步」。</li>
+<li><strong>人工核对清单</strong> → AI入企：发「医院可用的 10 个开源/商业 AI 工具清单（我们测过）」。</li>
+<li><strong>隐私/本机卖点</strong> → 输血信息化：强调本地部署、数据不出域（对标 AudioScript 叙事）。</li>
+<li><strong>分层阅读/折叠</strong> → LIS 报告科普：同一结果「患者一句话 / 医生三段 / 全文」三档。</li>
+<li><strong>稳定日更档期</strong> → 小程序：固定时段发「本周可用模板」，培养打开习惯。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>纯策展无一手产品——我们有 LIS 资产，应「策展+自己的狗粮」混合。</li>
+<li>模板过度会审美疲劳；场景句要常换。</li>
+<li>不学：只堆 Star 数不说清使用边界。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周用其模板发 1 条：<strong>「检验报告太长怕 AI 省条件 → 我们的三档折叠」</strong>。</li>
+<li>做 1 份 <strong>「医疗 AI 开源慎用清单」</strong>（人工核对 8–12 项），目标书签。</li>
+<li>Bio/站点继续点名公众号/产品双漏斗。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>查询：<code>from:GitHub_Daily -is:reply -is:retweet</code> relevancy；counts ≈49 / 主帖 ≈49。</li>
+<li>用户 id：<code>1660598418409127937</code>。</li>
+<li>数字均来自 2026-10-28 当次抓取，禁止外推编造。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

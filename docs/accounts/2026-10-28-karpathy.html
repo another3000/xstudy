@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@karpathy（Andrej Karpathy） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-a.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 海外 AI eng</span>
+    <h1>@karpathy（Andrej Karpathy）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/karpathy</td></tr>
+<tr><td>采集时间</td><td>2026-10-28 09:11 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>Andrej Karpathy / @karpathy</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2009-04-21（约 17.5 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>4400789 / 1143 / 10163</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>verified=false（接口）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈869 / listed≈31458</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>3850:1</strong>（极健康）。Bio 为空；location=Earth。用户 id：<code>33836629</code>。近 7 日合计约 <strong>2</strong> 条；仅主帖约 <strong>0</strong>（低频权威型）。判定：<strong>可学</strong>。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>全球顶级 AI eng 权威号：用「稀缺长文经验法则 + 可复现小实验/受控语言」立绝对信任，资产是一手认知密度与教育履历，不是发帖量。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 空 Bio——履历本身就是人设（ex-Tesla AI / OpenAI / 现 Anthropic 公开轨迹）。</li>
+<li><strong>时间线实际：</strong> 极低频；每条多为「工作方法长文」「能力鸿沟漏斗」「酷 eval 可视化」「入职/教育」类一手判断。</li>
+<li><strong>目标受众：</strong> 全球 AI 工程师、研究者、想理解 frontier 的产品人。</li>
+<li><strong>差异点 / 人设钩子：</strong> 「少而极硬」——ASD-STE100 tips 帖书签/千曝光 ≈<strong>10.3</strong>（顶尖）；一张图/一个实验即教材。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 空≠内容空；权威靠产出密度而非自我介绍。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>LLM 输出理解 / 写作技巧</td><td>高</td><td><a href="https://x.com/karpathy/status/2105819303471976479">ASD-STE100 tips</a></td><td>≈800.5万曝光 / <strong>82106书签</strong></td></tr>
+<tr><td>能力鸿沟 / 认知分层</td><td>中</td><td><a href="https://x.com/karpathy/status/2109361546505966046">sharp funnel</a></td><td>≈678.8万 / <strong>30018书签</strong></td></tr>
+<tr><td>酷 eval / 压缩证明</td><td>中</td><td><a href="https://x.com/karpathy/status/2105909609487872075">Land or Water?</a></td><td>≈150.4万 / 4885书签</td></tr>
+<tr><td>长对话/语音 ramble 工作法</td><td>中</td><td><a href="https://x.com/karpathy/status/2079610838143623371">voice ramble</a></td><td>≈443.9万 / 15175书签</td></tr>
+<tr><td>入职/机构信号</td><td>低</td><td><a href="https://x.com/karpathy/status/2056753169888334312">joined Anthropic</a></td><td>≈2808万 / 148904赞</td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采以 <code>get_users_posts</code> + <code>search_posts_all</code> 主帖为准（近 7 日原创主帖≈0，故取近期最高曝光原创）：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/karpathy/status/2105819303471976479">Understand LLM outputs · ASD-STE100</a></td><td>8005151</td><td>56077</td><td>1678</td><td><strong>82106</strong></td><td><strong>书签之王</strong>：tips&amp;tricks 长文+可控语言规格；书签/千曝光≈10.3</td></tr>
+<tr><td>2</td><td><a href="https://x.com/karpathy/status/2109361546505966046">capability gap → sharp funnel</a></td><td>6788484</td><td>43789</td><td>2195</td><td><strong>30018</strong></td><td>重发旧洞见+升级框架（漏斗）；权威复用可学</td></tr>
+<tr><td>3</td><td><a href="https://x.com/karpathy/status/2083749667410727319">LOTR ¶ + 1M token pelican 泛化</a></td><td>6244190</td><td>29732</td><td>1803</td><td>12126</td><td>可演示 eval：预算数字+任务描述=教材</td></tr>
+<tr><td>4</td><td><a href="https://x.com/karpathy/status/2079610838143623371">voice ramble session</a></td><td>4438654</td><td>50268</td><td>2524</td><td>15175</td><td>工作流可迁移：懒得打字就语音倾倒上下文</td></tr>
+<tr><td>5</td><td><a href="https://x.com/karpathy/status/2105909609487872075">Land or Water? 16200 coords</a></td><td>1503625</td><td>19229</td><td>710</td><td>4885</td><td><strong>证据可视化</strong>：压缩互联网→地理先验；一张图胜过口号</td></tr>
+</tbody></table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天合计约 <strong>2</strong> 条；仅主帖约 <strong>0</strong> → 几乎不日更，靠历史长尾与偶发重磅。</li>
+<li>「高频」与他无关；信任来自每条可引用、可存档。</li>
+<li>产能来源：一线 R&amp;D + 教育/写作癖，不是运营排期。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 3850:1，教科书级；关注约 1.1k，无互关刷粉迹象。</li>
+<li><strong>回复工时：</strong> 低主帖；偶有线程补充，不靠串门涨粉。</li>
+<li><strong>钩子话术：</strong> 首段立判断 + 数字/规格名（ASD-STE100、16200、1M token）+ 可展开长文。</li>
+<li><strong>平台激励：</strong> 书签型压倒虚荣赞——tips 帖书签甚至高于赞。</li>
+<li><strong>擦边/猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> 教育内容/课程/gist 生态；账号本身即漏斗顶端。</li>
+<li><strong>其他：</strong> 「重贴升级旧洞见」把长尾资产再次分发（funnel 帖）。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖/弱增量</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/karpathy/status/2105819303471976479">ASD-STE100 tips</a></td><td>近窗几乎无「平帖」——因为发得太少</td></tr>
+<tr><td>结构特征</td><td>多段 tips、可执行规格名</td><td>—</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>冷静权威 + 硬数字</td><td>—</td></tr>
+<tr><td>差异结论</td><td><strong>可存工作法</strong>抬书签；他证明了「低频×高密度」可吃满算法长尾</td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>tips&amp;tricks 长文书签</strong> → 微李玩AI：发「医院场景让 LLM 输出 ASD 风格报告」三招（字段表、禁止词、人审闸）。</li>
+<li><strong>可演示小 eval</strong> → AI入企：用固定坐标/固定病例问模型，截图对比前后版本，做成「能力墙」海报。</li>
+<li><strong>能力漏斗叙事</strong> → LIS 科普：画「从未用过 / 试用过免费版 / 日用 agent」三层客户，对标 funnel 帖。</li>
+<li><strong>语音 ramble 倾倒上下文</strong> → 定制开发：售前把需求口述进语音，再让模型整理成规格书（人审）。</li>
+<li><strong>重发升级旧洞见</strong> → 置顶机制卡每季「尘土再掸」一次，附新证据。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>他的粉量与履历不可复制——学结构别学「我也低频装神秘」。</li>
+<li>空 Bio 对小品牌危险；我们仍要点名产品。</li>
+<li>不学：只转发名人金句不产出一手实验。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>「LIS 报告写作可控语言」</strong> tips（对标 ASD-STE100），目标书签而非虚荣赞。</li>
+<li>做 1 个 <strong>固定评测集</strong>（10 条输血/检验问句）截图发帖，证明模型进步或失败。</li>
+<li>把山中学堂机制卡做成「idea file」：只共享想法+验收标准，少贴废代码。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>查询：<code>from:karpathy -is:reply -is:retweet</code>；<code>get_users_posts</code> id=33836629；counts <code>from:karpathy</code>≈2 / 主帖≈0。</li>
+<li>用户 id：<code>33836629</code>。</li>
+<li>数字均来自 2026-10-28 当次抓取，禁止外推编造。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
