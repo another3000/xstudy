@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@dotey（宝玉） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语AI</span>
+    <h1>@dotey（宝玉）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/dotey</td></tr>
+<tr><td>采集时间</td><td>2026-10-29 09:06 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>宝玉 / @dotey</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2007-04-02（约 19.6 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>262610 / 1766 / 35005</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>verified=false（接口）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈6060 / listed≈4752</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>149:1</strong>（健康）。Bio：AI Engineer，学习并传播 AI / 软件工程 / 工程管理。用户 id：<code>3178231</code>。近 7 日合计约 <strong>167</strong> 条；仅主帖约 <strong>69</strong>（高频翻译官型）。判定：<strong>可学</strong>。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>华语 AI「翻译官+评论员」：把英文圈一手长文/政策/招法压成中文可存摘要，书签来自「能跟做的信息差」，不是互关。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> AI Engineer；学习并传播 AI、软件工程、工程管理——公共编辑人设。</li>
+<li><strong>时间线实际：</strong> 高频引用+结构化中文摘要；主题覆盖模型发布、面试变革、Agent 管理、API 额度、工具技巧。</li>
+<li><strong>目标受众：</strong> 华语工程师、AI 从业者、需要快速消化英文一手源的管理者。</li>
+<li><strong>差异点 / 人设钩子：</strong> 「标题句 + 出处锚 + 可执行细节」——Felix 面试帖书签 <strong>685</strong> / 曝光 92973 → 书签/千曝光 ≈<strong>7.4</strong>。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 短，内容却像每日情报台；承诺「传播」被时间线超额兑现。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>招聘/面试变革翻译</td><td>高</td><td><a href="https://x.com/dotey/status/2115218749888634988">Felix：面试不再考编程题</a></td><td>≈9.3万曝光 / <strong>685书签</strong></td></tr>
+<tr><td>Agent/平台工程洞见</td><td>高</td><td><a href="https://x.com/dotey/status/2115229306490126432">Katelyn：上千 agent 四难题</a></td><td>≈5.6万 / <strong>550书签</strong></td></tr>
+<tr><td>模型能力现场判断</td><td>中</td><td><a href="https://x.com/dotey/status/2115282464935473225">Opus 剪辑替代初级剪辑</a></td><td>≈4.0万 / <strong>408书签</strong></td></tr>
+<tr><td>工具/规范 tips</td><td>中</td><td><a href="https://x.com/dotey/status/2115505947187585302">/autocompact 300k</a></td><td>≈1.9万 / <strong>197书签</strong></td></tr>
+<tr><td>福利/额度信息差</td><td>中</td><td><a href="https://x.com/dotey/status/2115591064073413118">ChatGPT Pro 送 API 额度</a></td><td>≈3.1万 / <strong>196书签</strong></td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采以 <code>get_users_posts</code> 近窗主帖为准（近 7 日主帖充足），按曝光排序：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/dotey/status/2115218749888634988">Anthropic EM：面试不再考编程题</a></td><td>92973</td><td>639</td><td>126</td><td><strong>685</strong></td><td><strong>权威源+反常识标题</strong>；书签>>虚荣结构</td></tr>
+<tr><td>2</td><td><a href="https://x.com/dotey/status/2115229306490126432">平台工程负责人：上千 agent 四难题</a></td><td>55809</td><td>402</td><td>87</td><td><strong>550</strong></td><td>长文摘要+职业焦虑对冲；可存编号问题</td></tr>
+<tr><td>3</td><td><a href="https://x.com/dotey/status/2115162837844889943">IC→Agent 管理者：多 loop 成趋势</a></td><td>44318</td><td>195</td><td>55</td><td>183</td><td>框架迁移：管人指标→管 Agent 指标</td></tr>
+<tr><td>4</td><td><a href="https://x.com/dotey/status/2115282464935473225">Opus 5.5：Agent 剪辑≈初级剪辑师</a></td><td>40366</td><td>407</td><td>133</td><td><strong>408</strong></td><td>类比钩（对标 Claude Code 发布时）；现场判断</td></tr>
+<tr><td>5</td><td><a href="https://x.com/dotey/status/2115591064073413118">ChatGPT Pro/Business 月送最高 $500 API</a></td><td>31259</td><td>169</td><td>61</td><td>196</td><td><strong>数字福利信息差</strong>；跟帖给领取步骤（漏斗）</td></tr>
+</tbody></table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天合计约 <strong>167</strong> 条；仅主帖约 <strong>69</strong> → 日均主帖约 10，高频策展。</li>
+<li>「翻译+评论」流水线稳定；引用原帖再压中文摘要是产能核心。</li>
+<li>产能来源：英文圈一手源扫描 + 工程管理视角点评，不是空转热点。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 约 149:1，健康；关注 1766，无刷粉盘。</li>
+<li><strong>回复工时：</strong> 主帖下常跟领取步骤/补充链接；对话密度高但不靠互关串门。</li>
+<li><strong>钩子话术：</strong> 中文标题句立判断 + 人名/机构锚 + 数字（$500、300k、85%毛利）。</li>
+<li><strong>平台激励：</strong> 书签型摘要压倒虚荣赞——Top 帖书签常接近或高于赞。</li>
+<li><strong>擦边/猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> 长文/博客源外链；X 是华语分发层。</li>
+<li><strong>其他：</strong> 同一主题可拆「洞见帖 + 操作帖」（如 API 额度主帖 + 领取方法跟帖）。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖/弱增量</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/dotey/status/2115218749888634988">Felix 面试变革</a></td><td>纯情绪短评/无信息差引用（如「嫌人丑」梗，曝光高但书签低）</td></tr>
+<tr><td>结构特征</td><td>标题判断+出处+可存要点</td><td>一句态度无步骤</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>职业焦虑+硬数字</td><td>玩笑</td></tr>
+<tr><td>差异结论</td><td><strong>可存信息差</strong>抬书签；纯梗抬曝光不抬收藏</td><td></td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>权威源中文摘要</strong> → 微李玩AI：每周 1 条「英文一手→医院场景意味什么」三句翻译。</li>
+<li><strong>Agent 管理者指标</strong> → AI入企：把「培养人」改成「沉淀 AGENTS.md / Skill / 验收集」。</li>
+<li><strong>福利信息差+步骤跟帖</strong> → 小程序：发额度/活动主帖，评论区贴领取清单（漏斗）。</li>
+<li><strong>编号四难题</strong> → LIS：写「上线多 Agent 前必须答的 4 问」（权限/审计/回滚/人审）。</li>
+<li><strong>类比钩</strong> → 输血信息化：用「Claude Code 刚发布时」类比新品窗口，催客户试点。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>高频翻译依赖信息源网络——别只搬标题不加点评。</li>
+<li>不学：纯梗刷曝光、无业务迁移。</li>
+<li>注意版权与出处：摘要须锚原作者/原帖。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>「医院 Agent 管理者四问」</strong>（对标 Katelyn/IC 晋升框架）。</li>
+<li>做 1 次 <strong>英文一手→LIS 意味</strong> 翻译帖，书签目标优先。</li>
+<li>福利/活动类帖必须跟 <strong>领取/操作步骤</strong> 评论，形成漏斗。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>查询：<code>from:dotey -is:reply -is:retweet</code>；<code>get_users_posts</code> id=3178231；counts <code>from:dotey</code>≈167 / 主帖≈69。</li>
+<li>用户 id：<code>3178231</code>。</li>
+<li>数字均来自 2026-10-29 当次抓取，禁止外推编造。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
