@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@DrJimFan（Jim Fan） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block; width: 100%; height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px; object-fit: cover; object-position: center;
+      border-radius: 4px; border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-a.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 海外 AI eng / 机器人</span>
+    <h1>@DrJimFan（Jim Fan）</h1>
+<h2>0. 元信息</h2>
+<table><thead><tr><th>字段</th><th>内容</th></tr></thead><tbody>
+<tr><td>平台</td><td>X</td></tr>
+<tr><td>链接</td><td>https://x.com/DrJimFan</td></tr>
+<tr><td>采集时间</td><td>2026-10-30 09:05 Asia/Shanghai</td></tr>
+<tr><td>显示名 / handle</td><td>Jim Fan / @DrJimFan</td></tr>
+<tr><td>开号时间 / 账号年龄</td><td>2012-12-12（约 13.9 年）</td></tr>
+<tr><td>粉丝 / 关注 / 帖量</td><td>602234 / 3148 / 4256</td></tr>
+<tr><td>蓝标 / 认证类型</td><td>接口未标 verified；履历型权威（NVIDIA / GEAR）</td></tr>
+<tr><td>媒体数 / listed</td><td>media≈859 / listed≈6946</td></tr>
+<tr><td>备注</td><td>粉关比约 <strong>191:1</strong>（健康）。Bio：NVIDIA Director of Robotics &amp; Distinguished Scientist；Co-Lead GEAR；Stanford Ph.D.；OpenAI 首位实习生。用户 id：<code>1007413134</code>。近 7 日合计约 <strong>0</strong> 条（<code>counts_7d_all</code>）。判定：<strong>可学</strong> · 海外 AI eng / 机器人。</td></tr>
+</tbody></table>
+<h2>1. 一句话定性</h2>
+<p>Physical AGI / 机器人一线科学家号：用「实验室项目名 + 可演示数字 + 隐喻」把硬核研究压成可存帖；资产是 GEAR 成果与开源成本叙事，不是发帖量。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 解决 Physical AGI，「one motor at a time」——履历即产品（NVIDIA / GEAR / Stanford / OpenAI 首实习）。</li>
+<li><strong>时间线实际：</strong> 近窗静音；长尾是 ENPIRE / ASPIRE / Flora 等项目首发与肌肉记忆、触觉模态等一手判断帖。</li>
+<li><strong>目标受众：</strong> 机器人/具身智能研究者、AI eng、想跟一线实验室节奏的产品人。</li>
+<li><strong>差异点 / 人设钩子：</strong> 「一手实验数字」——8000 timesteps / 5 min muscle memory；Flora「Astra-level at <strong>125x</strong> lower cost」；触觉用「烤箱手套」隐喻——权威不靠鸡汤。</li>
+<li><strong>与 Bio 的错位：</strong> 近 7 日≈0 帖≠人设崩；权威靠项目长尾与 listed（6946）权重，X 是发布台而非日更机。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table><thead><tr><th>母题</th><th>约占比</th><th>代表帖</th><th>互动摘要</th></tr></thead><tbody>
+<tr><td>实验室项目首发</td><td>高</td><td><a href="https://x.com/DrJimFan/status/2066921736369766762">ENPIRE AutoResearch</a></td><td>≈68.5万曝 / <strong>1977书签</strong></td></tr>
+<tr><td>可演示时间尺度</td><td>中</td><td><a href="https://x.com/DrJimFan/status/2077414142340988962">8000 timesteps muscle memory</a></td><td>≈33.8万 / 770书签</td></tr>
+<tr><td>Skills 自进化库</td><td>中</td><td><a href="https://x.com/DrJimFan/status/2072004190856212902">ASPIRE skills library</a></td><td>≈21.7万 / <strong>1160书签</strong></td></tr>
+<tr><td>成本/开源叙事</td><td>中</td><td><a href="https://x.com/DrJimFan/status/2112597587987689912">Flora 125x lower cost</a></td><td>≈12.5万 / <strong>998书签</strong>（书签/千曝≈8.0）</td></tr>
+<tr><td>模态/隐喻判断</td><td>低</td><td><a href="https://x.com/DrJimFan/status/2090832821036470626">Touch / oven mitts</a></td><td>≈18.6万 / 344书签</td></tr>
+</tbody></table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采按曝光排序（近 7 日原创≈0，取时间线最高曝光原创）：</p>
+<table><thead><tr><th>#</th><th>帖子</th><th>曝光</th><th>赞</th><th>回复</th><th>书签</th><th>可学钩子 / 慎学</th></tr></thead><tbody>
+<tr><td>1</td><td><a href="https://x.com/DrJimFan/status/2066921736369766762">ENPIRE: AutoResearch + robot fleet</a></td><td>684679</td><td>3719</td><td>190</td><td><strong>1977</strong></td><td><strong>项目名钩</strong>：专有名词+「8 Codex agents」数字；书签型权威首发</td></tr>
+<tr><td>2</td><td><a href="https://x.com/DrJimFan/status/2077414142340988962">8000 timesteps / 5 min muscle memory</a></td><td>338281</td><td>1298</td><td>71</td><td>770</td><td><strong>尺度数字</strong>：把抽象记忆压成可感知分钟数</td></tr>
+<tr><td>3</td><td><a href="https://x.com/DrJimFan/status/2072004190856212902">ASPIRE: skills library that self-evolves</a></td><td>217446</td><td>1648</td><td>80</td><td><strong>1160</strong></td><td>自进化库叙事；书签/千曝≈5.3，可存架构</td></tr>
+<tr><td>4</td><td><a href="https://x.com/DrJimFan/status/2090832821036470626">Touch under-explored; oven mitts</a></td><td>185829</td><td>944</td><td>111</td><td>344</td><td><strong>隐喻钩</strong>：触觉=戴烤箱手套；抬回复不靠互关</td></tr>
+<tr><td>5</td><td><a href="https://x.com/DrJimFan/status/2112597587987689912">Flora: Astra-level at 125x lower cost</a></td><td>125462</td><td>1691</td><td>186</td><td><strong>998</strong></td><td><strong>成本倍数钩</strong>：书签密度最高（≈8.0/千曝）；开源数据引擎</td></tr>
+</tbody></table>
+<p>平帖对照：<a href="https://x.com/DrJimFan/status/2112597590571450505">Yunze deep dive footer</a> 曝光 8754 / 赞 23 / 书签 3——纯跟帖导流，无自有数字。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天合计约 <strong>0</strong> 条 → 近窗静音，靠历史项目帖长尾。</li>
+<li>历史节奏：重大项目/判断偶发重磅，不日更；信任来自可引用实验与成本叙事。</li>
+<li>产能来源：GEAR 实验室发布、开源模型/数据引擎——不是运营排期。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 约 191:1，健康；关注 3148 相对粉丝仍可控，无互关刷粉迹象。</li>
+<li><strong>回复工时：</strong> 低主帖；隐喻/成本帖吸回复（Flora 回复 186、Touch 111）。</li>
+<li><strong>钩子话术：</strong> 项目专名 / 时间尺度数字 / 「Nx lower cost」 / 生活隐喻。</li>
+<li><strong>平台激励：</strong> 项目首发与成本帖书签率高于虚荣赞（Flora 书签 998 vs 赞 1691 仍高密度）。</li>
+<li><strong>擦边/猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> Bio 与实验室品牌；偶发技术深潜跟帖（Yunze）作附录。</li>
+<li><strong>其他：</strong> listed≈6946 极高——被清单收录权重本身是权威资产。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table><thead><tr><th></th><th>爆款</th><th>平帖</th></tr></thead><tbody>
+<tr><td>链接</td><td><a href="https://x.com/DrJimFan/status/2066921736369766762">ENPIRE</a></td><td><a href="https://x.com/DrJimFan/status/2112597590571450505">Yunze footer</a></td></tr>
+<tr><td>结构特征</td><td>项目名+数字+可演示主张</td><td>「去看某人深潜」无自有钩</td></tr>
+<tr><td>情绪 / 数字 / 图</td><td>舰队/agents 数字张力</td><td>礼貌导流</td></tr>
+<tr><td>差异结论</td><td><strong>一手实验主张</strong>吃书签与曝光；纯跟帖难破圈</td><td></td></tr>
+</tbody></table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>项目名+数字首发</strong> → 微李玩AI：院内试点起专名（如「报告折叠 2.0」）+ 一条可验收指标。</li>
+<li><strong>成本倍数钩</strong> → AI入企：对标「同等效果 / Nx 更低成本」讲私有化 vs 公有云，勿空喊安全。</li>
+<li><strong>时间尺度压感</strong> → LIS 科普：把批处理/推理延迟压成「护士等几分钟」可感知句。</li>
+<li><strong>生活隐喻</strong> → 输血信息化：用「戴手套摸热锅」类比缺触觉/缺审计的 Agent。</li>
+<li><strong>开源数据引擎叙事</strong> → 小程序/定制：公开「我们用什么数据训报告模型、成本怎么砍」。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>NVIDIA / GEAR 履历不可复制——学数字与隐喻结构，别学「半年不发装权威」。</li>
+<li>近窗 0 帖对小品牌危险；我们仍要稳定出可存 tips。</li>
+<li>不学：无验收标准的「Physical AGI」空口号；只导流他人深潜无自有判断。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>「院内 Agent 成本对比」</strong>（对标 Flora 125x）：同任务云端 vs 本地，一张表。</li>
+<li>给正在推的 LIS/输血能力起 <strong>可引用专名</strong> + 一条公开数字（时延/差错率/人工复核占比）。</li>
+<li>写 1 条 <strong>隐喻判断帖</strong>（缺审计=戴烤箱手套），目标书签而非虚荣赞。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>RAW_METRICS.json</code> 2026-10-30 09:05 Asia/Shanghai；用户 id：<code>1007413134</code>。</li>
+<li><code>counts_7d_all</code>≈0；Top5 取 <code>top_posts_by_impressions</code>；平帖取 <code>flat_post</code>。</li>
+<li>数字均来自当次抓取，禁止外推编造。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
