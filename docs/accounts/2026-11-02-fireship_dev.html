@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@fireship_dev（Fireship） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 工程短视频</span>
+    <h1>@fireship_dev（Fireship）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/fireship_dev</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-02 09:13 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Fireship / @fireship_dev</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2017-04-07（约 9.6 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>207731 / 920 / 2593</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>接口未标 verified；权威来自 YouTube 工程短视频品牌（@JeffDelaney23）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈609；listed≈966</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>225.8:1</strong>（极健康）。Bio：Build and ship… with @JeffDelaney23。近 7 日 <code>from:fireship_dev</code> 计数 <strong>0</strong>。<code>search_posts_all</code> 全档检索返回 0；主帖来自 <code>get_users_posts</code> 时间线（历史主帖，最新原创主帖约 2026-01 合并公告）。用户 id：<code>850333483339730945</code>。判定：<strong>可学</strong> · 海外工程教学短视频权威（X 近静音，学机制不学日更频率）。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>YouTube-first 工程娱乐账号：X 上用「一句梗 + 引用热帖/迷因图」维持存在感；真正权威与产能在短视频课程，X 是副场与身份广播。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 帮你更快 build &amp; ship——指向课程站。</li>
+<li><strong>时间线实际：</strong> 长期低频；高曝光多为引用热梗、迷因图、行业争论站队、偶发长公告（与 uidotdev 合并）。</li>
+<li><strong>目标受众：</strong> 学前端/全栈的年轻开发者；吃梗、吃节奏剪辑的观众。</li>
+<li><strong>差异点：</strong> 100 Seconds / Code Report 式信息密度；X 文案极短，视频里才交付。</li>
+<li><strong>与 Bio 的错位：</strong> X 近 7 日零发帖——承诺在站外兑现，站内几乎不运营。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比（历史主帖）</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>热梗引用 / 一句回应</td>
+<td>高</td>
+<td><a href="https://x.com/fireship_dev/status/1894448748014833688">uploading...</a></td>
+<td>≈20.0万曝 / 2852赞</td>
+</tr>
+<tr>
+<td>行业争论站队</td>
+<td>中</td>
+<td><a href="https://x.com/fireship_dev/status/1845970508640125010">8% cut 玩笑</a></td>
+<td>≈18.4万 / 2450赞</td>
+</tr>
+<tr>
+<td>迷因图</td>
+<td>中</td>
+<td><a href="https://x.com/fireship_dev/status/1844843829888725023">The Primeajak</a></td>
+<td>≈16.8万 / <strong>4342赞</strong></td>
+</tr>
+<tr>
+<td>长公告 / 公司叙事</td>
+<td>低但重</td>
+<td><a href="https://x.com/fireship_dev/status/2011513209321320671">合并 uidotdev</a></td>
+<td>≈11.2万 / 1747赞 / 240回复</td>
+</tr>
+<tr>
+<td>类比教学梗</td>
+<td>中</td>
+<td><a href="https://x.com/fireship_dev/status/1857484360351371643">legacy code to kids</a></td>
+<td>≈8.5万 / 1115赞</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>说明：全档 <code>search_posts_all from:fireship_dev</code> 当次返回 0；下列取自 <code>get_users_posts</code> 排除转博后的主帖，按 <strong>impression_count</strong> 排序（含 2024–2026 历史高曝光）。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/fireship_dev/status/1894448748014833688">uploading...（引用热评）</a></td>
+<td>199871</td>
+<td>2852</td>
+<td>60</td>
+<td>104</td>
+<td><strong>极短钩搭热帖</strong>：靠被引用对象流量；书签/赞≈0.04——虚荣赞型，学节奏勿学当主资产</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/fireship_dev/status/1845970508640125010">I'm with photomatt… 8% cut</a></td>
+<td>184402</td>
+<td>2450</td>
+<td>122</td>
+<td>92</td>
+<td><strong>站队+自嘲夸张</strong>吃争论流量；书签低</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/fireship_dev/status/1844843829888725023">The Primeajak 迷因图</a></td>
+<td>167529</td>
+<td>4342</td>
+<td>47</td>
+<td>155</td>
+<td><strong>一图迷因</strong>；赞爆书签一般——娱乐分发</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/fireship_dev/status/2011513209321320671">Fireship merging with uidotdev</a></td>
+<td>112270</td>
+<td>1747</td>
+<td>240</td>
+<td>161</td>
+<td><strong>长叙事公告</strong>：钱/时间/团队/不是 AI 替代我——信任与品牌故事；回复最高</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/fireship_dev/status/1857484360351371643">exactly how I explain legacy code to kids</a></td>
+<td>84953</td>
+<td>1115</td>
+<td>37</td>
+<td>104</td>
+<td><strong>类比钩</strong>（引用爆款视频）；教学人格一句话</td>
+</tr>
+</tbody>
+</table>
+<p>平帖对照：近期几乎无原创主帖；时间线上大量为回复。近 7 日计数 0。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 日 <strong>0</strong> 条；X 产能近停。</li>
+<li>历史主帖稀疏，高曝光靠借势引用与迷因，非日更 how-to。</li>
+<li>真正产能在 YouTube / fireship.dev；2026-01 公告称与 uidotdev 合并、扩团队。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>粉关比：</strong> ≈225.8:1，极健康——权威在站外视频。</li>
+<li><strong>X 机制：</strong> 借热帖一句钩 / 迷因图 / 争论站队 → 高赞低书签。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> Top 帖书签/赞多 &lt;0.1——<strong>娱乐分发，不是收藏资产</strong>。</li>
+<li><strong>权威资产：</strong> 课程、Pro、合并后的跨站课权；X 文案很少带可抄清单。</li>
+<li><strong>漏斗：</strong> 视频 → 站 → Pro；X 是提醒铃。</li>
+<li><strong>可学边界：</strong> 学「信息密度与人设梗」，不学「X 近零运营却幻想涨粉」。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（历史）</th>
+<th>近况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特征</td>
+<td>借势引用 / 迷因 / 合并长文</td>
+<td>近 7 日静音</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>X 爆款多为<strong>流量寄生+人格</strong>；可持续增长在视频工厂</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>100 秒信息密度</strong> → 微李玩AI：单点科普（危急值≠普通箭头）压到 30–45s，一句钩+一个结论。</li>
+<li><strong>类比钩</strong> → LIS：「跟跟小孩解释遗留代码一样」式——用生活类比讲标本状态机。</li>
+<li><strong>长公告讲清钱与边界</strong> → AI入企：试点变更/商务合并时写清「谁还做、谁不做什么」。</li>
+<li><strong>慎学：纯迷因当主线</strong> → 医疗合规账号迷因易翻车；可偶发不可主打。</li>
+<li><strong>站外权威、站内提醒</strong> → 小程序：深度教程放站/视频，X 只丢钩与结果数字。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>不学「不发帖也能涨」——他靠多年 YouTube 库存；我们没有同级库存。</li>
+<li>不学争论站队博热——院内话题零容错。</li>
+<li>不学高赞低书签当成功——我们要可收藏清单。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周 1 条 <strong>45 秒单点科普</strong>（检验/输血），结构抄 Fireship 密度不抄迷因。</li>
+<li>写 1 句 <strong>类比开场</strong>（如「危急值通道像急诊分诊，不是普通箭头」）。</li>
+<li>X 保持提醒铃：深度放长文/视频，帖内只留钩+链接。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets）+ <code>get_posts_counts_recent</code>；<code>search_posts_all from:fireship_dev</code> 当次 <strong>result_count=0</strong>（取数限制/索引缺口，已改用时间线）。采集 2026-11-02 09:13 Asia/Shanghai；用户 id：<code>850333483339730945</code>。</li>
+<li>Top5 为时间线可得主帖按曝光排序；近窗无新主帖可采。数字均来自当次 public_metrics。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
