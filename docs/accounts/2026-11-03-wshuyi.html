@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@wshuyi（Wang Shuyi） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语 AI×科学科普</span>
+    <h1>@wshuyi（Wang Shuyi）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/wshuyi</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-03 ~09:15 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Wang Shuyi / @wshuyi</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-02-11（约 17.7 年）；资料地 Tianjin</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>28498 / 1186 / 4405</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>接口未强调；权威来自 Teach AI for Science + YouTube/Substack/知识星球矩阵</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈1579；listed≈516</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>24.0:1</strong>。Bio：Teach AI for Science。近 7 日约 <strong>24</strong> 条。用户 id：<code>20567308</code>。判定：<strong>可学</strong> · 华语 AI×科学科普动画/实测。取数：<code>search_posts_all</code> 约 5 页共 122 条原创。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>华语「科普动画 + 模型实测」双引擎：用 6–11 分钟中文动画把科学/方法讲成可收藏教材，再用 Opus/Muse 等一手实测制造话题；书签在动画课，回复在产品对标吐槽。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Teach AI for Science——AI 服务科学理解，不是贩卖焦虑。</li>
+<li><strong>时间线实际：</strong> Claude/阻抗失配动画、相对论/历史 3D 讲解片、ASD-STE100 提示词课、Muse vs Grokbot 多设备实测、Codex 额度吐槽、Agent Skill 说明书动画。</li>
+<li><strong>目标受众：</strong> 想用 AI 学科学/改进提示词的华语知识工作者；跟进 Muse/Claude/Opus 的创作者。</li>
+<li><strong>差异点：</strong> <strong>分钟数+主题名+方法关键词</strong>（阻抗失配、BootLoops、隶属度）极具体——特异性抬权威与书签。</li>
+<li><strong>与 Bio 的错位：</strong> 偶发工具吐槽曝光高于科普（见 Top1），但收藏资产仍是动画课；学科普结构，别把额度焦虑当主线。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>科学/方法科普动画</td>
+<td>高</td>
+<td><a href="https://x.com/wshuyi/status/2106361524134809675">Claude 形状的科学 9 分钟</a></td>
+<td>≈3.0万曝 / <strong>212书签</strong> / 209赞</td>
+</tr>
+<tr>
+<td>模型直出 3D/讲解片实测</td>
+<td>高</td>
+<td><a href="https://x.com/wshuyi/status/2103308292613345504">崂山道士 3D</a></td>
+<td>≈2.4万 / 110书签</td>
+</tr>
+<tr>
+<td>工具对标/现场吐槽</td>
+<td>中</td>
+<td><a href="https://x.com/wshuyi/status/2102339715160825989">Muse 对标 Grokbot</a></td>
+<td>≈3.8万 / 73书签 / <strong>51回复</strong></td>
+</tr>
+<tr>
+<td>提示词/标准方法课</td>
+<td>中</td>
+<td><a href="https://x.com/wshuyi/status/2106715030804959418">ASD-STE100 改提示词</a></td>
+<td>≈0.9万 / <strong>121书签</strong> / 64赞（书签&gt;赞）</td>
+</tr>
+<tr>
+<td>额度/工具焦虑</td>
+<td>低–中</td>
+<td><a href="https://x.com/wshuyi/status/2102337241884524658">Codex 重置额度问 Tibo</a></td>
+<td>≈4.9万曝 / 书签仅 5——虚荣曝光</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采按曝光排序（<code>search_posts_all from:wshuyi -is:retweet -is:reply</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/wshuyi/status/2102337241884524658">Codex 额度重置问 Tibo</a></td>
+<td>49076</td>
+<td>25</td>
+<td>18</td>
+<td>5</td>
+<td><strong>慎学主增长</strong>：高曝光低收藏；情绪共鸣≠资产。可学「点名当事人」抬回复，勿当书签引擎</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/wshuyi/status/2102339715160825989">手机+电脑 Muse，对标 Grokbot</a></td>
+<td>37775</td>
+<td>115</td>
+<td>51</td>
+<td>73</td>
+<td><strong>产品对照钩</strong>（Muse vs Grokbot 贵）+ 多设备联动演示；回复 51=会话拉力强；可与山中学堂 Muse/Grokbot 地图互文</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/wshuyi/status/2106361524134809675">Claude 形状的科学 · 9 分钟动画</a></td>
+<td>29509</td>
+<td>209</td>
+<td>8</td>
+<td><strong>212</strong></td>
+<td><strong>书签≈赞</strong>：教材型；「算对了为什么还不够」反常识钩 + 术语（阻抗失配/BootLoops）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/wshuyi/status/2103308292613345504">Opus 5.5 直出《崂山道士》3D</a></td>
+<td>24284</td>
+<td>135</td>
+<td>14</td>
+<td>110</td>
+<td><strong>端到端实测声明</strong>（不写分镜、不用现成 Skill、声音克隆）——过程边界写清才可信</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/wshuyi/status/2103040844270026944">狭义相对论科普动画</a></td>
+<td>17468</td>
+<td>58</td>
+<td>5</td>
+<td><strong>74</strong></td>
+<td>书签&gt;赞；「稿件可改进 + 动画真赞」诚实语气；观看地址=明确 next step</td>
+</tr>
+</tbody>
+</table>
+<p>平帖对照：<a href="https://x.com/wshuyi/status/2117417678059303156">fsQCA 路径分析科普</a> 曝光 <strong>185</strong> / 赞0 / 书签0——主题过专、缺钩与时长承诺时，连核心粉也难点开。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 <strong>24</strong> 条；属稳定中频。</li>
+<li>产能=动画课制作周期 + 工具实测插播；不是纯回复工时。</li>
+<li>主帖带片/带链；回复用于额度吐槽与产品讨论。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈24:1，健康；listed 516 说明被列表收藏多。</li>
+<li><strong>回复工时：</strong> Muse/Grokbot 帖回复 51，会话型；科普动画回复低、书签高——分流清楚。</li>
+<li><strong>钩子话术：</strong> 「N 分钟讲清 X」「不写分镜/不用 Skill」「天下苦 Grokbot 之贵」。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 科学动画/STE100 <strong>书签≥赞</strong>；额度吐槽 <strong>高曝低书签</strong>。</li>
+<li><strong>权威资产：</strong> 可点开的中文动画、克隆配音实测片、方法标准解读。</li>
+<li><strong>跨平台：</strong> YouTube/观看地址、知识星球/Substack（Bio 矩阵）。</li>
+<li><strong>漏斗：</strong> 反常识标题 → 分钟级可学片（书签）→ 观看/课程下一跳；对照帖拉会话再导产品心智。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（书签型）</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/wshuyi/status/2106361524134809675">Claude 形状的科学</a></td>
+<td><a href="https://x.com/wshuyi/status/2117417678059303156">fsQCA 路径</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>反常识问题 + 精确分钟 + 术语预告 + 成片</td>
+<td>方法名正确但缺情绪钩与「谁该看」</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>书签 212 ≈ 赞 209</td>
+<td>曝光 185</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可学片才是资产</strong>；过窄学术题要补受众钩</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>「N 分钟讲清一个机制」</strong> → 微李玩AI：做 60–90s「危急值≠普通箭头」短片，标题带反常识。</li>
+<li><strong>过程边界声明</strong>（不用分镜/不用现成 Skill） → LIS：演示小程序时写清「人工复核哪一步不能省」。</li>
+<li><strong>Muse/Grokbot 式产品对照</strong> → AI入企：发「院内部署 A vs 公有 Agent：贵在哪、省在哪」对照帖，目标抬回复。</li>
+<li><strong>书签&gt;赞的方法课</strong>（STE100） → 小程序：发「检验报告解读提示词 6 条固定术语」可存帖。</li>
+<li><strong>慎学额度焦虑当 Top 曝光</strong> → 可作人设调剂，不作主内容 KPI。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>高曝光吐槽帖书签极低，会稀释主页「教材感」。</li>
+<li>过专方法名无受众翻译时接近平帖。</li>
+<li>克隆声音/AI 片需标注（他自己常标）——合规与信任。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周 1 条 <strong>反常识+分钟承诺</strong> 科普（检验/输血），片尾固定「可存清单」图。</li>
+<li>1 条 <strong>Muse/Grokbot 对照体</strong> 迁到「厂商黑盒 vs 人审闸门」，回复区放山中学堂链接。</li>
+<li>把 1 个院内流程写成 <strong>Agent Skill 说明书 9 分钟提纲</strong>（可先文字版），对标他的 Skill 科普片结构。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>search_posts_all from:wshuyi -is:retweet -is:reply</code>（约 5 页）+ <code>get_posts_counts_recent</code>；采集 2026-11-03 ~09:15 Asia/Shanghai；用户 id：<code>20567308</code>。</li>
+<li>数字均来自 <code>raw-metrics.json</code>，禁止外推编造。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
