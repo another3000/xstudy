@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@sama（Sam Altman） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-c.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · OpenAI 产品发布权</span>
+    <h1>@sama（Sam Altman）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/sama</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-04 ~09:15 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Sam Altman / @sama</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2006-07-16（约 20.3 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>6416067 / 1034 / 8005</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false；权威来自 OpenAI CEO + 产品发布权</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈395；listed≈32405</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>6205:1</strong>。Bio：AGI benefits all of humanity。近 7 日原创主帖 <strong>0</strong>。用户 id：<code>1605</code>。判定：<strong>可学</strong> · 产品发布权+安全边界声明型（学结构，勿抄神坛话术）。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>以「产品首发权 + 极短安全/文化句」驱动全球注意力的平台 CEO 号：近窗发帖极稀，但一条产品帖可破百万曝光；<strong>书签密度最高的是可感知新产品（Dots / 自定义 UI / DevDay）与清晰安全边界句</strong>，明星互吹帖赞多收藏相对弱。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> OpenAI 使命句——人类尺度叙事。</li>
+<li><strong>时间线实际：</strong> Terra/计算机使用发布、Dots 产品、ChatGPT 自定义 UI、DevDay 预告、安全（宗教化 AI / agent 联网审查）、偶发生活与 Roadster 短评。</li>
+<li><strong>目标受众：</strong> 全球 AI 从业者、开发者、大众科技受众。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>只有他能「宣布」的产品时刻</strong>；短句即议程。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 宏大，时间线常是产品一句话+链接；生活哲理帖互动也极强。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全/边界声明</td>
+<td>中高价值</td>
+<td><a href="https://x.com/sama/status/2106388373221118198">勿赋予 AI 宗教力</a></td>
+<td>≈724万曝 / 28994赞 / <strong>书签4105</strong> / 回复6261</td>
+</tr>
+<tr>
+<td>明星/消费电子短评</td>
+<td>高曝</td>
+<td><a href="https://x.com/sama/status/2111131677351432197">Roadster</a></td>
+<td>≈695万 / <strong>65899赞</strong> / 书签2374</td>
+</tr>
+<tr>
+<td>产品首发</td>
+<td>核心</td>
+<td><a href="https://x.com/sama/status/2104995014208258235">Dots are here</a></td>
+<td>≈220万 / 14713赞 / <strong>书签2757</strong></td>
+</tr>
+<tr>
+<td>DevDay/建造者能量</td>
+<td>中</td>
+<td><a href="https://x.com/sama/status/2104661956879913457">We have found a new thing</a></td>
+<td>≈224万 / 9240赞 / 书签2305</td>
+</tr>
+<tr>
+<td>治理透明</td>
+<td>中</td>
+<td><a href="https://x.com/sama/status/2103567198690349362">agents 联网审查持续更新</a></td>
+<td>≈276万 / 7970赞 / 书签1667</td>
+</tr>
+<tr>
+<td>诗意/人文短句</td>
+<td>偶发</td>
+<td><a href="https://x.com/sama/status/2107691261776052633">thy sea is so great…</a></td>
+<td>≈194万 / 12695赞 / 书签968</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>时间线原创窗按曝光：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/sama/status/2106388373221118198">反对把 AI 宗教化 / 放弃人类判断</a></td>
+<td>7235379</td>
+<td>28994</td>
+<td><strong>6261</strong></td>
+<td><strong>4105</strong></td>
+<td><strong>边界一句即资产</strong>；回复型爆款；书签/赞≈0.14 仍属高收藏绝对值</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/sama/status/2111131677351432197">新 Roadster 真好看 @elonmusk</a></td>
+<td>6950993</td>
+<td><strong>65899</strong></td>
+<td>2693</td>
+<td>2374</td>
+<td>赞/书签严重失衡——<strong>名人互吹虚荣面</strong>；学「短」不学「蹭」</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/sama/status/2103567198690349362">agents 联网训练/评估审查进行中</a></td>
+<td>2757095</td>
+<td>7970</td>
+<td>1482</td>
+<td>1667</td>
+<td>过程透明+外链摘要；信任维修型帖</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/sama/status/2104661956879913457">DevDay 明天 / We have found a new thing</a></td>
+<td>2236221</td>
+<td>9240</td>
+<td>848</td>
+<td><strong>2305</strong></td>
+<td><strong>预告张力</strong>：「新东西」留白促期待与书签</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/sama/status/2104995014208258235">Dots are here + 链接</a></td>
+<td>2196178</td>
+<td>14713</td>
+<td>2122</td>
+<td><strong>2757</strong></td>
+<td>产品名+价值主张（拿回时间）+硬链接；发布模板可抄结构</td>
+</tr>
+</tbody>
+</table>
+<p>平帖对照：线程补充短句如「Have been waiting…」曝光约 <strong>36万</strong> 级但书签仅 48——依附主帖，勿单独当爆款学。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天原创主帖：<strong>0</strong>；发布呈脉冲（产品日/议题日）。</li>
+<li>产能靠「少即是权」：不日更，靠议程设置。</li>
+<li>主帖短、链接硬、少线程注水。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>粉关比：</strong> ≈6205:1，极端健康单向权威。</li>
+<li><strong>回复工时：</strong> 不靠串门；议题帖自然涌入数千回复。</li>
+<li><strong>钩子：</strong> 产品首发、安全红线一句、DevDay 倒计时、诗意短句。</li>
+<li><strong>书签 vs 赞：</strong> 产品/边界帖书签绝对值高；Roadster 类赞爆收藏弱。</li>
+<li><strong>权威资产：</strong> 只有 OpenAI 能发的产品与政策链接。</li>
+<li><strong>跨平台：</strong> ChatGPT / DevDay / 博客摘要链。</li>
+<li><strong>漏斗：</strong> 议程帖 → 产品试用 → 开发者生态（非个人私域话术）。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学）</th>
+<th>对照（虚荣）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/sama/status/2104995014208258235">Dots are here</a></td>
+<td><a href="https://x.com/sama/status/2111131677351432197">Roadster</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>产品名+用户收益+链接</td>
+<td>名人互夸一句</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>书签 2757</td>
+<td>赞 6.6万但书签/赞更低</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可行动产品</strong>吃收藏；蹭热点吃虚荣赞</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>边界一句当资产</strong> → 微李玩AI：固定发「AI 不替代医师签字/人审闸门」红线帖，目标高回复+可引用。</li>
+<li><strong>产品发布模板</strong> → 小程序：名+一句话收益+硬链；学 Dots 结构。</li>
+<li><strong>预告留白</strong> → AI入企：试点上线前发「我们发现一个新交付件」吊胃口，次日给证据。</li>
+<li><strong>过程透明维修信任</strong> → LIS：对误报/故障发「审查进行中+外链纪要」，对标 agents 审查帖。</li>
+<li><strong>慎学名人互吹与神坛语气</strong> → 与院内务实品牌冲突。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>神谕式使命话术易显空；B2B 应落到验收与责任。</li>
+<li>近窗 0 帖策略依赖已有神坛——中小账号抄「沉默」等于消失。</li>
+<li>争议安全帖会引战，需有制度背书再发。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周写 1 条 <strong>人审/责任红线短帖</strong>（一句可被客户转发引用）。</li>
+<li>下一次功能上线用 <strong>Dots 模板</strong>：名 + 收益 + 链接，统计书签。</li>
+<li>预告帖试一次 <strong>「发现一个新东西」留白→次日证据</strong>，禁空开。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code> + <code>get_posts_counts_recent</code>（近 7 日 0）；采集 2026-11-04 ~09:15 Asia/Shanghai；用户 id：<code>1605</code>。</li>
+<li>数字均来自 <code>/workspace/xstudy-2026-11-04/raw-metrics.json</code>。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
