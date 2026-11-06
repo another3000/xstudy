@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@op7418（歸藏(guizang.ai)） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 中文AI工具</span>
+    <h1>@op7418（歸藏(guizang.ai)）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/op7418</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-06 ~09:05 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>歸藏(guizang.ai) / @op7418</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2013-08-14（约 13.2 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>186613 / 1311 / 26429</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈8855；listed≈3372</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>142.3:1</strong>。Bio 锚定 AIGC 周刊/公众号工具箱。近 7 日原创主帖（<code>-is:retweet -is:reply</code>）约 <strong>35</strong>；含回复约 88。用户 id：<code>1669276256</code>。判定：<strong>可学</strong> · 华语工具演示/技能插件权威。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>把「我刚试了 / 我做了个可安装资产」做成华语 AIGC 信息流：热点快讯吃曝光，<strong>书签密度最高的是可安装 Skill/插件与可复制提示词</strong>——学演示兑现与第二触点（公众号/B站），不学脏话开场本身。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> AI/LLM/图像视频/设计；歸藏的 AIGC 周刊｜公众号：歸藏的AI工具箱。</li>
+<li><strong>时间线实际：</strong> 近窗主轴是 DeepSeek Harness 插件 <code>dsh-guizang-design</code> 系列（置顶）、GPT-image GIF 表情包提示词、Muse 视频模型、语音输入法横向评测、Grok Bot 额度/支付八卦、Anthropic 人事。</li>
+<li><strong>目标受众：</strong> 华语 AI 创作者、独立开发者、设计/影像向「今晚就能试」的人。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>亲手出片 + 可安装资产</strong>（插件/Skill/提示词库），不是纯新闻搬运。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 偏工具箱周刊，时间线已被「Skill/Harness 插件经济」重写——漏斗上热点吐槽拉粉，插件与提示词收书签。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可安装 Skill/插件资产</td>
+<td>高（极高书签）</td>
+<td><a href="https://x.com/op7418/status/2116203707318841379">dsh-guizang-design 合并发布</a></td>
+<td>≈14.4万曝 / 680赞 / <strong>书签814</strong></td>
+</tr>
+<tr>
+<td>提示词/玩法演示</td>
+<td>高</td>
+<td><a href="https://x.com/op7418/status/2118181775688241456">GPT-image GIF 大肥鱼</a></td>
+<td>≈2.3万 / 138赞 / 书签83</td>
+</tr>
+<tr>
+<td>工具横向体验吐槽</td>
+<td>中高</td>
+<td><a href="https://x.com/op7418/status/2116888871057473746">微信输入法 vs Typeless</a></td>
+<td>≈7.0万 / 188赞 / 书签33</td>
+</tr>
+<tr>
+<td>平台/产品八卦快讯</td>
+<td>中（高曝低书签）</td>
+<td><a href="https://x.com/op7418/status/2117092326690726075">Grok Bot 额度跳涨</a></td>
+<td>≈5.8万 / 136赞 / 书签22</td>
+</tr>
+<tr>
+<td>圈内人事解读</td>
+<td>中</td>
+<td><a href="https://x.com/op7418/status/2118154688101331319">cat 去 OpenAI</a></td>
+<td>≈1.5万 / 52赞 / 书签7</td>
+</tr>
+<tr>
+<td>跨平台引流</td>
+<td>偶发</td>
+<td><a href="https://x.com/op7418/status/2117535570046157144">B站插件长视频</a></td>
+<td>≈1.3万 / 81赞 / 书签93</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近采多页 <code>get_users_posts</code>（<code>exclude=retweets,replies</code>）按<strong>曝光</strong>排序；置顶帖纳入：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/op7418/status/2116203707318841379">终于把几个设计 Skill 合并成 DSH 插件</a></td>
+<td>144200</td>
+<td>680</td>
+<td>81</td>
+<td><strong>814</strong></td>
+<td><strong>权威资产开闸</strong>：可安装+Design Token；书签/赞≈1.20=save-to-share</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/op7418/status/2116546563053178884">越来越喜欢刷 Threads：无 AI 评论+体验好</a></td>
+<td>70638</td>
+<td>214</td>
+<td>96</td>
+<td>68</td>
+<td>对比断言钩；虚荣赞面偏强——学结构勿空喊平台</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/op7418/status/2116888871057473746">微信输入法语音现在比 Typeless 好多了</a></td>
+<td>69837</td>
+<td>188</td>
+<td>166</td>
+<td>33</td>
+<td><strong>A/B 产品体验</strong>拉回复社区；可迁「院内输入场景选型」</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/op7418/status/2116442573296513082">Grok bot 支持支付宝和银联卡</a></td>
+<td>61442</td>
+<td>244</td>
+<td>99</td>
+<td>27</td>
+<td>Number/支付可用性钩；偏八卦——学「支付摩擦」叙事</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/op7418/status/2117092326690726075">马斯克顶不住补贴，Grok Bot 额度跳涨</a></td>
+<td>57981</td>
+<td>136</td>
+<td>167</td>
+<td>22</td>
+<td>Result Tease（额度数字）+ 情绪；高回复低书签=舆论帖</td>
+</tr>
+</tbody>
+</table>
+<p>平帖对照：短链「详情：…」类线程续写曝光常 &lt;1 万、书签≈0——无独立判断则沉。书签王对照：Stageshow/UI Skill 引荐帖书签 <strong>261</strong> / 赞252（书签≈赞）。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天原创主帖：约 <strong>35</strong>；含回复约 88。日峰约 9（11-04 窗），低谷 2。</li>
+<li>主帖夹大量 quote + 自回复线程（提示词放楼下）；「高频」=工具现场与热点反应。</li>
+<li>高峰偏北京时间午后到晚间；跨平台同步 B 站长视频。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈142:1，健康；非刷粉盘。</li>
+<li><strong>回复工时：</strong> Top 帖回复可过百，增长主引擎仍是可安装资产 + 提示词兑现。</li>
+<li><strong>钩子话术：</strong> 「终于」「麻了」「我操」口语开场；Number Drop（额度%、芯片代际）；Result Tease（宣传片/GIF）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 插件/Skill 书签≥赞；平台八卦赞高书签一般。</li>
+<li><strong>权威资产：</strong> dsh-guizang-design、guizang-pages-skill、提示词库页面、AIGC 周刊/公众号。</li>
+<li><strong>跨平台：</strong> 公众号工具箱、B站长教程、GitHub/插件安装链。</li>
+<li><strong>漏斗：</strong> 热点吐槽拉曝光 → 提示词/插件帖拉书签 → Bio/置顶收粉到周刊。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/op7418/status/2116203707318841379">DSH 插件合并</a></td>
+<td>线程短「详情：」续写</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>痛点合并 + 可安装资产 + 截图</td>
+<td>无判断空链</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>书签 814 &gt; 赞 680</td>
+<td>曝低、书签≈0</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>可带走工作流</strong>吃长尾；纯八卦不复利</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>可安装权威资产开闸</strong> → 微李玩AI：把「输血闭环检查表」做成可复制 Skill/清单帖，置顶收书签。</li>
+<li><strong>提示词放楼下线程</strong> → LIS：主帖晒结果 GIF/截图，回复贴完整提示词——降低主帖长度摩擦。</li>
+<li><strong>A/B 产品体验句</strong> → AI入企：发「同场景两款 ASR/两模型」对照，逼出评论区选型讨论。</li>
+<li><strong>宣传片/一键同款</strong> → 小程序：每次发功能附「作品库/一键同款」叙事，对标插件作品库。</li>
+<li><strong>口语钩子克制版</strong> → 医疗场景把脏话换成「真没想到」，保留节奏不损信任。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>粗口/猎奇适合消费电子受众，B 端医疗品牌要降级。</li>
+<li>过度追 Grok/人事八卦会稀释「可交付工具」权威。</li>
+<li>空「详情」链不要当主产能。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>「院内可复制 Skill/检查表」开闸帖</strong>（对标 DSH 插件），统计书签/赞比。</li>
+<li>试 1 次 <strong>结果在上、提示词在楼下</strong> 的线程结构（危急值摘要或知情同意草稿）。</li>
+<li>把公众号/山中学堂当第二触点：X 只放钩子+安装链。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（多页，<code>exclude=retweets,replies</code>）+ <code>get_posts_counts_recent</code> + <code>get_posts_by_id</code>（置顶）；采集 2026-11-06 ~09:05 Asia/Shanghai；用户 id：<code>1669276256</code>。</li>
+<li>数字均来自当次抓取 public_metrics（含 impression_count / bookmark_count）。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
