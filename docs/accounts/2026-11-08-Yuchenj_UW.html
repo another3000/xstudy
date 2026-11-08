@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@Yuchenj_UW（Yuchen Jin） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-c.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · AI builder</span>
+    <h1>@Yuchenj_UW（Yuchen Jin）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/Yuchenj_UW</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-08 ~09:25 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Yuchen Jin / @Yuchenj_UW</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2016-11-22（约 10.0 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>308806 / 887 / 14609</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈2685；listed≈1318</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>348:1</strong>（健康）。Bio：在 Databricks 做 AI 系统与产品；前 Hyperbolic 联合创始人兼 CTO、OctoAI（被 NVIDIA 收购）；Apache TVM；华盛顿大学博士。置顶仍是 2024-06-01 的 llm.c 训练实验（约 253 万历史曝光，HellaSwag 35.5% / 150B tokens）。Location：「another Galaxy」。用户 id：<code>800854096219471872</code>。判定：<strong>可学</strong>——金句拉曝光，编号拆解和配置清单吃书签；产品安利帖需借同一套数字钩，否则走不远。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>全球一线的华裔 AI builder：用 <strong>短金句引爆时间线，再用编号理由/配置清单把人留下来</strong>；学「先判断、后补为什么」，也学他把遗留企业软件当成 computer use 的现场。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 在 Databricks 做有趣的 AI 系统与产品；履历本身就是权威资产（创业被英伟达收购、编译栈、博士）。</li>
+<li><strong>时间线实际：</strong> 近 10 日几乎日更多条：模型实验室锐评（DeepSeek 把推理效率写进架构）、Codex vs Claude Code 的 computer use 差距、Karpathy 桌面端配置、MIT 权重空间编程的三点预测、「There is no moat」迷因与次日补丁清单、偶发 Databricks AI Gateway 销售帖、硅谷见闻金句（Caltrain 上有人还在终端里写代码）。</li>
+<li><strong>目标受众：</strong> 全球 AI 工程师、推理/Agent 从业者、关心「现在该用哪个编码 Agent」的建造者。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>刚从创业并购走进大厂的人，仍用第一人称讲今天手头的工具</strong>——不是 PR，是「我已经离不开 computer use」。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 偏系统与产品，时间线有一半是文化金句和预测；产品帖（AI Gateway）曝光明显低于金句，说明漏斗的注意力层和转化层是分开的。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近窗约 2026-10-28 至 11-07，<code>get_users_posts</code> 25 条中约 24 条为原创主帖（1 条为自己帖下的续楼，已排除出 Top5）。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短金句 / 迷因判断</td>
+<td>高（曝光）</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116980567342543347">There is no moat.</a></td>
+<td><strong>401645曝</strong> / 9776赞 / 书签1985</td>
+</tr>
+<tr>
+<td>编号拆解 / 配置清单</td>
+<td>高（书签）</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116748026924638637">Karpathy 的 HackerTube 配置：桌面端 + Medium</a></td>
+<td>284051曝 / 2409赞 / <strong>书签1783</strong></td>
+</tr>
+<tr>
+<td>工具对位（Codex vs Claude）</td>
+<td>高</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2117845071139877291">现在最大差距是 computer use</a></td>
+<td>177974曝 / 2818赞 / 回复257</td>
+</tr>
+<tr>
+<td>研究翻译成预测</td>
+<td>中（可学）</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2117469786234106143">MIT 权重空间编程的三点野预测</a></td>
+<td>98836曝 / 2525赞 / 书签786</td>
+</tr>
+<tr>
+<td>现场 Number Drop</td>
+<td>中</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2118121629385671045">内部模型找出 Linux 内核 948 个漏洞，API 成本 120 万美元</a></td>
+<td>79310曝 / 1297赞 / 书签261</td>
+</tr>
+<tr>
+<td>产品安利</td>
+<td>低（转化）</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2117317458868776974">选 Databricks AI Gateway：Day 0 模型 + 智能路由省 35%</a></td>
+<td>44031曝 / 318赞 / 书签95</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗原创主帖按曝光 Top5：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116980567342543347">There is no moat.</a></td>
+<td>401645</td>
+<td>9776</td>
+<td>153</td>
+<td>1985</td>
+<td>四词钩 + 图。书签/赞≈0.20。钩子本身几乎没有 payoff，靠次日补丁帖才把「护城河」说完。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116748026924638637">Karpathy 配置：Claude Code 桌面端；默认 Opus 5.5 Medium</a></td>
+<td>284051</td>
+<td>2409</td>
+<td>232</td>
+<td><strong>1783</strong></td>
+<td><strong>权威借力 + 两条可抄配置</strong>；书签/赞≈0.74。他把「终端不适合 Agent」的旧主张，挂在 Karpathy 今天的博客上兑现。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2115923325004526039">硅谷听说：安全研究员很快会比 AI 研究员更赚钱</a></td>
+<td>249880</td>
+<td>4184</td>
+<td>137</td>
+<td>718</td>
+<td>一句预测，书签/赞≈0.17。像「听到的」现场传言，赞远高于收藏。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2117845071139877291">Claude Code 与 Codex 现在最大的差距是 computer use</a></td>
+<td>177974</td>
+<td>2818</td>
+<td>257</td>
+<td>380</td>
+<td>判断句先抛出；次日补了为什么（API/MCP 太慢、遗留企业软件人类都搞不定）。单看这条 payoff 不全，要和解释帖一起学。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2117118412749242474">没有护城河？护城河到处都是：Ambition, Taste, Agency…</a></td>
+<td>126374</td>
+<td>3275</td>
+<td>162</td>
+<td><strong>1164</strong></td>
+<td>对 #1 的补丁清单；书签/赞≈0.36，高于原帖。<strong>金句负责传播，清单负责被存。</strong></td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：<a href="https://x.com/Yuchenj_UW/status/2118414764296790519">computer use 的两条理由</a>（59152曝 / 190 回复）——MCP 读一条 Slack 通道都能等很久；报销系统他本人不会用，Codex 几分钟跑完，「computer use 让每个 UI 都变成 API」。以及 <a href="https://x.com/Yuchenj_UW/status/2118121629385671045">948 个漏洞 / 120 万美元</a> 的 Number Drop。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近约 10 日原创主帖约 <strong>24</strong> 条（日更 2 条上下），属于高频思想领导，不是回复刷屏。</li>
+<li>峰值会出现「金句 + 次日补丁」或「判断 + 次日理由」的二连。</li>
+<li>主帖远多于回复；自己帖下会补一句（如 “Don’t make any mistakes” is the underrated moat）。</li>
+<li>高峰偏美西白天（Asia/Shanghai 凌晨至上午）。</li>
+<li>产能来自一线体感：用什么编码 Agent、看到什么论文、听到什么传言，现场写成短帖。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈348:1——非常健康。关注 887，与 30 万粉完全匹配。</li>
+<li><strong>回复工时：</strong> 中。热帖下讨论多（computer use 帖 257 条回复），他会再开主帖回答「为什么」。</li>
+<li><strong>钩子话术：</strong> 四词判决、听说体、编号预测、借 Karpathy/OpenAI 的当日新闻、对比句（Codex vs Claude）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 配置清单和补丁列表书签密；迷因金句和传言句赞多存少。这和「书签是私下想回来用的信号、赞是情绪共振」对得上：Karpathy 配置可以被照抄，护城河形容词不太能。</li>
+<li><strong>权威资产：</strong> Databricks 在职、OctoAI 被收购、Hyperbolic、TVM、UW PhD；置顶仍是可核对的训练数字（150B tokens、HellaSwag 35.5%）。产品侧抛出 Smart Routing 省内部编码成本 35%。</li>
+<li><strong>跨平台：</strong> 引用论文、Karpathy 博客、公司产品（AI Gateway、Kimi Day 0 上架）。</li>
+<li><strong>漏斗：</strong> 金句进场 → 配置/预测清单被收藏 → 相信这个人在前线 → 偶尔导向 Databricks。注意：AI Gateway 销售帖只有 4.4 万曝，说明<strong>转化帖没有自动继承金句流量</strong>，要用同样具体的数字和场景重新挂钩。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>对照（同主题的另一半）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116748026924638637">Karpathy 配置清单</a></td>
+<td><a href="https://x.com/Yuchenj_UW/status/2116980567342543347">There is no moat.</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>权威来源 + 两条可执行默认项</td>
+<td>四词 + 图</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>书签/赞≈0.74</td>
+<td>曝光更高，书签/赞≈0.20</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>能照着改默认设置的帖会被存</strong>；迷因负责破圈。完整打法是两者成对出现，而不是只学那句「没有护城河」。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>金句 + 次日清单二连</strong> → 微李玩AI：先发一句刺耳判断，第二天必须补「护城河其实是这些」的可存列表，避免停留在情绪层。</li>
+<li><strong>挂在当日权威配置上说话</strong> → AI入企：不要空喊「别用终端」，要写成「XX 今天默认用桌面端 + 中档推理，因为大多数任务不需要最高 effort」。</li>
+<li><strong>computer use 把 UI 变成 API</strong> → LIS / 输血信息化：老检验系统、血库界面、报销和物资系统往往没有可用 MCP。演示一次「Agent 在旧界面上点完危急值复核」，比等待厂商开接口更快证明价值。</li>
+<li><strong>Number Drop 引用大厂安全实验</strong> → 微李玩AI：948 个漏洞 / 120 万美元是可引用的公开数字；迁到院内要改成「扫一遍规则引擎要多少钱、漏掉一条会怎样」。</li>
+<li><strong>产品帖必须重新挂钩</strong> → AI入企：Gateway 那种「省 35%、Day 0 上模型、按团队设预算」写法是对的，但不要指望昨天的迷因会把它带火——要单独用账单钩重开一条。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>短金句上瘾：只发「There is no moat」而不发补丁，账号会变成名言日历。</li>
+<li>「听说硅谷……」传言体在医疗场景会削弱专业感，除非后面有公开数据。</li>
+<li>产品安利口吻（Choose Databricks…）可以直接学结构，但医院客户反感硬广，要把「选我们」改成「这是我看到的账单问题」。</li>
+<li>置顶还是两年前的训练日志——长尾权威有效，但近窗人设已经转向 Agent 接口，新旧之间要自己讲圆。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周做一次 <strong>判断句 + 次日三条理由</strong> 二连，主题落在「院内该不该上 computer use / 桌面 Agent」。</li>
+<li>写一条 <strong>Karpathy 式配置卡片</strong>：我们推荐的默认模型档位、界面（桌面还是终端）、以及为什么不默认最高档。</li>
+<li>若要推网关或统一采购，单独用 <strong>账单数字</strong> 开帖，不要跟在金句后面搭便车。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies，25 条）+ <code>get_posts_by_ids</code>（置顶 <code>1796963544883409044</code> 及若干长帖全文）；采集 2026-11-08 ~09:25 Asia/Shanghai；用户 id：<code>800854096219471872</code>。</li>
+<li>置顶历史曝光约 2531020，不计入近窗 Top5。</li>
+<li>判定说明：可学；金句与清单拆开看，清单面优先临摹。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

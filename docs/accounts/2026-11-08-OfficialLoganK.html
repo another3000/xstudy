@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@OfficialLoganK（Logan Kilpatrick） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · Gemini API</span>
+    <h1>@OfficialLoganK（Logan Kilpatrick）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/OfficialLoganK</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-08 ~09:25 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Logan Kilpatrick / @OfficialLoganK</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2011-04-19（约 15.6 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>385777 / 3418 / 11806</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈689；listed≈6419</td>
+</tr>
+<tr>
+<td>备注</td>
+<td><strong>替换说明：</strong> 原定 @nextify2024 近 45 日 <code>from:nextify2024 -is:retweet -is:reply</code> 与 <code>from:nextify2024 -is:retweet</code> 均为 0 条（时间线最后一条原创主帖停在 2025-08-30），无法诚实写近窗 Top5，按候补顺序换为本号。粉关比约 <strong>112.9:1</strong>（健康；关注 3418 偏高，符合 DevRel 社交面，不是互关号）。Bio：「Member of technical staff, working on Gemini, @GoogleAIStudio, the Gemini API, &amp; Kaggle. My views!」Location 字段填的是工作邮箱。用户 id：<code>284333988</code>。判定：<strong>可学为主</strong>——发布清单、内测人数、定价与公开用量可迁；一字悬念钩高曝低藏，标慎学。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>Gemini API 的「官方发布官 + 开发者代言人」：用 <strong>Introducing 清单 + 可核对数字（内测人数、定价、处理量）</strong> 把实验室进展写成开发者可跟进的发版说明；学权杖内容的数字写法，不学只有一个词的悬念空钩。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Google 技术员工，做 Gemini、AI Studio、Gemini API 与 Kaggle；并标明 My views——个人号而非公司新闻稿账号。</li>
+<li><strong>时间线实际：</strong> 近窗就是一部 Gemini 4 发版连续剧：Argon 先给网络安全防守方 → 全球上线 API/App/Antigravity → 72 小时处理约 25 万亿 token → Carbon 再跳一档 → Omni Flash 视频生成降价 30%。中间夹一条人生金句、一场 Bench Summit 召集，和与 Sergey Brin 等人的对谈录像。</li>
+<li><strong>目标受众：</strong> 用 Gemini API 的开发者、评测圈、创业公司、关心模型档位与价格的 builder。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>「我是把模型交到你手上的那个人」</strong>——发版权杖 + 第一人称激动（labor of love、Onwards!!）+ 偶尔公开内部数字。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 强调 My views，近窗绝大多数仍是产品发布；个人观点帖（fail while daring greatly、golden age of startups）用来调剂权杖内容，不是主菜。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口取 <code>get_users_posts</code> 返回的 25 条（最早 2026-09-21，约 7 周）。下表只计原创主帖，不含自己帖下的续楼回复。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Introducing 发版清单</td>
+<td>高（曝光）</td>
+<td><a href="https://x.com/OfficialLoganK/status/2115489284404940898">Gemini 4 Carbon：对 Argon 的大跃迁</a></td>
+<td>≈128.1万曝 / 15887赞 / 书签1664</td>
+</tr>
+<tr>
+<td>公开用量 / 内测数字</td>
+<td>高（可学）</td>
+<td><a href="https://x.com/OfficialLoganK/status/2112767157746688480">Argon 上线 72 小时处理约 25 万亿 token</a></td>
+<td>≈86.4万曝 / 5876赞 / 书签285</td>
+</tr>
+<tr>
+<td>激励金句</td>
+<td>中（虚荣赞）</td>
+<td><a href="https://x.com/OfficialLoganK/status/2101840695430435122">you are going to fail, so fail while daring greatly</a></td>
+<td>≈171.4万曝 / 11449赞 / 书签1478</td>
+</tr>
+<tr>
+<td>可执行建议 / 评测召集</td>
+<td>中（书签）</td>
+<td><a href="https://x.com/OfficialLoganK/status/2102156143007338594">做 AI 产品应把 &gt;25% 时间花在 benchmark 上</a></td>
+<td>≈114.4万曝 / 3527赞 / <strong>书签1154</strong></td>
+</tr>
+<tr>
+<td>一字/短钩悬念</td>
+<td>偶发</td>
+<td><a href="https://x.com/OfficialLoganK/status/2109836485981778260">Gemini</a></td>
+<td>≈127.0万曝 / 6628赞 / 书签仅289</td>
+</tr>
+<tr>
+<td>对谈 / 峰会</td>
+<td>中</td>
+<td><a href="https://x.com/OfficialLoganK/status/2110420958737813612">与 Sergey Brin 等谈 Argon 从哪来、往哪去</a></td>
+<td>≈40.2万曝 / 2735赞 / <strong>书签1537</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗原创主帖按曝光 Top5（已剔除续楼回复）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/OfficialLoganK/status/2101840695430435122">you are going to fail, so fail while daring greatly</a></td>
+<td>1714415</td>
+<td>11449</td>
+<td>531</td>
+<td>1478</td>
+<td>公理句吃巨大曝光；书签/赞≈0.13。可作调剂，<strong>不能当主食</strong>——没有下一步动作。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/OfficialLoganK/status/2105388054274080946">Introducing Gemini 4 Argon：先给 cyber defenders，引入价 $2 in / $10 out</a></td>
+<td>1646324</td>
+<td>14778</td>
+<td>1030</td>
+<td>1249</td>
+<td><strong>产品名 + 谁先用 + 公开标价</strong>。钩子（新前沿模型）被定价兑现。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/OfficialLoganK/status/2115489284404940898">Introducing Gemini 4 Carbon：对两周前 Argon 的大跃迁</a></td>
+<td>1281174</td>
+<td>15887</td>
+<td>1238</td>
+<td>1664</td>
+<td>清单：SOTA on cyber、长程任务、AA V5 第一、编码更好用、更 aligned。发版教科书。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/OfficialLoganK/status/2109836485981778260">Gemini</a></td>
+<td>1269804</td>
+<td>6628</td>
+<td><strong>1045</strong></td>
+<td>289</td>
+<td><strong>慎学</strong>：单字悬念。书签/赞≈0.04。当天晚些时候才兑现全球上线，单独看这条没有可存物。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/OfficialLoganK/status/2102156143007338594">做 AI 产品，应把 &gt;25% 时间用来做评测并让模型实验室在乎</a></td>
+<td>1144195</td>
+<td>3527</td>
+<td>255</td>
+<td><strong>1154</strong></td>
+<td><strong>可执行阈值</strong>；书签/赞≈0.33，Top5 里最密。数字开头降低「这是鸡汤」的怀疑。</td>
+</tr>
+</tbody>
+</table>
+<p>另记：同日兑现帖 <a href="https://x.com/OfficialLoganK/status/2110038940841545827">Argon 全球上线：Google 内部超 10 万人战测一个月</a>（1111002曝 / 10943赞 / 书签1023）——「一字钩」后面必须马上跟这种有人数、有通道（API / App / Antigravity）的正文。对谈录像 <a href="https://x.com/OfficialLoganK/status/2110420958737813612">与 Brin 等回看 Argon</a> 曝约 40 万但书签 1537（书签/赞≈0.56），长视频比金句更被当参考资料存。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近约 7 周原创主帖约 <strong>16</strong> 条，另有若干发版续楼（定价补充、YouTube 链接、客户案例）。</li>
+<li>发版日会出现主帖 + 2–3 条自己回复的线程；平日可数日沉默。</li>
+<li>主帖 : 续楼大约 2:1；不是在别人帖下狂回的互关号。</li>
+<li>高峰偏美西白天（对应 Asia/Shanghai 凌晨到上午），符合 Google 发版窗口。</li>
+<li>「看起来高频」其实是发版脉冲，不是日常短句刷屏。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈112.9:1——健康。关注 3418 对 DevRel 偏高，<strong>学内容不学把关注加到三千</strong>。</li>
+<li><strong>回复工时：</strong> 中低。发版线程里补充链接和案例，很少去别人帖下养号。</li>
+<li><strong>钩子话术：</strong> Introducing + 能力子弹、公开价、内测人数、「25 trillion tokens」、偶尔一个词吊胃口、人生金句。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 评测建议和对谈录像书签密；一字「Gemini」和用量狂欢帖赞多、存得少。XLeadForge 样本里超过 280 字、三行以上的帖书签率明显高于 80 字以内短句——他的发版长帖符合这条，单字钩正好落在反面。</li>
+<li><strong>权威资产：</strong> Gemini API 发版权、AI Studio、Kaggle、能拉来 Brin / 产品负责人对谈、Fairwind 安全项目。数字是内部可核对口径（10 万人战测、72 小时 25T token、$2/$10）。</li>
+<li><strong>跨平台：</strong> 指向 API 文档、YouTube、AI Studio、线下 Bench Summit（旧金山）。</li>
+<li><strong>漏斗：</strong> 金句/悬念进场 → Introducing 清单或评测建议被收藏 → 开发者打开 API / AI Studio / 峰会报名。信任来自「我是发版的人」而不是互关。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/OfficialLoganK/status/2102156143007338594">&gt;25% 时间做 benchmark</a></td>
+<td><a href="https://x.com/OfficialLoganK/status/2109836485981778260">Gemini</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>一个可执行百分比 + 为什么（评测是进度闸门）</td>
+<td>一个单词</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>书签 1154 / 赞 3527</td>
+<td>曝光 127 万但书签仅 289</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>给出阈值的建议会被存</strong>；悬念钩只在你几小时后真能兑现发版时才合法，而且那条悬念本身仍然不保值</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>Introducing 四件套</strong>（名字、谁先用、能力子弹、价格或通道） → 微李玩AI / 小程序：发版不要只写「上线了」，写清内测范围、三条能力和在哪体验。</li>
+<li><strong>公开战测人数</strong> → AI入企：用「在 N 个科室/N 位检验师跑了 M 周」代替「我们很重视质量」。</li>
+<li><strong>用量 Number Drop</strong> → LIS：72 小时 25T token 是实验室规模；可迁成「上线 72 小时处理了多少份报告/多少条医嘱」，让院方看见负载而不是形容词。</li>
+<li><strong>&gt;25% 时间做评测</strong> → 输血信息化 / AI入企：落地项目应先做一套医院在乎的评测（交叉配血规则、危急值、漏检率），再要求模型实验室或供应商对这套题负责。</li>
+<li><strong>发版后续楼补通道</strong> → 小程序：主帖讲能力，第一条回复放操作路径或回放，避免主帖堆链接。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>一字悬念只适合真有权杖、几小时内能兑现的人；医疗账号发「LIS」一个词再消失，是消费信任。</li>
+<li>人生金句能爆，但品牌会变成鸡汤号。微李玩AI 可以偶尔用，不能连续发。</li>
+<li>关注三千加：粉关比尚可，不代表我们要学广撒关注。</li>
+<li>发版脉冲依赖公司日历，个人号照搬会变成「没发布就停更」。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>下次产品或内容更新，按 <strong>名字 + 谁先用 + 三条能力 + 在哪体验</strong> 写一条 Introducing，不要只发截图。</li>
+<li>选一条院内或客户项目，公开一个 <strong>72 小时用量或战测人数</strong>（人审后发）。</li>
+<li>为人审加一条红线：<strong>禁止单独发没有下文的单字/单句悬念。</strong></li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_username</code> + <code>get_users_posts</code>（exclude retweets,replies；返回 25 条，最早 2026-09-21）；采集 2026-11-08 ~09:25 Asia/Shanghai；用户 id：<code>284333988</code>。</li>
+<li>替换记录：@nextify2024 近 45 日无主帖也无回复（<code>search_posts_all</code> 两条查询 result_count=0），故启用第一候补。</li>
+<li>判定说明：可学为主；Top5#4 一字钩标慎学。部分发版帖的外链展开为 t.co，正文数字均来自帖文本身。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
