@@ -106,20 +106,20 @@
 
 > **节奏：** 每周只抽 **1 篇目录文** → 产出 **1 张机制卡** → **1 条实验帖**（人审后发）。不新开 40 篇案卷。
 
-**本周已抽读：** Kin [一个月系列目录](https://x.com/KinGao476942/status/2110689770892648953) 第 **3** 篇 — [《做自媒体怎么用好 Grok bot》](https://x.com/KinGao476942/status/2099736121781764594)（约 679 书签 / 78744 曝光）。
+**本周已抽读：** Kin [一个月系列目录](https://x.com/KinGao476942/status/2110689770892648953) 第 **1** 篇 — [《工程师如何用好 Grok bot?》](https://x.com/KinGao476942/status/2096232745538334913)（约 864 书签 / 140857 曝光）。
 
 | 产出 | 内容 |
 | --- | --- |
-| 机制 id | `kin-reader-subject`（主语换读者 · 与我有关） |
-| 机制全文 | [2610top40 MECHANISMS.md](../2610top40/MECHANISMS.md#kin-reader-subject｜主语换读者与我有关) |
+| 机制 id | `kin-proof-loop`（交活必带证明 · 完整反馈闭环） |
+| 机制全文 | [2610top40 MECHANISMS.md](../2610top40/MECHANISMS.md#kin-proof-loop｜交活必带证明完整反馈闭环) |
 | 本周学习面板 | [2610top40 WEEKLY.md](../2610top40/WEEKLY.md) |
-| 实验帖 | 标题意向「同一条院内信息，两种写法」——**人审后发**（产品主语 vs 读者主语对照） |
+| 实验帖 | 标题意向「Bot 交活别只说 done，先甩 before/after」——**人审后发** |
 
 | 步骤 | 动作 |
 | --- | --- |
-| 1 | 精读目录第 3 篇：潘乱三栏 + HKRR + 主语从产品换到读者 |
-| 2 | 机制卡已入库：`kin-reader-subject`（勿重复 `kin-human-gate` / `kin-tutorial-funnel`） |
-| 3 | 实验帖草稿：① ❌产品主语 ② ✅读者主语 ③ 三栏自检 → **人审后** Routine 或手动发 |
+| 1 | 精读目录第 1 篇：Cloud Agent 证明材料 + 多模态核对 + 顶回重做 |
+| 2 | 机制卡已入库：`kin-proof-loop`（勿重复 `kin-human-gate` / `kin-reader-subject` / `kin-tutorial-funnel`） |
+| 3 | 实验帖草稿：① 抄证明句 ② 院内对照 ③ 三步 SOP → **人审后** Routine 或手动发 |
 
 **对照专题：** [2610top40 本周必抄](https://another3000.github.io/xstudy/specials/2610top40/index.html#learning-h) · [#7 Kin 案卷](https://another3000.github.io/xstudy/specials/2610top40/07-KinGao476942.html)。
 

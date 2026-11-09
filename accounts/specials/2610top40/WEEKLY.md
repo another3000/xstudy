@@ -6,24 +6,24 @@
 
 ## 本周必抄机制
 
-- **机制 id：** `kin-reader-subject`
-- **机制名：** 主语换读者（与我有关）
-- **一句话：** 同一信息，主语从产品换成读者——「产品更新了 X」改成「你省下的那两小时」；转发前提是「跟我有关」。
+- **机制 id：** `kin-proof-loop`
+- **机制名：** 交活必带证明（完整反馈闭环）
+- **一句话：** 交活 = 结果 + before/after 证明；人审管能不能发，证明闭环管做得对不对。
 
 ## 本周实验（微李玩 AI · LIS / 输血 / AI入企）
 
-发 1 条对照帖（人审后发）：标题意向 **「同一条院内信息，两种写法」**。  
-结构：① ❌产品主语一句 ② ✅读者主语一句 ③ 点明「跟我有关」三栏（喜闻乐见/感同身受/对我有用） ④ 注明人审后发、无互关无荐币。  
-精读源：[Kin 做自媒体怎么用好 Grok bot](https://x.com/KinGao476942/status/2099736121781764594) · 目录 [一个月系列](https://x.com/KinGao476942/status/2110689770892648953)。
+发 1 条帖（人审后发）：标题意向 **「Bot 交活别只说 done，先甩 before/after」**。  
+结构：① 抄 Lingxi/Kin「before vs. after 证明」一句 ② 对照院内：异常工单/复核提醒/PoC 草稿必须附证明 ③ 三步 SOP：只读采集→附证明交草稿→人审 ④ 注明与人审闸门互补、无互关无荐币。  
+精读源：[Kin 工程师如何用好 Grok bot](https://x.com/KinGao476942/status/2096232745538334913) · 目录 [一个月系列](https://x.com/KinGao476942/status/2110689770892648953)。
 
 ## 优先精读 8 人
 
 | 名次 | 账号 | 机制关键词 | 案卷 |
 |---:|---|---|---|
-| 7 | Kin @KinGao476942 | 主语换读者 / 人审闸门 / 教程漏斗 | 07-KinGao476942.html |
+| 7 | Kin @KinGao476942 | 交活必带证明 / 主语换读者 / 人审闸门 / 教程漏斗 | 07-KinGao476942.html |
 | 9 | 启航 @qihang_zeng6688 | 万字 SOP | 09-qihang_zeng6688.html |
 | 15 | 鸟叔 @niaoshu | 基建盘点 | 15-niaoshu.html |
-| 23 | 骄骄 @jiao_newlife | 榜策展 | 23-jiao_newlife.html |
+| 23 | 骄娇 @jiao_newlife | 榜策展 | 23-jiao_newlife.html |
 | 33 | Anis @Yonkxx | 数字证据 | 33-Yonkxx.html |
 | 36 | Russell @Russell3402 | 长文尾流 | 36-Russell3402.html |
 | 37 | goDavi @corndogjpn2 | 产品追问 | 37-corndogjpn2.html |
