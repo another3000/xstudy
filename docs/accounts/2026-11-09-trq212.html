@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@trq212（Thariq） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · AI engineering</span>
+    <h1>@trq212（Thariq）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/trq212</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-09 ~09:25 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Thariq / @trq212</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2011-08-11（约 15.2 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>402795 / 1993 / 6503</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口未返回 verified_type）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈549；listed≈4583</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>202.1:1</strong>（健康，四十万粉级公共账号；listed 4583 极高）。Bio：「playing WoW forever, formerly Claude Code @anthropicai」。坐标：SF via Toronto。用户 id：<code>352806502</code>。近采 25 条覆盖 2026-10-24 至 11-07，10-24 即离职公告日，近窗非常活跃，无需替换。判定：<strong>可学</strong>——对比句洞察、可粘贴提示词和带图的建造进度书签密；652 万曝的离职信和纯金句依赖已有光环，不可当日常模板。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>前 Claude Code 工程师把个人号变成「洞察金句 + 公开造物」两用账号：用<strong>一句打中两种人的对照</strong>换传播，用<strong>可粘贴的提示词和未完成的作品进度</strong>换收藏；学对照和提示词，不学离职公告级曝光，也不把游戏项目原样搬进医疗时间线。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 永远在玩魔兽世界；前 Anthropic Claude Code。主动把「曾经」写进身份，同时用游戏爱好软化工程师人设。</li>
+<li><strong>时间线实际：</strong> 2026-10-24 发布离职长文（近窗最高 652 万曝），随后连续输出：技术人觉得技能没用了、非技术人却恨自己不够技术；coding agent 狂热往往是对生活别的事情的回避；AI-native macOS dock；格斗游戏的角色和 UI 探索；位置提醒类提示词；以及「$200 套餐已经够好，智能只会更便宜」。引用他人时爱补一句更高层的判断（bitter lesson、造 agent 的人太多、改善鱼品质的人太少）。</li>
+<li><strong>目标受众：</strong> 用 coding agent 的工程师、想把 Agent 引进生活和工作流的产品人、关注 Anthropic / Claude Code 生态的开发者。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>对照句</strong>（两种人、两种供给）和 <strong>未完成作品的进度直播</strong>（dock、游戏角色、vibe UI）。前 Anthropic 身份是权威资产，但近窗他在有意识地往「个人建造者」转。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 把 WoW 放在前，时间线里游戏是项目素材（元素格斗游戏、AIE Code 闭幕演讲要讲 shaman build），主菜仍是 Agent 洞察与 HCI 实验，不是游戏主播。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-24 至 11-07）返回 25 条，含少量自我线程回复；根帖约 18 条。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>职业节点</td>
+<td>低（爆曝光）</td>
+<td><a href="https://x.com/trq212/status/2113844051938054167">离开 Anthropic：做过 Claude Code，相信 race to the top</a></td>
+<td><strong>6527670曝</strong> / 31811赞 / 回复2247 / 书签6561</td>
+</tr>
+<tr>
+<td>对照句洞察</td>
+<td>高（破圈）</td>
+<td><a href="https://x.com/trq212/status/2115544056038350960">技术人觉得技能没用了；非技术人恨自己不够技术，好用 Agent</a></td>
+<td>1969539曝 / 36928赞 / 书签5119</td>
+</tr>
+<tr>
+<td>可复用提示词 / 模式</td>
+<td>中（书签）</td>
+<td><a href="https://x.com/trq212/status/2118399561324699655">给 Instinct 一类 agent 的位置提醒：超过 5 天没洗衣，工作日到家 30 分钟后提醒直到确认</a></td>
+<td>245435曝 / 3005赞 / <strong>书签1214</strong></td>
+</tr>
+<tr>
+<td>公开造物进度</td>
+<td>中（高藏）</td>
+<td><a href="https://x.com/trq212/status/2115135857669881939">实验一个 AI-native macOS dock，用 jev 实时分类活动并切换模式</a></td>
+<td>834638曝 / 10099赞 / <strong>书签5013</strong></td>
+</tr>
+<tr>
+<td>金句 / 引用点评</td>
+<td>中</td>
+<td><a href="https://x.com/trq212/status/2115493334324310463">courage in shorter supply than genius</a></td>
+<td>300739曝 / 6744赞 / 书签818</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗根帖按曝光 Top5（排除自我回复线程）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/trq212/status/2113844051938054167">I’ve left Anthropic after more than a year of working on Claude Code</a></td>
+<td>6527670</td>
+<td>31811</td>
+<td>2247</td>
+<td>6561</td>
+<td>优雅离职模板：感谢、讲使命（race to the top）、把聚光灯转给同事。书签/赞仅 0.21。<strong>不可复制的光环事件</strong>，不要当周更样本。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/trq212/status/2115544056038350960">technical people are sad… non-technical people are desperately wishing they were more technical</a></td>
+<td>1969539</td>
+<td><strong>36928</strong></td>
+<td>1562</td>
+<td>5119</td>
+<td><strong>对照句打中两拨人</strong>。赞甚至高于离职帖，说明洞察比人事新闻更能让人转发。结构：奇怪现象 → 两种人各缺一块。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/trq212/status/2115937378674372783">coding agents 让人觉得一直在干事，其实什么都没发生；常常是对生活里别的事情的回避</a></td>
+<td>1425192</td>
+<td>16995</td>
+<td>810</td>
+<td>4002</td>
+<td>把生产力神话拧成自我诊断。医疗场景可迁成「天天调提示词但流程没上线」。有动作空间，但仍偏金句，正文没有清单。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/trq212/status/2115135857669881939">实验一个 AI-native macOS dock：自定义 writing/building 模式，agent 可改行为，用 jev 实时分类活动</a></td>
+<td>834638</td>
+<td>10099</td>
+<td>530</td>
+<td><strong>5013</strong></td>
+<td><strong>未完成作品 + 机制说明 + 演示</strong>。书签/赞≈0.50，远高于离职帖。他承认暂不分享、还有很多边界情况——这种诚实反而增强「我想存下来回头看」。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/trq212/status/2118859267314958761">too many people building agents and not enough people using software to improve the quality of fish</a></td>
+<td>730727</td>
+<td>8641</td>
+<td>124</td>
+<td>1124</td>
+<td>引用一条关于 AI 机器人处理鱼类的病毒帖，回抽到「工具要改善真实事物」。有判断，但书签/赞仅 0.13，更像机智评论而非可存工作流。</td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：<a href="https://x.com/trq212/status/2118399561324699655">位置提醒提示词：洗衣超过 5 天，工作日到家 30 分钟后烦我直到确认或推迟</a>（245435曝 / 3005赞 / <strong>书签1214</strong>，书签/赞≈0.40，近窗最容易临摹的提示词帖）；<a href="https://x.com/trq212/status/2117305792923889731">one week in：不需要无限 token，$200 套餐已经很好，而且这是智能最贵的时候</a>（489835曝 / 8345赞 / 书签643）；<a href="https://x.com/trq212/status/2118822238262853904">creator apps 内置 MCP，让 agent 做一部分，熟手在自己习惯的工具里接续</a>（134858曝 / 1888赞 / 书签413）。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近约 2 周（10-24 至 11-07）返回 25 条；近 7 日约 7 条根帖，节奏稳定。</li>
+<li>日峰值通常 1–2 条根帖，偶尔带一条线程补充（游戏 UI 的 jumbotron 探索、gmail 扫描已停用地址的吐槽）。</li>
+<li>全号 6503 帖 / 15.2 年，是长期表达型账号，不是突然开工。</li>
+<li>高峰时段偏美西傍晚到夜间，对应 Asia/Shanghai 约 00:00–08:00。</li>
+<li>「高频」靠的是判断句和建造日记，不是互关短句；引用他人帖时几乎总会补一层自己的框架。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈202:1——健康。四十万粉、关注不到两千，listed 4583，是被行业列表盯着的意见领袖，不是互关号。</li>
+<li><strong>回复工时：</strong> 低到中。增长不靠串门；线程里会补一句（「sorry I mean inshallah」、补 UI 探索），属于自我延伸。</li>
+<li><strong>钩子话术：</strong> 对照（technical vs non-technical）；诊断（mania as avoidance）；可粘贴 prompt（location-based reminders）；未完成实验（「not sharing yet」）；金句（courage &lt; genius）；反潮流（too many agents, not enough better fish）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> dock 实验书签/赞≈0.50，位置提醒≈0.40；离职信 0.21，fish 评论 0.13，纯金句「courage…」约 0.12。可演示的造物和可复制提示词明显更保值。</li>
+<li><strong>权威资产：</strong> 前 Claude Code / Anthropic、公开的个人项目（游戏、dock）、具体提示词、对社区的致谢与推荐（点名 @addyosmani @lydiahallie @_catwu @ClaudeDevs @bcherny）。</li>
+<li><strong>跨平台 / 漏斗：</strong> 近窗没有强力的产品下载口（dock「暂不分享」）。漏斗是：对照句进场 → 提示词或造物进度书签 → 「这个人会用 Agent 做出东西」的信任。离职后的下一步产品尚未成为转化口。</li>
+<li><strong>其他：</strong> 40 万粉和 Anthropic 光环会放大每一句金句。同样一句话从 3 千粉的 infra 号发出，效果会差一个数量级——迁徙时只搬家法，不搬预期。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>相对弱一些的高曝帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/trq212/status/2115135857669881939">macOS dock 实验</a></td>
+<td><a href="https://x.com/trq212/status/2115493334324310463">courage in shorter supply than genius</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>正在做的东西 + 它如何工作 + 截图/视频 + 尚未准备好外传</td>
+<td>六词金句</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>834638曝 / 书签5013（书签/赞≈0.50）</td>
+<td>300739曝 / 书签818（≈0.12）</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>能看见的未完成作品比更漂亮的句子更值得存</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>离职信曝光最高，但机制是人事事件，不是可重复结构。位置提醒帖虽然「只有」24 万曝，却是更好的周更模板。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>对照句打中两种人</strong> → 微李玩AI：「会写规则的老师觉得自己要过时，行政同事却恨自己不会向模型提问」——让两边都觉得被说中。</li>
+<li><strong>把狂热写成回避</strong> → AI入企：如果科室天天让 Agent 改提示词、流程却从未上线，点明这是假忙碌，并补一个「本周必须上线的最小闭环」。</li>
+<li><strong>可粘贴的场景提示词</strong> → LIS / 小程序：学他的位置提醒结构，改成「标本超过 N 小时未核收，工作日某人回到岗后 30 分钟提醒，直到确认或延期」。</li>
+<li><strong>未完成作品也公开进度</strong> → 产品开发：dock 帖的诚实（还有很多边界、暂不推荐用）比「我们已全面智能」更可信。发一版带限制条件的演示。</li>
+<li><strong>让 Agent 做一部分，熟手在熟悉的工具里接续</strong> → 小程序 / 院内工作站：不要强迫医生改用全新界面；给现有系统加 MCP/接口，让 Agent 填一部分，人在老工具里改完。</li>
+<li><strong>$200 已经够用，智能只会更便宜</strong> → 微李玩AI：劝团队先用现在的套餐跑通一个任务，而不是等无限额度。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>652 万曝的离职信靠的是 Claude Code 光环，普通账号发告别信不会有这个数字。</li>
+<li>纯金句（courage &lt; genius）传播好看、动作缺失，专业号发多了会像鸡汤。</li>
+<li>WoW / 格斗游戏进度对「微李玩AI」可以借鉴「公开做一件自己真正想做的东西」，但不要直接发游戏角色和法术 build。</li>
+<li>「inshallah」一类宗教/模因补句不必学，跨文化容易误读。</li>
+<li>「解决方案是更加 AGI-pilled」偏信仰宣言，企业客户要的是验收标准，不是站队。</li>
+<li>40 万粉会把中等帖也推到十万级曝光——学习机制时要按书签率而不是按他的绝对数字来设预期。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>对照句 + 现场</strong>：检验/输血场景里两种人各自卡住的地方，不要只捧一侧。</li>
+<li>发 1 条 <strong>可粘贴提示词</strong>：把「超时未核收 / 未复核就提醒直到确认」写成能直接复制的几行，并注明边界。</li>
+<li>人审红线：可以公开未完成演示，<strong>必须写清限制</strong>；禁止离职叙事、信仰站队和没有动作的金句当主帖。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；单页最多 25 条，本号返回 25 条，覆盖 2026-10-24 至 11-07；部分自我线程回复仍出现在结果里，Top5 只计根帖）；离职长文用 <code>get_posts_by_ids</code> 取 <code>note_tweet</code> 全文。采集 2026-11-09 ~09:25 Asia/Shanghai；用户 id：<code>352806502</code>。</li>
+<li>判定说明：可学；Top5#1 离职信按事件帖处理，#5 偏机智评论。位置提醒与 dock 实验是近窗最佳可迁移结构。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

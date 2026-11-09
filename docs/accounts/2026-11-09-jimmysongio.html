@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@jimmysongio（Jimmy Song / 宋净超） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-c.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 云原生/AI infra</span>
+    <h1>@jimmysongio（Jimmy Song / 宋净超）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/jimmysongio</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-09 ~09:25 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Jimmy Song(宋净超) / @jimmysongio</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2011-05-24（约 15.5 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>3251 / 755 / 3977</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口未返回 verified_type）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈1028；listed≈49</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>4.3:1</strong>（尚可，关注 755 对 3.2k 粉偏普通社交半径，不是互关刷屏，也谈不上稀缺）。Bio：「Open Source Ecosystem VP @dynamia_ai | Building AI infrastructure with @HAMiProject | @CloudNativeFdn Ambassador | KCD Beijing Organizer」。用户 id：<code>304470478</code>。近采 25 条主帖覆盖 2026-03-09 至 11-04，最近一条为 11-04 重建个人站，未静默，无需替换。判定：<strong>可学（偏对照）</strong>——权威资产在博客、HAMi 与会场，不在 X 曝光；学判断句和月费栈，不学会场打卡与「只丢长文链接、帖内无可存清单」。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>华语云原生/AI infra 的「博客作者 + CNCF 现场官」：用<strong>长文判断（GPU 是资源不是设备、共享要靠 enforcement）和开源项目 HAMi</strong> 建立权威；X 近窗最高仅约 3 千曝且书签几乎为零——学他写什么，不学他把分发全部交给一篇外链。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Dynamia AI 开源生态 VP，和 HAMi 一起做 AI 基础设施，CNCF Ambassador，KCD Beijing 组织者。</li>
+<li><strong>时间线实际：</strong> 近窗主帖几乎全是英文：KubeCon / ContainerDays / KCD 会场打卡与workshop照片，以及指向 jimmysong.io 的长文预告（KubeCon China 重心转移、为何仍需要 GPU 切分、HAMi-core + NVIDIA KAI Scheduler、个人 AI 栈约 100 美元/月、HAMi 进入 CNCF Incubating）。2026-11-04 宣布重建个人站，因为旧站「仍在描述 Kubernetes 时代的我」，工作已转向 GPU、调度和 AI 工作负载。</li>
+<li><strong>目标受众：</strong> 云原生与 AI infra 从业者、CNCF 社区、关心 GPU 调度与共享的平台工程师。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>「GPU 是资源而不是设备」</strong>；共享的关键不是分配出去，而是运行时真能隔离和治理。身份从 Kubernetes 讲解者换成 AI-native 系统写作者。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 很强（Ambassador、HAMi、VP），X 时间线却更像活动简报墙——头衔在线下和博客兑现，时间线很少把判断展开成可收藏的清单。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-03-09 至 11-04）原创主帖 25 条，跨度约 8 个月，产能稀疏。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会议长文指针</td>
+<td>中（相对最高曝）</td>
+<td><a href="https://x.com/jimmysongio/status/2100398683728814536">8 年后 KubeCon 重回上海：云原生正在成为 AI 底下的地基</a></td>
+<td><strong>3145曝</strong> / 12赞 / 书签0</td>
+</tr>
+<tr>
+<td>会场打卡 / workshop</td>
+<td>高（低藏）</td>
+<td><a href="https://x.com/jimmysongio/status/2114982006543278470">ContainerDays Singapore：做了 HAMi workshop</a></td>
+<td>1228曝 / 10赞 / 书签0</td>
+</tr>
+<tr>
+<td>infra 判断长文</td>
+<td>中（X 侧几乎不爆）</td>
+<td><a href="https://x.com/jimmysongio/status/2090033660074553714">GPU sharing 不只是 allocation，而是 enforcement</a></td>
+<td>196曝 / 2赞 / 书签0</td>
+</tr>
+<tr>
+<td>个人月费栈</td>
+<td>偶发（罕见书签）</td>
+<td><a href="https://x.com/jimmysongio/status/2063583123485741504">My Personal AI Stack：约 100 美元/月跑一套持续工作的个人 AI 基建</a></td>
+<td>162曝 / 3赞 / <strong>书签3</strong></td>
+</tr>
+<tr>
+<td>站点/身份升级</td>
+<td>偶发</td>
+<td><a href="https://x.com/jimmysongio/status/2117972719979655180">今年重建了 jimmysong.io：工作已转向 GPU 与 AI 工作负载</a></td>
+<td>92曝 / 0赞 / 回复1 / 书签0</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗 25 条主帖按曝光 Top5（注意量级：最高也只有三千级）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/jimmysongio/status/2100398683728814536">8 years after the first KubeCon China, the center of gravity has shifted</a></td>
+<td>3145</td>
+<td>12</td>
+<td>0</td>
+<td>0</td>
+<td>时间跨度钩（8 年）+ 一句判断（云原生变成 AI 的地基）+ 博客链。能借到阅读，<strong>书签为 0</strong>：判断留在站内，帖内没有可存清单。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/jimmysongio/status/2114982006543278470">ContainerDays Singapore first day, gave a HAMi workshop</a></td>
+<td>1228</td>
+<td>10</td>
+<td>1</td>
+<td>0</td>
+<td><strong>慎学</strong>：会场合影证明「我在场」，读者带不走任何做法。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/jimmysongio/status/2033869733855170734">I got a trial code today, and now I'm connected to my wechat</a></td>
+<td>340</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+<td>试用体验一句带过，无步骤、无对比，不构成资产。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/jimmysongio/status/2038953980110479854">GPU is a resource rather than a device</a></td>
+<td>332</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><strong>判断句本身可学</strong>，也该写进帖内展开（谁来调度、和谁共享、如何计量）。现在只是引用+定义，所以零赞零藏。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/jimmysongio/status/2037811630684459133">Leaving Amsterdam today. Grateful for an incredible KubeCon</a></td>
+<td>292</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td><strong>慎学</strong>：离场感谢照，专业号发了也不保值。</td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：<a href="https://x.com/jimmysongio/status/2063583123485741504">Personal AI Stack ~$100/Month</a>（162曝 / 3赞 / <strong>书签3</strong>，近窗少见的书签帖，标题即账本）；<a href="https://x.com/jimmysongio/status/2102706714168737893">Why GPU Partitioning Still Matters</a>（203曝 / 4赞 / 书签0，反常识提问：「模型更大了，为什么还要切分 GPU？」）；<a href="https://x.com/jimmysongio/status/2055236810373202163">HAMi v2.9.0 Deep Dive</a>（177曝 / 1赞）——权威在版本说明，不在 X 包装。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近采 25 条主帖跨约 8 个月；近 7 日（11-02 至 11-09）仅 1 条：11-04 重建个人站（92曝 / 0赞 / 1 回复）。</li>
+<li>日峰值通常 0–1 条；会务期间会连发（2026-03 阿姆斯特丹 KubeCon 一周内多条打卡）。</li>
+<li>全号 3977 帖 / 15.5 年，历史并不低产，但近窗原创主帖稀疏，更多产能可能耗在回复、转帖或会务协调（本次已排除转帖与回复）。</li>
+<li>发帖时点较散，偏下午到晚上 Asia/Shanghai（不少落在 15:00–21:00），也有凌晨对应海外会场。</li>
+<li>「存在感」靠线下会场和博客更新，不是 X 上的内容工厂。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈4.3:1——中等。没有刷屏迹象，也说明 X 不是他的主增长引擎。</li>
+<li><strong>回复工时：</strong> 低（近窗主帖回复几乎全是 0–1）。不是串门号。</li>
+<li><strong>钩子话术：</strong> 「8 years after」「Why … still matter?」「not just allocation … enforcement」「Not because it was broken」。有判断句，但很少在帖内兑现成步骤或数字（个人月费栈是例外）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 近窗 25 条里，书签非零的几乎只有个人 AI 栈（3）和一次改版站点引用（1）。最高曝的 KubeCon 长文指针书签为 0——典型「看过标题、不想存帖」。</li>
+<li><strong>权威资产：</strong> HAMi（CNCF Incubating）、CNCF Ambassador、KCD Beijing、jimmysong.io 长文、Dynamia AI 职位。这些资产很硬，只是很少被翻译成 X 上的可收藏物。</li>
+<li><strong>跨平台 / 漏斗：</strong> 明确的博客漏斗：X 一句判断 → jimmysong.io。问题是 X 这一跳没有给读者「先存再读」的理由，所以跳转依赖原有订阅者，难拉新。</li>
+<li><strong>其他：</strong> 11-04 重建站点是少见的元认知：身份变了，门面也要变。这对内容品牌有迁移价值，但该帖本身几乎没有传播。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>相对「高曝」（仍是小盘子）</th>
+<th>更值得学的低曝帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/jimmysongio/status/2100398683728814536">KubeCon China 重心转移</a></td>
+<td><a href="https://x.com/jimmysongio/status/2063583123485741504">Personal AI Stack ~$100/月</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>大叙事 + 外链</td>
+<td>标题里就有价格和「持续运行」的承诺</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>3145曝 / 12赞 / 书签0</td>
+<td>162曝 / 3赞 / 书签3</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>行业周年叙事能换阅读；<strong>把月费和栈写进标题，人才会存</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>会场打卡（ContainerDays 1228曝 / 书签0）则两侧都不如：既没有大判断，也没有账本。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>「GPU 是资源不是设备」</strong> → LIS / AI入企：院内算力不要报「买了几张卡」，要报谁能调度、如何排队、如何计量到科室。</li>
+<li><strong>共享的关键是 enforcement</strong> → 输血信息化 / 多科室模型网关：额度分配出去不够，运行时必须隔离，避免一个科室把推理队列打满。</li>
+<li><strong>反常识提问</strong> → 微李玩AI：「模型更大了，为什么还要切分资源？」这类问句比「我们支持 GPU」更容易让人点进去。</li>
+<li><strong>把月费栈写进标题</strong> → 微李玩AI：公开自己跑一套日常 AI 工作流大概多少钱（工具清单 + 月费），这是他近窗唯一明显被收藏的结构。</li>
+<li><strong>身份变了就改门面</strong> → 公司站/小程序：从「只介绍 LIS 功能模块」升级到「AI 工作负载之下，检验与输血系统怎么被调度」——先写一句新定位，再改站点。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>会场合影、离场感谢、证书/Credly 徽章对华语医疗受众几乎无收藏，发了像出差朋友圈。</li>
+<li>长文只丢链接、帖内不留清单，X 侧书签会是 0；读者不一定愿意跳到博客。</li>
+<li>近窗主帖几乎全英文，面向国际社区没问题，但「微李玩AI」若照搬会丢掉中文读者。</li>
+<li>不要把 4.3:1 的粉关比和三千级曝光误读成「技术深度自动等于传播」——深度在博客里，传播他没做完。</li>
+<li>试用码/「我连上微信了」这类状态更新没有复盘，不必学。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>资源调度句</strong>：院内模型不是「一台机器」，而是可排队、可计量、可隔离的资源；举一个科室抢额度的例子。</li>
+<li>发 1 条 <strong>月费栈</strong>：自己（或团队）跑内容/开发日常的工具清单和大约月费，标题里写出数字。</li>
+<li>人审红线：会议照片如果要发，<strong>必须附带 1 条可带走的判断或步骤</strong>；禁止纯合影和纯外链。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；单页最多 25 条，本号返回 25 条，最近一条 2026-11-04，最远至 2026-03-09；<code>next_token</code> 指向更早帖，未再翻页）；关键帖用 <code>get_posts_by_ids</code> 核对外链（jimmysong.io）。采集 2026-11-09 ~09:25 Asia/Shanghai；用户 id：<code>304470478</code>。</li>
+<li>判定说明：可学（偏对照）。Top5 按曝光列出，其中 #2 #5 标慎学；个人月费栈虽低曝，是近窗最佳收藏结构。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

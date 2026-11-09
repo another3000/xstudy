@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@azeem（Azeem Azhar） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-d.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 科技前瞻</span>
+    <h1>@azeem（Azeem Azhar）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/azeem</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-09 ~09:25 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Azeem Azhar / @azeem</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2007-07-22（约 19.3 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>56819 / 2395 / 4053</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=false（接口未返回 verified_type）</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈513；listed≈2131</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>23.7:1</strong>（健康；listed 2131 很高，说明被大量列表收录，是典型「被记者和投资者盯着的分析号」）。Bio：「Exponential View @exponentialview。」坐标写成数学常数 e（2.718…）。用户 id：<code>7640782</code>。近采两页共约 41 条主帖/引用，覆盖 2026-10-20 至 11-06，活跃，无需替换。判定：<strong>可学</strong>——自己的分层数字和图表书签可超过点赞；只喊「good write up」或蹭病毒视频则是虚荣曝光。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>海外科技前瞻作者：用<strong>自己算过的分层数字（提到 / 声称有影响 / 测到结果）和一张图把大数字拆成节奏</strong> 建立信任，再把读者导向 Exponential View；学他的三层验收和算术钩，不学借病毒视频或空赞一句「写得真好」。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Exponential View。极简，把个人品牌直接等于一份通讯。</li>
+<li><strong>时间线实际：</strong> 近窗高频引用财经与 AI 新闻（苹果削减员工 AI 预算、AWS 万亿展望、微软自愿离职、Anthropic 客户结构、数据中心用电、中国科技股），少数原创带图分析（S&amp;P 500 财报电话里的 AI 提及率、Anthropic 前五大客户收入占比从 36% 降至约 21%、AI 租约分期进入）。原创长文用标题钩导流 Substack（Microsoft is making room for machines；The internet’s Wuhan moment）。</li>
+<li><strong>目标受众：</strong> 关注 AI 资本开支、电力、企业采用和宏观后果的投资者、政策与科技读者。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>把头条数字拆成可检验的层次或节奏</strong>——「74% 提到 AI，18% 声称有影响，5% 报出可测结果」；「租约数字很大，但是分期进入的」；「每天 200 美元 = 每月 6 千美元」。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 极简，时间线却很吵：大量一句话引用。通讯作者的深度在通讯里，X 上参差不齐——有图表的日子像分析师，没图表的日子像信息流评论员。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采两页（2026-10-20 至 11-06）约 41 条主帖/引用，约两周高产。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>借病毒/热帖一句点评</td>
+<td>中（虚荣高曝）</td>
+<td><a href="https://x.com/azeem/status/2115351465049113057">Another incidence of Chinese technological leadership</a></td>
+<td><strong>58254曝</strong> / 231赞 / 书签49</td>
+</tr>
+<tr>
+<td>通讯标题导流</td>
+<td>中（书签）</td>
+<td><a href="https://x.com/azeem/status/2113691837739487555">The internet’s Wuhan moment</a></td>
+<td>16466曝 / 38赞 / <strong>书签30</strong></td>
+</tr>
+<tr>
+<td>自研图表 / 分层数字</td>
+<td>中（保值）</td>
+<td><a href="https://x.com/azeem/status/2114903911681413246">On those pesky AI leases. Big number but they phase in over time.</a></td>
+<td>10660曝 / 70赞 / <strong>书签79</strong></td>
+</tr>
+<tr>
+<td>时事算术钩</td>
+<td>中</td>
+<td><a href="https://x.com/azeem/status/2118093254507839882">$200 a day = $6k a month!!</a></td>
+<td>23140曝 / 83赞 / 书签10</td>
+</tr>
+<tr>
+<td>纠正或补充他人框架</td>
+<td>中</td>
+<td><a href="https://x.com/azeem/status/2116548804703080715">Power 只是数据中心成本的一小部分，真正重要的是 time to power</a></td>
+<td>3422曝 / 19赞 / 回复11 / 书签5</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗两页主帖按曝光 Top5：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/azeem/status/2115351465049113057">Another incidence of Chinese technological leadership</a></td>
+<td>58254</td>
+<td>231</td>
+<td>6</td>
+<td>49</td>
+<td><strong>慎学</strong>：引用的是一条约 458 万曝的病毒视频（法国骚乱画面被中国玻璃厂拿来做广告）。他只加一句地缘梗，书签/赞仅 0.21。借光巨大，资产很薄。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/azeem/status/2118395352147722538">good citrini write up</a></td>
+<td>23236</td>
+<td>12</td>
+<td>1</td>
+<td><strong>33</strong></td>
+<td>书签高于赞（≈2.75），多半是读者把被引用的长文当收藏入口。<strong>结构可学的只有「替读者标出值得读的报告」</strong>；四个词的书评本身没有判断，医疗号不要只学这四个词。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/azeem/status/2118093254507839882">$200 a day = $6k a month!!</a></td>
+<td>23140</td>
+<td>83</td>
+<td>10</td>
+<td>10</td>
+<td><strong>单位换算钩</strong>：把苹果把工程师 AI 日限额从 300 砍到 200 的新闻，换算成月成本。一句算术让抽象预算变得疼。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/azeem/status/2113691837739487555">The internet’s Wuhan moment</a></td>
+<td>16466</td>
+<td>38</td>
+<td>0</td>
+<td>30</td>
+<td>通讯标题钩，书签/赞≈0.79。漏斗清楚：刺激性标题 → Exponential View。<strong>标题对中文医疗品牌过险，学漏斗不学用武汉当隐喻。</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/azeem/status/2114903911681413246">On those pesky AI leases. Big number but they phase in over time.</a></td>
+<td>10660</td>
+<td>70</td>
+<td>3</td>
+<td><strong>79</strong></td>
+<td><strong>书签 79 &gt; 赞 70</strong>。一张图 + 一句「数字很大，但是分期进入」。把吓人的总量拆成节奏，这是近窗最值得临摹的原创作法。</td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：<a href="https://x.com/azeem/status/2116128480891142256">Anthropic 前五大客户 Q3 支出创新高，但收入占比约 21%，低于 Q1 的 36%——需求在变宽</a>（9969曝 / 58赞 / 书签28）；<a href="https://x.com/azeem/status/2116037128681329114">S&amp;P 500 三季报电话：74% 提到 AI，18% 声称有影响，5% 报出生产环境中的可测结果</a>（2435曝 / 17赞 / 书签2）——三层验收比许多高曝引用更适合企业场景。另有一句与输血相关的引用：<a href="https://x.com/azeem/status/2117754698115805539">Adama's blood would boil!</a>（1808曝 / 1赞 / 书签1），评论的是法国血库遭网络攻击、样本被加热的新闻——他只发了梗，没有动作清单，恰可作为反面教材。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>约 17 天内约 41 条主帖/引用（10-20 至 11-06）；近 7 日约 12 条，属于高产评论流。</li>
+<li>日峰值在 11-05（至少 7 条引用/点评，从数据中心用电到苹果财报）。</li>
+<li>主帖:引用——近窗引用明显多于纯原创长分析；原创分析大约每隔两三天出现一次（租约图、Anthropic 客户结构、S&amp;P 分层、微软离职解读）。</li>
+<li>高峰时段偏欧美白天，对应 Asia/Shanghai 约 22:00–次日 05:00。</li>
+<li>「高频」靠的是信息流评论工时；真正拉开差距的是那几条自带图表或分层数字的原创。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈23.7:1——健康。关注 2395 对 5.7 万粉属于公共知识分子常见半径；listed 2131 说明账号被当消息源收藏，而不是互关局。</li>
+<li><strong>回复工时：</strong> 中低。增长不靠串门，靠引用热帖和自己的通讯。</li>
+<li><strong>钩子话术：</strong> 单位换算（$200/天 = $6k/月）；分层百分比（74 / 18 / 5）；「phase in over time」；「pre-paying for productivity gains」；通讯标题（Wuhan moment、making room for machines）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> AI 租约图文书签/赞&gt;1；Wuhan 标题帖≈0.79；Anthropic 客户结构≈0.48；病毒视频引用仅 0.21。图表和换算会被存，梗和「good write up」主要换阅读。</li>
+<li><strong>权威资产：</strong> Exponential View 通讯、持续跟踪的资本开支/电力/采用率数据、对他人框架的当场纠正（电费不是数据中心主成本，time to power 才是）。</li>
+<li><strong>跨平台 / 漏斗：</strong> X 钩子 → exponentialview.co / Substack。这是他最清楚的产品转化口：分析帖和标题帖都指向通讯。</li>
+<li><strong>其他：</strong> 引用大号能借光（Citrini、Gurman、Reuters），但若自己不补数字或纠正，赞会掉下来（「good citrini write up」12 个赞对 2.3 万曝）。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/azeem/status/2114903911681413246">AI leases：数字大但分期进入</a></td>
+<td><a href="https://x.com/azeem/status/2118393529105833995">which was will this go?</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>图 + 一句拆解节奏的判断</td>
+<td>引用热帖 + 一句含糊问句</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>10660曝 / 书签79 &gt; 赞70</td>
+<td>2075曝 / 3赞 / 书签0</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>把吓人总量拆成时间表会被存</strong>；「这会往哪走」没有立场，也不值得收藏</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>病毒视频点评（58254曝）比两者都更大，但机制接近平帖：借光，不沉淀。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>三层验收</strong> → AI入企：把「会上提到 AI / 声称有影响 / 生产环境测到结果」做成院内看板，避免停在第一层。</li>
+<li><strong>大数字拆成节奏</strong> → LIS / 采购：合同或算力租赁不要只报总额，写清分几期进入、每期对应什么工作负载。</li>
+<li><strong>单位换算钩</strong> → 微李玩AI：把日限额、单次 Token、每份报告成本换算成「每月真正要花多少」。</li>
+<li><strong>需求是在变宽还是更集中</strong> → 企业 AI：不要只看头部大客户账单；他指出 Anthropic 前五大客户支出在创新高，份额却从 36% 降到约 21%。</li>
+<li><strong>血库新闻不要当梗</strong> → 输血信息化：法国血库遭攻击、样本被加热，他只回了一句「Adama's blood would boil!」。我们应该写成断网切换、温度链备份和谁有权限改设备参数——用动作替换段子。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>蹭病毒地缘视频（中国玻璃 / 法国骚乱）能换 5.8 万曝，医疗品牌发这种会损信任。</li>
+<li>「The internet’s Wuhan moment」这种标题在中文语境过险，学导流结构即可，不要用灾难地名当隐喻。</li>
+<li>「good write up」「Could be.」「me want more clippys」没有判断，会把账号训练成转发器。</li>
+<li>微软「利润最好时预付 AI 生产力、推动数万人自愿离职」是他的猜测，迁到医院场景时<strong>禁止暗示裁员话术</strong>，只可讨论「先重组流程还是先看测到的结果」。</li>
+<li>高频欧美时段评论流不适合作为华语专业号的日更模板，会变成噪音。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>三层验收</strong>：某家医院或团队里，有多少项目停留在「提到了」、多少「声称有效」、多少「能拿出生产环境数字」。</li>
+<li>发 1 条 <strong>总成本 vs 节奏</strong>：把一笔看起来很大的 AI / 算力费用拆成上线节奏，而不是只报总额。</li>
+<li>人审红线：可以引用外媒或财报，<strong>必须补自己的换算或分层</strong>；禁止病毒梗、灾难地名隐喻，以及把血库安全新闻写成段子。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；第一页 19 条，覆盖 2026-10-30 至 11-06；第二页用 <code>until_id=2116037128681329114</code> 再取 22 条，覆盖至 2026-10-20）。采集 2026-11-09 ~09:25 Asia/Shanghai；用户 id：<code>7640782</code>。</li>
+<li>判定说明：可学；Top5#1 病毒视频引用与部分空评论标慎学。租约图、Anthropic 客户结构、S&amp;P 三层数字是近窗最佳原创作法。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
