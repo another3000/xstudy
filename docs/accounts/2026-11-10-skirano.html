@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@skirano（Pietro Schirano） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 产品发车</span>
+    <h1>@skirano（Pietro Schirano）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/skirano</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-10 ~09:20 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Pietro Schirano / @skirano</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-09-10（约 17.2 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>119218 / 1149 / 9444</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈1621；listed≈2418</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>103.8:1</strong>（优秀）。Bio：「CEO at @magicpathai；Previously @AnthropicAI, @brexHQ, @Uber, @Facebook. Creator of Claude Engineer, DesignerGPT, Sequential thinking MCP」。主页 magicpath.ai；坐标 San Francisco。用户 id：<code>73105934</code>。置顶即产品发车：<a href="https://x.com/skirano/status/2104994180284219797">MagicPath directly in ChatGPT</a>（352613曝 / 1197赞 / <strong>书签1243</strong>）。近采 25 条覆盖 2026-09-10 07:12 至 2026-10-28 07:45 Asia/Shanghai；<strong>最近一条主帖距采集日约 14 天</strong>，不是取数失败，是发车期过后的安静，窗口内有完整的 ChatGPT 插件上线与增长账本，无需改日补。判定：<strong>可学</strong>——公开 ARR/增长率 + 演示视频 + 「我们可能是第一个做 X 的」会收藏；嘲讽式引用和纯怀旧演示赞很高、收藏密度低，标对照。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>MagicPath CEO 的演示型建造号：用<strong>一周 +50 万 ARR、上线后增长 2000%、演示视频</strong>把新分发面（ChatGPT 插件）写成可模仿的发车；学账本和演示，不学借 Anthropic 热帖嘲讽。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 现任 MagicPath CEO，履历是 Anthropic / Brex / Uber / Facebook；并点名自己做过 Claude Engineer、DesignerGPT、Sequential thinking MCP——履历和作品各报一次。</li>
+<li><strong>时间线实际：</strong> 近窗几乎是一条产品战役：9 月 29 日（OpenAI DevDay 前后）宣布 MagicPath 进入 ChatGPT 侧边栏，无限画布上做交互原型、改图、导线框、导代码仓库；随后连续公布增长——上线后增长超过 2000%、当周新增 50 万 ARR、10 天新增 100 万次 tool call、接入 ChatGPT 后每周新增 100 万个设计（此前一年才到 300 万）、落地页加上「Open in ChatGPT」按钮并自称可能是第一个这么做的产品。穿插游戏向演示（用 Astra 把 Crash Bandicoot 放进 Super Mario 64、训练苍蝇玩马里奥、宣称「这也将是世上最好的 3DS 模拟器」）和一句产业判断：「好软件本身不再构成护城河」。</li>
+<li><strong>目标受众：</strong> AI 原生设计师/开发者、想在 ChatGPT 生态做插件的创始人、喜欢看 demo 的建造者。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>把增长写成带时间盒的增量</strong>（一周、10 天、对比「过去一年」），再配一段能让人看见结果的视频。不是「反应很好」，是「500K ARR this week only」。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 列出多家前雇主，近窗几乎不靠前雇主吃饭，只在引用 Anthropic 时回了一句「Biblical level of losing the plot」——履历变成了吐槽资格，而不是内容主轴。产品才是主轴。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-09-10 07:12 至 10-28 07:45 Asia/Shanghai）原创主帖 25 条（含发车线程的续层）。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>增长账本发车</td>
+<td>高（最高藏）</td>
+<td><a href="https://x.com/skirano/status/2105353473118404648">Stop what you’re doing and build a ChatGPT plugin. We’ve grown over 2000%</a></td>
+<td><strong>1631632曝</strong> / 3785赞 / <strong>书签3821</strong></td>
+</tr>
+<tr>
+<td>产品发布/演示</td>
+<td>高</td>
+<td><a href="https://x.com/skirano/status/2104994180284219797">Today we&#x27;re introducing MagicPath directly in ChatGPT</a></td>
+<td>352613曝 / 1197赞 / 书签1243</td>
+</tr>
+<tr>
+<td>产业判断</td>
+<td>低</td>
+<td><a href="https://x.com/skirano/status/2108041322867151291">Good software alone is no longer defensible</a></td>
+<td>33124曝 / 756赞 / 书签208</td>
+</tr>
+<tr>
+<td>游戏向 wow demo</td>
+<td>中（高赞低密）</td>
+<td><a href="https://x.com/skirano/status/2097825612962349225">btw, this is also going to be the best 3DS emulator on the planet</a></td>
+<td>401692曝 / <strong>12814赞</strong> / 书签1196</td>
+</tr>
+<tr>
+<td>嘲讽式引用</td>
+<td>低（虚荣曝）</td>
+<td><a href="https://x.com/skirano/status/2101120421160534356">Biblical level of losing the plot</a></td>
+<td>646633曝 / 4320赞 / 书签420</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗 25 条按曝光 Top5：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/skirano/status/2105353473118404648">停下你手头的事，去给 ChatGPT 做一个插件。我们从上线起增长超过 2000%</a></td>
+<td>1631632</td>
+<td>3785</td>
+<td>204</td>
+<td><strong>3821</strong></td>
+<td>书签/赞≈<strong>1.01</strong>。钩子兑现了两样东西：一个可模仿的动作（去建插件）+ 一个带时间起点的增长率。这是近窗最标准的「号召 + 公开账本」。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/skirano/status/2101120421160534356">Biblical level of losing the plot</a></td>
+<td>646633</td>
+<td>4320</td>
+<td>89</td>
+<td>420</td>
+<td>引用 Anthropic 与 Accenture 投入至少 10 亿美元做内嵌评估。书签/赞≈0.10。高赞来自站队和嘲讽，不是方法。<strong>有曝低密，不学。</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/skirano/status/2107236581442720203">我们没停过增长。光这一周就新增了 50 万 ARR</a></td>
+<td>443327</td>
+<td>1860</td>
+<td>109</td>
+<td>1682</td>
+<td>书签/赞≈0.90。把 #1 的百分比落实成金额，并配增长曲线图。百分比和金额一起发，账本才完整。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/skirano/status/2097825612962349225">btw, this is also going to be the best 3DS emulator on the planet</a></td>
+<td>401692</td>
+<td>12814</td>
+<td>152</td>
+<td>1196</td>
+<td>赞是 Top5 里最高的，书签/赞只有 0.09。Wow 截图能引来情绪，存下来的是「也许真能用」的少数。演示有价值，口号式「最好」不是资产。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/skirano/status/2104994180284219797">Today we&#x27;re introducing MagicPath directly in ChatGPT</a></td>
+<td>352613</td>
+<td>1197</td>
+<td>62</td>
+<td>1243</td>
+<td>书签/赞≈<strong>1.04</strong>。标准发车：和谁合作、产品现在住在哪（侧边栏）、用户能立刻做什么、配视频。后续层补能力清单、插件链接和博客。</td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：<a href="https://x.com/skirano/status/2106119055664980015">Great post from Vibhor… I can’t stress enough how important this new surface is. Our revenue hasn’t stopped growing</a>（43708曝 / 352赞 / <strong>书签448</strong>，书签/赞≈1.27）——借官方产品负责人的解释，自己只补一句「新分发面有多重要」+ 仍在增长。这是引用里少见的高藏帖。<a href="https://x.com/skirano/status/2106477878829302226">ChatGPT 给我们的流量多到落地页加了 Open in ChatGPT 按钮，据我们所知是第一个</a>（30465曝 / 323赞 / 书签258）——「第一」如果配上可见的产品改动，就不是空口号。<a href="https://x.com/skirano/status/2108041322867151291">Good software alone is no longer defensible</a>（33124曝 / 756赞 / 书签208）——产业判断有收藏，因为它解释了为什么他必须一直发车。</p>
+<p>窗口末端 <a href="https://x.com/skirano/status/2115228389195862341">People hating on Terra is wild. The model is basically free in Codex</a>（68623曝 / 869赞 / 书签59，约 10-28 Asia/Shanghai）是近两条周里唯一的新主帖：立场 + 一个价格事实，收藏一般。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>25 条跨度约 7 周；密度前高后低——9 月底到 10 月中几乎每隔一两天汇报一次增长或 demo，10-28 之后到采集日约 14 天没有新的原创主帖。</li>
+<li>发车日（9-29）会拆成线程：视频主帖 → 能力说明 → 插件链接致谢 OpenAI → 博客。</li>
+<li>高峰偏北美白天（对应 Asia 凌晨到上午）。</li>
+<li>全号 9444 帖 / 17.2 年；近窗产能服务于一次产品战役，而不是每天维持存在感。</li>
+<li>安静 14 天在本任务里<strong>不算取数失败</strong>：窗口内数据完整，足以写案卷。若后续要观察「战役结束后还说什么」，再补一页即可。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈103.8:1——优秀。关注 1149 对 11.9 万粉很克制，增长明显来自产品和演示，不是互关。</li>
+<li><strong>回复工时：</strong> 中高。2000% 帖 204 回复、ARR 帖 109 回复、发车 62 回复——数字会引来「怎么做的 / 怎么接入」。他用线程和博客承接，而不是在楼里逐条教学。</li>
+<li><strong>钩子话术：</strong> 祈使句（「Stop what you’re doing and build…」）；带时间盒的增量（this week only / 10 days / since the announcement）；「as far as we know, we&#x27;re the first」；视频先于文字。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 插件号召和正式发车书签/赞≈1.0；周新增 50 万 ARR≈0.90；Vibhor 引用≈1.27。嘲讽 Anthropic 0.10，3DS 模拟器 0.09——赞是收藏的十几倍，属于情绪或 wow，不是方法。</li>
+<li><strong>权威资产：</strong> 可点击的 ChatGPT 插件、magicpath.ai、增长曲线截图、演示视频、博客「Introducing MagicPath inside ChatGPT」。前雇主头衔是背景，不是资产本身。</li>
+<li><strong>跨平台 / 漏斗：</strong> X 发车 → ChatGPT 插件/落地页「Open in ChatGPT」→ 画布里的实际使用 → ARR。他把新表面（ChatGPT 对话里的插件）当成获客渠道，而不是把 X 本身当成终点。</li>
+<li><strong>其他：</strong> 「Since we launched in ChatGPT, we have been adding 1 million designs a week. For context, it took us one year to get to 3 million。」——<strong>先报新速度，再报旧基数</strong>，读者自己能算出分发面切换有多重要。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/skirano/status/2105353473118404648">Build a ChatGPT plugin，增长超过 2000%</a></td>
+<td><a href="https://x.com/skirano/status/2101120421160534356">Biblical level of losing the plot</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>可模仿动作 + 带起点的增长率 + 图</td>
+<td>一句话嘲讽 + 借官方大新闻</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>163 万曝 / 书签 3821；书签/赞≈1.01</td>
+<td>64.7 万曝 / 4320赞 / 书签420；书签/赞≈0.10</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>能照着做、能核对增长的帖会被存</strong>；站队嘲讽只换赞同</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>游戏 demo 是中间态：苍蝇玩马里奥（76939曝 / 1823赞 / 书签365）比纯口号更像作品，但仍远低于增长账本的收藏密度。演示要为产品服务，不能只为爽。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>增长写成带时间盒的增量</strong> → 小程序 / LIS：不要说「上线反馈不错」，写「这一周新增了多少使用次数 / 对比过去一年的总量」。</li>
+<li><strong>百分比和金额（或绝对量）一起报</strong> → 2000% 和 +50 万 ARR 是同一件事的两种单位。院内试点同时写提升比例和绝对单量。</li>
+<li><strong>先报新速度，再报旧基数</strong> → 「现在每周 +100 万设计，过去一年才到 300 万」。用来解释一次分发面切换是否值得。</li>
+<li><strong>发车三件套：视频 + 现在能做什么 + 入口链接</strong> → 对照 ChatGPT 插件上线帖。微李或产品更新都应让人 30 秒内看见结果、并知道去哪试。</li>
+<li><strong>寻找「侧边栏」式的新分发面</strong> → MagicPath 住进 ChatGPT 侧边栏。AI 入企可以问：我们的能力能不能出现在医生/检验师已经每天打开的系统侧边，而不是再下一款独立 APP。</li>
+<li><strong>「第一个」必须配可见改动</strong> → 「Open in ChatGPT」按钮是可核对的产品事实，不是形容词。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>嘲讽前东家或同行的大新闻（Biblical level of losing the plot）能爆赞，会把账号从建造者拉成评论员。医疗品牌更不宜。</li>
+<li>「最好的 3DS 模拟器」这类绝对化口号，赞很高，方法含量低。</li>
+<li>14 天安静本身不是问题；问题是如果战役结束后只剩立场帖（Terra is free in Codex），账本节奏会断。</li>
+<li>不要在没有真实数据时模仿「2000%」「500K ARR」——假账本比不发更伤。</li>
+<li>游戏怀旧 demo 可以增加技术魅力，成主食就会让人记不住你卖的是画布，不是马里奥。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>带时间盒的产品增量</strong>：某个小程序或 LIS 功能「这一周 / 这 10 天」新增了什么，并对照上线前的基数。</li>
+<li>为下一次功能更新准备 <strong>30 秒演示 + 现在能做什么 + 入口</strong>，对照 MagicPath 发车线程。</li>
+<li>人审红线：<strong>禁止嘲讽式借光和没有数字的「爆发式增长」</strong>；「我们可能是第一个」必须指向一个看得见的产品改动。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；单页最多 25 条，本号返回 25 条，最近一条 2026-10-28 07:45 Asia/Shanghai，距采集约 14 天；<code>next_token</code> 指向更早帖，未再翻页）；关键长帖用 <code>get_posts_by_ids</code> 核对。采集 2026-11-10 ~09:20 Asia/Shanghai；用户 id：<code>73105934</code>。</li>
+<li>判定说明：可学。近窗偏安静但不构成取数失败，无需改日补。Top5 按曝光，另标出 Vibhor 引用与「Open in ChatGPT」高藏帖。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

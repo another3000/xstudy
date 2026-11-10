@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@yoheinakajima（Yohei） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-d.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · Agent建造日志</span>
+    <h1>@yoheinakajima（Yohei）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/yoheinakajima</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-10 ~09:20 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Yohei / @yoheinakajima</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-04-11（约 17.6 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>127180 / 12614 / 29311</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈4250；listed≈3035</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>10.1:1</strong>（数字偏低，但符合 VC 白天广泛连接创始人的社交半径；近窗未见互关口号或回关话术，不按刷屏号处理）。Bio：「VC by day @untappedvc, builder by night: babyagi / @activegraphai. Build-in-public log: yohei.me」；站点 yoheinakajima.com；坐标 Seattle, WA。用户 id：<code>30439303</code>。置顶：<a href="https://x.com/yoheinakajima/status/2102419894994411599">reintroducing untapped capital</a>（56173曝 / 329赞 / 书签84）。近采 25 条覆盖 2026-10-29 21:40 至 11-10 04:18 Asia/Shanghai（含部分自回帖/线程续帖，API 在 exclude replies 后仍返回了同一对话的后续层）。判定：<strong>可学</strong>——把失败率写进发车（循环 32/32，任务 0/24）是近窗最强资产；轻松引用和装扮玩梗有曝低藏，可作对照，不作为主食。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>BabyAGI 作者兼白天做 VC 的公开建造日志：近窗把 <strong>Agent 循环编译进 Qwen 权重</strong>，并公开「循环成立、智能体仍然很差」的分数；学他的失败率和附件，不学轻松玩梗的虚荣曝光。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 白天是 Untapped VC，晚上建造 BabyAGI / Active Graph；建造过程公开写在 yohei.me。</li>
+<li><strong>时间线实际：</strong> 近窗主线非常集中——<code>babyagi-inside</code>：把一个有界的 Agent 循环编译进 Qwen3.5-2B 的权重，模型外部不再跑调度器。主帖写明「the agent still sucks, but the loop works」，线程里给出分数（循环 32/32 按顺序跑完并按时停；算术链 8/8，其余 0/24；普通 Qwen 在同样算术上是 5/8），并附代码、论文和 traces。几天后的跟进：Qwen3.5-4B「更好的推理解决了 2B 测试里大多数没做出来的任务」。旁支包括：病毒项目如何在 10 天窗口里催生新项目、ArXiv 从投稿到接收 68 天 vs 另一篇 4 天、对 Codex 把 Active Graph 称作 “our project”、以及一条「帮助银行安全地采用 Agent」的引用。</li>
+<li><strong>目标受众：</strong> Agent / 权重编程研究者、开源黑客、关注早期基金的创始人。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>先公布失败，再公布附件。</strong> 「nothing runs outside the model」「same loop as 2023, minus the python」这种可核对的技术立场，比「我们做了更强的 Agent」可信得多。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 把 VC 和 builder 并列；近窗几乎全是夜间建造，基金露出主要是置顶的 Untapped 重发和一条 Zoom 整蛊创始人的轻松帖。人设没有崩，只是近窗偏向实验室日志。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-29 21:40 至 11-10 04:18 Asia/Shanghai）25 条（含线程续帖）。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实验发车（babyagi-inside）</td>
+<td>高（最高曝与最高藏）</td>
+<td><a href="https://x.com/yoheinakajima/status/2118134446947971336">I put BabyAGI in Qwen：循环成立，智能体仍然很差</a></td>
+<td><strong>17119曝</strong> / 143赞 / <strong>书签87</strong> / 回复37</td>
+</tr>
+<tr>
+<td>生态观察</td>
+<td>中</td>
+<td><a href="https://x.com/yoheinakajima/status/2117482014899408898">i love how fast viral projects can trigger new projects into existence</a></td>
+<td>8668曝 / 101赞 / 书签20</td>
+</tr>
+<tr>
+<td>研究运营账本</td>
+<td>低</td>
+<td><a href="https://x.com/yoheinakajima/status/2118750377160175736">最近一篇 ArXiv 从投稿到接收花了 68 天，上一篇只要 4 天</a></td>
+<td>5144曝 / 37赞 / 书签12</td>
+</tr>
+<tr>
+<td>建造者旁白</td>
+<td>中</td>
+<td><a href="https://x.com/yoheinakajima/status/2117360831176606171">I just caught myself referring to activegraph as “our project” to Codex</a></td>
+<td>5623曝 / 38赞 / 书签1</td>
+</tr>
+<tr>
+<td>轻松玩梗/引用</td>
+<td>中（低藏）</td>
+<td><a href="https://x.com/yoheinakajima/status/2116227972919349646">okay so this kinda worked but I can’t breathe in it</a></td>
+<td>6058曝 / 35赞 / 书签3</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗 25 条按曝光 Top5（主帖优先；线程续层单独说明）：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/yoheinakajima/status/2118134446947971336">I put BabyAGI in Qwen：bounded agent loop compiled into Qwen3.5-2B</a></td>
+<td>17119</td>
+<td>143</td>
+<td>37</td>
+<td><strong>87</strong></td>
+<td>书签/赞≈0.61。钩子兑现了三件事：做了什么、诚实评价（agent still sucks）、循环本身成立。后续层给出 32/32、8/8、0/24 和「code, paper, traces」。这是近窗五人里最完整的实验发车。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/yoheinakajima/status/2117482014899408898">i love how fast viral projects can trigger new projects into existence</a></td>
+<td>8668</td>
+<td>101</td>
+<td>5</td>
+<td>20</td>
+<td>观察而不是教程。兑现的是一种生态机制：病毒项目会在几天内催生下游项目。可学「把机制说成一句人话」，不要停在感叹。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/yoheinakajima/status/2118447761012179079">evil qwen, weight-space programming, and qwenputer went viral in a 10-day window</a></td>
+<td>6678</td>
+<td>75</td>
+<td>16</td>
+<td>20</td>
+<td>给近窗热潮画出时间盒（10 天）。和 #2 是同一机制的量化版：不只说「很快」，写出窗口长度。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/yoheinakajima/status/2116227972919349646">okay so this kinda worked but I can’t breathe in it @alexandr_wang</a></td>
+<td>6058</td>
+<td>35</td>
+<td>12</td>
+<td>3</td>
+<td>轻松实物/装扮玩梗，书签很低。有曝无藏，属于人设调剂，不是资产。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/yoheinakajima/status/2117535771242709091">looks like we’re about to start benchmarking loyalty</a></td>
+<td>6021</td>
+<td>41</td>
+<td>17</td>
+<td>7</td>
+<td>一句锐评。有讨论（17 回复）但可带走物不多。</td>
+</tr>
+</tbody>
+</table>
+<p>另记可学非 Top 曝：同一线程里的 <a href="https://x.com/yoheinakajima/status/2118134455831609470">does it work? 32/32 loop, 8/8 arithmetic, 0/24 everything else</a> 和 <a href="https://x.com/yoheinakajima/status/2118134457710567888">code, paper, traces</a>（1449曝 / 9赞 / 书签5）——分数和附件才是主帖被收藏的原因。<a href="https://x.com/yoheinakajima/status/2119887412432355385">Qwen3.5-4B this weekend solved most unsolved tasks from the 2B test</a>（2967曝 / 33赞 / 书签17，书签/赞≈0.52）是少见的诚实升级日志：告诉你换更大模型后，哪些失败被解开了。<a href="https://x.com/yoheinakajima/status/2118750377160175736">ArXiv 68 天 vs 4 天</a>（5144曝 / 书签12）把研究运营写成账本，并猜测短的那篇可能只是因为投到了投稿量更小的 condensed matter 分区。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>25 条跨度约 11 天；主帖密度中等，但一次发车会拆成 5–6 层线程（原理、和 qwenputer 的对比、残差维度怎么切、循环伪代码、分数、附件）。</li>
+<li>日峰值出现在 11-05 发车日（主帖 + 多层续帖 + 稍后的「viral in a 10-day window」）。</li>
+<li>高峰偏北美白天（对应 Asia 深夜到次日上午）。</li>
+<li>全号 29311 帖 / 17.6 年，是长线公开日志，不是为涨粉新开的号。</li>
+<li>存在感来自发车线程和后续升级，而不是每天刷信息流。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈10.1:1。关注 12614 偏多，对中文增长号会敲警钟；结合 VC 身份和 listed 3035 的专业订阅盘，近窗又没有「互关」「回关」话术，判定为<strong>职业网络而非刷屏</strong>。增长主力是 BabyAGI 这一类开源资产，不是关注列表。</li>
+<li><strong>回复工时：</strong> 中。发车帖 37 回复，他用线程自答「does it work / how / code」——把评论区可能问的问题提前写进楼层。</li>
+<li><strong>钩子话术：</strong> 婴儿 emoji 和「I put BabyAGI in Qwen」这种具体动作；紧接着自砸：「the agent still sucks」；用 32/32、8/8、0/24 这种可复核分数代替形容词。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 发车主帖书签/赞≈0.61，4B 升级≈0.52；「can’t breathe」6058 曝 / 书签 3，「our project to Codex」5623 曝 / 书签 1。轻松旁白能维持人味，存不下来。</li>
+<li><strong>权威资产：</strong> 2023 年的 BabyAGI 原循环、这次的权重内循环、代码/论文/traces、yohei.me 日志、Untapped Capital。他明确写「no scheduler, no parser, no tool executor」——限制条件本身就是资产。</li>
+<li><strong>跨平台 / 漏斗：</strong> GitHub / 论文 / yohei.me / 基金站点。漏斗是：实验钩进场 → 分数和附件收藏 → 代码或基金站点。几乎看不到硬广。</li>
+<li><strong>其他：</strong> 「helping banks adopt agents safely」说明他知道 Agent 进入受监管行业要先谈安全；这条只有 3464 曝、书签 0，提醒我们：<strong>正确的企业主题如果只点题不给步骤，一样存不下来</strong>。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖 / 对照</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/yoheinakajima/status/2118134446947971336">babyagi-inside 发车</a></td>
+<td><a href="https://x.com/yoheinakajima/status/2116227972919349646">I can’t breathe in it</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>动作 + 诚实评价 + 分层分数 + 附件</td>
+<td>图片玩梗 + @ 名人</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>17119曝 / 书签87</td>
+<td>6058曝 / 书签3</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>失败率和附件会被想复现的人存下来</strong>；好玩的现场只维持温度</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>更细的对照在线程内部：只说「loop works」不够，写出 32/32 和 0/24，读者才知道该不该跟上。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>交实验必带失败率</strong> → LIS / AI入企：试点不要只报「模型能跑通」。写成「规则循环 32/32 跑完，字段抽取对了 X/Y，其余失败集中在哪些字段」。</li>
+<li><strong>附件三件套</strong> → 微李玩AI：对照 code / paper / traces，我们发案例时带上提示词、前后样本、失败例子。</li>
+<li><strong>先说限制条件</strong> → 「nothing runs outside the model」「same loop as 2023, minus the python」。院内方案先写「这次没有调度器 / 没有外挂工具 / 只在这些数据上测过」。</li>
+<li><strong>升级日志对着上次的失败项写</strong> → 4B「解决了 2B 测试里大多数没做出来的任务」。版本更新不要列举新功能，要对着上一版失败清单打勾。</li>
+<li><strong>给热潮加上时间盒</strong> → 「viral in a 10-day window」。观察行业时写出窗口，而不是「最近很火」。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>关注 1.2 万这个数字本身不必模仿；中文专业号维持高粉关比仍然更稳。</li>
+<li>「agent still sucks」这种自砸在研究圈加分，对医院客户要改成「循环稳定、抽取准确率仍低，所以我们先只用于辅助、不自动写报告」——诚实，但不消遣。</li>
+<li>装扮玩梗、海盘生日、工具域名吐槽可以偶尔出现，成主食就会把建造日志冲淡。</li>
+<li>企业安全主题（银行采用 Agent）如果只点题，效果接近空气；要么展开步骤，要么别发。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>带分数的试点日志</strong>：某 LIS/质控任务的通过项、失败项、样本数，对照 32/32 与 0/24。</li>
+<li>同一条下贴出 <strong>提示词 + 前后样本 + 失败例子</strong>，相当于他的 code / paper / traces。</li>
+<li>人审红线：<strong>禁止用「效果很好」代替分数</strong>；升级必须写清解开了上一版的哪几条失败。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；单页最多 25 条，本号返回 25 条，含同一对话的续层；最近一条 2026-11-10 04:18 Asia/Shanghai；<code>next_token</code> 指向更早帖，未再翻页）；关键长帖与置顶用 <code>get_posts_by_ids</code> 核对。采集 2026-11-10 ~09:20 Asia/Shanghai；用户 id：<code>30439303</code>。</li>
+<li>判定说明：可学。粉关比偏低但按 VC 职业网络理解，不标互关刷屏。Top5 按曝光，另标出线程内分数帖与 4B 升级帖。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

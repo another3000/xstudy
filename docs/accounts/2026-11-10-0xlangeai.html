@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@0xlangeai（蓝哥AI） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · Grok Bot/Muse</span>
+    <h1>@0xlangeai（蓝哥AI）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/0xlangeai</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-10 ~09:20 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>蓝哥AI / @0xlangeai</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2024-02-19（约 2.7 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>12276 / 770 / 7017</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media≈707；listed≈83</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>15.9:1</strong>（健康，未见互关刷屏）。Bio：「连续创业者 / 前独角兽架构师；Grok Bot、Muse、Hermes 重度用户；写 AI 编程、AI 企服、AI 出海；Grok Bot Template Hub：grok-bot.app；199 付费答疑群 +V langeai666」。用户 id：<code>1759530111534243840</code>。置顶即权威资产：<a href="https://x.com/0xlangeai/status/2103300004966478284">Muse 上手保姆级教程：从登录到完成第一个任务</a>（<strong>2157925曝</strong> / 2097赞 / <strong>书签4150</strong> / 回复1066，书签/赞≈1.98）。近采返回 22 条原创主帖（不足 25，因转帖/回复被排除），覆盖 2026-11-09 06:30 至 11-10 08:41 Asia/Shanghai——约 26 小时 22 帖，密度极高，无需替换。判定：<strong>可学</strong>——「引用补一句成本/分工判断」和「版本更新只留现在能做什么」会收藏；「卧槽❗️」吃瓜、纯转发教程、付费微信群硬广标 <strong>慎学对照</strong>。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>华语 Grok Bot / Muse 策展兼组织者：近窗用<strong>引用别人的教程 + 自己补一句账单或口径</strong>换书签；26 小时 22 帖里，教程指针会藏，老黄瓜有曝零藏。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 连续创业、前独角兽架构师、三款 Agent 的重度用户和测评者；同时挂 Template Hub 和 199 元付费答疑群。</li>
+<li><strong>时间线实际：</strong> 近窗几乎是「华语 AI 信息流的二传手 + 社区组织者」。大量引用他人长文（DeepSeek Harness 入门到精通、AI 视频提示词、官方 Prompt 指南、卡兹克测 Fable 5.2），自己补一段判断或数据；穿插 Grok Bot Meetup（深圳 12 月 12 日「Grok Bot + 硬件」，与 @MaiYangAI、@KinGao476942、@jklthinking 筹办；杭州场催报名）； Hermes v0.23.0 更新梳理；Muse/Grok Bot 申请免费 2 核 4G 云服务器；以及多条黄仁勋婚外情/调查的跟进（有的在提醒「承认出轨 ≠ 承认间谍或泄密」）。</li>
+<li><strong>目标受众：</strong> 想用 Grok Bot / Muse / Hermes 做事的华语经营者、想参与线下 Meetup 的人。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>「我先用过，所以能告诉你别让最贵的模型改标点」</strong>；以及把官方更新翻译成「现在能接着干什么」。置顶 Muse 保姆级教程是全号压舱石。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 写「前独角兽架构师 / 连续创业者」，近窗看不到创业项目进展，看到的是内容策展、活动组织和创作者收益复盘（自引用 11-07 帖：这期 X 原创收益 1700 多美元，Ultra 年费约 1000 美元已 2 倍回本）。人设从建造者滑向<strong>频道主 + 社区官</strong>。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-11-09 06:30 至 11-10 08:41 Asia/Shanghai）原创主帖 22 条。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>引用教程/清单</td>
+<td>高（最高藏）</td>
+<td><a href="https://x.com/0xlangeai/status/2119792328005337120">DeepSeek Harness 超火，入门到精通的教程都来了</a></td>
+<td><strong>6660曝</strong> / 53赞 / <strong>书签49</strong></td>
+</tr>
+<tr>
+<td>活动组织</td>
+<td>中</td>
+<td><a href="https://x.com/0xlangeai/status/2119765026668216527">Grok Bot Meetup 深圳第二场定档 2026.12.12，主题是硬件</a></td>
+<td>841曝 / 14赞 / 书签0 / 回复9</td>
+</tr>
+<tr>
+<td>版本/价格判断</td>
+<td>中（可学）</td>
+<td><a href="https://x.com/0xlangeai/status/2119953531570721244">Fable 5.2 与 Mythos 5.2 同底层，别让最贵的模型改标点</a></td>
+<td>82曝（新帖）/ 2赞 / 书签0</td>
+</tr>
+<tr>
+<td>创作者账本</td>
+<td>低</td>
+<td><a href="https://x.com/0xlangeai/status/2119628786014797884">这期 X 原创收益 1700 多刀，省流五条写法</a></td>
+<td>500曝 / 5赞 / 书签1</td>
+</tr>
+<tr>
+<td>热点吃瓜</td>
+<td>中（虚荣曝）</td>
+<td><a href="https://x.com/0xlangeai/status/2119662517299626308">老黄的婚外情故事，某某短剧怎么还没出</a></td>
+<td>1181曝 / 0赞 / <strong>书签0</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>近窗 22 条主帖按曝光 Top5：</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>书签</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/0xlangeai/status/2119792328005337120">DeepSeek Harness 是真的超火，入门到精通的教程都来了</a></td>
+<td>6660</td>
+<td>53</td>
+<td>4</td>
+<td><strong>49</strong></td>
+<td>书签/赞≈0.92。钩子兑现的是<strong>一篇别人已经写好的系统教程</strong>（@leaf_sanren）。结构是「超火 + 教程在这 + 学不学随你」——指针有用，自己的判断偏薄。可学「把完整教程递到收藏夹」，不学空号召。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/0xlangeai/status/2119800336265449472">抖音、视频号涨粉秘籍来了，提示词都明牌；20 天 24300+ 粉、播放 70 万</a></td>
+<td>3771</td>
+<td>19</td>
+<td>4</td>
+<td>24</td>
+<td>书签/赞≈1.26。兑现的是<strong>可核对的增长数字 + 提示词出口</strong>。引用 @yanchuanlab 长文。医疗号可学「报结果带周期和量」，不要去搬短视频起号话术。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/0xlangeai/status/2119596079847022932">观默整理出 8 个普通人能用的官方提示词技巧，附 10 个可复制 Prompt</a></td>
+<td>1590</td>
+<td>6</td>
+<td>4</td>
+<td>3</td>
+<td>自己加了一句有价值的判断：「官方其实不吃万能焚诀」。引用时补否定句，比纯「收藏」强。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/0xlangeai/status/2119781222582993224">Muse 白嫖 2 核 4G 服务器：直接让它去申请，Grok Bot 也能干</a></td>
+<td>1239</td>
+<td>6</td>
+<td>6</td>
+<td>7</td>
+<td>书签/赞≈1.17。<strong>一句可执行指令 + 限制条件</strong>（要邮箱登录，支持 Google 邮箱）+ 迁移到另一工具。效用帖该长这样。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/0xlangeai/status/2119650476753068399">杭州第二场 Grok Bot 活动来了，名额有限</a></td>
+<td>1239</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>与 #4 曝光并列，但几乎无收藏。活动通知若不附「这期能具体学到什么」，就只是日历。对照深圳场（主题写明「Grok Bot + 硬件」）更清楚。</td>
+</tr>
+</tbody>
+</table>
+<p>另记：同窗 <a href="https://x.com/0xlangeai/status/2119662517299626308">老黄婚外情故事，短剧怎么还没出</a>（1181曝 / 0赞 / 书签0）是典型虚荣曝光。可学对照是他另一条澄清帖：「承认出轨，不等于承认间谍关系或泄密」——同一热点，有判断就比起哄值钱，尽管这条收藏也不高。</p>
+<p>置顶 Muse 教程（窗口外，但是本号压舱石）215 万曝 / 书签 4150，证明他真正破圈的不是二传手节奏，而是<strong>一篇能让人从登录走到第一个任务的手册</strong>。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近采 22 条主帖只覆盖约 26 小时，日峰值超过 15 条主帖（含大量引用）。这是频道型产能，不是深度建造型。</li>
+<li><code>next_token</code> 指向 11-08 更早的帖，未再翻页；窗口短是因为发得太密，不是静默。</li>
+<li>高峰几乎铺满 Asia 上午到午夜，像在盯盘信息流。</li>
+<li>全号 7017 帖 / 2.7 年，年均很高；线下 Meetup 是另一条产能（深圳、杭州，以及转述长沙等场次）。</li>
+<li>「存在感」靠高频二传和活动筹办；深度资产仍是置顶 Muse 教程和偶尔的版本梳理（Hermes v0.23.0）。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> ≈15.9:1——健康。关注 770 对 1.2 万粉合理，增长靠教程资产和社群，不靠互关。</li>
+<li><strong>回复工时：</strong> 中。Meetup、免费服务器、教程指针都有个位数回复；他不是纯串门号，但也不是深度答疑楼层（付费答疑被放到微信群）。</li>
+<li><strong>钩子话术：</strong> 「卧槽 ❗️❗️❗️」「兄弟们」；数字（24300 粉 / 70 万播放 / 1700 多刀 / 快 30% / 百万 token 8 美元）；把贵模型和使用场景拆开（Fable 干难题，日常继续 Opus 5.5）。</li>
+<li><strong>书签型 vs 虚荣赞：</strong> 教程指针和「白嫖服务器」书签/赞可到 0.9–1.3；黄仁勋起哄帖 1181 曝零赞零藏。引用教程时如果自己只写「学不学随你」，价值几乎全在原作者。</li>
+<li><strong>权威资产：</strong> Muse 保姆级教程、grok-bot.app 模板站、Hermes 更新长帖、创作者收益截图。Fable 帖把「同底层、同价格、安全范围不同」讲清楚，是测评者该有的资产。</li>
+<li><strong>跨平台 / 漏斗：</strong> grok-bot.app → 199 付费答疑群（微信 langeai666）→ 线下 Meetup。漏斗清晰，也容易让时间线读起来像导流频道。</li>
+<li><strong>其他：</strong> 外贸分享会那条观察很值钱——「不少人还没用上 AI，用了的也主要是豆包、DeepSeek，更别说 Agent；群友已经在用 Muse 做社媒、接 WhatsApp」。这是<strong>认知落差现场</strong>，比「Agent 时代到了」更可迁移到 AI 入企。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（可学面）</th>
+<th>平帖 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/0xlangeai/status/2119781222582993224">Muse 申请免费 2 核 4G 云服务器</a></td>
+<td><a href="https://x.com/0xlangeai/status/2119662517299626308">老黄的婚外情故事，短剧怎么还没出</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>一句可执行指令 + 限制条件 + 迁移到 Grok Bot</td>
+<td>热点起哄，无判断</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>1239曝 / 书签7；书签/赞≈1.17</td>
+<td>1181曝 / 0赞 / 书签0</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td><strong>能让人马上去做的一步会被存</strong>；吃瓜只换阅读</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>更深的可学样本是 <a href="https://x.com/0xlangeai/status/2119953531570721244">Fable 5.2：约 10 个重任务吃掉约四分之一 Ultra 额度，别让最贵的模型替你改标点</a>——采到时还是新帖（82 曝），但结构完整：报价、适用边界、错误用法。这比「教程都来了」更像蓝哥自己的手艺。</p>
+<h2>7. 可学习清单（→ 微李玩AI / LIS / AI入企 / 小程序）</h2>
+<ol>
+<li><strong>引用必须补一句成本或分工判断</strong> → AI入企：不要只转「某模型更强」，写清「难题给贵模型，日常文案/改标点用便宜模型；一次重任务大约吃掉额度的多少」。</li>
+<li><strong>版本更新只留「现在能做什么」</strong> → 对照 Hermes v0.23.0：浏览器也能用完整工作区、多入口共用会话、付费 MCP 超上限会再问、安全插件要单独装、手机端仍是 Beta。LIS 发版说明应写成这种可执行清单，而不是「多项优化」。</li>
+<li><strong>认知落差现场</strong> → 微李玩AI / AI入企：写「外面分享会上很多人还只用豆包问问题，我们客户已经在用 Agent 接 WhatsApp/科室消息」——用现场，不用口号。</li>
+<li><strong>一句指令 + 限制条件</strong> → 小程序：像「去申请这个免费云服务器，但要邮箱登录」一样，把坑写在命令旁边。</li>
+<li><strong>创作者账本公开</strong> → 微李玩AI：蓝哥写「1700 多美元 / Ultra 年费约 1000 已 2 倍回本」+ 五条可执行写法。我们可以公开「一条科普视频的工具账」，不要只说「值得做」。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>26 小时 22 帖会把账号训练成信息流频道，深度教程的辨识度会被冲掉。医疗品牌更不适合这个密度。</li>
+<li>「卧槽 ❗️❗️❗️」加明星/企业家隐私瓜，即便事后补澄清，也先消费了八卦。</li>
+<li>纯指针型引用（「教程都来了，学不学随你」）把收藏建立在别人的资产上，自己不可复用。</li>
+<li>Bio 里的 199 付费答疑群是硬广；Meetup 若不写清主题，就只是拉人。</li>
+<li>免费云服务器「白嫖」话术有过期和条款风险，院内场景不要用这种口吻。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周发 1 条 <strong>「引用 + 成本分工」</strong>：同一任务用贵模型/便宜模型各花多少，以及不该让贵模型干的事。</li>
+<li>把最近一次 Muse / Grok Bot / 院内工具更新写成 <strong>5 条「现在能做什么 / 默认不开的开关」</strong>，对照 Hermes 帖。</li>
+<li>人审红线：<strong>禁止无判断吃瓜和纯「教程在此」空指针</strong>；引用必须带自己的口径或账单。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>数据源：<code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies；单页最多 25 条，本号返回 22 条，最近一条 2026-11-10 08:41 Asia/Shanghai；<code>next_token</code> 指向更早帖，未再翻页）；关键长帖与置顶用 <code>get_posts_by_ids</code> 核对。采集 2026-11-10 ~09:20 Asia/Shanghai；用户 id：<code>1759530111534243840</code>。</li>
+<li>判定说明：可学；高频二传、吃瓜与付费群硬广标慎学对照。Top5 按曝光，另标出置顶 Muse 教程与低曝但结构完整的 Fable 成本帖。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
