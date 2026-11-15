@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@ttunguz（Tomasz Tunguz） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-a.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 出海GTM/市场账本</span>
+    <h1>@ttunguz（Tomasz Tunguz）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/ttunguz</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-15 ~09:50 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Tomasz Tunguz / @ttunguz</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2007-11-08（约 19 年）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>131210 / 385 / 13612</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media 字段未返回；listed=2917</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>340.8:1</strong>，极健康。Bio：Theory VC 投资人，Student of Startups，Backer of 9 unicorns，写书并给订阅入口。用户 id：<code>10069172</code>。近采：<code>get_users_posts</code> exclude retweets,replies，2 页 49 条原创，覆盖 2026-10-02 23:47 至 2026-11-14 04:31 Asia/Shanghai（仍有 next_token）。近 7 天主帖 9 条，近 30 天 37 条，产能偏高。近页（含回复、exclude 仅转帖）25 条几乎都落在近 7 天，其中回复约 16、主帖 9——<strong>研究型主帖 + 回复工时</strong>并行。曝光中位数约 7281，书签中位数 37，书签基线明显高于普通资讯号。判定：<strong>可学</strong>——用公开财报把「钱从哪走到哪」画出来；活动通知和单句招聘是平帖。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>软件与 AI 市场的公开账本号：把 10-K / S-11 里的数字收成一句判断，订阅和办公时间是漏斗，不是主菜。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 创业公司的学生、9 家独角兽的投资人、作者、请订阅。身份是「持续做功课的人」，不是意见领袖腔。</li>
+<li><strong>时间线实际：</strong> 近窗反复做三件事：推断市场是否超过数据库、AI 价值链利润留在哪一层、把 Anthropic 等公开文件折成 7 个指标。穿插软件股单日跌幅快照、Office Hours、黑客松报名。</li>
+<li><strong>目标受众：</strong> SaaS / AI 创业者、出海 GTM、看财报的投资人。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>先给一个能改写行业叙事的数字，再给链接。</strong> 「Inference 快要超过数据库」「从发电厂到 Agent 追踪每一层利润」，读者会收藏，因为这是可以放进董事会材料的句子。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 写 Student of Startups，时间线已经高度「公开市场研究」化，初创故事变少。人设还在「做功课」，只是作业本换成了财报。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-02 23:47 至 2026-11-14 04:31 Asia/Shanghai）原创主帖 49 条。中位书签 37，说明这个号的日常就被当成参考资料，不只是偶发爆款。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用公开数字改写市场叙事</td>
+<td>高（最高曝与最高藏）</td>
+<td><a href="https://x.com/ttunguz/status/2107112425111887879">2010 年代数据库 2% 份额就能 IPO；Inference 快要超过它</a></td>
+<td><strong>62333曝</strong> / 504赞 / <strong>书签683</strong> / 回复35</td>
+</tr>
+<tr>
+<td>价值链 / 利润归属</td>
+<td>中</td>
+<td><a href="https://x.com/ttunguz/status/2120596768350241012">谁拿走 AI 价值链上最多的利润？从发电厂追到 Agent</a></td>
+<td>38739曝 / 341赞 / <strong>书签593</strong> / 回复55</td>
+</tr>
+<tr>
+<td>把招股书折成对照表</td>
+<td>中</td>
+<td><a href="https://x.com/ttunguz/status/2114763667619426633">Anthropic S-11：7 个关键指标怎么排</a></td>
+<td>28677曝 / 200赞 / 书签236 / 回复46</td>
+</tr>
+<tr>
+<td>盘面情绪快照</td>
+<td>中（有曝，藏相对弱）</td>
+<td><a href="https://x.com/ttunguz/status/2110525119068311567">80% 的软件和 AI 股票今天在跌</a></td>
+<td>34885曝 / 114赞 / 书签67</td>
+</tr>
+<tr>
+<td>漏斗活动（Office Hours / 黑客松）</td>
+<td>中（明显平）</td>
+<td><a href="https://x.com/ttunguz/status/2118821663991374306">12 月 11 日黑客松，来报名</a></td>
+<td>3431曝 / 9赞 / 书签5</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>按近采窗口主帖<strong>阅读量（曝光）</strong>取 Top5。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/ttunguz/status/2107112425111887879">数据库曾经是最重要的软件品类，Inference 快超过它</a>（2026-10-05 22:15 Asia/Shanghai）</td>
+<td>62333</td>
+<td>504</td>
+<td>35</td>
+<td>可学：用一个旧锚点（2% 份额就能 IPO）解释新判断。书签/赞≈1.36，BIR≈1.10%——典型参考资产。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/ttunguz/status/2120715593083240562">企业未来只用零数据保留的 AI，提示词泄漏知识产权</a>（2026-11-12 11:09）</td>
+<td>47896</td>
+<td>141</td>
+<td>41</td>
+<td>可学：一句政策判断，短、可辩论、可贴进售前。回复 41。书签/赞≈0.57，传播大于收藏。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/ttunguz/status/2108588512698044672">AI 推理从 1600 亿到 3500 亿美元，软件利润率可能从 72% 掉到 30–50%</a>（2026-10-10 00:00）</td>
+<td>45170</td>
+<td>419</td>
+<td>51</td>
+<td>可学：两个数字区间并置（市场规模 vs 利润率）。书签/赞≈0.78，BIR≈0.72%。读者收藏的是「可以拿去算自己账」的框架。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/ttunguz/status/2115555165726199866">Wow, GCP！按现有增速下季或超过 Azure 计算业务</a>（2026-10-29 05:23）</td>
+<td>41244</td>
+<td>406</td>
+<td>35</td>
+<td>对照：有图有惊叹，书签/赞只有约 0.19。这是新闻快照，不是框架。可看，不必当样板。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/ttunguz/status/2120596768350241012">谁捕获 AI 价值链最多利润：从发电厂到 Agent</a>（2026-11-12 03:17）</td>
+<td>38739</td>
+<td>341</td>
+<td>55</td>
+<td>可学：一条问题 + 一条方法（公开文件可追踪）。书签/赞≈1.74，BIR≈1.53%，近窗最强收藏之一。回复也高，适合讨论。</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天主帖 9 条，近 30 天 37 条；加上回复，近 7 天几乎每天都在线。</li>
+<li>近页 25 条时间集中在 11-09 至 11-14，回复 : 主帖约 16:9。高频靠的是<strong>研究产出 + 办公时间式回复</strong>，不是模板短句。</li>
+<li>高峰多在 Asia/Shanghai 0:00–6:00（太平洋下午到晚上）。</li>
+<li>这是专业账号的工作节奏，可学其「主帖给框架、回复做答疑」，不必学每天十几条的体量。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 不用。关注仅 385，340:1。</li>
+<li><strong>回复工时：</strong> <strong>在用。</strong> 近一周回复量明显，Office Hours 也是把讨论从时间线转到日历。</li>
+<li><strong>钩子话术：</strong> 旧锚点对照、利润率对撞、价值链追问、「7 个指标」对照表。数字都指向公开文件，不是拍脑袋。</li>
+<li><strong>平台激励：</strong> 蓝标。</li>
+<li><strong>擦边 / 猎奇：</strong> 无。</li>
+<li><strong>跨平台导流：</strong> <strong>主机制之一。</strong> Bio 和帖内导向长文/订阅；Office Hours、黑客松是转化事件。但活动帖本身很平，漏斗靠主帖的专业信任，而不是报名链接的文案。</li>
+<li><strong>其他：</strong> 高书签帖（价值链、Inference 叙事）更像「会被复制进 slides」的物件。2026 年书签不进排序，但书签/赞仍然能把「参考资产」和「今日盘面」分开——80% 股票下跌那条 3.5 万曝只有 67 藏。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/ttunguz/status/2120596768350241012">从发电厂到 Agent 的利润链</a></td>
+<td><a href="https://x.com/ttunguz/status/2119827797774667835">Get paid to build!</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>一个追问 + 可复核的方法</td>
+<td>招募/活动口号 + 链接</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>框架感；书签 593，回复 55</td>
+<td>3069 曝 / 3 赞 / 3 藏 / 2 回复</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>同一账号里，公开账本是资产，号召报名是通知。黑客松、Office Hours 预告都落在 3 千曝附近。漏斗可以放在 Bio 或主帖末尾，不要指望通知帖自己起飞。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>用一个旧锚点解释新判断 → 迁到「微李玩AI」/ 出海：</strong> 「检验科曾经靠报告量定价；现在如果推理成本改写软件利润率，LIS 的账要重算。」先给旧锚，再给新数字。</li>
+<li><strong>把公开材料折成 5–7 个对照指标 → 迁到 AI 入企：</strong> 别只说「某大模型公司很强」。学 Anthropic S-11 那条：列出收入、增长、集中度等可核对的格子。</li>
+<li><strong>价值链追问 → 迁到 LIS / 输血信息化：</strong> 「从试剂到报告，利润留在哪一层？」比「我们是全流程」更容易让院长停下。</li>
+<li><strong>零数据保留当成售前第一句 → 迁到 AI 入企：</strong> Tunguz 那句很硬：企业未来只跟零留存的 AI 合作，因为提示词在漏知识产权。院内版本：患者数据不出域，是功能演示之前的门槛。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：低。注意转述财务数字必须来自公开文件，转错会伤专业信誉。</li>
+<li>信任与品牌损耗：盘面快照（「今天 80% 在跌」）有曝无框架，发多了会变成行情号。</li>
+<li>与我们定位冲突点：不要把活动报名、Office Hours 通知当成内容主体。也不要在没有公开数据时硬造「7 个指标」。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周写一条「用一个旧锚点 + 两个公开数字」的判断，例如检验信息化定价 vs 模型推理成本，文末给来源链接。</li>
+<li>把一条产品介绍改成价值链追问：从标本到报告，钱和责任分别留在哪一层。</li>
+<li>主帖发出后 2 小时内回复追问数字口径的人；活动通知放在回复或 Bio，不单独当爆款来写。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据摘录 / 查询条件：2026-11-15 connectors/x <code>get_users_by_usernames</code> + <code>get_users_posts</code>（exclude retweets,replies，2 页 49 条）+ 另取 1 页含回复看节奏 + <code>get_posts_by_ids</code> 复核头部帖。</li>
+<li>关键截图路径（可选）：无。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

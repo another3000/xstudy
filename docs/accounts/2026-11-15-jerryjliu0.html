@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@jerryjliu0（Jerry Liu / LlamaIndex） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 文档解析/基准</span>
+    <h1>@jerryjliu0（Jerry Liu / LlamaIndex）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/jerryjliu0</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-15 ~09:50 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Jerry Liu / @jerryjliu0</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2011-09-07（约 15 年 2 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>88186 / 1632 / 8168</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media 字段未返回；listed=1914</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>54.0:1</strong>，健康。Bio：Parsing the world's hardest PDFs @llama_index，联合创始人/CEO；挂 LlamaParse 与企业入口。用户 id：<code>369777416</code>。近采以 <code>search_posts_all from:jerryjliu0 -is:retweet -is:reply</code>（start_time=2026-08-01）为主，得 68 条原创，覆盖 2026-10-13 13:41 至 2026-11-15 00:46 Asia/Shanghai（8 月–10 月中无更多页在本轮已取窗口内，主活动集中在近一个月）。<code>get_users_posts</code> 因发车周密度大，前两页几乎只覆盖 11-12 至 11-14 的 7 条，故不用它当全窗。近 7 天搜索窗原创约 9 条，近 30 天 58 条，发车周明显加密。曝光中位数约 6061，书签中位数 15。判定：<strong>可学</strong>——自己做基准、给竞品颁奖、把「对错标准」写成协议；最高曝来自一句「wtf / living at the edge」，那是虚荣流量，不当样板。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>文档解析的产品发车号：真正被收藏的不是总分榜，是「用什么标准算对错」；最高曝光往往来自一句俏皮的引用。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 解析世界上最难的 PDF，LlamaIndex 创始人，产品和企业入口都挂在简介里。漏斗写得很干净。</li>
+<li><strong>时间线实际：</strong> 近一个月主线是 OCRia-1 发车、ParseBench / ParseBench-2、Document Parsing Protocol，以及给 NVIDIA 公开模型颁「目前开源第一」。夹杂大量引用和一句感叹，后者反而拿走最高曝光。</li>
+<li><strong>目标受众：</strong> 做 RAG / 文档智能 / 企业知识库的工程师和买家。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>先做裁判，再卖产品。</strong> 给别人的模型颁奖（Nemotron 登顶 ParseBench），比自说自话更像权威；再把「错误怎么定义」收成 DPP 协议，收藏比发车总分还高。</li>
+<li><strong>与 Bio 的错位：</strong> Bio 是解析 PDF 的人，时间线有一半是行业闲聊和引用。错位不可怕，可怕的是把闲聊的曝光当成产品内容有效。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-13 13:41 至 2026-11-15 00:46 Asia/Shanghai）原创主帖 68 条。中位曝光约 6 千；28 万那条是引用闲聊，必须单独看。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>引用/感叹吃到虚荣曝光</td>
+<td>中（最高曝，低藏）</td>
+<td><a href="https://x.com/jerryjliu0/status/2109882284933619969">you guys are really living life at the edge</a></td>
+<td><strong>284698曝</strong> / 190赞 / 书签31 / 回复4</td>
+</tr>
+<tr>
+<td>产品发车 + 第三方/自有基准</td>
+<td>中</td>
+<td><a href="https://x.com/jerryjliu0/status/2113291928292790725">发布 OCRia-1：ParseBench 87.4，表格 92.9</a></td>
+<td>111801曝 / 939赞 / 书签815 / 回复118</td>
+</tr>
+<tr>
+<td>把对错标准写成协议/框架</td>
+<td>中（最高藏）</td>
+<td><a href="https://x.com/jerryjliu0/status/2115516581925315034">推出 Document Parsing Protocol（DPP）</a></td>
+<td>36846曝 / 796赞 / <strong>书签902</strong> / 回复69</td>
+</tr>
+<tr>
+<td>给竞品在自己的榜上颁奖</td>
+<td>少（高权威）</td>
+<td><a href="https://x.com/jerryjliu0/status/2113008819328700439">恭喜 NVIDIA Nemotron 3.5 Parse 登顶 ParseBench</a></td>
+<td>55403曝 / 1004赞 / 书签893 / 回复46</td>
+</tr>
+<tr>
+<td>生活碎屑</td>
+<td>中（接近零藏）</td>
+<td><a href="https://x.com/jerryjliu0/status/2115501283113320900">旧金山 wifi 是不是全挂了</a></td>
+<td>3091曝 / 4赞 / 书签0</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>按近采窗口主帖<strong>阅读量（曝光）</strong>取 Top5。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/jerryjliu0/status/2109882284933619969">you guys are really living life at the edge</a>（2026-10-13 13:41 Asia/Shanghai）</td>
+<td>284698</td>
+<td>190</td>
+<td>4</td>
+<td><strong>慎学（虚荣曝光）：</strong> BIR 仅 0.01%，书签 31，回复 4。这是引用带来的路过流量，带不走产品认知。不要把最高曝当成最可学。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/jerryjliu0/status/2117342113738391692">wtf</a>（2026-11-03 03:44）</td>
+<td>142536</td>
+<td>720</td>
+<td>28</td>
+<td><strong>慎学（好奇引用）：</strong> 一词引用，约 14.3 万曝光里的烟花。书签 364 看起来不少，书签/赞≈0.51，但仍无方法、无数字。可理解它能打曝光，不要当内容策略。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/jerryjliu0/status/2113291928292790725">发布 OCRia-1，ParseBench 87.4，olmOCR 表格 92.9</a>（2026-10-22 23:30）</td>
+<td>111801</td>
+<td>939</td>
+<td>118</td>
+<td>可学：发车同时甩自有榜和第三方榜，表格单项单列。书签 815，回复 118——产品帖里少见的「又能藏又能聊」。BIR≈0.73%。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/jerryjliu0/status/2120921239619612921">发布 ParseBench-2</a>（2026-11-13 00:46）</td>
+<td>104095</td>
+<td>209</td>
+<td>105</td>
+<td>可学（回复型）：105 条回复说明它激起了讨论；但书签只有 57，BIR≈0.05%。新榜发布会引来「你的度量准不准」的争论，争论能带来曝光，未必能留下资产。对比 DPP 就清楚了。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/jerryjliu0/status/2116299214770819452">恭喜某产品两个月 1 亿美元 ARR</a>（2026-10-31 06:40）</td>
+<td>64533</td>
+<td>241</td>
+<td>15</td>
+<td>对照：祝贺帖能借到行业热闹，书签 78，BIR≈0.12%。这是社交资本，不是方法论。</td>
+</tr>
+</tbody>
+</table>
+<p>务必并读书签三巨头（不在曝光 Top5 也会被当作资产）：<a href="https://x.com/jerryjliu0/status/2115516581925315034">DPP</a> 36846曝 / 902藏 / 书签/赞≈1.13 / BIR≈2.45%；<a href="https://x.com/jerryjliu0/status/2113008819328700439">Nemotron 登顶</a> 55403曝 / 893藏。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天搜索窗原创约 9 条；11-12 至 11-14 的 ParseBench-2 发车窗口明显加密（时间线连续发系列说明和引用）。</li>
+<li>近 30 天 58 条，是这个样本里产能最高的号之一。高频来自发车周的解释帖，不是互关短句。</li>
+<li>高峰大致对应太平洋上午到下午（Asia/Shanghai 深夜到次日下午）。</li>
+<li>发车周要准备好第一轮回复：OCRia 和 ParseBench-2 都冲上 100+ 回复。公开权重吃这些回复。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li><strong>互关 / 粉关比：</strong> 不用。54:1。</li>
+<li><strong>回复工时：</strong> 发车周明显。产品帖下的高回复是机制，不是噪音。</li>
+<li><strong>钩子话术：</strong> 总分 + 单项（表格 92.9）、自己的榜、给对手颁奖、把错误类型协议化。虚荣侧是一个词的引用。</li>
+<li><strong>平台激励：</strong> 蓝标。</li>
+<li><strong>擦边 / 猎奇：</strong> 无色情擦边；有「wtf」式情绪猎奇，属于轻度注意力钩，不当主菜。</li>
+<li><strong>跨平台导流：</strong> Bio 和企业/LlamaParse 链接是漏斗。基准和协议是信任入口，产品是出口。</li>
+<li><strong>其他：</strong> 2026 年书签不进排序，所以 ParseBench-2 这种高回复低收藏的帖，可能「打得开 For You」，却不一定留下方法。DPP 相反：曝光只有 3.7 万，收藏是近窗第一。评估这个号，必须把「曝光冠军」和「资产冠军」拆开。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（其实是虚荣爆）</th>
+<th>资产爆</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/jerryjliu0/status/2109882284933619969">living at the edge</a></td>
+<td><a href="https://x.com/jerryjliu0/status/2115516581925315034">DPP 协议</a></td>
+<td><a href="https://x.com/jerryjliu0/status/2115501283113320900">旧金山 wifi 是不是全挂了</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>一句调侃 + 引用</td>
+<td>问题（各家 OCR 对错标准不一）+ 协议</td>
+<td>生活提问</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>28.5 万曝 / 31 藏</td>
+<td>3.7 万曝 / 902 藏</td>
+<td>3091 曝 / 0 藏</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>最高曝不是最可学。要学就学 DPP：把「好不好」定义成可以共享的错误类型，而不是再发一个总分。生活碎屑和「这就是 meta」一类引用，接近零资产。</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>自己做基准，且按错误类型打分 → 迁到 LIS / 输血：</strong> 不要只说「我们识别率 99%」。学 ParseBench / DPP：化验单、配血单、手写医嘱分别会犯哪类错（列对齐、关键字段幻觉、单位弄错），哪一类是下游不可接受的。</li>
+<li><strong>给对手在自己的榜上颁奖 → 迁到「微李玩AI」/ AI 入企：</strong> 「目前开源第一是别人」并不会削弱你，只要榜是你的。公开颁奖换来的是裁判权。</li>
+<li><strong>发车必须同时给自有榜和第三方榜 → 迁到产品发布：</strong> OCRia 那条同时报 ParseBench 和 olmOCR 表格分。单一自有分数容易被质疑，双向对照更像证据。</li>
+<li><strong>不要把高曝引用当成内容计划：</strong> 「wtf」可以偶尔露脸，不能周周靠它活。微李玩AI 更应该把产能留给可核对的现场。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：低。基准争议可能引来「既当裁判又当运动员」的批评（ParseBench-2 高回复低收藏，已经露出这个张力）。要学就学他把度量标准公开，而不是把榜练成广告。</li>
+<li>信任与品牌损耗：虚荣引用发多了，新来的人会觉得这是一个段子号。他自己的 28 万曝 / 31 藏已经写明代价。</li>
+<li>与我们定位冲突点：LIS 场景尤其不能只报总分。配血相关字段错一条就是事故，必须按错误类型谈。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周起草一页「化验单 / 报告单解析错误类型」：至少 4 类错误，并标明哪一类是下游不可接受的。先发标准，再发分数。</li>
+<li>如果要评工具，公开给一个对手单项第一，同时宣布自己的评测集怎么构成。</li>
+<li>产品发车后 2 小时内，优先回复「你们怎么定义对错」而不是「给我一个试用码」。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据摘录 / 查询条件：2026-11-15 connectors/x <code>get_users_by_usernames</code> + <code>search_posts_all from:jerryjliu0 -is:retweet -is:reply</code>（start_time=2026-08-01，约 3 页 68 条）+ <code>get_posts_by_ids</code> 复核头部帖全文与指标。<code>get_users_posts</code> 仅作发车周补充，因分页窗口过窄，不以它统计 Top5。</li>
+<li>关键截图路径（可选）：无。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
