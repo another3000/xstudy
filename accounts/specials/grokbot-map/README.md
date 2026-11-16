@@ -106,20 +106,20 @@
 
 > **节奏：** 每周只抽 **1 篇目录文** → 产出 **1 张机制卡** → **1 条实验帖**（人审后发）。不新开 40 篇案卷。
 
-**本周已抽读：** Kin [一个月系列目录](https://x.com/KinGao476942/status/2110689770892648953) 第 **1** 篇 — [《工程师如何用好 Grok bot?》](https://x.com/KinGao476942/status/2096232745538334913)（约 864 书签 / 140857 曝光）。
+**本周已抽读：** Kin [一个月系列目录](https://x.com/KinGao476942/status/2110689770892648953) 第 **4** 篇 — [《我如何用 Grok bot 做时间管理？》](https://x.com/KinGao476942/status/2103079265353052265)（2026-11-16 live：162 书签 / 26516 曝光 / 65 赞）。
 
 | 产出 | 内容 |
 | --- | --- |
-| 机制 id | `kin-proof-loop`（交活必带证明 · 完整反馈闭环） |
-| 机制全文 | [2610top40 MECHANISMS.md](../2610top40/MECHANISMS.md#kin-proof-loop｜交活必带证明完整反馈闭环) |
+| 机制 id | `kin-steward-loop`（超级总管一条龙 · 输入→调度→存档→对账） |
+| 机制全文 | [2610top40 MECHANISMS.md](../2610top40/MECHANISMS.md#kin-steward-loop｜超级总管一条龙输入调度存档对账) |
 | 本周学习面板 | [2610top40 WEEKLY.md](../2610top40/WEEKLY.md) |
-| 实验帖 | 标题意向「Bot 交活别只说 done，先甩 before/after」——**人审后发** |
+| 实验帖 | 标题意向「计划十件做成三件才是常态，晚上得有人跟你对账」——**人审后发** |
 
 | 步骤 | 动作 |
 | --- | --- |
-| 1 | 精读目录第 1 篇：Cloud Agent 证明材料 + 多模态核对 + 顶回重做 |
-| 2 | 机制卡已入库：`kin-proof-loop`（勿重复 `kin-human-gate` / `kin-reader-subject` / `kin-tutorial-funnel`） |
-| 3 | 实验帖草稿：① 抄证明句 ② 院内对照 ③ 三步 SOP → **人审后** Routine 或手动发 |
+| 1 | 精读目录第 4 篇：董事长/超级总管分工 + 知识库一条龙 + 晚间对账（十件做成三件是常态） |
+| 2 | 机制卡已入库：`kin-steward-loop`（勿重复 `kin-human-gate` / `kin-reader-subject` / `kin-tutorial-funnel` / `kin-proof-loop`） |
+| 3 | 实验帖草稿：① 抄董事长/总管句 ② 院内/小老板一天对照 ③ 早交代→昼调度→晚对账三步 SOP → **人审后** Routine 或手动发 |
 
 **对照专题：** [2610top40 本周必抄](https://another3000.github.io/xstudy/specials/2610top40/index.html#learning-h) · [#7 Kin 案卷](https://another3000.github.io/xstudy/specials/2610top40/07-KinGao476942.html)。
 
