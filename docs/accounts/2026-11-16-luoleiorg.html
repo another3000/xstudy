@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@luoleiorg（luolei） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-b.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语现场/社群</span>
+    <h1>@luoleiorg（luolei）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/luoleiorg</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-16 ~10:00 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>luolei / @luoleiorg</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-06-30（约 17 年 4 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>65193 / 1697 / 10856</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=5304；listed=592</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>38.4:1</strong>（健康），近窗未见互关话术。Bio：Founder @<a href="http://zool.app">zool.app</a>，AI Lab Developer，远程；YouTube <a href="http://zuoluo.tv/yt">zuoluo.tv/yt</a>；博客 <a href="https://luolei.org">luolei.org</a>；GitHub <a href="http://github.com/foru17">foru17</a>。用户 id：<code>52468378</code>。近采 <code>get_users_posts</code> 2 页（单页上限 25）共 44 条，其中原创主帖 39 条，覆盖 2026-10-20 15:20 至 2026-11-15 19:32 Asia/Shanghai（仍有 next_token，未再翻更早页）。近 7 天主帖 15 条、回复 2 条，日更偏勤。曝光中位数约 11309，书签中位数 4——日常基线不低，但头部分化很大。判定：<strong>可学</strong>（把现场条件写全再请人给方案；购物/踩坑按步骤算账）；最高曝是自嘲段子，当对照，不要当主食。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>华语 Builder 现场号：用「本人是萌新 + 编号条件」把求助写成可回答的说明书，再用买机、出机、搭网的过程账把读者留在评论里；爆的是段子，藏的是清单和征集。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 产品创始人、AI Lab、远程工作者，外链博客/YouTube/GitHub——身份是做东西的人，不是老师。</li>
+<li><strong>时间线实际：</strong> 近窗三条平行线：①深圳「疯狂星期四」线下小局（预约帖曝光矮）；②买机、出机、办卡、出境上网的过程故事；③把 Claude / Gemini / 临时组网写成带条件的请教。段子（「入职 AI Naive 公司」）把曲线拉到 10 万+，但不是日常形态。</li>
+<li><strong>目标受众：</strong> 华语独立开发、AI 工具使用者，以及会参加线下小聚的 Builder。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>先把约束写全，再开口问。</strong> 不是「大家怎么看」，而是「150–250 台设备、300㎡、AP 不能吸顶，这套二手方案靠谱吗？」</li>
+<li><strong>与 Bio 的错位：</strong> Bio 是创始人/AI Lab，时间线更像「爱折腾的熟人或主持人」。产品 zool.app 近窗几乎没当主角，增长靠现场和社群，不靠发车帖。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-20 15:20 至 2026-11-15 19:32 Asia/Shanghai）原创主帖 39 条。不要拿 10.6 万曝那条自嘲当日常基线。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自嘲/反讽段子</td>
+<td>少（最高曝）</td>
+<td><a href="https://x.com/luoleiorg/status/2115769849310036277">入职「AI Naive」公司</a></td>
+<td><strong>106170曝</strong> / 259赞 / 书签68 / 回复78</td>
+</tr>
+<tr>
+<td>可复制的过程账</td>
+<td>中</td>
+<td><a href="https://x.com/luoleiorg/status/2120051161361424460">香港 CMHK 拿下 iPhone 18，怒省约¥2000</a></td>
+<td>69286曝 / 174赞 / <strong>书签130</strong> / 回复36</td>
+</tr>
+<tr>
+<td>短钩+配图的即时反应</td>
+<td>中</td>
+<td><a href="https://x.com/luoleiorg/status/2121193811040997418">中国 10 万个开发者虎躯共震</a></td>
+<td>67528曝 / 80赞 / 书签17 / 回复15</td>
+</tr>
+<tr>
+<td>结构化求助征集</td>
+<td>中（最高藏密之一）</td>
+<td><a href="https://x.com/luoleiorg/status/2120774887900127641">临时活动搭网，求方案和坑</a></td>
+<td>27673曝 / 85赞 / <strong>书签92</strong> / <strong>回复42</strong></td>
+</tr>
+<tr>
+<td>现场翻车故事</td>
+<td>中</td>
+<td><a href="https://x.com/luoleiorg/status/2120458899698614300">出旧机忘了 erase，差点裸奔</a></td>
+<td>39846曝 / 67赞 / 书签25 / 回复23</td>
+</tr>
+<tr>
+<td>线下局预告</td>
+<td>中（最矮）</td>
+<td><a href="https://x.com/luoleiorg/status/2120374838644883752">疯狂星期四深圳场第23期</a></td>
+<td>2725曝 / 7赞 / 书签3</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>按近采窗口主帖<strong>阅读量（曝光）</strong>取 Top5。书签密度另见第 6 节。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/luoleiorg/status/2115769849310036277">入职「AI Naive」公司</a>（2026-10-29 19:36 Asia/Shanghai）</td>
+<td>106170</td>
+<td>259</td>
+<td>78</td>
+<td>可学：用一个故意写错的词（Naive / Native）把行业口号翻成自嘲。BIR 仅 0.064%，这是<strong>传播型段子</strong>，不是教案。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/luoleiorg/status/2120051161361424460">香港门店买 18 Pro Max，列出优惠与最终价</a>（2026-11-10 15:09 Asia/Shanghai）</td>
+<td>69286</td>
+<td>174</td>
+<td>36</td>
+<td>可学：步骤编号 + 最终算术（12999 港币 × 汇率 − 优惠 = ¥10879）。书签 130，BIR 0.188%，比段子更值得存。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/luoleiorg/status/2121193811040997418">刚刚！！中国 10 万个开发者虎躯共震</a>（2026-11-13 18:49 Asia/Shanghai）</td>
+<td>67528</td>
+<td>80</td>
+<td>15</td>
+<td>慎学当主线：短钩+配图，BIR 仅 0.025%。本次未下载配图，不臆造画面；学「即时反应」的时效，不学空钩。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/luoleiorg/status/2120458899698614300">出旧 iPhone 忘了 erase</a>（2026-11-11 18:09 Asia/Shanghai）</td>
+<td>39846</td>
+<td>67</td>
+<td>23</td>
+<td>可学：动作链写全（对比平台→下单→来不及 reset→回看视频→拦截），读者能感到「差一点」。BIR 0.063%，仍是故事不是清单。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/luoleiorg/status/2119428535429566910">割舍 Jio，开启「美国豆包」会员</a>（2026-11-08 21:55 Asia/Shanghai）</td>
+<td>30800</td>
+<td>63</td>
+<td>30</td>
+<td>可学：用具体花费（₺2949.99）把订阅选择写成现场。涉及跨境账号，细节<strong>慎学</strong>，学的是「用一笔账打开讨论」。</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天发帖量：约 17 条（主帖 15 / 回复 2），近窗 39 条主帖跨约 26 天，中高频。</li>
+<li>日峰值与低谷：有线下局或出行的日子会连发现场图；预告帖和「衣服够不够」这类生活碎片明显更矮。</li>
+<li>主帖 : 回复 近窗约 39:5，主帖为主，不是靠串门堆量。</li>
+<li>高峰时段（Asia/Shanghai）：近 7 天集中在下午到晚上（约 15–20 点）。</li>
+<li>「高频」靠的是出行和活动现场的内容产能，不是模板短回复。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li>互关 / 粉关比：约 38.4:1，健康。未见「互关冲量」。</li>
+<li>回复工时（串门）：近窗回复很少，主要把评论区留给自己的征集帖。</li>
+<li>钩子话术：数字和编号清单（买机账、组网条件）；「本人是××萌新」降低提问门槛；段子用错词制造停顿。</li>
+<li>平台激励：有蓝标；未见分成话术。</li>
+<li>擦边 / 猎奇：无。最高曝是行业自嘲，不是猎奇。</li>
+<li>跨平台导流：Bio 指向博客、YouTube、GitHub；近窗主帖较少硬导流，增长发生在 X 现场本身。</li>
+<li>其他：<strong>线下小局是关系资产，不是曝光资产</strong>（预告帖约 2.7k 曝）。另：结构化求助的书签/回复密度，明显高于更高曝的段子和配图梗。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>更值得学的「次爆」</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/luoleiorg/status/2115769849310036277">AI Naive 入职</a></td>
+<td><a href="https://x.com/luoleiorg/status/2120774887900127641">临时搭网求助</a></td>
+<td><a href="https://x.com/luoleiorg/status/2120374838644883752">周四活动预告</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>反讽口号 + 配图</td>
+<td>身份谦称 + 现场约束 + 已有思路 + 明确问句</td>
+<td>时间地点 + Chill 口号</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>情绪主、数字是笑料（2000 万 Tokens）</td>
+<td>150–250 台、300㎡、100M + 5G 多线，图是现场条件</td>
+<td>有图，但没有「问题」</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>10.6 万曝、BIR 0.064%，能传不一定能用</td>
+<td>2.8 万曝，但 <strong>42 回复 / 92 书签，BIR 0.332%</strong>；同窗「拿下美国银行公司卡」BIR 更高（0.369%）</td>
+<td>2.7k 曝，预告不要指望爆，把它当成到场的门票</td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>把求助写成说明书 →</strong> 微李玩AI / 院内 AI：不要发「大家怎么看 LIS 上模型」。改成「现场 3 个约束 + 我准备试的方案 + 你若来做会改哪一步」。</li>
+<li><strong>过程账要算出最后一笔数 →</strong> 小程序或输血信息化案例：列出步骤和「最终账单」（工时、接口、差错率），让读者能转述。</li>
+<li><strong>动作链写到「差一点」 →</strong> 实施复盘：登录→改配置→重启→对不上号，比「我们遇到了挑战」有用。</li>
+<li><strong>线下局当关系资产 →</strong> 客户或同业下午茶预告可以发，但别用爆款指标考核它。</li>
+<li><strong>段子当调剂，不当主食 →</strong> 行业自嘲能拉曝光，回看时用书签/回复决定要不要复用。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：近窗多条涉及跨境订阅、支付组合、IP 与 KYC，有合规和平台风险。学「条件编号」的写法，<strong>不要照搬具体配置</strong>。</li>
+<li>信任与品牌损耗：买机攻略会过时；算错一笔账比段子更伤。</li>
+<li>与我们定位冲突点：微李玩AI / 院内项目不宜把灰色订阅当教程；购物和段子流量也不可直接迁到严肃业务账号。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周写 1 条「现场条件完整的求助」：例如院内部署要同时满足的 4 个约束 + 你已有的两种方案，问哪一种坑更少（人审后发）。</li>
+<li>把一条实施复盘写成过程账：步骤编号，最后给出一个可核对的数字（耗时或差错）。</li>
+<li>若有线下小局，预告帖只服务到场，不把低曝光当成内容失败。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据：<code>get_users_by_usernames</code> + <code>get_users_posts</code> 2 页（单页被降至 25）+ 长帖 <code>get_posts_by_ids</code> 取全文。按 referenced_posts 区分主帖/回复/转帖，未使用 exclude。采集时刻粉丝与帖量见第 0 节。</li>
+<li>书签率 BIR = 书签 / 曝光。2026 年公开拆解里，四行以上、把问题写清楚的帖，书签往往高于口号和配图梗——本账号的征集帖与段子对照，符合这一方向，不是定律。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
