@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@taylorotwell（Taylor Otwell） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-d.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · PHP产品发车</span>
+    <h1>@taylorotwell（Taylor Otwell）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/taylorotwell</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-17 ~09:15 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Taylor Otwell / @taylorotwell</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-04-04（约 17 年 7 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>186754 / 652 / 38873</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=1728；listed=2378</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>286.4:1</strong>（健康），近窗未见互关话术。Bio：@<a href="https://x.com/laravel">laravel</a> creator • ship or die。外链 <a href="https://laravel.com">laravel.com</a>。用户 id：<code>28870687</code>。近采 <code>get_users_posts</code> 2 页共 50 条（原创主帖 13、引用 5、回复 29、转帖 3），覆盖 2026-10-30 23:30 至 2026-11-17 09:00 Asia/Shanghai（仍有 next_token）。近 7 天约 19 条（主帖 6 / 引用 2 / 回复 9 / 转帖 2）。主帖+引用曝光中位数约 19374，书签中位数 13.5——发车帖和预告/人设帖分化明显。判定：<strong>可学</strong>（把刚修好的纸质划痕、刚能实时更新的页面，写成开发者能立刻想象的场景）；Omega 预告和 Crocs+Lambo 能抬曝光，不当主食。对维护 PHP 站点的人尤其可迁。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>Laravel 创始人的发车日记：主帖不多，但每条都尽量让人看见「改了什么、用在哪」；爆藏的是 Inertia 实时更新这种可想象的功能，爆吵的是订阅账单和预告，不是功能本身。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> Laravel 的创造者，座右铭就是 ship or die——时间线必须交得出东西。</li>
+<li><strong>时间线实际：</strong> 近窗兑现了这句话。Inertia 页面可按广播事件局部刷新、Laravel Cloud 纸质划痕被修掉、文档搜索一小时内用 turbopuffer 重建并带评估集、预览环境把 PR 信息直接铺在画布上方。另一条线是社区治理（Discord 交给社区）和人设（零到一的定义、$200 vs $4000 的 AI 订阅、Crocs 开 Lambo）。置顶是 2026-06 的一篇 X Article（205643 曝），近窗没有再推它。</li>
+<li><strong>目标受众：</strong> Laravel / PHP 开发者，以及看他「怎么把框架和云产品一起往前推」的建造者。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>功能帖先写使用场景，再写机制。</strong> 「给 prop 标成 live，接到广播事件，只刷新这一个 prop，不用轮询。适合订单状态、未读数、仪表盘。」</li>
+<li><strong>与 Bio 的错位：</strong> 几乎没有。人设帖（Crocs、订阅价格）是调味，不是主业。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-30 23:30 至 2026-11-17 09:00 Asia/Shanghai）原创+引用 18 条。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可想象场景的功能发车</td>
+<td>中（最高藏）</td>
+<td><a href="https://x.com/taylorotwell/status/2117359885935317396">Inertia 页面可实时局部更新</a></td>
+<td><strong>59164曝</strong> / 963赞 / <strong>书签293</strong> / 回复36</td>
+</tr>
+<tr>
+<td>预告/悬念</td>
+<td>少（高曝低藏）</td>
+<td><a href="https://x.com/taylorotwell/status/2116191097940840624">Omega 很快来，Aaron 不让说太多</a></td>
+<td>47759曝 / 557赞 / 书签13 / 回复45，BIR≈0.027%</td>
+</tr>
+<tr>
+<td>纸质划痕被修好</td>
+<td>中（高藏密）</td>
+<td><a href="https://x.com/taylorotwell/status/2118805829000294422">Laravel Cloud 这个 papercut 终于修了</a></td>
+<td>36190曝 / 473赞 / <strong>书签98</strong> / 回复34，BIR≈0.27%</td>
+</tr>
+<tr>
+<td>内部建造过程</td>
+<td>中</td>
+<td><a href="https://x.com/taylorotwell/status/2121653956124479634">一小时重建 laravel.com 文档搜索，还带评估集</a></td>
+<td>32646曝 / 333赞 / 书签43 / 回复23</td>
+</tr>
+<tr>
+<td>人设与价值观</td>
+<td>中</td>
+<td><a href="https://x.com/taylorotwell/status/2120676371274051998">$200/月的 AI 订阅已经便宜到不可思议</a></td>
+<td>43315曝 / 486赞 / 书签24 / <strong>回复89</strong></td>
+</tr>
+<tr>
+<td>社区治理</td>
+<td>少</td>
+<td><a href="https://x.com/taylorotwell/status/2121629497527022035">Laravel Discord 交给社区，不再只读</a></td>
+<td>32346曝 / 361赞 / 书签14</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>按近采窗口主帖+引用的<strong>阅读量</strong>取 Top5。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/taylorotwell/status/2117359885935317396">Inertia 的页面现在可以实时更新自己</a>（2026-11-03 04:55 Asia/Shanghai）</td>
+<td>59164</td>
+<td>963</td>
+<td>36</td>
+<td>可学：第一句是结果，第二句是机制（live prop + 广播事件 + 不轮询），第三句是三个具体场景。书签 293，BIR≈0.50%，近窗最高藏。配了界面图。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/taylorotwell/status/2116191097940840624">Omega 还是很快会来，Aaron 不让我剧透</a>（2026-10-30 23:30 Asia/Shanghai）</td>
+<td>47759</td>
+<td>557</td>
+<td>45</td>
+<td>慎学当主食：悬念能抬曝光和回复，书签只有 13，BIR≈0.027%。这是预告，不是教案。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/taylorotwell/status/2120676371274051998">如果个人 AI 订阅要 4000 美元一个月，我大概也会继续付；现在 200 美元已经不可思议</a>（2026-11-12 08:33 Asia/Shanghai）</td>
+<td>43315</td>
+<td>486</td>
+<td>89</td>
+<td>可学其结构（用一个夸张的对照写出价值感），慎学其作为主线：这是账单讨论，89 条回复是争论不是收藏（24 藏，BIR≈0.055%）。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/taylorotwell/status/2118805829000294422">这个 Laravel Cloud 的纸质划痕我撞过太多次，现在修好了</a>（2026-11-07 04:40 Asia/Shanghai）</td>
+<td>36190</td>
+<td>473</td>
+<td>34</td>
+<td>可学：不讲新功能名，只讲「我自己反复撞到的一点」+ 短视频。书签 98，BIR≈0.27%，比预告更值得学。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/taylorotwell/status/2121653956124479634">为即将发的东西重建 laravel.com，文档搜索一小时内用 turbopuffer 重做，还带评估集</a>（2026-11-15 01:18 Asia/Shanghai）</td>
+<td>32646</td>
+<td>333</td>
+<td>23</td>
+<td>可学：过程账写到「一小时 + 用常见查询做新旧相关性对比」。这是 AI 时代发车该有的证据，不只是「我们用了新栈」。书签 43，BIR≈0.13%。</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天约 19 条（主帖 6 / 引用 2 / 回复 9 / 转帖 2）；近窗 13 条原创主帖跨约 17 天，中频、重量偏发车。</li>
+<li>日峰值：发车日会连发产品图和跟进引用（如对 Caleb Porzio 的感叹号引用，27509 曝 / 35 藏）；其余日子用回复处理 Cloud、文档、社区问题。</li>
+<li>主帖 : 回复 近窗约 13:29，回复是产品支持，不是串门涨粉。</li>
+<li>高峰时段（Asia/Shanghai）：近 7 天偏凌晨到上午（0–6 点、8–9 点），对应美国中部晚上到夜里。</li>
+<li>「高频」靠的是产品节奏，不是内容日历硬凑。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li>互关 / 粉关比：约 286.4:1，健康。关注 652，未见互关话术。</li>
+<li>回复工时：主要用于自己的产品支持（预览环境、文档、Discord），不是增长黑客。</li>
+<li>钩子话术：使用场景三连；「这个 papercut 我撞过太多次」；夸 Contrast（$4000 vs $200）；极简价值句（influence &gt; authority，agency &gt; permission，done &gt; discussed）。</li>
+<li>平台激励：有蓝标；未见分成话术。置顶是 X Article，近窗未作为增长杠杆反复推。</li>
+<li>擦边 / 猎奇：无。Crocs+Lambo（21805 曝 / 3 藏，BIR≈0.014%）是人设炫富幽默，收藏几乎为零。</li>
+<li>跨平台导流：laravel.com、短视频、产品截图。增长发生在框架用户已在的时间线里。</li>
+<li>其他：<strong>发车质量用书签，不靠预告。</strong> Omega 4.8 万曝只有 13 藏；Inertia 5.9 万曝有 293 藏。同一账号、同一周，差距来自「读者能不能立刻想到自己的项目」。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款（最高藏）</th>
+<th>高曝但薄的预告</th>
+<th>平帖/人设对照</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/taylorotwell/status/2117359885935317396">Inertia 实时更新</a></td>
+<td><a href="https://x.com/taylorotwell/status/2116191097940840624">Omega 预告</a></td>
+<td><a href="https://x.com/taylorotwell/status/2118027594339877178">Crocs 开 Lambo</a>（21805曝 / 235赞 / 3藏）</td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>结果 + 机制 + 三个使用场景</td>
+<td>「很快」「不能剧透」</td>
+<td>一句幽默人设</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>5.9 万曝、293 藏，BIR≈0.50%</td>
+<td>4.8 万曝、13 藏，BIR≈0.027%</td>
+<td>2.2 万曝，几乎无收藏</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>开发者能马上对上自己的订单状态/未读数</td>
+<td>悬念负责讨论，不负责可执行资产</td>
+<td>人设帖可以发，不要用它考核内容</td>
+</tr>
+</tbody>
+</table>
+<p>同窗还有一条更可学的「次爆」：<a href="https://x.com/taylorotwell/status/2118805829000294422">Cloud papercut 修好了</a>（BIR≈0.27%）和价值观短帖 influence &gt; authority（19423 曝 / 48 藏，BIR≈0.25%）。后者可学其短，但没有场景，不如功能帖可迁。</p>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>发车先写三个使用场景 →</strong> 微李玩AI / 小程序：不要只说「支持实时」。改成「适合检验状态、危急值提醒、待办角标，机制是 ___」。</li>
+<li><strong>把反复撞到的纸质划痕单独发一条 →</strong> LIS / 院内工具：选一个自己和客户都骂过的小点，宣布它修了，配 10–20 秒前后对照。比版本号清单更被记住。</li>
+<li><strong>过程账写到时间和评估 →</strong> AI 入企：「一小时内重做了搜索，并用几百条常见查询对比新旧相关性」。有时间盒，有对照，才像真的。</li>
+<li><strong>预告和人设当调剂 →</strong> Omega、Crocs、订阅价格都能抬曝光，回看时用书签决定要不要复用。</li>
+<li><strong>社区决策也可以写清楚 →</strong> Discord 交给社区那条不是爆款，但把「为什么现在交、以前为什么没精力」说完了。治理帖服务信任，不要用爆款指标考核。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：低。</li>
+<li>信任与品牌损耗：预告太多而交付跟不上，会消耗「ship or die」；人设炫富幽默在严肃业务号里容易变味。</li>
+<li>与我们定位冲突点：微李玩AI / 医院项目不宜搬 Crocs+Lambo 或个人订阅账单讨论；可搬的是场景化发车、纸质划痕和带评估的过程账。PHP/Laravel 技术细节本身，对维护 PHP 站点有直接参考，也不等于要追每一趟框架新特性。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周选一个已上线的小改动，按 Inertia 那条的三句式写：结果 → 机制 → 三个使用场景（人审后发）。</li>
+<li>另发一条「纸质划痕」：只讲一个反复撞到、现在修好的点，能配前后对照更好。</li>
+<li>若用 AI 重做了搜索、文档或流程，过程里补一句话：花了多久，用什么样本做了新旧对照。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据：<code>get_users_by_usernames</code> + <code>get_users_posts</code> 2 页 + <code>get_posts_by_ids</code> 取长文。按 referenced_posts 区分类型，未使用 exclude。文档搜索帖曝光在两次读取间由 32643 上漂至 32646，采用后者。转发数以列表接口为准。</li>
+<li>书签率 BIR = 书签 / 曝光。2026 年公开拆解里，能让读者立刻对上自己项目的功能说明，书签往往高于预告和人设——本账号 Inertia 与 Omega、Crocs 的对照，符合这一方向，不是定律。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@Huxpro（Hux · 黄玄） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-c.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · 华语工程判断</span>
+    <h1>@Huxpro（Hux · 黄玄）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/Huxpro</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-17 ~09:15 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Hux · Xuan Huang / @Huxpro</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2013-09-04（约 13 年 2 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>17472 / 1721 / 2520</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=403；listed=179</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>10.2:1</strong>（健康），近窗未见互关话术。Bio：Vibing @<a href="https://x.com/Lynxjs_org">Lynxjs_org</a>；前 @<a href="https://x.com/Reactjs">Reactjs</a> / @<a href="https://x.com/ReactNative">ReactNative</a> / @<a href="https://x.com/HermesEngine">HermesEngine</a>；λ.TaPL/FP/@TC39/@W3C。外链 <a href="https://github.com/huxpro">github.com/huxpro</a>。用户 id：<code>1727932326</code>。近采 <code>get_users_posts</code> 1 页 24 条（原创主帖 6、引用 4、回复 8、转帖 6），覆盖 2026-10-12 09:17 至 2026-11-16 15:07 Asia/Shanghai（仍有 next_token，未再翻更早页）。近 7 天只有 7 条，且以回复/转帖为主——<strong>本周偏静，判断主要来自 10 月中下旬那批主帖</strong>。主帖+引用曝光中位数约 3277，书签中位数 1.5。判定：<strong>可学</strong>（把工程判断写成可辩论的问题或「我曾经错了」的情节扭转）；最高曝是婚礼页，当对照，不要当主食。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>前 React / 现 Lynx 的工程判断号：平时发得少，一旦开口就是「护城河在哪」或「我看走眼了」；爆的是「Shipped something 💍」，藏的是可以拿到工作里吵的那两问。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 还在做 Lynx 的人，履历是 React/RN/Hermes 和语言标准委员会——身份是建造者，不是资讯号。</li>
+<li><strong>时间线实际：</strong> 近窗很克制。10 月中下旬连续放出三记重的：后端护城河提问、Codex「过度设计」反转、婚礼页上线；11 月以后以转帖、短引用和「Stand with Jensen」联名为多，新的技术主帖变少。</li>
+<li><strong>目标受众：</strong> 前端/跨端、框架作者、正在被 AI 改写工作流的工程师。</li>
+<li><strong>差异点 / 人设钩子：</strong> <strong>用自己改口的经历当钩子。</strong> 「我以前因为 Codex 爱过度设计而不喜欢它，直到开始写新框架，才发现这正是它的长处：抽象、约束、不变量、数学。PLOT TWIST。」</li>
+<li><strong>与 Bio 的错位：</strong> Bio 仍是 Lynx/React 技术人，最高曝却是私人婚礼站 <a href="https://yidi.hux.lol/">yidi.hux.lol</a>（「Yidi &amp; Hux · A Rainy Day in New York」）。人设没有崩，只是工程师把人生事件也写成了 ship。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<p>近采窗口（2026-10-12 09:17 至 2026-11-16 15:07 Asia/Shanghai）原创+引用 10 条。样本不多，更要分开看「人生事件」和「工程判断」。</p>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人生事件用 ship 句式</td>
+<td>少（最高曝）</td>
+<td><a href="https://x.com/Huxpro/status/2115210360701489432">Shipped something 💍</a></td>
+<td><strong>64430曝</strong> / 659赞 / 书签123 / <strong>回复128</strong></td>
+</tr>
+<tr>
+<td>行业提问，向评论区要判断</td>
+<td>少（高讨论）</td>
+<td><a href="https://x.com/Huxpro/status/2109453306758373658">AI 在吃前端，后端的护城河是什么？</a></td>
+<td>37066曝 / 116赞 / 书签32 / <strong>回复47</strong></td>
+</tr>
+<tr>
+<td>工具改口 / 情节扭转</td>
+<td>少（更可搬）</td>
+<td><a href="https://x.com/Huxpro/status/2113178472021442593">Codex 爱过度设计，写框架时发现这是优点</a></td>
+<td>15091曝 / 91赞 / 书签20 / 回复16</td>
+</tr>
+<tr>
+<td>现场疲劳短句</td>
+<td>少</td>
+<td><a href="https://x.com/Huxpro/status/2112397634677981638">Reading code hurts. I'm deprecating fast.</a></td>
+<td>4373曝 / 15赞 / 书签0</td>
+</tr>
+<tr>
+<td>产品现场引用</td>
+<td>中</td>
+<td><a href="https://x.com/Huxpro/status/2110931770988532209">Lynx + OpenUI 已在生产环境跑</a></td>
+<td>2149曝 / 9赞 / 书签2</td>
+</tr>
+<tr>
+<td>声援/短转</td>
+<td>近 7 天主形态</td>
+<td><a href="https://x.com/Huxpro/status/2121500068738121881">Stand with Jensen 联名</a></td>
+<td>1409曝 / 7赞 / 书签1</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>按近采窗口主帖+引用的<strong>阅读量</strong>取 Top5。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/Huxpro/status/2115210360701489432">Shipped something 💍</a>（2026-10-28 06:33 Asia/Shanghai）</td>
+<td>64430</td>
+<td>659</td>
+<td>128</td>
+<td>慎学当主线：两词 + 戒指 + 婚礼站，是人生事件的工程师梗。BIR≈0.19%，互动浓，但搬不到产品日历里每周都 ship 一次婚礼。学的是钩子的干净，不是题材。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/Huxpro/status/2109453306758373658">AI 在吃前端，后端不也在被吃吗？护城河和还该深挖的技能是什么？</a>（2026-10-12 09:17 Asia/Shanghai）</td>
+<td>37066</td>
+<td>116</td>
+<td>47</td>
+<td>可学：先把对方的口头禅接住，再反问对称的一面，最后甩出两道真正要人回答的题。47 条回复是征集，不是表情包。BIR≈0.086%。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/Huxpro/status/2113178472021442593">曾经嫌 Codex 过度设计，写新框架时发现那正是长处</a>（2026-10-22 15:59 Asia/Shanghai）</td>
+<td>15091</td>
+<td>91</td>
+<td>16</td>
+<td>可学：钩子是「我以前的偏好是错的」。优点被写成四个词（abstractions, constraints, invariants, math），结尾只用 PLOT TWIST。书签 20，BIR≈0.13%，比婚礼页更可复用。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/Huxpro/status/2112397634677981638">Reading code hurts. Damn, I'm deprecating fast.</a>（2026-10-20 12:16 Asia/Shanghai）</td>
+<td>4373</td>
+<td>15</td>
+<td>0</td>
+<td>可学其短，慎学其空：两句共鸣能传，但 0 书签，没有可带走的步骤。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/Huxpro/status/2110931770988532209">Lynx + OpenUI 已经在生产环境跑了</a>（2026-10-16 11:12 Asia/Shanghai，引用）</td>
+<td>2149</td>
+<td>9</td>
+<td>1</td>
+<td>可学：权威资产是「已经在生产里」，不是路线图。曝光不高，但这才是 Bio 承诺的兑现。</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天发帖量：约 7 条（原创 1 / 引用 1 / 回复 2 / 转帖 3），本周几乎没有新的技术主帖。</li>
+<li>近窗 6 条原创主帖散落在约 5 周里，低频、重量级。</li>
+<li>主帖 : 回复 : 转帖 近窗约 6:8:6（另有引用 4），不是回复工时号，也不是日更号。</li>
+<li>高峰时段（Asia/Shanghai）：样本少，10 月那批重帖多在上午到下午。</li>
+<li>「低频」靠的是判断密度，不是产能。若连续一周只有联名和转帖，时间线会暂时不像 Bio 里的建造者。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li>互关 / 粉关比：约 10.2:1，健康。未见互关话术。</li>
+<li>回复工时（串门）：有，但不是增长主力；重帖自己会把评论区变成讨论区。</li>
+<li>钩子话术：情节扭转（PLOT TWIST）；对称反问（前端被吃 → 后端呢）；极简人生事件句（Shipped + 💍）。</li>
+<li>平台激励：有蓝标；未见分成话术。</li>
+<li>擦边 / 猎奇：无。</li>
+<li>跨平台导流：GitHub、婚礼独立站、Lynx 引用。主帖很少硬导流。</li>
+<li>其他：<strong>权威来自履历 + 现场，不来自日更。</strong> 「生产环境已经在跑」比「我们很激动」值钱；但 11 月这周如果只看新帖，你会误判这是一个联名号。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>爆款</th>
+<th>更值得学的「次爆」</th>
+<th>平帖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/Huxpro/status/2115210360701489432">Shipped something 💍</a></td>
+<td><a href="https://x.com/Huxpro/status/2113178472021442593">Codex 改口</a> / <a href="https://x.com/Huxpro/status/2109453306758373658">后端护城河</a></td>
+<td><a href="https://x.com/Huxpro/status/2121500068738121881">Stand with Jensen 联名</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>两词 + 符号 + 独立站</td>
+<td>旧判断 → 场景切换 → 新判断（四个词）/ 接住流行句再反问</td>
+<td>号召签名 + 话题标签</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>祝福和好奇，6.4 万曝、128 回复</td>
+<td>1.5 万–3.7 万曝，有可辩论的技术内容</td>
+<td>1409 曝，1 个书签</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>人生事件能爆，不能当周更模板</td>
+<td>改口和提问，才是可以迁到业务账的形状</td>
+<td>声援帖服务立场，不要用内容 KPI 苛责</td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>把「我以前看走眼了」写成情节 →</strong> 微李玩AI：不要发「模型 A 更好」。改成「我以前因为 X 不用它，直到在 Y 场景里才发现 X 其实是优点」，并列出四个具体词。</li>
+<li><strong>用对称反问做征集 →</strong> AI 入企 / LIS：不要问「大家怎么看 AI」。改成「都说 AI 在吃填报和录入，那检验流程的护城河还剩哪两块？哪一项还值得深人熟练？」</li>
+<li><strong>权威资产写「已在生产」→</strong> 小程序或院内部署：一句「这个表面已经在某某流程跑了」，比功能预告更硬。</li>
+<li><strong>钩子可以极短，题材不能乱搬 →</strong> 「Shipped something」干净，但婚礼不是内容策略；业务号用这个句式，对象应是可演示的交付。</li>
+<li><strong>低频也可以，但要承认静默周 →</strong> 一周只有转帖和联名时，别假装这是内容高峰。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：低。联名、公共事件表态可能带来无关回复，需分开看。</li>
+<li>信任与品牌损耗：长期不兑现「正在做 Lynx」的现场，人设会空；短句共鸣发多了也会变成段子号。</li>
+<li>与我们定位冲突点：微李玩AI不宜把私人仪式当流量模板；也不要为了提问而提问，问题必须落到可回答的业务约束。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周写 1 条「改口」：选一个你曾经公开或私下否定过的工具/流程，写清旧理由、新场景、现在看重的 3–4 个词（人审后发）。</li>
+<li>写 1 条对称反问：先引用一句院内或同行常说的话，再问对面那一侧的护城河还剩什么。</li>
+<li>若有已上线的小范围部署，单独发一句「已经在哪个流程里跑」，不配形容词。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据：<code>get_users_by_usernames</code> + <code>get_users_posts</code> 1 页（单页上限 25）+ 长帖/链接 <code>get_posts_by_ids</code>。按 referenced_posts 区分类型，未使用 exclude。「Shipped something」外链已打开，确认为婚礼站，不是产品发车。</li>
+<li>书签率 BIR = 书签 / 曝光。本账号近窗主帖少，结论应保守：人生事件能拉曝光，工程改口和开放问题更能迁到工作里。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
