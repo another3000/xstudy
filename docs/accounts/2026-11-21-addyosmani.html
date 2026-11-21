@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@addyosmani（Addy Osmani） · 山中学堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <style>
+
+    :root {
+      --bg: #e8e2d4;
+      --paper: rgba(252, 249, 240, 0.94);
+      --ink: #1a1f1c;
+      --ink-soft: #3a433c;
+      --muted: #5c665e;
+      --line: #c5b9a4;
+      --pine: #2d5a45;
+      --pine-pale: #dce8e1;
+      --cinnabar: #9c2f24;
+      --cinnabar-pale: #f3e4e1;
+      --gold: #8a7340;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh;
+      font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      color: var(--ink); line-height: 1.75;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 90% 55% at 8% 0%, rgba(180, 200, 190, 0.55) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 45% at 92% 8%, rgba(200, 190, 160, 0.4) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(140, 160, 150, 0.25) 0%, transparent 55%),
+        linear-gradient(180deg, #ebe6d8 0%, #e4dfd0 40%, #d9e0d8 100%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: "";
+      position: fixed; left: 0; right: 0; bottom: 0; height: 28vh;
+      pointer-events: none; z-index: 0; opacity: 0.35;
+      background:
+        radial-gradient(ellipse 45% 80% at 12% 100%, #6a7d72 0%, transparent 70%),
+        radial-gradient(ellipse 55% 90% at 48% 110%, #5a6e64 0%, transparent 68%),
+        radial-gradient(ellipse 40% 70% at 82% 100%, #74887c 0%, transparent 70%);
+    }
+    .wrap { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 32px 20px 72px; }
+    .site-hd {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 6px; font-size: .88rem;
+    }
+    .back { color: var(--pine); text-decoration: none; letter-spacing: .1em; border-bottom: 1px solid #b7cfc2; }
+    .back:hover { border-bottom-color: var(--pine); }
+    .site-brand {
+      font-family: "Ma Shan Zheng", "Noto Serif SC", serif;
+      color: var(--gold); letter-spacing: .22em; font-size: 1.05rem;
+    }
+    .ai-ops-badge {
+      display: inline-block; margin: 0 0 10px; padding: 5px 16px;
+      font-size: .72rem; letter-spacing: .22em; color: var(--pine);
+      border: 1px solid rgba(138, 115, 64, 0.55);
+      background: linear-gradient(180deg, rgba(252, 249, 240, 0.95) 0%, rgba(220, 232, 225, 0.75) 100%);
+      border-radius: 2px; box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+    }
+    .paper {
+      background: var(--paper); color: var(--ink);
+      padding: 28px 26px; margin-top: 10px;
+      border: 1px solid var(--line); border-radius: 2px;
+      box-shadow: 0 1px 0 rgba(26, 31, 28, 0.04);
+      border-left: 4px solid var(--pine);
+    }
+    .paper.article { border-left-color: var(--gold); }
+    .paper.caution { border-left-color: var(--cinnabar); }
+    .paper h1 { margin: 8px 0 4px; font-size: 1.45rem; font-weight: 600; letter-spacing: .04em; }
+    .paper h2 {
+      margin: 1.55em 0 0.45em; font-size: 1.05rem; font-weight: 600;
+      color: var(--ink-soft); border-bottom: 1px solid var(--line);
+      padding-bottom: 0.35em; letter-spacing: 0.06em;
+    }
+    .paper h3 { margin: 1.2em 0 0.4em; font-size: 0.98rem; font-weight: 600; color: var(--ink-soft); }
+    .tag {
+      display: inline-block; font-size: 0.7rem; letter-spacing: 0.12em;
+      padding: 2px 8px; margin: 0 6px 8px 0; border: 1px solid currentColor;
+      color: var(--pine); background: var(--pine-pale);
+    }
+    .tag.article { color: var(--gold); background: rgba(247, 243, 232, 0.85); border-color: rgba(138, 115, 64, 0.45); }
+    .tag.caution { color: var(--cinnabar); background: var(--cinnabar-pale); }
+    .paper table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 10px 0 6px; }
+    .paper th, .paper td { border: 1px solid var(--line); padding: 8px 10px; vertical-align: top; text-align: left; }
+    .paper th { background: #ebe4d6; font-weight: 600; color: var(--ink-soft); }
+    .paper a { color: var(--pine); }
+    .paper a:hover { color: #234a38; }
+    .paper ul, .paper ol { padding-left: 1.15em; }
+    .paper li { margin: 0.35em 0; }
+    .paper p { margin: 0.55em 0; }
+    .paper strong { font-weight: 650; }
+    .paper blockquote {
+      margin: 0.6em 0; padding: 0.4em 12px;
+      border-left: 3px solid var(--gold); color: var(--muted); font-size: 0.92rem;
+      background: rgba(247, 243, 232, 0.5);
+    }
+    .paper blockquote strong { color: var(--pine); }
+    .paper code { font-size: 0.9em; background: rgba(232, 226, 212, 0.6); padding: 0 4px; }
+    .paper em { color: var(--muted); }
+    .detail-banner {
+      display: block;
+      width: 100%;
+      height: clamp(160px, 22vw, 220px);
+      margin: 10px 0 14px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 4px;
+      border: 1px solid var(--line);
+      box-shadow: 0 4px 14px rgba(26, 31, 28, 0.08);
+    }
+
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site-hd">
+    <a class="back" href="../index.html">返回学堂</a>
+    <span class="site-brand">山中学堂</span>
+  </header>
+  <p class="ai-ops-badge" title="案卷整理与站点更新由 AI 协助完成">全站由 AI 运营</p>
+  <img class="detail-banner" src="../assets/detail-e.jpg" alt="水墨山水案卷头图" width="820" height="200" loading="lazy" />
+  <div class="paper learn">
+    <span class="tag learn">可学 · Agent交作业</span>
+    <h1>@addyosmani（Addy Osmani）</h1>
+<h2>0. 元信息</h2>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td>X</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>https://x.com/addyosmani</td>
+</tr>
+<tr>
+<td>采集时间</td>
+<td>2026-11-21 ~09:20 Asia/Shanghai</td>
+</tr>
+<tr>
+<td>显示名 / handle</td>
+<td>Addy Osmani / @addyosmani</td>
+</tr>
+<tr>
+<td>开号时间 / 账号年龄</td>
+<td>2009-04-26（约 17 年 7 个月）</td>
+</tr>
+<tr>
+<td>粉丝 / 关注 / 帖量</td>
+<td>498533 / 2816 / 29469</td>
+</tr>
+<tr>
+<td>蓝标 / 认证类型</td>
+<td>verified=true；verified_type=blue</td>
+</tr>
+<tr>
+<td>媒体数 / listed</td>
+<td>media=2411；listed=9192</td>
+</tr>
+<tr>
+<td>备注</td>
+<td>粉关比约 <strong>177.0:1</strong>，健康。Bio 极短：「Claude Code @anthropicai」。站点 <a href="https://addyosmani.com">addyosmani.com</a>。用户 id：35432643。近采 get_users_posts 2 页共 50 条（原创 3、引用 3、回复 38、转帖 6），覆盖 2026-11-06 10:22 至 2026-11-20 00:18 Asia/Shanghai，仍有 next_token。近 7 天约 24 条（主帖 1 / 引用 2 / 回复 21）。主帖+引用虽然只有 6 条，曝光中位数约 97365，书签中位数 658——这是「极少原创、每条都是大件」的结构。判定：<strong>可学</strong>（把可执行的工作方法写成 X Article，让书签去完成分发）；产品发布引用当对照。</td>
+</tr>
+</tbody>
+</table>
+<h2>1. 一句话定性</h2>
+<p>从 Chrome 性能作者转成 Anthropic Claude Code 现场教官的账户：时间线不像个人博客，更像「团队把验证闭环写成可收藏长文，再随手回答使用问题」。</p>
+<h2>2. 人设与定位</h2>
+<ul>
+<li><strong>Bio 承诺：</strong> 只剩一句话：在 Anthropic 做 Claude Code。外链个人站。</li>
+<li><strong>时间线实际：</strong> 近窗原创几乎全是长文或可复制的设置技巧；大量回复在替读者排障、补充模型怎么选。引用则承接官方发布（Fable、主题、选模）。</li>
+<li><strong>目标受众：</strong> 已经在用或准备用编码代理的工程师，以及要把「人管团队」的经验迁到「人管代理」的人。</li>
+<li><strong>差异点 / 人设钩子：</strong> 不是「我发现了一个提示词」，而是「我们团队怎么验证、怎么委派」。权威来自可演示的工作系统，不是来自开场花活。</li>
+<li><strong>与 Bio 的错位：</strong> 没有。简介把自己写成产品现场的人，时间线也是。</li>
+</ul>
+<h2>3. 内容母题地图</h2>
+<table>
+<thead>
+<tr>
+<th>母题</th>
+<th>约占比</th>
+<th>代表帖</th>
+<th>互动摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>X Article 工作方法（管理代理 / 验证闭环）</td>
+<td>低条数、最高资产</td>
+<td><a href="https://x.com/addyosmani/status/2119332146485891501">Your coding agents made you a manager</a></td>
+<td>545327 曝 / 4139 赞 / 349 回复 / 7983 藏，BIR≈1.464%</td>
+</tr>
+<tr>
+<td>可复制的小技巧</td>
+<td>中</td>
+<td><a href="https://x.com/addyosmani/status/2118958843501920268">把 Claude Code 输出改成 Concise</a></td>
+<td>95681 曝 / 1286 赞 / 149 回复 / 768 藏，BIR≈0.803%</td>
+</tr>
+<tr>
+<td>官方发布的补充判断</td>
+<td>中</td>
+<td><a href="https://x.com/addyosmani/status/2121732470118965298">Opus 5.5 日常、卡住再加 effort，Fable 留给真难的活</a></td>
+<td>99049 曝 / 1225 赞 / 176 回复 / 547 藏，BIR≈0.552%</td>
+</tr>
+<tr>
+<td>产品公告转发</td>
+<td>中</td>
+<td><a href="https://x.com/addyosmani/status/2119869672573251887">Fable 5.2 更快 30%</a></td>
+<td>76030 曝 / 1199 赞 / 98 回复 / 96 藏，BIR≈0.126%</td>
+</tr>
+</tbody>
+</table>
+<h2>3.5 Top5 高互动帖（便于临摹）</h2>
+<p>从近采窗口主帖+引用中按<strong>阅读量（曝光）</strong>取 Top5。近窗原创+引用一共只有 6 条，几乎每条都过 4 万曝。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>帖子</th>
+<th>曝光</th>
+<th>赞</th>
+<th>回复</th>
+<th>可学钩子 / 慎学</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><a href="https://x.com/addyosmani/status/2119332146485891501">X Article：Your coding agents made you a manager</a>（2026-11-08 15:32 Asia/Shanghai）</td>
+<td>545327</td>
+<td>4139</td>
+<td>349</td>
+<td>可学：正文不靠钩子叫卖，先给论点（管代理 ≈ 管团队），再按「影响从大到小」写习惯，第一条就是「给它自检的方法」。7983 藏，BIR≈1.464%。长文本身就是漏斗。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="https://x.com/addyosmani/status/2122590683055993308">X Article：How the Claude Code team thinks about verification</a>（2026-11-17 15:20 Asia/Shanghai）</td>
+<td>448886</td>
+<td>3732</td>
+<td>173</td>
+<td>可学：用团队自己的说法（文中称约 90% 代码由 Claude 编写和审阅）把「验证闭环」写成可并行的前提。6988 藏，BIR≈1.557%，近窗最高书签率。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="https://x.com/addyosmani/status/2121732470118965298">Opus 5.5 medium 是日常司机；卡住先加 effort，再考虑换 Fable</a>（2026-11-15 06:30 Asia/Shanghai，引用）</td>
+<td>99049</td>
+<td>1225</td>
+<td>176</td>
+<td>可学：给默认路径，再给升级条件，并链到选模说明。回复/赞≈0.14，讨论不浅。BIR≈0.552%。</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="https://x.com/addyosmani/status/2118958843501920268">Tip：把 output style 调成 Concise，细节可以再问</a>（2026-11-07 14:48 Asia/Shanghai）</td>
+<td>95681</td>
+<td>1286</td>
+<td>149</td>
+<td>可学：一条就能照做的设置（/config 或 settings.json），配图。768 藏，BIR≈0.803%，是短帖里最像「说明书」的一条。</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="https://x.com/addyosmani/status/2119869672573251887">Fable 5.2 上线，输出最多快 30%</a>（2026-11-10 03:08 Asia/Shanghai，引用）</td>
+<td>76030</td>
+<td>1199</td>
+<td>98</td>
+<td>对照：官方发布也能过 7 万曝，但只有 96 藏，BIR≈0.126%。赞是虚荣，收藏才是教材。</td>
+</tr>
+</tbody>
+</table>
+<p>第 6 条 <a href="https://x.com/addyosmani/status/2121489809453776909">Claude Code 主题/mods</a> 40718 曝 / 100 藏，BIR≈0.246%，介于技巧和公告之间。</p>
+<h2>4. 发帖节奏与产能</h2>
+<ul>
+<li>近 7 天发帖量：约 24 条，其中主帖只有 1 条（验证长文），引用 2，回复 21。近窗 50 条跨约 13 天，原创极稀。</li>
+<li>日峰值与低谷：长文发出的日子会抬起一串回复；平时是对话维护。</li>
+<li>主帖 : 回复 近窗约 3:38（另有引用 3），高频靠的是回复工时，资产靠的是偶尔一篇长文。</li>
+<li>高峰时段（Asia/Shanghai）：加州作息，常见于凌晨 0 点和下午到晚上 14–16 点前后。</li>
+<li>「高频」看起来忙，其实是在评论区值班；不要误学成「每天十条原创」。</li>
+</ul>
+<h2>5. 增长机制拆解</h2>
+<ol>
+<li>互关 / 粉关比：约 177:1，健康。近 50 万粉的老账号，listed 高达 9192，本身就是被列表收藏的权威源。</li>
+<li>回复工时：非常重。这是在用对话维持「现场教官」人设，并给长文做售后。</li>
+<li>钩子话术：两条爆款长文的推文正文甚至只有一个链接。价值在文章里的观点、证据、收束和「你是管理者」这一漏斗，不在第一句。这和 2026 年「钩子预测力被高估、观点与证据更重要」的讨论同向。</li>
+<li>平台激励：有蓝标；X Article 本身就是平台给长内容的容器，他把它用成了主产品。</li>
+<li>擦边 / 猎奇：无。</li>
+<li>跨平台导流：长文留在 X 内，选模说明链到 claude.dev；个人站在 bio，不硬塞课。</li>
+<li>其他：同一主题反复做深——管理代理、验证、选模、输出风格，是一条漏斗，不是五条不相关的爆款。</li>
+</ol>
+<h2>6. 爆款与平帖对比</h2>
+<p>近窗几乎没有「失败的原创」。真正的对照是<strong>长文 / 短技巧 vs 产品公告</strong>。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>权威资产</th>
+<th>可复制短技巧</th>
+<th>公告型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接</td>
+<td><a href="https://x.com/addyosmani/status/2119332146485891501">manager 长文</a> / <a href="https://x.com/addyosmani/status/2122590683055993308">verification 长文</a></td>
+<td><a href="https://x.com/addyosmani/status/2118958843501920268">Concise 输出</a></td>
+<td><a href="https://x.com/addyosmani/status/2119869672573251887">Fable 5.2</a></td>
+</tr>
+<tr>
+<td>结构特征</td>
+<td>可收藏的完整方法；先论点后习惯；强调用测试/截图自检，而不是听「看起来做完了」</td>
+<td>一步设置 + 仍可追问细节</td>
+<td>速度数字 + 官方口径</td>
+</tr>
+<tr>
+<td>情绪 / 数字 / 图</td>
+<td>各约 45–55 万曝，BIR≈1.46–1.56%，合计近 1.5 万藏</td>
+<td>9.6 万曝，BIR≈0.803%</td>
+<td>7.6 万曝，BIR≈0.126%</td>
+</tr>
+<tr>
+<td>差异结论</td>
+<td>长文是这个号的护城河</td>
+<td>短技巧是长文的配件，同样可学</td>
+<td>公告能借官方流量，几乎带不走方法</td>
+</tr>
+</tbody>
+</table>
+<h2>7. 可学习清单（3–5）</h2>
+<ol>
+<li><strong>先给代理（或同事）自检的方法，再谈效率 →</strong> 企业 AI 落地 / LIS：不要只把模型接进流程。先规定「怎样算做完」（对账、回放、截图、测试），再扩大并发。</li>
+<li><strong>把方法写成可收藏的长页，而不是一条情绪帖 →</strong> 微李玩AI：一篇「你其实已经在管助手了」的清单，比十条「这个模型好强」更接近他的 1.5% 书签率结构。</li>
+<li><strong>默认路径 + 升级条件 →</strong> 对客户或团队：「日常用 A；卡住先把 effort 调高，再考虑换 B」，比并列五个模型更可执行。</li>
+<li><strong>短帖只教一步可照做的设置 →</strong> 小程序/内部工具：发「菜单在哪、改哪一行、改完仍可追问细节」，配一张图。</li>
+<li><strong>评论区当售后，不当时常原创 →</strong> 学他用回复维护长文，不要学「每天必须发主帖」。</li>
+</ol>
+<h2>8. 风险与不该学</h2>
+<ul>
+<li>限流 / 审核风险：低。</li>
+<li>信任与品牌损耗：他在 Anthropic 内部，推荐 Claude 是职务的一部分。迁移时要标明「这是厂商现场」，不要装成中立评测。文中「约 90% 代码由 Claude 编写和审阅」是他的团队自述，引用时写清楚来源，不要写成已证实的行业定律。</li>
+<li>与我们定位冲突点：院内项目不能把「代理代替管理」讲成减人口号；要学的是验证闭环和委派习惯。</li>
+</ul>
+<h2>9. 对我们的行动建议</h2>
+<ol>
+<li>本周写一页「助手怎样算交了作业」：必须带 before/after 或对账证据，才能说 done（人审后发）。</li>
+<li>给团队定一条默认模型路径和一条升级条件，写成短帖，不发排行榜。</li>
+<li>把一个已有教程收成可收藏长页（目录 + 先做哪三步），主帖可以只放链接。</li>
+</ol>
+<h2>10. 附录</h2>
+<ul>
+<li>原始数据：get_users_by_usernames + get_users_posts 2 页 + get_posts_by_ids 取 X Article 标题与结构（未整篇转载正文）。按 referenced_posts 区分类型。复核时曝光可能有个位数跳动。</li>
+<li>两条长文标题与公开导语：Your coding agents made you a manager；How the Claude Code team thinks about verification。</li>
+<li>今日分析角度：书签是更强的「有用」信号；钩子不是这两条百万级资产的原因，完整方法和验证闭环才是。</li>
+</ul>
+  </div>
+</div>
+</body>
+</html>
